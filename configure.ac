@@ -26,10 +26,6 @@ AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_ERROR([dshconfig not found!!])
 dnl Check if it is a GNU getopt that munges parameter option orderings.
 dnl and stops munging if + is specified.
 
-AH_TEMPLATE([GETOPT_WITH_GNU_REORDERING_EXTENTION], 
-	    [If getopt has an extention of reordering the parameters before processing, and it can be cancelled with adding a "+" at the start like GNU getopt, enable this option.])
-
-
 getopt_gnu=0
 AC_MSG_CHECKING([getopt with a GNU opton reordering extention])
 AC_TRY_RUN([
@@ -75,7 +71,7 @@ int main()
 )
 
 case ${getopt_gnu} in
-  yes) AC_DEFINE([GETOPT_WITH_GNU_REORDERING_EXTENTION])
+  yes) AC_DEFINE([GETOPT_WITH_GNU_REORDERING_EXTENTION],,[If getopt has an extention of reordering the parameters before processing, and it can be cancelled with adding a "+" at the start like GNU getopt, enable this option.])
   AC_MSG_RESULT([yes, disabling]);;
   no_workaround) AC_MSG_RESULT([no, without workaround]) ;;
   posix) AC_MSG_RESULT([no, POSIX compliant]) ;;
@@ -84,14 +80,14 @@ case ${getopt_gnu} in
 esac
 
 dnl Use -Wall if we have gcc.
-changequote(,)dnl
+[
 if test "x$GCC" = "xyes"; then
   case " $CFLAGS " in
   *[\ \	]-Wall[\ \	]*) ;;
   *) CFLAGS="$CFLAGS -Wall" ;;
   esac
 fi
-changequote([,])dnl
+]
 
 AC_CONFIG_FILES([ po/Makefile.in m4/Makefile 
 Makefile
