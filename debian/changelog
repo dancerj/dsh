@@ -1,3 +1,13 @@
+dsh (0.23.1-1) unstable; urgency=low
+
+  * New upstream version
+  * testsuite in build system
+  * Check if GNU getopt extention is enabled, and work around it if it
+    is. (closes: #161846)
+    Requested by Philippe Troin <phil@fifi.org>
+
+ -- Junichi Uekawa <dancer@debian.org>  Mon, 30 Sep 2002 15:14:27 +0900
+
 dsh (0.22.0-1) unstable; urgency=low
 
   * New upstream version
