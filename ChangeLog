@@ -1,5 +1,8 @@
 2002-09-23  Junichi Uekawa  <dancer@debian.org>
 
+	* debian/dsh.updatelist: update the machines list to use ${CLUSTERXML} format
+	instead of using hard-coded cluster.xml location.
+
 	* Makefile.am (TESTS): add it to the tests list.
 
 	* tests/param-i.sh: new test to check whether the -i option works.

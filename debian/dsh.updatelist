@@ -1,3 +1,3 @@
 #! /bin/bash
-/usr/bin/update-cluster-parseconfig hostname < /etc/update-cluster/cluster.xml > /etc/dsh/machines.list
+/usr/bin/update-cluster-parseconfig hostname < "${CLUSTERXML}" > /etc/dsh/machines.list
 
