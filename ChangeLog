@@ -1,3 +1,24 @@
+2003-06-04  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.7.cvs.2
+
+	* NEWS: update.
+
+	* dsh.ja.1: fix wording.
+
+	* Makefile.am (install-data-local): support @sysconfdir@
+	manual pages are installed properly, including localized ones.
+
+	* dsh.conf.ja.5: use @sysconfdir@
+
+	* dsh.conf.5: ditto
+
+	* Makefile.am (install-data-local): try and make a i18n build script.
+
+	* dsh.ja.1: use @sysconfdir@ instead of hard-coding.
+
+	* dsh.1: use @sysconfdir@ instead of hard-coding.
+
 2003-05-29  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.7.cvs.1

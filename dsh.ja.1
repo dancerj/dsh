@@ -8,10 +8,11 @@ dsh \- 分散シェル．もしくはダンサーのシェル
 "リモートシェル名" "] [-c | -w | -i] -- " "コマンドライン"
 .SH 説明
 .B dsh
-は複数のマシンで同時にコマンドを実行します．
-このユーティリティーは実質的に
+は複数のマシンで同時にコマンドを実行するためのユーティリティーです．
+このユーティリティーはBourneシェルで表現すると
 .B "for a in $(seq 1 10); do rsh $a command; done"
-と同じ事ができます．
+と同等の事ができます．
+
 .SH オプション
 利用可能なオプションは以下の通りです
 .TP
@@ -29,9 +30,9 @@ dsh \- 分散シェル．もしくはダンサーのシェル
 .I マシン名
 の形式は
 .I ユーザ名@マシン名
-という形をとります．この形式をとると，
+という形をとります．この形式を利用すると
 .I ユーザ名
-でリモートホストにログインします．
+でリモートホストにログインできます．
 
 バージョン 0.21.4 から
 .I "ユーザ名@マシン名,ユーザ名@マシン名,ユーザ名@マシン名"
@@ -131,18 +132,18 @@ node1とnode2の負荷平均を表示します．
 .PP
 .SH "ファイル"
 .TP
-.B "/etc/dsh/machines.list | $(HOME)/.dsh/machines.list"
+.B "@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list"
 .B -a
 コマンドラインオプションが指定されたときに利用するマシンの一覧．
 .PP
 .TP
-.BI "/etc/dsh/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
+.BI "@sysconfdir@/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
 .BI "-g " "グループ名"
 オプションが指定されたときに利用するマシンの一覧
 
 .PP
 .TP
-.B "/etc/dsh/dsh.conf | $(HOME)/.dsh/dsh.conf "
+.B "@sysconfdir@/dsh.conf | $(HOME)/.dsh/dsh.conf "
 毎日使うデフォルト設定の書いてあるファイル．
 .PP
 .SH "バグ"

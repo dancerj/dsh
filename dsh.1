@@ -9,6 +9,8 @@ dsh \- Distributed shell, or dancer's shell
 executes command remotely on several different machines at the same
 time. An utility to effectively do a
 .B "for a in $(seq 1 10); do rsh $a command; done"
+in bourne shell.
+
 .SH OPTIONS
 The options available are as follows.
 .TP
@@ -142,19 +144,19 @@ Shows the load average of machines node1 and node2.
 .PP
 .SH "FILES"
 .TP
-.B "/etc/dsh/machines.list | $(HOME)/.dsh/machines.list"
+.B "@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list"
 List of machine names to be used for when 
 .B -a
 command-line option is specified.
 .PP
 .TP
-.BI "/etc/dsh/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
+.BI "@sysconfdir@/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
 List of machine names to be used for when 
 .BI "-g " "groupname"
 command-line option is specified.
 .PP
 .TP
-.B "/etc/dsh/dsh.conf | $(HOME)/.dsh/dsh.conf "
+.B "@sysconfdir@/dsh.conf | $(HOME)/.dsh/dsh.conf "
 Configuration file containing the day-to-day default. 
 .PP
 .SH "BUGS"

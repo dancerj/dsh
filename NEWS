@@ -1,3 +1,9 @@
+0.23.7.cvs.2 - ???
+
+ + really include .ja manpages
+ + review and improve manual page wordings
+ + install .ja manpages through the build process.
+
 0.23.7 - 29 May 2003
 
  ! fixed dsh.1 manpage

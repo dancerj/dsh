@@ -1,6 +1,7 @@
 bin_PROGRAMS=dsh
 dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
-dist_man_MANS=dsh.1  dsh.conf.5 
+original_man=dsh.1 dsh.conf.5 
+man_MANS=build-man/dsh.1 build-man/dsh.conf.5
 translated_man=dsh.conf.ja.5 dsh.ja.1
 sysconf_DATA=dsh.conf
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
@@ -18,11 +19,31 @@ TESTS=tests/param-f.sh \
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \
 	LANG=C
-
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file tests/list.space.file \
-	$(translated_man)
+	$(translated_man) $(original_man)
 
+install-data-local: 
+	for LANGS in ja ; do \
+		mkdir -p $(DESTDIR)$(mandir)/$$LANGS/man1 ;\
+		mkdir -p $(DESTDIR)$(mandir)/$$LANGS/man5 ;\
+		sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < dsh.$$LANGS.1 \
+			> $(DESTDIR)$(mandir)/$$LANGS/man1/dsh.1 ; \
+		sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < dsh.conf.$$LANGS.5 \
+			> $(DESTDIR)$(mandir)/$$LANGS/man1/dsh.conf.5 ; \
+	done
+
+build-man/dsh.1: ${srcdir}/dsh.1
+	-mkdir build-man
+	sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < $< > $@
+
+build-man/dsh.conf.5: ${srcdir}/dsh.conf.5
+	-mkdir build-man
+	sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < $< > $@
+
+clean-local:
+	-rm -f $(man_MANS)
+	-rmdir build-man
 
 # Make debian pristine-source
 ../@PACKAGE@_@VERSION@.orig.tar.gz: 
