@@ -1,6 +1,5 @@
 bin_PROGRAMS=dsh
 dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h
-dsh_LDFLAGS= -ldshconfig
 man_MANS=dsh.1
 sysconf_DATA=dsh.conf
 EXTRA_DIST=$(man_MANS) $(sysconf_DATA) autogen.sh
