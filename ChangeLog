@@ -10,6 +10,7 @@
 	(fork_and_pipe_echoing_routine): return -1 instead of exit(EXIT_FAILURE)
 	(do_execute_with_optional_pipe): changed implementation to use
 	fork_and_pipe_echoing_routine.
+	(do_execute_with_optional_pipe): fix typo
 
 	* parameter.c (parse_options): change show_machine_names = 1 to
 	|= 1.

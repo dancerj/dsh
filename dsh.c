@@ -190,7 +190,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
   if (pipe_option & 1)		/* pipe the outputs */
     {
       if (fork_and_pipe_echoing_routine(1, machinename) ||
-	  fork_and_pipe_echoing_routine(1, machinename))
+	  fork_and_pipe_echoing_routine(2, machinename))
 	{	  
 	  fprintf(stderr, _("%s: Failed on constructing a pipe and forking\n"), PACKAGE);
 	  return -1;
