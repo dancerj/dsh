@@ -319,7 +319,11 @@ main(int ac, char ** av)
   char *buf=NULL;
   
   load_configfile(DSH_CONF);
-  asprintf (&buf, "%s/.dsh/dsh.conf", getenv("HOME"));
+  if (asprintf (&buf, "%s/.dsh/dsh.conf", getenv("HOME")) < 0)
+    {
+      fprintf (stderr, "dsh: asprintf failed\n");
+      exit (1);
+    }  
   load_configfile(buf);  
   free (buf);  
   return parse_options(ac, av);  
