@@ -14,7 +14,15 @@ dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\""
 
 debiandist: ../@PACKAGE@_@VERSION@.orig.tar.gz
 
-decaton: distcheck
-	scp @PACKAGE@-@VERSION@.tar.gz decaton.netfort.gr.jp:public_html/software/downloads
+viper: distcheck
+	scp @PACKAGE@-@VERSION@.tar.gz viper2.netfort.gr.jp:public_html/software/downloads
 	rm -f @PACKAGE@-@VERSION@.tar.gz
 
+mikilab: distcheck
+	scp @PACKAGE@-@VERSION@.tar.gz mikilab.doshisha.ac.jp:parallel-research/software
+	rm -f @PACKAGE@-@VERSION@.tar.gz
+
+upload-dist-all: distcheck
+	scp @PACKAGE@-@VERSION@.tar.gz viper2.netfort.gr.jp:public_html/software/downloads
+	scp @PACKAGE@-@VERSION@.tar.gz mikilab.doshisha.ac.jp:parallel-research/software
+	$(MAKE) ../@PACKAGE@_@VERSION@.orig.tar.gz

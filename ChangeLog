@@ -1,3 +1,9 @@
+2002-07-24  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.20.1
+
+	* Makefile.am: modify dist targets updated from dmachinemon sources.
+
 2002-06-25  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: update for autoconf1.5, change to ac. 
