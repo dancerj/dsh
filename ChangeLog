@@ -1,3 +1,7 @@
+2002-05-26  Junichi Uekawa  <dancer@debian.org>
+
+	* TODO: update TODO, with notes on bug.
+
 2002-05-16  Junichi Uekawa  <dancer@debian.org>
 
 	* parameter.c (read_machinelist): minor cosmetic fix.
