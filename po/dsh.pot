@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-16 18:30+0900\n"
+"POT-Creation-Date: 2002-09-16 18:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,26 +60,26 @@ msgstr ""
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr ""
 
-#: dsh.c:439
+#: dsh.c:442
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:468
+#: dsh.c:470
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:472
+#: dsh.c:474
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:489
+#: dsh.c:491
 msgid "--- Terminated running\n"
 msgstr ""
 
-#: dsh.c:508
+#: dsh.c:510
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""

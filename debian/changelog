@@ -1,3 +1,11 @@
+dsh (0.21.0-1) unstable; urgency=low
+
+  * New upstream version
+  * New option "-i", to duplicate input stream to all processes
+    implemented.
+
+ -- Junichi Uekawa <dancer@debian.org>  Mon, 16 Sep 2002 18:40:46 +0900
+
 dsh (0.20.4-1) unstable; urgency=low
 
   * New upstream version
