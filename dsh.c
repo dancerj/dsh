@@ -514,6 +514,8 @@ run_input_forking_child_processes_process()
 		      fprintf (stderr, _("%s: Process terminated (before write).\n"), PACKAGE);
 		      /* pipe ended */
 		      goto out_of_while;
+		      /* This is going to terminate ALL processes 
+		       even if only one server terminated early. */
 		    }
 		  else
 		    perror("dsh: write");

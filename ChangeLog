@@ -1,3 +1,20 @@
+2004-04-25  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: re-dist 0.25.2.1
+
+2004-04-20  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac (DSHVERSION): 0.25.2
+
+	* dsh.c (run_input_forking_child_processes_process): Add comment on the 
+	relevant part of code, that this routine has limitations.
+
+	* NEWS: add news item
+
+	* dsh.ja.1: update.
+
+	* dsh.1: Note the limitation in current implementation
+
 2004-04-16  Junichi Uekawa  <dancer@debian.org>
 
 	* TODO: Add note on the TODO item.

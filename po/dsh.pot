@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 08:53+0900\n"
+"POT-Creation-Date: 2004-04-20 20:48+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,43 +71,43 @@ msgstr ""
 msgid "... Waiting for process to end with waitpid"
 msgstr ""
 
-#: dsh.c:432 dsh.c:442 dsh.c:638 parameter.c:437 parameter.c:459
+#: dsh.c:432 dsh.c:442 dsh.c:641 parameter.c:437 parameter.c:459
 #: parameter.c:465
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
 
-#: dsh.c:513
+#: dsh.c:514
 #, c-format
 msgid "%s: Process terminated (before write).\n"
 msgstr ""
 
-#: dsh.c:530
+#: dsh.c:533
 #, c-format
 msgid "%s: fork failed trying to dupilcate input\n"
 msgstr ""
 
-#: dsh.c:539
+#: dsh.c:542
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:571
+#: dsh.c:574
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:575
+#: dsh.c:578
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:600
+#: dsh.c:603
 #, c-format
 msgid "%s: Child process %i exited with signal %i\n"
 msgstr ""
 
-#: dsh.c:614
+#: dsh.c:617
 #, c-format
 msgid "--- Terminated running\n"
 msgstr ""
