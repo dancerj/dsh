@@ -1,5 +1,7 @@
 2002-09-11  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.20.3
+
 	* parameter.c (parse_options): update and mark for translation
 
 	* Makefile.am (dsh_CFLAGS): add localedir to defines.

@@ -1,3 +1,10 @@
+dsh (0.20.3-1) unstable; urgency=low
+
+  * New upstream version
+  * Add gettext support, and i18n.
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 11 Sep 2002 19:26:14 +0900
+
 dsh (0.20.2-1) unstable; urgency=low
 
   * New upstream version

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
 "POT-Creation-Date: 2002-09-11 18:59+0900\n"
-"PO-Revision-Date: 2002-09-11 19:05+0900\n"
+"PO-Revision-Date: 2002-09-11 19:10+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,45 +17,45 @@ msgstr ""
 #: dsh.c:147
 #, c-format
 msgid "%s: cannot create pipe\n"
-msgstr ""
+msgstr "%s: パイプを作成できません\n"
 
 #: dsh.c:163 dsh.c:178
 #, c-format
 msgid "%s: Cannot spawn process\n"
-msgstr ""
+msgstr "%s: プロセスを実行できません\n"
 
 #: dsh.c:186
 msgid "Failed playing with pipe"
-msgstr ""
+msgstr "パイプを利用するのに失敗"
 
 #: dsh.c:194
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
-msgstr ""
+msgstr "%s: %s をllexecで実行しようとして失敗しました\n"
 
 #: dsh.c:367
 #, c-format
 msgid "--- Executing on %s \n"
-msgstr ""
+msgstr "--- %s で実行\n"
 
 #: dsh.c:377
 msgid "--- Terminated running\n"
-msgstr ""
+msgstr "--- 実行終了\n"
 
 #: dsh.c:403
 #, c-format
 msgid "%s: asprintf failed\n"
-msgstr ""
+msgstr "%s: asprintf が失敗しました\n"
 
 #: parameter.c:51
 #, c-format
 msgid "%s: failed to allocate memory of %i bytes\n"
-msgstr ""
+msgstr "%s: %i バイトのメモリの取得に失敗しました\n"
 
 #: parameter.c:90
 #, c-format
 msgid "%s: Unknown netgroup %s.\n"
-msgstr ""
+msgstr "%s: %s は不明なネットグループです．\n"
 
 #: parameter.c:116
 #, c-format
@@ -210,4 +210,4 @@ msgstr ""
 #: parameter.c:347
 #, c-format
 msgid "%s: no machine specified\n"
-msgstr ""
+msgstr "%s: マシンが一台も指定されていません．\n"
