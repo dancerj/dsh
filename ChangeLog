@@ -1,5 +1,7 @@
 2002-05-31  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.in: change version number to 0.0.19pre
+
 	* Makefile.am (../@PACKAGE@_@VERSION@.orig.tar.gz): fix the target not to overwrite pristine upstream tarball.
 
 	* configure.in: fix typo in package name.
