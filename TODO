@@ -1,11 +1,9 @@
 Some wishlist:
 
-     fanout with dshd opening connections, through ssh.
-     Some kind of FIFO set up, with something listening onto it.
+* fanout with dshd opening connections, through ssh.
+* Some kind of FIFO set up, with something listening onto it.
+* Bug with fanout option, rsh requires some quoting. Dsh does not preserve the quotings.
+* rsh with timeout : rsh does not time out and fail... bug in rsh ?
 
-     Bug with fanout option, rsh requires some quoting. Dsh does not preserve the quotings.
 
-
-     rsh with timeout : rsh does not time out and fail... bug in rsh ?
-
-     $Id$
+$Id$
