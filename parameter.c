@@ -221,6 +221,7 @@ print_help (void)
 	   "-h --help                      Give out this message\n"
 	   "-w --wait-shell                Sequentially execute shell\n"
 	   "-c --concurrent-shell          Execute shell concurrently\n"
+	   "-F --forklimit [fork limit]    Concurrent with limit on number\n"
 	   "-V --version                   Give out version information\n\n")
  );
   return 0;
@@ -269,6 +270,15 @@ load_configfile(const char * dsh_conf)
 	      pipe_option |= (atoi ( buf_b ) != 0 );
 	      if (verbose_flag) printf(_("Setting pipe option to  [%i]\n"), pipe_option);
 	    }	      
+	  else if (!strcmp(buf_a, "forklimit"))
+	    {
+	      forklimit = (atoi ( buf_b ) != 0 );
+	      wait_shell = 0;
+	      if (verbose_flag)
+		{
+		  printf(_("Setting fork limit to  [%i] and wait_shell to [%i]\n"), forklimit, wait_shell);
+		}
+	    }
 	  else if (!strcmp(buf_a, "verbose"))
 	    {
 	      verbose_flag = atoi ( buf_b );
@@ -363,6 +373,7 @@ parse_options ( int ac, char ** av)
     {"version", no_argument, 0, 'V'},
     {"wait-shell", no_argument, 0, 'w'},
     {"concurrent-shell", no_argument, 0, 'c'},
+    {"forklimit", required_argument, 0, 'F'},
     {0,0,0,0}
   };
 #else
@@ -376,7 +387,7 @@ parse_options ( int ac, char ** av)
 #endif
 
   while((c = getopt_long (ac, av, 
-			  EXTRAVALUE "vqm:ar:f:g:hVcwo:Mn:ib:", 
+			  EXTRAVALUE "vqm:ar:f:g:hVcwo:Mn:ib:F:", 
 			  long_options, &index_point)) != -1)
     {
       switch (c)
@@ -428,6 +439,11 @@ parse_options ( int ac, char ** av)
 	  if (verbose_flag) printf (_("Adding file %s to the list\n"), optarg);
 	  machinelist = read_machinelist (machinelist, optarg, NULL); 
 	  break;	  
+	case 'F':
+	  forklimit = atoi (optarg);
+	  wait_shell = 0;
+	  if (verbose_flag) printf (_("Setting forklimit to %i and wait_shell to %i\n"), forklimit, wait_shell);
+	  break;
 	case 'v':
 	  if (verbose_flag) printf (_("Verbose flag on\n"));
 	  verbose_flag=1;	  
@@ -514,13 +530,34 @@ parse_options ( int ac, char ** av)
       }
   }
   
-  /* sanity checking */
+  /*
+    ===================
+    sanity checking 
+    ===================
+  */
   if ((pipe_option & PIPE_OPTION_INPUT) && wait_shell )
     {
       fprintf (stderr, _("%s: Input duplication and concurrent shell need to be specified together\n"), PACKAGE);
       return 1;
     }
+
+  if (forklimit < 0 )
+    {
+      fprintf (stderr, _("Cannot specify fork limit of <0 \n"));
+      return 1;
+    }
   
+  if ((pipe_option & PIPE_OPTION_INPUT) && (forklimit  > 0 ))
+    {
+      fprintf (stderr, _("%s: Input duplication and concurrent shell without fork limit need to be specified together\n"), PACKAGE);
+      return 1;
+    }
+
+  if ((wait_shell == 1) && (forklimit  > 0 ))
+    {
+      fprintf (stderr, _("%s: fork limit and wait shell cannot be specified at the same time\n"), PACKAGE);
+      return 1;
+    }
 
   if (!(pipe_option & PIPE_OPTION_INPUT))
     open_devnull();		/* open /dev/null if no input pipe is required */

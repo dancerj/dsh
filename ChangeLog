@@ -1,5 +1,24 @@
 2003-09-16  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac (DSHVERSION): 0.24.2.cvs.1
+
+	* dsh.c (execute_rsh_single): check forklimit.
+	Declare currentforkcount as "dsh.c" static variable.
+
+	* parameter.c (parse_options): --forklimit and -F
+	(print_help): -F
+	(parse_options): add sanity checking.
+
+	* dsh.ja.1: document -F
+
+	* dsh.1: document -F
+
+	* dsh.conf.ja.5: update.
+
+	* parameter.c (load_configfile): forklimit
+
+	* dsh.conf.5: document forklimit
+
 	* TODO: update Todo file adding my wishlists.
 
 2003-08-30  Junichi Uekawa  <dancer@debian.org>

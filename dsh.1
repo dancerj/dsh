@@ -3,7 +3,7 @@
 dsh \- Distributed shell, or dancer's shell
 .SH SYNOPSIS
 .BI "dsh [-m " "machinename" " | -a | -g " "groupname" "] [-r " \
-"remoteshellname" "] [-c | -w | -i] -- " "commandline"
+"remoteshellname" "] [-c | -w | -i | -F " "forklimit" " ] -- " "commandline"
 .SH DESCRIPTION
 .B dsh
 executes command remotely on several different machines at the same
@@ -121,6 +121,15 @@ Changes the current topology from 1. 1 is the default behavior of
 spawning the shell from one node to every node. Changing the number to
 a value greater than 2 would result in dsh being spawned on other
 machines as well. 
+
+
+.TP
+.BI "--forklimit | -F " "fork limit"
+Like 
+.B "-c"
+but limits the number of simultaneous connections;
+and waits until creating another connection if the limit is 
+reached.
 
 .SH "EXIT STATUS"
 The first non-zero exit code of child processes is returned,

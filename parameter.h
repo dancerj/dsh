@@ -48,8 +48,14 @@ extern int  num_topology;
 /** reverse-ordered list of rsh options. */
 extern linkedlist* remoteshell_command_opt_r; 
 
-/* buffer size for running the input process. */
+/** buffer size for running the input process. */
 extern int buffer_size;
+
+/** 
+    The limit to fork.
+ */
+extern int forklimit;
+
 
 void open_devnull(void);
 

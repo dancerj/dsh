@@ -50,11 +50,10 @@ int num_topology=1;		/* number of topology to use as a block to execute rsh.
 				*/
 linkedlist* remoteshell_command_opt_r=NULL; /* reverse-ordered list of rsh options. */
 int buffer_size = 1024;		/* buffer size. */
+int forklimit = 0; 		/* do not limit number of forks */
 
-
-
-
-
+/** current fork count; required for forklimit processing */
+static int currentforkcount = 0;
 
 /* function defining "getline" */
 #ifndef HAVE_GETLINE
@@ -137,6 +136,7 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
 
 /**
  * Forks the output pipe routine for fd[x]
+ * this is the main process, forking the child process.
  *
  * @returns -1 on error, 0 on success
  */
@@ -247,6 +247,7 @@ add_fd_to_output_array(int fd)
 
 /**
  * spawns rsh/ssh session on single machine
+ * This is still the main process forking the child process.
  *
  * @returns -1 on failure, 0 on success
  */
@@ -340,7 +341,12 @@ execute_rsh_single (const char * remoteshell_command,
 	     must handle here... */
 	  add_fd_to_output_array(input_pipe[1]);
 	}
-      if (wait_shell)
+
+      currentforkcount ++;
+      
+      if ((wait_shell)||	/* if wait_shell is specified */
+	  ((forklimit > 0) && (currentforkcount > forklimit)) /* or fork limit is exceeded */
+	  )
 	{
 	    /* wait for termination, 
 	       if it was required */
@@ -542,8 +548,9 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
       for (i=0; (i < nummachines) && machinelist; ++i)
 	  machinelist = machinelist -> next;
     }
-
   /* I have executed on all processes, I can now start cleaning up process...  */
+
+  /* Try forking the input using fork, for -i option. */
   if (pipe_option &= PIPE_OPTION_INPUT)
     run_input_forking_child_processes_process();  
 
@@ -565,7 +572,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 }
 
 /**
- * The main code.
+ * The main code. Sets up internationalization.
  */
 int
 main(int ac, char ** av)
@@ -579,8 +586,7 @@ main(int ac, char ** av)
 	fprintf (stderr, "%s: failed to call bindtextdomain\n", PACKAGE);
     }
   
-  
-  
+  /* load configuration files. */
   load_configfile(DSH_CONF);
   if (asprintf (&buf, "%s/.dsh/dsh.conf", getenv("HOME")) < 0)
     {
