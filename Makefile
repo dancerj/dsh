@@ -28,5 +28,9 @@ libdshconfig.la: libdshconfig.lo
 	$(LIBTOOL) --mode=compile $(CC) -c -o $@ $< $(CFLAGS) 
 
 install: $(PACKAGENAME)
-	install -d -m 755 $(PACKAGENAME) $(DESTDIR)/usr/bin
-	install -m 755 $(PACKAGENAME) $(DESTDIR)/usr/bin
+	install -d -m 755 $(DESTDIR)/usr/bin
+	install -d -m 755 $(DESTDIR)/usr/lib
+	install -d -m 755 $(DESTDIR)/usr/include
+	$(LIBTOOL) install -m 755 $(PACKAGENAME) $(DESTDIR)/usr/bin
+	$(LIBTOOL) install -m 644 libdshconfig.la $(DESTDIR)/usr/lib
+	install -m 644 libdshconfig.h $(DESTDIR)/usr/include

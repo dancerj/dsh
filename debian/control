@@ -2,15 +2,42 @@ Source: dsh
 Section: net
 Priority: optional
 Maintainer: Junichi Uekawa <dancer@debian.org>
-Build-Depends: debhelper (>> 3.0.0)
-Standards-Version: 3.5.2
+Build-Depends: debhelper (>> 3.0.0) 
+Standards-Version: 3.5.6
 
 Package: dsh
 Architecture: any
 Depends: ${shlibs:Depends}
+Suggests: update-cluster
 Description: dancer's shell, or distributed shell
  Executes specified command on a group of computers using remote shell
  methods such as rsh. 
  .
+ dsh aims to be a distributed shell with speed and efficiency, 
+ although it has not reached that goal yet.
+ .
  Something that is pretty handy when setting up clusters.
 
+Package: libdshconfig0
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}
+Description: configuration file parser library for dsh - runtime
+ Runtime library for configuration file parser,
+ required for running programs with dsh config file support.
+ .
+ dsh uses this library to parse configuration files.
+
+Package: libdshconfig0-dev
+Architecture: any
+Section: devel
+Depends: libdshconfig0 (= ${Source-Version})
+Provides: libdshconfig-dev
+Conflicts: libdshconfig-dev
+Description: configuration file parser library for dsh - development
+ Development library for a simple configuration file parser.
+ .
+ Includes the necessary files for compiling programs with
+ libdshconfig.
+ .
+ The library supports very simple line-based configuration files.

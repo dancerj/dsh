@@ -19,6 +19,11 @@
  * A library to read dsh config file style data files. Header file.
  */
 
+#ifndef __LIBDSHCONFIG_H__
+#define __LIBDSHCONFIG_H__
+
+#include <stdio.h>
+
 typedef struct dshconfig_internal
 {
   char * title;
@@ -36,5 +41,7 @@ open_dshconfig (FILE* file, char delimiter) ;
 
 void
 free_dshconfig(dshconfig* d);
+
+#endif
 
 

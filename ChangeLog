@@ -1,5 +1,16 @@
 2002-03-18  Junichi Uekawa  <dancer@debian.org>
 
+	* debian/rules: install the libs and other things in the right package
+
+	* libdshconfig.h: added some ifndefs.
+
+	* Makefile (install): added include
+
+	* debian/rules (binary-arch): added dh_makeshlibs
+
+	* Makefile (install): make install target to use libtool
+	(install): fix minor detail in install target.
+
 	* libdshconfig.c (read_oneline): fix it so that # at the start of line won't cause segv.
 
 	* dsh.conf: modified to make it look different and for debugging dsh.
