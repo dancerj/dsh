@@ -72,7 +72,7 @@ stripwhitespace(char * buf)
 
   while (*pointer && isspace(*pointer))
     pointer ++;
-  if (*pointer)			/* if it is nothing, return NULL */
+  if (*pointer == 0)			/* if it is nothing, return NULL */
     return NULL;
 
   revpointer = pointer + strlen (pointer) - 1;

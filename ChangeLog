@@ -5,6 +5,7 @@
 	(read_machinelist): strip whitespace when reading config file.
 	(read_machinelist): properly ignore blank lines.
 	(stripwhitespace): fix typo.
+	(stripwhitespace): fix reverse-logic.
 
 	* dsh.c (run_input_forking_child_processes_process): trying to debug the thing now.
 	(run_input_forking_child_processes_process): I made a mistake.
