@@ -491,7 +491,6 @@ run_input_forking_child_processes_process()
   int count ;
   int i;
 
-  
   switch (fork())
     {
     case 0:
@@ -499,6 +498,8 @@ run_input_forking_child_processes_process()
       buf = malloc_with_error ( buffer_size );
       signal(SIGPIPE, SIG_IGN);	/* I'll handle SIGPIPE with EPIPE */
 
+      /* This routine blocks even if all processes associated with 
+	 fd_output_array is terminated */
       while ((count = read(0, buf, buffer_size)) != -1 )
 	{
 	  if (count == 0)	/* if there is zero-byte read, it is an end-of-file */

@@ -1,3 +1,12 @@
+2004-04-15  Junichi Uekawa  <dancer@debian.org>
+
+	* NEWS: update news
+
+	* configure.ac: 0.25.1.cvs.1
+
+	* dsh.c (run_input_forking_child_processes_process): add a comment
+	on what the problem area is.
+
 2004-01-21  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c (run_input_forking_child_processes_process): Add some kind of message.

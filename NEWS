@@ -1,3 +1,7 @@
+0.25.1.cvs.1 - 15 Apr 2004.
+
+ + Try starting to debug -ic problem. TODO
+
 0.25.1 - 22 Jan 2004.
 
  + Fix hangling of SIGPIPE when remote process is finished before
