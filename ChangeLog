@@ -1,6 +1,8 @@
 2002-02-05  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c: some beautification
+	added header files "sys/stat.h" "fnctl.h" declaration
+	to get open() to work.
 
 	* libdshconfig.c (open_dshconfig): making a function implementation to hopefully work.
 

@@ -27,6 +27,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #include <getopt.h>
 #include "dsh.h"
@@ -69,7 +71,10 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
 }
 
 /** 
- * Actually execute the program, with maybe a pipe.
+ * Actually execute the program, with maybe a pipe process being forked.
+ * the actual program execution is done by llexec.
+ * This part does the optional pipe construction or direct llexec
+ * depending on the flags.
  */
 static int
 do_execute_with_optional_pipe (const char * remoteshell_command,
