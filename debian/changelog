@@ -1,9 +1,139 @@
+dsh (0.0.17) unstable; urgency=low
+
+  * dsh.1, parameter.c: adding support for specifying arbitrary machine list specifications.
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 20 Dec 2001 11:42:56 +0900
+
+dsh (0.0.16) unstable; urgency=low
+
+  * Removing /etc/dsh{,/group} on purge. Thanks phil (closes: #113737)
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 30 Sep 2001 23:38:43 +0900
+
+dsh (0.0.15) unstable; urgency=low
+
+  * The configuration parser gives a warning when dsh.conf is not
+    parsable, thanks to neil. (closes: #111413)
+  * Please note that since dsh-0.0.14, configuration file format has
+    changed slightly.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat,  8 Sep 2001 04:51:12 +0900
+
+dsh (0.0.14) unstable; urgency=low
+
+  * Configuration file handling is slightly better - now handles spaces in config files :P (planning to make it into guile or something). Handles waitshell, and showmachinenames, and verbose. Changed dsh.conf to reflect this.
+  * changed the method of obtaining DSH_VERSION to use dpkg-parsechangelog
+
+ -- Junichi Uekawa <dancer@debian.org>  Tue, 21 Aug 2001 23:16:15 +0900
+
+dsh (0.0.13) unstable; urgency=low
+
+  * Fix manpages so that - is escaped with \ (closes: #108033)
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed,  8 Aug 2001 23:20:06 +0900
+
+dsh (0.0.12) unstable; urgency=low
+
+  * support update-cluster
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 29 Jul 2001 01:36:01 +0900
+
+dsh (0.0.11) unstable; urgency=low
+
+  * cleaning up the code.
+  * removed -g option from gcc compilation option.
+
+ -- Junichi Uekawa <dancer@debian.org>  Mon,  2 Jul 2001 00:21:54 +0900
+
+dsh (0.0.10) unstable; urgency=low
+
+  * parameter.[ch]: split out files for configuration, and the main program.
+  * added more error checking codes.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat,  9 Jun 2001 00:15:24 +0900
+
+dsh (0.0.9) unstable; urgency=low
+
+  * clearing up some codes on what is const, in the hope to fix some
+  outstanding bugs.
+  * changed remaining _exit() to exit().
+  * Made "topology" execution to handle "-o" parameters, so that 
+    ssh can use forwarded auth keys with -o -A.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 26 May 2001 02:19:32 +0900
+
+dsh (0.0.8) unstable; urgency=low
+
+  * The build system now extracts version number from the changelog. (dsh
+    --version option will not output the correct version information).
+  * changed all _exit() calls to exit()
+  * Updated manpage dsh.1 to match the reality.
+  * handles stderr output for -M option. All output that are sent to
+    stderr on the remote machines are displayed on the stderr of the 
+    local machine.
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 24 May 2001 01:57:10 +0900
+
+dsh (0.0.7) unstable; urgency=low
+
+  * bugfix. Added a fflush before _exit, (closes: 97818)
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 23 May 2001 00:12:38 +0900
+
+dsh (0.0.6) unstable; urgency=low
+
+  * update version.
+  * trying to fix the process bug, not being quite successful. It should
+    be fine now when -M option is not specified.
+  * Fixed a segv in config file loading. This really (closes: #97675)
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 20 May 2001 02:11:49 +0900
+
+dsh (0.0.5) unstable; urgency=low
+
+  * new release
+  * supports "topology". A method to spawn dsh on other machines to 
+    spawn more rsh from other machines. Trying to help a machine 
+    out from spawning all 256 or so rsh sessions.
+    A topology of 2 will result in binary-tree arrangement.
+    A topology of 3 would be better, I'd guess. Not thoroughly tested.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 19 May 2001 02:59:42 +0900
+
+dsh (0.0.4) unstable; urgency=low
+
+  * bugfixes and updates
+  * Supports username@host format as a valid machine name specification.
+    It can be used in machines.list, and command line and 
+    everywhere (closes: #97819).
+
+ -- Junichi Uekawa <dancer@debian.org>  Fri, 18 May 2001 02:50:02 +0900
+
+dsh (0.0.3) unstable; urgency=low
+
+  * bugfixes
+  * fixed one configuration file loading bug. hopefully (closes: #97675)
+  * added --show-machine-names option to make stdout to be prepended
+    with the hostname of the machine that the command is being executed.
+    (closes: #97336)
+  * reordered the rsh execution routine so that it looks cleaner.
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 17 May 2001 02:23:35 +0900
+
+dsh (0.0.2) unstable; urgency=low
+
+  * Updates.
+  * --remoteshellopt added. Config files handling has been implemented.
+    Quite a few bugs have been removed. Linked list handling routine
+    has moved out of the main source.
+  * /etc/dsh/dsh.conf is installed, and is a conffile.
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 16 May 2001 00:39:04 +0900
+
 dsh (0.0.1) unstable; urgency=low
 
   * Initial Release.
 
  -- Junichi Uekawa <dancer@debian.org>  Mon, 14 May 2001 22:53:04 +0900
 
-Local variables:
-mode: debian-changelog
-End:
+

@@ -24,6 +24,12 @@ Makes output quieter.
 Adds 
 .I machinename 
 to the list of machines that the command is exeuted.
+The syntax of 
+.I machinename 
+allows
+.I username@machinename
+where remote shell is invoked with the option to make it of 
+.I username.
 .PP
 .TP
 .BI "--all | -a " 
@@ -37,11 +43,23 @@ Add all machines found in
 .BI /etc/dsh/group/ groupname
  to the list of machines that the specified command is executed.
 .PP
+
+.TP
+.BI "--file " "machinefile" " | -f " "machinefile"
+Add all machines found in the specified file
+to the list of machines that the specified command is executed.
+
 .TP
 .BI "--remoteshell " "shellname " "| -r " "shellname "
 Execute remote shell 
 .I shellname
 as the remote shell. Usually "rsh" and "ssh" are available
+.PP
+.TP
+.BI "--remoteshellopt " "rshoption " "| -o " "rshoption "
+Add one option 
+.I rshoption
+to the list of options passed on to the remote shell. 
 .PP
 .TP
 .BI "--help | -h "
@@ -57,8 +75,22 @@ moving on to the next machine.
 Executes shell concurrently.
 .PP
 .TP
+.BI "--show-machine-names | -M "
+Prepends machine names on the standard output. Useful to be used in
+conjunction with the 
+.B "--concurrent-shell" 
+option so that the output is slightly more parsable.
+.TP
 .BI "--version | -V "
 Outputs version information and exits.
+.PP
+.TP
+.BI "--num-topology | -N "
+Changes the current topology from 1. 1 is the default behavior of
+spawning the shell from one node to every node. Changing the number to
+a value greater than 2 would result in dsh being spawned on other
+machines as well. 
+.B "BE CAREFUL!! This code has not been tested thoroughly."
 .PP
 .SH "EXIT STATUS"
 Usually zero. There is no real way to usefully use the return value of
@@ -76,7 +108,7 @@ Shows list of users logged in on all workstations using ssh. (It
 should be of note that when using ssh, ssh-agent is handy.)
 .PP
 .TP
-.B "./dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )"
+.B "./dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'"
 Shows the load average of machines node1 and node2.
 .PP
 .SH "FILES"
@@ -85,7 +117,6 @@ Shows the load average of machines node1 and node2.
 List of machine names to be used for when 
 .B -a
 command-line option is specified.
-NOT IMPLEMENTED
 .PP
 .TP
 .BI "/etc/dsh/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
@@ -95,17 +126,20 @@ command-line option is specified.
 .PP
 .TP
 .B "/etc/dsh/dsh.conf | $(HOME)/.dsh/dsh.conf "
-Configuration file containing the day-to-day default.
+Configuration file containing the day-to-day default. 
 .PP
 .SH "BUGS"
-Should support username@hostname:portnumber syntax.
-Not all options are implemented. Especially the configuration files
-are not implementated.
-
 There should be a 
 .B "dcp"
 for copying files to remote systems.
+
+Configuration files should really be able to do something more than it
+does now.
+
+Currently, the algorithm for the 
+.B "-M"
+option is not verified to be right, yet. 
 .SH "AUTHOR"
 Junichi Uekawa (dancer@debian.org)
 .SH "SEE ALSO"
-.BR "rsh" "(1), " "ssh" "(1), "
+.BR "rsh" "(1), " "ssh" "(1)"

@@ -1,0 +1,5 @@
+dsh
+dsh.postinst.debhelper
+dsh.prerm.debhelper
+dsh.substvars
+files

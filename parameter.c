@@ -32,7 +32,8 @@
 #include "linkedlist.h"
 #include "parameter.h"
 
-static void * malloc_with_error(int size)
+static void * 
+malloc_with_error(int size)
 {
   void * u = malloc (size);
   if (!u)
@@ -44,26 +45,21 @@ static void * malloc_with_error(int size)
 }
 
 				/* remove \n from string */
-static void stripn(char * buf)
+static void 
+stripn(char * buf)
 {
-  while(*buf)
-    {
-      if (*buf == '\n')
-	{
-	  *buf = 0;
-	  return;
-	}
-      buf ++;
-    }  
+  buf = strchr ( buf, '\n');
+  if (buf) *buf = 0;
 }
 
-linkedlist* read_machinelist(linkedlist * machinelist, const char * listfile, const char*alternatelistfile)
+linkedlist* 
+read_machinelist(linkedlist * machinelist, const char * listfile, const char*alternatelistfile)
 {
   FILE * f;
   int bufferlen = 1024;  
   char * buf = malloc_with_error(bufferlen);
   
-  if ((f = fopen (listfile, "r")) || (f=fopen(alternatelistfile, "r")))
+  if ((f = fopen (listfile, "r")) || ((NULL != alternatelistfile) && (f=fopen(alternatelistfile, "r"))))
     {
       while (-1 != getline (&buf, &bufferlen, f))
 	{
@@ -92,31 +88,35 @@ int print_version(void)
   return 0;
 }
 
-int print_help (void)
+int
+print_help (void)
 {
   print_version();
-  printf("-v --verbose                  Verbose output\n"
-	 "-q --quiet                    Quiet\n"	
-	 "-M --show-machine-names       prepend the host name on output\n"
-	 "-m --machine [machinename]    Execute on machine\n"
-	 "-n --num-topology             How to divide the machines\n"
-	 "-a --all                      Execute on all machines\n"
-	 "-g --group [groupname]        Execute on group member\n"
-	 "-r --remoteshell [shellname]  Execute using shell (rsh/ssh)\n"
-	 "-o --remoteshellopt [option]  Option to give to shell \n"
-	 "-h --help                     Give out this message\n"
-	 "-w --wait-shell               Sequentially execute shell\n"
-	 "-c --concurrent-shell         Execute shell concurrently\n"
-	 "-V --version                  Give out version information\n\n"
+  printf("-v --verbose                   Verbose output\n"
+	 "-q --quiet                     Quiet\n"	
+	 "-M --show-machine-names        prepend the host name on output\n"
+	 "-m --machine [machinename]     Execute on machine\n"
+	 "-n --num-topology              How to divide the machines\n"
+	 "-a --all                       Execute on all machines\n"
+	 "-g --group [groupname]         Execute on group member\n"
+	 "-f --file [file]               Use the file as list of machines\n"
+	 "-r --remoteshell [shellname]   Execute using shell (rsh/ssh)\n"
+	 "-o --remoteshellopt [option]   Option to give to shell \n"
+	 "-h --help                      Give out this message\n"
+	 "-w --wait-shell                Sequentially execute shell\n"
+	 "-c --concurrent-shell          Execute shell concurrently\n"
+	 "-V --version                   Give out version information\n\n"
  );
   return 0;
 }
 
 
-int do_shell(linkedlist * machinelist, linkedlist*);
+int
+do_shell(linkedlist * machinelist, linkedlist*);
 
 				/* load the configuration file. */
-int load_configfile(const char * dsh_conf)
+int
+load_configfile(const char * dsh_conf)
 {
   FILE * f = fopen (dsh_conf, "r");  
   char * buf_a=NULL;
@@ -132,7 +132,10 @@ int load_configfile(const char * dsh_conf)
 	{
 	  if (( buf [0] == '#' ) || (strlen (buf) < 3) || (NULL==strchr(buf, '=')))
 	    continue;
-	  if ( 2 == sscanf (buf, "%a[^=]=%a[^\n]\n", &buf_a, &buf_b))
+
+	  buf_a = buf_b = NULL;	  
+	  if ( 2 == sscanf (buf, "%*[ \t]%a[^ \t=]%*[ \t]=%*[ \t]%a[^ \t\n]%*[ \t]\n", 
+			    &buf_a, &buf_b))
 	    {
 	      if(verbose_flag) printf(" Parameter %s is %s\n", buf_a, buf_b);
 	      if (!strcmp(buf_a, "remoteshell"))
@@ -145,6 +148,21 @@ int load_configfile(const char * dsh_conf)
 		  if (verbose_flag) printf("Adding [%s] to shell options\n", buf_b);
 		  remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, buf_b);
 		}	  
+	      else if (!strcmp(buf_a, "waitshell"))
+		{
+		  wait_shell = atoi ( buf_b );		  
+		  if (verbose_flag) printf("Setting wait-shell to  [%i]\n", wait_shell);
+		}	      
+	      else if (!strcmp(buf_a, "showmachinenames"))
+		{
+		  show_machine_names = atoi ( buf_b );
+		  if (verbose_flag) printf("Setting showmachinenames to  [%i]\n", show_machine_names);
+		}	      
+	      else if (!strcmp(buf_a, "verbose"))
+		{
+		  verbose_flag = atoi ( buf_b );
+		  if (verbose_flag) printf("Setting verbose to  [%i]\n", verbose_flag);
+		}	      
 	      else
 		{
 		  if (buf_a[0] != '#') 
@@ -154,9 +172,16 @@ int load_configfile(const char * dsh_conf)
 			     buf_a);
 		}
 	    }
+	  else
+	    {
+	      fprintf (stderr, 
+		       PROGRAM_NAME
+		       ": unparsed configuration file line %s found in %s\n",
+		       buf, dsh_conf);
+	    }
+	  
 	  if(buf_a)free (buf_a);
 	  if(buf_b)free (buf_b);
-	  buf_a=buf_b=NULL;
 	}
       
       fclose(f);
@@ -165,7 +190,8 @@ int load_configfile(const char * dsh_conf)
 }
 
 
-int parse_options ( int ac, char ** av)
+int
+parse_options ( int ac, char ** av)
 {
   int index_point;  
   int c;			/* option */
@@ -184,6 +210,7 @@ int parse_options ( int ac, char ** av)
     {"num-topology", required_argument, 0, 'n'},
     {"all", no_argument, 0, 'a' },
     {"group", required_argument, 0, 'g'},
+    {"file", required_argument, 0, 'f'},
 
 				/* rsh/ssh specification */
     {"remoteshell", required_argument, 0, 'r'},
@@ -219,6 +246,10 @@ int parse_options ( int ac, char ** av)
 	    machinelist = read_machinelist (machinelist, buf2, buf1); 
 	    free(buf1);free(buf2);
 	  }
+	  break;	  
+	case 'f':
+	  if (verbose_flag) printf ("Adding file %s to the list\n", optarg);
+	  machinelist = read_machinelist (machinelist, optarg, NULL); 
 	  break;	  
 	case 'v':
 	  if (verbose_flag) printf ("Verbose flag on\n");
@@ -283,6 +314,7 @@ int parse_options ( int ac, char ** av)
 	rshcommandline_r = lladd(rshcommandline_r, av[i]);
       }
   }
-  
+
+				/* actually execute the code. */
   return do_shell(machinelist, rshcommandline_r);
 }
