@@ -12,8 +12,10 @@ config.status
 config.sub
 configure
 configure-stamp
+depcomp
 dsg-0.0.19.tar.gz
 dsh
+dsh-0.0.19pre.tar.gz
 install-sh
 libtool
 ltmain.sh
@@ -21,4 +23,5 @@ missing
 mkinstalldirs
 stamp-h
 stamp-h.in
+stamp-h1
 test-dshconfig
