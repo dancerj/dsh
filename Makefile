@@ -2,7 +2,7 @@
 
 PACKAGENAME=dsh
 OBJECTS=dsh.o linkedlist.o parameter.o
-CFLAGS=-O2 -g -Wall
+CFLAGS?=-O2 -g -Wall
 
 all: $(PACKAGENAME) 
 
