@@ -439,7 +439,11 @@ run_input_forking_child_processes_process()
       /* fork failed */
       break;
     default:
-      /* parent returns without doing anything */
+      /* parent process closes the output array. */
+      for (i = 0; i < fd_output_array_len; ++i )
+	{
+	  close (fd_output_array [i]);
+	}
       if (verbose_flag)
 	printf (_("%s: forked off input forking process\n"), PACKAGE);
       /* do not read from stdin. */

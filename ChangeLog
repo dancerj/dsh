@@ -3,6 +3,7 @@
 	* dsh.c (run_input_forking_child_processes_process): trying to debug the thing now.
 	(run_input_forking_child_processes_process): I made a mistake.
 	0 is a end-of-file for read(). Treat it like that, and it should be all happy now.
+	(run_input_forking_child_processes_process): close the output fd in the parent process.
 
 2002-09-18  Junichi Uekawa  <dancer@debian.org>
 
