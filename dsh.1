@@ -1,4 +1,4 @@
-.TH "dsh" 1 "2003 May 29" "Debian-Beowulf/Dancer" "Dancer Tools reference"
+.TH "dsh" 1 "2003 Sep 17" "Debian-Beowulf/Dancer" "Dancer Tools reference"
 .SH NAME
 dsh \- Distributed shell, or dancer's shell
 .SH SYNOPSIS
@@ -122,14 +122,17 @@ spawning the shell from one node to every node. Changing the number to
 a value greater than 2 would result in dsh being spawned on other
 machines as well. 
 
-
 .TP
 .BI "--forklimit | -F " "fork limit"
-Like 
+Similar to 
 .B "-c"
-but limits the number of simultaneous connections;
-and waits until creating another connection if the limit is 
+with a limit on the number of simultaneous connections.
+dsh will wait before creating new connection if the limit is 
 reached.
+Useful when the number of nodes to be accessed 
+is going somewhere above 200, and using
+.B "-N"
+option is not possible.
 
 .SH "EXIT STATUS"
 The first non-zero exit code of child processes is returned,

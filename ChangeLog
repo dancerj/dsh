@@ -1,3 +1,17 @@
+2003-09-17  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/control (Description): update description to 
+	explain that this thing has window-limit.
+
+	* dsh.c (execute_rsh_single): check that this routine works;
+	waitpid with WAIT_ANY on forklimit.
+
+	* dsh.ja.1: update.
+
+	* dsh.1: reworded.
+
+	* TODO: udpate, connection limit is implemented. remove.
+
 2003-09-16  Junichi Uekawa  <dancer@debian.org>
 
 	* tests/param-F-forklimit.sh: show time.

@@ -1,3 +1,9 @@
+dsh (0.24.2-2) UNRELEASED; urgency=low
+
+  * update description.
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 17 Sep 2003 06:13:33 +0900
+
 dsh (0.24.2-1) unstable; urgency=low
 
   * New upstream version

@@ -353,10 +353,13 @@ execute_rsh_single (const char * remoteshell_command,
 	  if (verbose_flag)
 	    printf ("%s\n", _("... Waiting for process to end with waitpid"));
 	  
-	  if (-1 != waitpid(
-			    wait_shell ?
-			    childpid :
-			    WAIT_ANY
+	  if (-1 != waitpid(wait_shell ? /* wait for childpid; or ANY if forklimit.
+					    Setting this to ANY means it will go ahead when 
+					    any process ends, while waiting for childpid
+					    means to wait for last process, which is less efficient.
+					  */
+			    childpid : /* wait_shell */
+			    WAIT_ANY /* forklimit */
 			    , &childstatus, 0))
 	    {
 	      assert(WIFEXITED(childstatus));

@@ -5,7 +5,6 @@ Some wishlist:
 * Bug with fanout option, rsh requires some quoting. Dsh does not preserve the quotings.
 * rsh with timeout : rsh does not time out and fail... bug in rsh ?
 * implement dcp
-* limit dsh connections on -a.
 * in.drshd for dummy connection.
 
 $Id$
