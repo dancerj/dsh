@@ -1,0 +1,17 @@
+2001-05-14  Junichi Uekawa  <dancer@netfort.gr.jp>
+
+	* dsh.1: added documentation for homedir configs.
+
+	* dsh.c (parse_options): added support for machines config.
+	(read_machinelist): The machines list support.
+	(parse_options): Configs in homedir too.
+
+2001-05-13  Junichi Uekawa  <dancer@netfort.gr.jp>
+
+	* dsh.1: Created a manpage
+
+	* Makefile: Copied from other project. 
+
+	* dsh.c: Created / started, by
+	dancer@{debian.org,netfort.gr.jp,mikilab.doshisha.ac.jp} 
+

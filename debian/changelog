@@ -1,0 +1,9 @@
+dsh (0.0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Junichi Uekawa <dancer@debian.org>  Mon, 14 May 2001 22:53:04 +0900
+
+Local variables:
+mode: debian-changelog
+End:

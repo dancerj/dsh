@@ -1,0 +1,111 @@
+.TH "dsh" 1 "2001 May 13" "Debian-Beowulf/Dancer" "Dancer Tools reference"
+.SH NAME
+dsh \- Distributed shell, or dancer's shell
+.SH SYNOPSIS
+.BI "dsh [-m " "machinename" " | -a | -g " "groupname" "] [-r " \
+"remoteshellname" "] [-c | -w] -- " "commandline"
+.SH DESCRIPTION
+.B dsh
+executes command remotely on several different machines at the same
+time. An utility to effectively do a
+.B "for a in $(seq 1 10); do rsh $a command; done"
+.SH OPTIONS
+The options available are as follows.
+.TP
+.B "--verbose | -v" 
+Verbose output of the execution process is output.
+.PP
+.TP
+.B "--quiet | -q"
+Makes output quieter.
+.PP
+.TP
+.BI "--machine " machinename " | -m " machinename
+Adds 
+.I machinename 
+to the list of machines that the command is exeuted.
+.PP
+.TP
+.BI "--all | -a " 
+Add all machines found in 
+.B /etc/dsh/machines.list
+to the list of machines that the specified command is executed.
+.PP
+.TP
+.BI "--group " "groupname" " | -g " "groupname "
+Add all machines found in 
+.BI /etc/dsh/group/ groupname
+ to the list of machines that the specified command is executed.
+.PP
+.TP
+.BI "--remoteshell " "shellname " "| -r " "shellname "
+Execute remote shell 
+.I shellname
+as the remote shell. Usually "rsh" and "ssh" are available
+.PP
+.TP
+.BI "--help | -h "
+Output help message and exits.
+.PP
+.TP
+.BI "--wait-shell | -w " 
+Executes on each machine and waits for the execution finishing before
+moving on to the next machine.
+.PP
+.TP
+.BI "--concurrent-shell | -c "
+Executes shell concurrently.
+.PP
+.TP
+.BI "--version | -V "
+Outputs version information and exits.
+.PP
+.SH "EXIT STATUS"
+Usually zero. There is no real way to usefully use the return value of
+tasks.
+
+On error in command-line options, it will return EXIT_FAILURE.
+.SH "EXAMPLES"
+.TP
+.B "dsh -a w "
+Shows list of users logged in on all workstations.
+.PP
+.TP
+.B "dsh -r ssh -a -- w "
+Shows list of users logged in on all workstations using ssh. (It
+should be of note that when using ssh, ssh-agent is handy.)
+.PP
+.TP
+.B "./dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )"
+Shows the load average of machines node1 and node2.
+.PP
+.SH "FILES"
+.TP
+.B "/etc/dsh/machines.list | $(HOME)/.dsh/machines.list"
+List of machine names to be used for when 
+.B -a
+command-line option is specified.
+NOT IMPLEMENTED
+.PP
+.TP
+.BI "/etc/dsh/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
+List of machine names to be used for when 
+.B "-g" 
+command-line option is specified.
+.PP
+.TP
+.B "/etc/dsh/dsh.conf | $(HOME)/.dsh/dsh.conf "
+Configuration file containing the day-to-day default.
+.PP
+.SH "BUGS"
+Should support username@hostname:portnumber syntax.
+Not all options are implemented. Especially the configuration files
+are not implementated.
+
+There should be a 
+.B "dcp"
+for copying files to remote systems.
+.SH "AUTHOR"
+Junichi Uekawa (dancer@debian.org)
+.SH "SEE ALSO"
+.BR "rsh" "(1), " "ssh" "(1), "

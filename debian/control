@@ -1,0 +1,16 @@
+Source: dsh
+Section: net
+Priority: optional
+Maintainer: Junichi Uekawa <dancer@debian.org>
+Build-Depends: debhelper (>> 3.0.0)
+Standards-Version: 3.5.2
+
+Package: dsh
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: dancer's shell, or distributed shell
+ Executes specified command on a group of computers using remote shell
+ methods such as rsh. 
+ .
+ Something that is pretty handy when setting up clusters.
+
