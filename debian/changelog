@@ -10,8 +10,10 @@ dsh (0.0.17) unstable; urgency=low
   * Changed function indentation style to suit my new favor.
   * Added top-level README documentation, which suggests reading of
     debian/README.Debian
+  * debian/postinst: fixed string comparison, it used to say "==", but it
+    should have been "="
 
- -- Junichi Uekawa <dancer@debian.org>  Sun, 23 Dec 2001 14:20:46 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 23 Dec 2001 14:27:18 +0900
 
 dsh (0.0.16) unstable; urgency=low
 

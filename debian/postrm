@@ -1,6 +1,6 @@
 #! /bin/sh
 
-if [ "$1" == "purge" ]; then
+if [ "$1" = "purge" ]; then
   rmdir --ignore-fail-on-non-empty /etc/dsh/group
   rmdir --ignore-fail-on-non-empty /etc/dsh
 fi
