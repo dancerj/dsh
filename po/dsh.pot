@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-09-17 06:03+0900\n"
+"POT-Creation-Date: 2003-09-18 06:39+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,7 @@ msgid ""
 msgstr ""
 
 #: parameter.c:546
-msgid "Cannot specify fork limit of <0 \n"
+msgid "Cannot specify fork limit of less than 0\n"
 msgstr ""
 
 #: parameter.c:552

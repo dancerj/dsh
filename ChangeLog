@@ -1,3 +1,14 @@
+2003-09-18  Junichi Uekawa  <dancer@debian.org>
+
+	* drshd.c: create a file template for the program, not much content included yet.
+
+	* parameter.c (parse_options): sanity checking moved to its own function.
+	(sanity_checking): new function for sanity checking of options.
+
+	* configure.ac: 0.25.0.cvs.1
+
+	* parameter.c (parse_options): reword.
+
 2003-09-17  Junichi Uekawa  <dancer@debian.org>
 
 	* NEWS: update.

@@ -335,6 +335,42 @@ split_machines_list_and_add_machines(linkedlist* machinelist, const char * optar
 }
 
 /**
+ * Sanity checking routine, to check that options are valid.
+ *
+ * @return 0 on success
+ * @return 1 on failure
+ */
+static int
+sanity_checking(void)
+{
+  if ((pipe_option & PIPE_OPTION_INPUT) && wait_shell )
+    {
+      fprintf (stderr, _("%s: Input duplication and concurrent shell need to be specified together\n"), PACKAGE);
+      return 1;
+    }
+
+  if (forklimit < 0 )
+    {
+      fprintf (stderr, "%s: %s", PACKAGE, _("Cannot specify fork limit of less than 0\n"));
+      return 1;
+    }
+  
+  if ((pipe_option & PIPE_OPTION_INPUT) && (forklimit  > 0 ))
+    {
+      fprintf (stderr, _("%s: Input duplication and concurrent shell without fork limit need to be specified together\n"), PACKAGE);
+      return 1;
+    }
+
+  if ((wait_shell == 1) && (forklimit  > 0 ))
+    {
+      fprintf (stderr, _("%s: fork limit and wait shell cannot be specified at the same time\n"), PACKAGE);
+      return 1;
+    }
+  return 0;
+}
+
+
+/**
  * Option parsing routine.
  *
  * Remember to update other places, such as execute_rsh_multiple routine when changing here.
@@ -530,34 +566,10 @@ parse_options ( int ac, char ** av)
       }
   }
   
-  /*
-    ===================
-    sanity checking 
-    ===================
-  */
-  if ((pipe_option & PIPE_OPTION_INPUT) && wait_shell )
-    {
-      fprintf (stderr, _("%s: Input duplication and concurrent shell need to be specified together\n"), PACKAGE);
-      return 1;
-    }
 
-  if (forklimit < 0 )
-    {
-      fprintf (stderr, _("Cannot specify fork limit of <0 \n"));
-      return 1;
-    }
-  
-  if ((pipe_option & PIPE_OPTION_INPUT) && (forklimit  > 0 ))
-    {
-      fprintf (stderr, _("%s: Input duplication and concurrent shell without fork limit need to be specified together\n"), PACKAGE);
-      return 1;
-    }
-
-  if ((wait_shell == 1) && (forklimit  > 0 ))
-    {
-      fprintf (stderr, _("%s: fork limit and wait shell cannot be specified at the same time\n"), PACKAGE);
-      return 1;
-    }
+  /* do sanity checking, and exit if it fails. */
+  if (sanity_checking())
+    return 1;
 
   if (!(pipe_option & PIPE_OPTION_INPUT))
     open_devnull();		/* open /dev/null if no input pipe is required */
