@@ -98,8 +98,11 @@ int asprintf(char **strp, const char *fmt, ...)
 #define WAIT_ANY ((pid_t)-1)
 #endif /* WAIT_ANY */
 
-/*
-  A process that just echoes back
+/**
+ *  A process that just echoes back, reading fd_in using getline, 
+ *  and writing to fd_out
+ *
+ * @returns -1 on error, 0 on success.
  */
 static int
 do_echoing_back(int fd_in, int fd_out, const char * prompt)
@@ -130,6 +133,8 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
  * the actual program execution is done by llexec.
  * This part does the optional pipe construction or direct llexec
  * depending on the flags.
+ *
+ * @returns -1 on failure, 1 on exec failure.
  */
 static int
 do_execute_with_optional_pipe (const char * remoteshell_command,
@@ -137,7 +142,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 			       int pipe_option,
 			       const char * machinename)
 {
-  if (pipe_option)
+  if (pipe_option)		/* pipe the outputs */
     {
       int capture_stdout[2];	/* the pipe fd's to use to capturing std-ins */
       int capture_stderr[2];
@@ -191,14 +196,12 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	  close (capture_stdout[1]);
 	  close (capture_stderr[0]);
 	  close (capture_stderr[1]);
-	  llexec (remoteshell_command, commandline);
-	  fprintf(stderr, _("%s: Failed executing %s with llexec call\n"), PACKAGE, remoteshell_command);
-	  exit (EXIT_FAILURE);
 	}
-      
     }
-  else
-    return llexec ( remoteshell_command, commandline );
+
+  llexec ( remoteshell_command, commandline );
+  fprintf(stderr, _("%s: Failed executing %s with llexec call\n"), PACKAGE, remoteshell_command);
+  exit (EXIT_FAILURE);
 }
 
 					   
@@ -348,6 +351,8 @@ execute_rsh ( const char * remoteshell_command,
    Called after the command-line parsing.
    do the shell execution without caring
    about what actually would happen
+
+   @returns 0.
 */
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
@@ -380,7 +385,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   return 0;  
 }
 
-/* open /dev/null as stdin */
+/** open /dev/null as stdin */
 static void 
 open_devnull(void)
 {
@@ -407,7 +412,9 @@ main(int ac, char ** av)
   load_configfile(buf);
   free (buf);
 
-  open_devnull();
+  open_devnull();		/* this should be deprecated when
+				   show_machine_names &2 is implemented
+				 */
 
   return parse_options(ac, av);  
 }

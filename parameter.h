@@ -24,7 +24,9 @@ extern char * remoteshell_command;
 
 extern int  verbose_flag;		/* verbosity flag */
 extern int wait_shell;		/* waiting for shell to execute (concurrence) */
-extern int  show_machine_names;	/* show machine names */
+extern int  show_machine_names;	/* &1 = show machine names ...  
+				   &2 = duplicate input.
+				 */
 extern int  num_topology;		/* number of topology to use as a block to execute rsh. 
 				 1 = for-loop
 				 2 = binary-tree

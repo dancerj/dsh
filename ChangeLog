@@ -1,3 +1,20 @@
+2002-09-14  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.c (main): note the plan; when show_machine_names &2 == 1,
+	it should read input and duplicate the value to all other 
+	processes.
+
+	* parameter.c (parse_options): change show_machine_names = 1 to
+	|= 1.
+	(load_configfile): change logic to do |= 1
+
+	* dsh.c (do_execute_with_optional_pipe): unify the code path
+	for pipe option, and other.
+
+	* linkedlist.c (llexec): document functions.
+
+	* dsh.c: some updates  to documentation
+
 2002-09-11  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c: include locale.h

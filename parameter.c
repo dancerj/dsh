@@ -197,7 +197,7 @@ load_configfile(const char * dsh_conf)
 	    }	      
 	  else if (!strcmp(buf_a, "showmachinenames"))
 	    {
-	      show_machine_names = atoi ( buf_b );
+	      show_machine_names |= (atoi ( buf_b ) != 0 );
 	      if (verbose_flag) printf(_("Setting showmachinenames to  [%i]\n"), show_machine_names);
 	    }	      
 	  else if (!strcmp(buf_a, "verbose"))
@@ -302,7 +302,7 @@ parse_options ( int ac, char ** av)
 	  break;
 	case 'M':
 	  if (verbose_flag) printf (_("Show machine names on output\n"));
-	  show_machine_names = 1;
+	  show_machine_names |= 1;
 	  break;	  
 	case 'm':
 	  if (verbose_flag) printf (_("Adding machine %s to list\n"), optarg);

@@ -40,7 +40,9 @@ malloc_with_error(int size)
 }
 
 
-				/* free a linked list. */
+/**
+   free a linked list.
+ */
 void 
 llfree(linkedlist* a)
 {				/* add paranoia checks */
@@ -53,6 +55,9 @@ llfree(linkedlist* a)
   free (a);  
 }
 
+/** 
+ * add a char to linked list
+ */
 linkedlist* 
 lladd(linkedlist*next, const char * b)
 {
@@ -62,7 +67,10 @@ lladd(linkedlist*next, const char * b)
   return tmp;
 }
 
-				/* a comes after b.  */
+/**
+ * concatenate linked list.  
+ * a comes after b.
+ */
 linkedlist* 
 llcat(linkedlist*a, linkedlist*b)
 {
@@ -76,6 +84,9 @@ llcat(linkedlist*a, linkedlist*b)
   return orig;  
 }
 
+/**
+ * Reverse the order of the linked list.
+ */
 linkedlist* 
 llreverse(linkedlist*a)
 {
@@ -92,7 +103,9 @@ llreverse(linkedlist*a)
   return prev;  
 }
 
-
+/**
+ * duplicate the list 
+ */
 linkedlist* 
 lldup(const linkedlist*a)
 {
@@ -102,7 +115,9 @@ lldup(const linkedlist*a)
     return NULL;  
 }
 
-
+/**
+ * Count the number of members in the list
+ */
 int 
 llcount (const linkedlist*a)
 {				/* count members */
@@ -112,7 +127,11 @@ llcount (const linkedlist*a)
     return 0;  
 }
 
-				/* execute shell according to linked list */
+/**
+   execute shell according to linked list
+
+   @returns 1 on failure, does not return on success.
+ */
 int
 llexec (const char * command, const linkedlist * a)
 {
@@ -145,6 +164,9 @@ lldump_recursion(const linkedlist*a)
     }
 }
 
+/**  
+ * Dump contents of the linked list for debug
+ */
 void 
 lldump(const linkedlist*a)
 {
