@@ -1,13 +1,13 @@
-dsh (0.0.19-1) unstable; urgency=low
+dsh (0.0.19.4-1) unstable; urgency=low
 
+  * New upstream version
   * Using libdshconfig.so library in config file parsing.
-  * adding libdshconfig0{,-dev} package, possibly required by dmachinemon
-    and others.
   * remove libdshconfig to another package, and depend on it.
   * autoconfiscate
   * Make the package into a non-native package.
+  * call configure with --mandir and --sysconfdir parameters.
 
- -- Junichi Uekawa <dancer@debian.org>  Fri, 31 May 2002 22:24:44 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Fri, 14 Jun 2002 19:58:32 +0900
 
 dsh (0.0.18) unstable; urgency=low
 

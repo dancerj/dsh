@@ -17,5 +17,15 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#define DSH_CONF "/etc/dsh/dsh.conf"
+#ifdef __DSH_H__
+#error dsh.h included more than once.
+#endif
+
+#include "config.h"
+
+#define DSH_CONF DSHCONFDIR "/dsh.conf"
+#ifndef HAVE_GETLINE
+/* an imcomplete, and wrong implementation of getline */
+ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM);
+#endif
 

@@ -1,5 +1,31 @@
 2002-06-14  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.in: 0.0.19.4
+
+	* debian/rules (configure-stamp): fix up configure script to 
+	put files in /etc/dsh, and mandir in /usr/share/man
+
+	* Makefile.am (EXTRA_DIST): add autogen.sh to dist target
+	(EXTRA_DIST): add sysconf_DATA
+
+	* parameter.c (parse_options): use DSHCONFDIR instead of hardcoding /etc/dsh
+
+	* Makefile.am (dsh_CFLAGS): add -DDSHCONFDIR to dsh_CFLAGS
+
+	* AUTHORS: updated authors list to add notes on solaris port 
+
+	* Makefile.am (EXTRA_DIST): add dsh.conf to EXTRA_DIST target.
+
+	* dsh.c: 
+	* linkedlist.c: 
+	* parameter.c: reorder includes to get dsh.h earlier, and remove reference to config.h
+
+	* dsh.h (getline): add declaration for getline function, if it doesn't exist.
+	include config.h here.
+
+	* dsh.c: remove unnecessary getopt.
+	(getline): remove the static declaration.
+
 	* configure.in: 0.0.19.3
 
 	* parameter.c, dsh.c, linkedlist.c: revert use of <config.h> to use "config.h".

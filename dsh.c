@@ -30,11 +30,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include <getopt.h>
 #include "dsh.h"
 #include "linkedlist.h"
 #include "parameter.h"
-#include "config.h"
 
 char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
@@ -47,10 +45,10 @@ int num_topology=1;		/* number of topology to use as a block to execute rsh.
 				*/
 linkedlist* remoteshell_command_opt_r=NULL; /* reverse-ordered list of rsh options. */
 
-/* local function defining "getline" */
+/* function defining "getline" */
 #ifndef HAVE_GETLINE
 /* an imcomplete, and wrong implementation of getline */
-static ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
+ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
 {
   const int GETLINESIZE = 256;
   int fgl;
@@ -72,6 +70,7 @@ static ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
 }
 #endif
 
+/* define asprintf if it doesn't exist */
 #ifndef HAVE_ASPRINTF
 #include <stdarg.h>
 int asprintf(char **strp, const char *fmt, ...)

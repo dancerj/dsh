@@ -14,7 +14,7 @@ DSH=$(CURDIR)/debian/dsh
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	# Add here commands to configure the package.
+	./configure --prefix=/usr --sysconfdir=/etc/dsh --mandir=/usr/share/man
 	touch configure-stamp
 
 build: configure-stamp build-stamp
@@ -28,6 +28,7 @@ clean:
 	dh_testroot
 	rm -f build-stamp configure-stamp
 	-$(MAKE) clean
+	-$(MAKE) distclean
 	dh_clean
 
 install: build

@@ -29,12 +29,11 @@
 #include <sys/wait.h>
 
 
-#include "config.h"
+#include "dsh.h"
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif
-#include "dsh.h"
 #include "config.h"
 #include "linkedlist.h"
 #include "parameter.h"
@@ -263,7 +262,7 @@ parse_options ( int ac, char ** av)
 	  {
 	    char * buf;
 	    asprintf(&buf, "%s/.dsh/machines.list", getenv("HOME"));	    
-	    machinelist = read_machinelist(machinelist, buf, "/etc/dsh/machines.list");	  
+	    machinelist = read_machinelist(machinelist, buf, DSHCONFDIR"/machines.list");
 	    free (buf);	    
 	  }	  
 	  break;	  
@@ -279,7 +278,7 @@ parse_options ( int ac, char ** av)
               {			/* using dsh's own method. */
 		char * buf1, *buf2;
 		if (verbose_flag) printf ("Adding group %s to the list\n", optarg);
-		asprintf(&buf1, "/etc/dsh/group/%s", optarg);
+		asprintf(&buf1, DSHCONFDIR"/group/%s", optarg);
 		asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg);
 		machinelist = read_machinelist (machinelist, buf2, buf1); 
 		free(buf1);free(buf2);

@@ -24,7 +24,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include "config.h"
 #include "dsh.h"
 #include "linkedlist.h"
 
