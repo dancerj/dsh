@@ -1,3 +1,9 @@
+2003-06-10  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: error out when dshconfig.h is not available.
+	Reported from Tomo Hiroyasu.
+	0.23.10.cvs.2
+
 2003-06-09  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.10.cvs.1
