@@ -124,7 +124,7 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
 int print_version(void)
 {
   printf("Distributed Shell / Dancer\'s shell version %s \n"
-	 "Copyright 2001 Junichi Uekawa, \n"
+	 "Copyright 2001,2002 Junichi Uekawa, \n"
 	 "distributed under the terms and conditions of GPL version 2\n\n",
 	 VERSION);
   return 0;

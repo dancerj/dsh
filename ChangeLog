@@ -1,5 +1,9 @@
 2002-06-14  Junichi Uekawa  <dancer@debian.org>
 
+	* parameter.c (print_version): update copyright information.
+
+	* dsh.h: add prototype for asprintf.
+
 	* configure.in: 0.0.19.4
 
 	* debian/rules (configure-stamp): fix up configure script to 
