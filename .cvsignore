@@ -13,9 +13,8 @@ config.sub
 configure
 configure-stamp
 depcomp
-dsg-0.0.19.tar.gz
+dsg-*.tar.gz
 dsh
-dsh-0.0.19pre.tar.gz
 install-sh
 libtool
 ltmain.sh

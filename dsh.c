@@ -68,6 +68,9 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
     {
       fprintf (standard_output, "%s: %s", prompt, buf);
     } 
+  if (buf)
+    free (buf);
+  
   return 0;  
 }
 

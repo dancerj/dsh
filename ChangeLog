@@ -1,5 +1,10 @@
 2002-06-12  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.in: version 0.0.19.1
+
+	* dsh.c (do_echoing_back): add a missing free for buf,
+	thanks to: Petter Reinholdtsen <pere@hungry.com>
+
 	* configure.in: version 0.0.19.0
 
 	* Makefile.am: update prinstine-source generator/Debian 
