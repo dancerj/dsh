@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-10-21 22:50+0900\n"
+"POT-Creation-Date: 2003-01-24 14:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,12 +145,12 @@ msgstr ""
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:233 parameter.c:446
+#: parameter.c:233 parameter.c:451
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:238 parameter.c:450
+#: parameter.c:238 parameter.c:455
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
@@ -215,43 +215,47 @@ msgid "Buffer size used for dupliation\n"
 msgstr ""
 
 #: parameter.c:430
+msgid "Buffer size needs to be greater than 1\n"
+msgstr ""
+
+#: parameter.c:435
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr ""
 
-#: parameter.c:434
+#: parameter.c:439
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:454
+#: parameter.c:459
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:458
+#: parameter.c:463
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:465
+#: parameter.c:470
 #, c-format
 msgid "Unkown option -%c.\n"
 msgstr ""
 
-#: parameter.c:467
+#: parameter.c:472
 #, c-format
 msgid "Unkown option character 0x%x.\n"
 msgstr ""
 
-#: parameter.c:471
+#: parameter.c:476
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:478
+#: parameter.c:483
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""
 
-#: parameter.c:493
+#: parameter.c:498
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"

@@ -1,3 +1,14 @@
+2003-01-24  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.6
+
+	* Makefile.am (TESTS): add the test
+
+	* tests/param-b-0.sh: new test to check buffer size param functionality
+
+	* parameter.c (parse_options): check that buffersize is not 0 or 
+	any silly value.
+
 2002-11-27  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.5

@@ -1,3 +1,11 @@
+dsh (0.23.6-1) unstable; urgency=low
+
+  * New upstream version
+  * error-check options such as -b0
+  * No longer use debian/conffiles
+
+ -- Junichi Uekawa <dancer@debian.org>  Fri, 24 Jan 2003 14:35:32 +0900
+
 dsh (0.23.5-1) unstable; urgency=low
 
   * New upstream version

@@ -425,6 +425,11 @@ parse_options ( int ac, char ** av)
 	case 'b':
 	  if (verbose_flag) printf (_("Buffer size used for dupliation\n"));
 	  buffer_size = atoi(optarg);	  
+	  if (buffer_size < 1)
+	    {
+	      fprintf (stderr, _("Buffer size needs to be greater than 1\n"));
+	      return 1;
+	    }
 	  break;	  
 	case 'm':
 	  if (verbose_flag) printf (_("Adding machine %s to list\n"), optarg);
