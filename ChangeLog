@@ -1,3 +1,7 @@
+2002-09-16  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/control (Description): add upstream URL in description line.
+
 2002-09-14  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c (do_echoing_back_process): change the function name, to clarify that this is a process..

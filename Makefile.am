@@ -27,6 +27,6 @@ upload-dist-all: distcheck
 	scp @PACKAGE@-@VERSION@.tar.gz mikilab.doshisha.ac.jp:parallel-research/software
 	$(MAKE) ../@PACKAGE@_@VERSION@.orig.tar.gz
 
-SUBDIRS = m4 po
+SUBDIRS = m4 po 
 
 ACLOCAL_AMFLAGS = -I m4
