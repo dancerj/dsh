@@ -1,6 +1,6 @@
 #!/bin/sh
 echo Check that cn4 option is working.
-set -e
+set -ex
 [ "`./dsh -recho -ma,b,c,d,e,f,g,h,i,j,k,l,m,n -Mcn4 | sort`" = "\
 b /usr/local/bin/dsh -m b -m a -c -M -n4 -recho --
 e /usr/local/bin/dsh -m e -m d -m c -c -M -n4 -recho --

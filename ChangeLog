@@ -1,5 +1,10 @@
 2002-09-23  Junichi Uekawa  <dancer@debian.org>
 
+	* Makefile.am (SUBDIRS): remove tests from SUBDIRS
+	(EXTRA_DIST): extra dist for tests is done with the main Makefile.am
+
+	* configure.ac: remove tests/Makefile.
+
 	* tests/param-cn4.sh: check the -cn4 option is working.
 	* tests/Makefile.am (EXTRA_DIST): add 
 	* Makefile.am (TESTS): add

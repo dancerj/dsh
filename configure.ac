@@ -34,6 +34,5 @@ changequote([,])dnl
 
 AC_CONFIG_FILES([ po/Makefile.in m4/Makefile 
 Makefile
-tests/Makefile
 ])
 AC_OUTPUT
