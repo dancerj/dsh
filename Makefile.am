@@ -20,10 +20,13 @@ TESTS=tests/param-f.sh \
 	tests/param-cn4.sh \
 	tests/param-b-0.sh \
 	tests/param-r-invalid.sh \
-	tests/param-gnu-getopt.sh
+	tests/param-gnu-getopt.sh \
+	tests/news-okay.sh 
+
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \
-	LANG=C
+	LANG=C \
+	VERSION=@VERSION@ 
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file tests/list.space.file \
 	$(translated_man) $(original_man)

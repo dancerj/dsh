@@ -1,5 +1,7 @@
-0.23.9.cvs.1 - ??
+0.23.11 - 12 Jun 2003.
 
+ + check for libdshconfig.h before compiling
+   thanks to Tomo Hiroyasu <tomo@is.doshisha.ac.jp>
  + doc++ documentation fixes.
  + fix compile error on SunOS.
    thanks to Tomo Hiroyasu <tomo@is.doshisha.ac.jp>

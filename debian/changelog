@@ -1,3 +1,10 @@
+dsh (0.23.11-1) unstable; urgency=low
+
+  * New upstream version
+  - portability fixes.
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 12 Jun 2003 21:51:57 +0900
+
 dsh (0.23.10-1) unstable; urgency=low
 
   * New upstream version

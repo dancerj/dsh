@@ -1,3 +1,16 @@
+2003-06-12  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.11
+	Improve libdshconfig check. Use AC_COMPILE_IFELSE rather than 
+	AC_CHECK_HEDAERS (which only check for system headers)
+	
+	* Makefile.am (TESTS_ENVIRONMENT): add version to strings to pass to 
+	test scripts.
+
+	* tests/news-okay.sh: check for version mismatch
+
+	* NEWS: update the news file.
+
 2003-06-10  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: error out when dshconfig.h is not available.
