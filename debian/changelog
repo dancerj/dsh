@@ -1,3 +1,10 @@
+dsh (0.25.2.1-1) unstable; urgency=low
+
+  * New upstream version
+  * Rebuild original tar archive with fixed automake1.8 (closes: #244869)
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 25 Apr 2004 11:46:05 +0900
+
 dsh (0.25.2-1) unstable; urgency=low
 
   * New upstream version
