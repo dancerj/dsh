@@ -1,3 +1,28 @@
+2004-01-21  Junichi Uekawa  <dancer@debian.org>
+
+	* NEWS: update news.
+
+	* configure.ac: 0.25.0.cvs.2
+
+	* tests/segv-catcher.sh: passes now.
+	TODO: when in ssh, 'exit' does not immediately terminate the process,
+	the next input will. This is a bug.
+
+	* dsh.c (run_input_forking_child_processes_process): add error handling and signal handling in
+	write.
+
+	* Makefile.am (TESTS): add test segv-catcher.sh
+
+	* tests/segv-catcher.sh: add new to check the assertion failed message.
+	dsh: dsh.c:573: do_shell: Assertion `((((__extension__ ({ union { __typeof(childstatus) __in; int __i; } __u; __u.__in = (childstatus); __u.__i; }))) & 0x7f) == 0)' failed.
+
+	* dsh.c (do_shell): exit code 2 if signal received.
+	update copyright for 2004
+
+	* dsh.1: update doc.
+
+	* tests/param-i.sh (c): some output
+
 2003-09-18  Junichi Uekawa  <dancer@debian.org>
 
 	* drshd.c: create a file template for the program, not much content included yet.

@@ -24,6 +24,7 @@ TESTS=tests/param-f.sh \
 	tests/param-F-forklimit.sh \
 	tests/param-gnu-getopt.sh \
 	tests/news-okay.sh \
+	tests/segv-catcher.sh \
 	tests/test-bufferoverflow.sh
 
 

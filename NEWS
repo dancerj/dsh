@@ -1,3 +1,8 @@
+0.25.0.cvs.2 - 21 Jan 2004.
+
+ + Fix hangling of SIGPIPE when remote process is finished before
+   local noticing, with -ci option.
+
 0.25.0 - 17 Sep 2003.
 
  + Add fork limit feature; so that a limited number of connection are 

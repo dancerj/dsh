@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001, 2002, 2003 Junichi Uekawa
+ *  Copyright (C) 2001, 2002, 2003, 2004 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
 #include <fcntl.h>
 #include <locale.h>
 #include <assert.h>
+#include <errno.h>
 
 #include "dsh.h"
 #include "linkedlist.h"
@@ -123,7 +124,7 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
       fprintf(stderr, _("%s: Could not open descriptor [%i] or [%i]\n"), PACKAGE, fd_in, fd_out);
       return -1; 
     }
-  
+
   while (0 <  getline(&buf, &bufsize, f))
     {
       fprintf (standard_output, "%s: %s", prompt, buf);
@@ -155,7 +156,7 @@ fork_and_pipe_echoing_routine (
   if (0 != (childid = fork()))
     {	
       int status;
-      /* The child process.  */
+      /* The child process.  -- isn't this the parent process?*/
       close (capture_fd[1]);
       if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
@@ -170,6 +171,8 @@ fork_and_pipe_echoing_routine (
     }      
   else
     {
+      /* This is the real child process -- ??? 
+       */
       if (-1 == dup2 (capture_fd[1], fdid))
 	{
 	  fprintf(stderr, PACKAGE ": %s\n", _("Failed playing with pipe"));
@@ -483,21 +486,33 @@ run_input_forking_child_processes_process()
   char * buf;
   int count ;
   int i;
+
   
   switch (fork())
     {
     case 0:
       /* the child process */
       buf = malloc_with_error ( buffer_size );
+      signal(SIGPIPE, SIG_IGN);	/* I'll handle SIGPIPE with SIGPIPE */
+      
       while ((count = read(0, buf, buffer_size)) != -1 )
 	{
 	  if (count == 0)	/* if there is zero-byte read, it is an end-of-file */
 	    break;
 	  for (i = 0; i < fd_output_array_len; ++i )
 	    {
-	      write (fd_output_array [i], buf, count);
+	      if (write (fd_output_array [i], buf, count) == -1)
+		{
+		  /* handle errors */
+		  if (errno == EPIPE)
+		    /* pipe ended */
+		    goto out_of_while;
+		  else
+		    perror("dsh: write");
+		}
 	    }
 	}      
+    out_of_while:
       for (i = 0; i < fd_output_array_len; ++i )
 	{
 	  close (fd_output_array [i]);
@@ -567,11 +582,24 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   if (!wait_shell)
     {
       int childstatus = 0;
+      int childpid;
+      
       /* waiting for all. */
-      while(-1 != (waitpid(WAIT_ANY, &childstatus, 0)))
+      while(-1 != (childpid = waitpid(WAIT_ANY, &childstatus, 0)))
 	{
-	  assert(WIFEXITED(childstatus));
-	  dsh_update_exit_code(WEXITSTATUS(childstatus));
+	  /* Is child dead of signal ? i.e. segv, etc. */
+	  if (WIFSIGNALED(childstatus))
+	    {
+	      fprintf (stderr, _("%s: Child process %i exited with signal %i\n"), PACKAGE, childpid, 
+		       WTERMSIG(childstatus));
+	      fflush (stderr);
+	      dsh_update_exit_code(2);
+	    }
+	  else			/* get exit code and update */
+	    {
+	      assert(WIFEXITED(childstatus));
+	      dsh_update_exit_code(WEXITSTATUS(childstatus));
+	    }
 	}
     }
   
