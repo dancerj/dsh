@@ -13,7 +13,8 @@
 
 	* THANKS: update
 
-	* parameter.c (stripwhitespace): Add code contributed from Alexander Zangerl <az@snafu.priv.at>
+	* parameter.c (stripwhitespace): Add code contributed from Alexander
+	Zangerl <az@snafu.priv.at> bug: 249794
 
 	* dsh.1: update documentation.
 
