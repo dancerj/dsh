@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 #include <netdb.h>
 #include <fcntl.h>
@@ -59,12 +60,28 @@ malloc_with_error(int size)
   return u;  
 }
 
-				/* remove \n from string */
-static void 
-stripn(char * buf)
+/* 
+ * remove \n and other things from string
+ * and return the new pointer.
+ */
+static const char *
+stripwhitespace(char * buf)
 {
-  buf = strchr ( buf, '\n');
-  if (buf) *buf = 0;
+  char * pointer = buf;
+  char * revpointer;
+
+  while (*pointer && isspace(*pointer))
+    pointer ++;
+  if (*pointer)			/* if it is nothing, return NULL */
+    return NULL;
+
+  revpointer = (strlen (pointer) - 1);
+
+  /* strip whitespace from end. */
+  while (revpointer > pointer && isspace(revpointer))
+    *(revpointer --) = 0;
+
+  return pointer;
 }
 
 /*
@@ -98,6 +115,9 @@ read_machinenetgroup(linkedlist * machinelist,
   return machinelist;
 }
 
+/**
+ * read the machine list file from file.
+ */
 linkedlist* 
 read_machinelist(linkedlist * machinelist, const char * listfile, const char*alternatelistfile)
 {
@@ -109,9 +129,9 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
     {
       while (-1 != getline (&buf, &bufferlen, f))
 	{
-	  stripn(buf);	  
-	  machinelist=lladd(machinelist,buf);
-	}      
+	  const char * strippedstring = stripwhitespace(buf);
+	  machinelist=lladd(machinelist,strippedstring);
+	}
       fclose(f);
     }
   else
