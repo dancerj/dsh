@@ -90,9 +90,32 @@ read_oneline (FILE* f, int delimiter)
   return 0;
 }
 
-
+/** reads a dsh config file, and load it up in memory 
+    returns NULL when error.
+ */
 dshconfig *
 open_dshconfig (FILE* file, char delimiter) 
 {
+  dshconfig * d = malloc (sizeof (dshconfig));
+  dshconfig_internal * t, * i ;
   
+  if (!d)
+    return NULL;
+  
+  d->config = NULL;
+  
+  while (t = read_oneline (file, delimiter))
+    {
+      if (d->config)
+	{
+	  for (i=d->config; i->next; i=i->next);
+	  i->next = t;
+	}
+      else
+	{
+	  t->next = NULL;
+	  d->config = t;
+	}
+    }
+  return d;
 }

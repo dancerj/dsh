@@ -1,12 +1,13 @@
 dsh (0.0.18) unstable; urgency=low
 
-  * New version. (not released)
+  * New version. (not released, yet)
   * updated README.Debian
   * updated copyright for year 2002.
   * Makefile uses $(CC) instead of hardcoding "gcc", just to be cross-build
     friendly.
+  * Standard input is taken from /dev/null by default. (closes: #98717)
 
- -- Junichi Uekawa <dancer@debian.org>  Mon, 14 Jan 2002 03:41:32 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Tue,  5 Feb 2002 02:12:09 +0900
 
 dsh (0.0.17) unstable; urgency=low
 

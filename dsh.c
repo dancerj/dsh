@@ -33,7 +33,6 @@
 #include "linkedlist.h"
 #include "parameter.h"
 
-
 char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
 int wait_shell=1;		/* waiting for shell to execute (concurrence) */
@@ -45,8 +44,9 @@ int num_topology=1;		/* number of topology to use as a block to execute rsh.
 				*/
 linkedlist* remoteshell_command_opt_r=NULL; /* reverse-ordered list of rsh options. */
 
-
-
+/*
+  A process that just echoes back
+ */
 static int
 do_echoing_back(int fd_in, int fd_out, const char * prompt)
 {
@@ -68,6 +68,9 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
   return 0;  
 }
 
+/** 
+ * Actually execute the program, with maybe a pipe.
+ */
 static int
 do_execute_with_optional_pipe (const char * remoteshell_command,
 			       const linkedlist * commandline,
@@ -140,7 +143,9 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 
 					   
 
-				/* spawns rsh session on single machine */
+/*
+ * spawns rsh session on single machine
+ */
 static void
 execute_rsh_single (const char * remoteshell_command, 
 		    const linkedlist * remoteshell_command_opt_r, 
@@ -258,18 +263,20 @@ execute_rsh_multiple (const char * remoteshell_command,
   execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, 0);
 }
 
+/**
+   execute remote shell 
+   executes dsh on other machines, or
+   executes rsh to execute command.
+   depending on the parameter and 
+   status.
+*/
 static void
 execute_rsh ( const char * remoteshell_command, 
 	      const linkedlist * remoteshell_command_opt_r,
 	      const linkedlist * machinelist,
 	      int nummachines,
 	      const linkedlist * rshcommandline_r)
-{				/* execute remote shell 
-				 executes dsh on other machines, or
-				 executes rsh to execute command.
-				 depending on the parameter and 
-				 status.
-				*/
+{				
   if (nummachines == 1)
     execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, show_machine_names);
   else
@@ -277,14 +284,14 @@ execute_rsh ( const char * remoteshell_command,
 }
 
 
-
+/**
+   Called after the command-line parsing.
+   do the shell execution without caring
+   about what actually would happen
+*/
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
-{				/* 
-				   Called after the command-line parsing.
-				   do the shell execution without caring
-				   about what actually would happen
-				*/
+{	
   int nummachines = llcount(machinelist) / num_topology ;  
   int i;
 
@@ -312,7 +319,15 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   
   return 0;  
 }
-    
+
+/* open /dev/null as stdin */
+static void 
+open_devnull(void)
+{
+  int in = open ("/dev/null", O_RDONLY);
+  dup2 (in, 0);
+}
+
 int
 main(int ac, char ** av)
 {
@@ -324,7 +339,10 @@ main(int ac, char ** av)
       fprintf (stderr, "dsh: asprintf failed\n");
       exit (1);
     }  
-  load_configfile(buf);  
-  free (buf);  
+  load_configfile(buf);
+  free (buf);
+
+  open_devnull();
+
   return parse_options(ac, av);  
 }

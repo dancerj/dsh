@@ -1,3 +1,14 @@
+2002-02-05  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.c: some beautification
+
+	* libdshconfig.c (open_dshconfig): making a function implementation to hopefully work.
+
+	* debian/changelog: updated the changelog with the bugfixer.
+
+	* dsh.c (open_devnull): created a new function.
+	(main): uses /dev/null for input as default.
+
 2002-02-03  Junichi Uekawa  <dancer@debian.org>
 
 	* libdshconfig.c (read_oneline): some minor playing around.
