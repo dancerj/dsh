@@ -423,6 +423,9 @@ run_input_forking_child_processes_process()
       buf = malloc_with_error ( buffer_size );
       while ((count = read(0, buf, buffer_size)) != -1 )
 	{
+	  if (count == 0)
+	    fprintf(stderr, "warning: zero byte read\n");
+	  
 	  for (i = 0; i < fd_output_array_len; ++i )
 	    {
 	      write (fd_output_array [i], buf, count);
