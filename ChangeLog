@@ -2,6 +2,9 @@
 
 	* configure.in: 0.0.19.2
 
+	* debian/rules (binary-arch): removed the installman specifics, because 
+	the upstream makefile will handle it.
+
 	* Makefile.am (man_MANS): add dsh.1 to man_MANS, and EXTRA_DIST
 	Thanks to Petter Reinholdtsen <pere@hungry.com>
 
