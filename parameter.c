@@ -312,12 +312,12 @@ split_machines_list_and_add_machines(linkedlist* machinelist, const char * optar
 int
 parse_options ( int ac, char ** av)
 {
-  int index_point;  
   int c;			/* option */
   linkedlist * machinelist = NULL;
   linkedlist * rshcommandline_r = NULL; /* command line for rsh in reverse order*/
 
 #ifdef HAVE_GETOPT_LONG
+  int index_point;  
   static struct option long_options[]=
   {
     {"verbose", no_argument, 0, 'v'},

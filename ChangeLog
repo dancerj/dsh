@@ -1,5 +1,8 @@
 2002-09-30  Junichi Uekawa  <dancer@debian.org>
 
+	* parameter.c (parse_options): move index_point to inside the 
+	HAVE_GETOPT_LONG, because index_point is used with getopt_long only.
+
 	* configure.ac: 0.23.2
 	Compiles and works on AIX.
 
