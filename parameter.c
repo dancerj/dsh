@@ -363,7 +363,12 @@ parse_options ( int ac, char ** av)
 	  if (verbose_flag) printf (_("Adding all machines to the list\n"));
 	  {
 	    char * buf;
-	    asprintf(&buf, "%s/.dsh/machines.list", getenv("HOME"));	    
+	    if (asprintf(&buf, "%s/.dsh/machines.list", getenv("HOME"))<0)
+	      {
+		fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		return 1;
+	      }
+	    
 	    machinelist = read_machinelist(machinelist, buf, DSHCONFDIR"/machines.list");
 	    free (buf);	    
 	  }	  
@@ -380,8 +385,18 @@ parse_options ( int ac, char ** av)
               {			/* using dsh's own method. */
 		char * buf1, *buf2;
 		if (verbose_flag) printf (_("Adding group %s to the list\n"), optarg);
-		asprintf(&buf1, DSHCONFDIR"/group/%s", optarg);
-		asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg);
+		if (asprintf(&buf1, DSHCONFDIR"/group/%s", optarg) < 0)
+		  {
+		    fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		    return 1;
+		  }
+		
+		if (asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg)<0)
+		  {
+		    fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		    return 1;
+		  }
+		
 		machinelist = read_machinelist (machinelist, buf2, buf1); 
 		free(buf1);free(buf2);
 	      }

@@ -331,6 +331,7 @@ execute_rsh_single (const char * remoteshell_command,
  * spawns dsh session on other machines
  *
  * TODO: quote properly.
+ * @return -1 on failure.
  */
 static int
 execute_rsh_multiple (const char * remoteshell_command, 
@@ -373,12 +374,22 @@ execute_rsh_multiple (const char * remoteshell_command,
     extraparam=lladd (extraparam, "-M");
   
 
-  asprintf(&buffer, "-n%i", num_topology);  
+  if (asprintf(&buffer, "-n%i", num_topology)<0)
+    {
+      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+      return -1;
+    }
+  
   extraparam=lladd (extraparam, buffer);
   free(buffer);  
 
   /* add remoteshell command */
-  asprintf(&buffer, "-r%s", remoteshell_command);  
+  if (asprintf(&buffer, "-r%s", remoteshell_command)<0)
+    {
+      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+      return -1;
+    }
+    
   extraparam=lladd (extraparam, buffer);
   free(buffer);  
 

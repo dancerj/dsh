@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-30 17:10+0900\n"
+"POT-Creation-Date: 2002-10-19 17:18+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -254,4 +254,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"
+msgstr ""
+
+#: linkedlist.c:60
+msgid "Out of memory in lladd\n"
 msgstr ""
