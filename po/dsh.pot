@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-11 18:06+0900\n"
+"POT-Creation-Date: 2002-09-11 18:59+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,4 +46,150 @@ msgstr ""
 #: dsh.c:403
 #, c-format
 msgid "%s: asprintf failed\n"
+msgstr ""
+
+#: parameter.c:51
+#, c-format
+msgid "%s: failed to allocate memory of %i bytes\n"
+msgstr ""
+
+#: parameter.c:90
+#, c-format
+msgid "%s: Unknown netgroup %s.\n"
+msgstr ""
+
+#: parameter.c:116
+#, c-format
+msgid "%s: File %s nor %s could not be opened for read\n"
+msgstr ""
+
+#: parameter.c:120
+#, c-format
+msgid "%s: File %s could not be opened for read\n"
+msgstr ""
+
+#: parameter.c:129
+#, c-format
+msgid ""
+"Distributed Shell / Dancer's shell version %s \n"
+"Copyright 2001,2002 Junichi Uekawa, \n"
+"distributed under the terms and conditions of GPL version 2\n"
+"\n"
+msgstr ""
+
+#: parameter.c:141
+msgid ""
+"-v --verbose                   Verbose output\n"
+"-q --quiet                     Quiet\n"
+"-M --show-machine-names        prepend the host name on output\n"
+"-m --machine [machinename]     Execute on machine\n"
+"-n --num-topology              How to divide the machines\n"
+"-a --all                       Execute on all machines\n"
+"-g --group [groupname]         Execute on group member\n"
+"-f --file [file]               Use the file as list of machines\n"
+"-r --remoteshell [shellname]   Execute using shell (rsh/ssh)\n"
+"-o --remoteshellopt [option]   Option to give to shell \n"
+"-h --help                      Give out this message\n"
+"-w --wait-shell                Sequentially execute shell\n"
+"-c --concurrent-shell          Execute shell concurrently\n"
+"-V --version                   Give out version information\n"
+"\n"
+msgstr ""
+
+#: parameter.c:173
+#, c-format
+msgid "Loading config file %s\n"
+msgstr ""
+
+#: parameter.c:182
+#, c-format
+msgid " Parameter %s is %s\n"
+msgstr ""
+
+#: parameter.c:185 parameter.c:324
+#, c-format
+msgid "Using %s as the remote shell\n"
+msgstr ""
+
+#: parameter.c:190 parameter.c:328
+#, c-format
+msgid "Adding [%s] to shell options\n"
+msgstr ""
+
+#: parameter.c:196
+#, c-format
+msgid "Setting wait-shell to  [%i]\n"
+msgstr ""
+
+#: parameter.c:201
+#, c-format
+msgid "Setting showmachinenames to  [%i]\n"
+msgstr ""
+
+#: parameter.c:206
+#, c-format
+msgid "Setting verbose to  [%i]\n"
+msgstr ""
+
+#: parameter.c:211
+#, c-format
+msgid "%s: unparsed configuration file line %s found in %s\n"
+msgstr ""
+
+#: parameter.c:264
+msgid "Adding all machines to the list\n"
+msgstr ""
+
+#: parameter.c:277
+#, c-format
+msgid "Adding netgroup %s to the list\n"
+msgstr ""
+
+#: parameter.c:283
+#, c-format
+msgid "Adding group %s to the list\n"
+msgstr ""
+
+#: parameter.c:292
+#, c-format
+msgid "Adding file %s to the list\n"
+msgstr ""
+
+#: parameter.c:296
+msgid "Verbose flag on\n"
+msgstr ""
+
+#: parameter.c:300
+msgid "Verbose flag off\n"
+msgstr ""
+
+#: parameter.c:304
+msgid "Show machine names on output\n"
+msgstr ""
+
+#: parameter.c:308
+#, c-format
+msgid "Adding machine %s to list\n"
+msgstr ""
+
+#: parameter.c:312
+#, c-format
+msgid "Topology number set to %s\n"
+msgstr ""
+
+#: parameter.c:332
+msgid "Wait for shell to finish executing\n"
+msgstr ""
+
+#: parameter.c:336
+msgid "Do not wait for shell to finish\n"
+msgstr ""
+
+#: parameter.c:340
+msgid "Unhandled option\n"
+msgstr ""
+
+#: parameter.c:347
+#, c-format
+msgid "%s: no machine specified\n"
 msgstr ""
