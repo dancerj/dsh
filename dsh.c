@@ -353,7 +353,11 @@ execute_rsh_single (const char * remoteshell_command,
 	  if (verbose_flag)
 	    printf ("%s\n", _("... Waiting for process to end with waitpid"));
 	  
-	  if (-1 != waitpid(childpid, &childstatus, 0))
+	  if (-1 != waitpid(
+			    wait_shell ?
+			    childpid :
+			    WAIT_ANY
+			    , &childstatus, 0))
 	    {
 	      assert(WIFEXITED(childstatus));
 	      dsh_update_exit_code(WEXITSTATUS(childstatus));

@@ -3,7 +3,7 @@
 ./dsh -recho -M -m 1,2 -F 10 -c
 case $? in
     0)
-	exit 0;;
+	;;
     *)
 	exit 1;;
 esac
@@ -11,7 +11,7 @@ esac
 ./dsh -recho -M -m 1,2 -F 10 -w
 case $? in
     1)
-	exit 0;;
+	;;
     *)
 	exit 1;;
 esac

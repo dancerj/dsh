@@ -1,5 +1,11 @@
 2003-09-16  Junichi Uekawa  <dancer@debian.org>
 
+	* tests/param-F-forklimit.sh: show time.
+
+	* tests/param-F-invalid.sh: fix bug.
+
+	* dsh.c (execute_rsh_single): wait for ANY when wait_shell is not.
+
 	* Makefile.am (TESTS): add the test here.
 
 	* dsh.c (execute_rsh_single): add debug verbose message.
