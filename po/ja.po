@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
-"POT-Creation-Date: 2002-09-25 16:50+0900\n"
-"PO-Revision-Date: 2002-09-20 11:23+0900\n"
+"POT-Creation-Date: 2002-09-25 17:10+0900\n"
+"PO-Revision-Date: 2002-09-30 15:10+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -165,12 +165,12 @@ msgstr "設定ファイル %s を読み込んでいます\n"
 msgid " Parameter %s is %s\n"
 msgstr "パラメータ %s は %s\n"
 
-#: parameter.c:228 parameter.c:418
+#: parameter.c:228 parameter.c:423
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr "リモートシェルとして %s を利用\n"
 
-#: parameter.c:233 parameter.c:422
+#: parameter.c:233 parameter.c:427
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr "シェルのオプションに [%s] を追加\n"
@@ -195,83 +195,83 @@ msgstr "verbose を [%i] に設定します\n"
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr "%s: 未処理の設定ファイル行 %s が %s にあります\n"
 
-#: parameter.c:350
+#: parameter.c:355
 msgid "Adding all machines to the list\n"
 msgstr "全マシンをリストに追加します\n"
 
-#: parameter.c:363
+#: parameter.c:368
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr "ネットグループ %s をリストに追加します\n"
 
-#: parameter.c:369
+#: parameter.c:374
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr "グループ %s をリストに追加します\n"
 
-#: parameter.c:378
+#: parameter.c:383
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr "ファイル %s をリストに追加します\n"
 
-#: parameter.c:382
+#: parameter.c:387
 msgid "Verbose flag on\n"
 msgstr "冗長フラグオン\n"
 
-#: parameter.c:386
+#: parameter.c:391
 msgid "Verbose flag off\n"
 msgstr "冗長フラグオフ\n"
 
-#: parameter.c:390
+#: parameter.c:395
 msgid "Show machine names on output\n"
 msgstr "出力にマシン名を表示\n"
 
-#: parameter.c:394
+#: parameter.c:399
 msgid "Duplicate input to all processes\n"
 msgstr "全プロセスに入力を複製\n"
 
-#: parameter.c:398
+#: parameter.c:403
 msgid "Buffer size used for dupliation\n"
 msgstr "複製に利用するバッファサイズ\n"
 
-#: parameter.c:402
+#: parameter.c:407
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr "マシン %s をリストに追加します\n"
 
-#: parameter.c:406
+#: parameter.c:411
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr "トポロジ番号を %s に設定\n"
 
-#: parameter.c:426
+#: parameter.c:431
 msgid "Wait for shell to finish executing\n"
 msgstr "シェルが終了するのを待つ\n"
 
-#: parameter.c:430
+#: parameter.c:435
 msgid "Do not wait for shell to finish\n"
 msgstr "シェルが終了するのを待たない\n"
 
-#: parameter.c:437
-#, fuzzy, c-format
+#: parameter.c:442
+#, c-format
 msgid "Unkown option -%c.\n"
-msgstr "利用できないオプション\n"
+msgstr "不明なオプション -%c.\n"
 
-#: parameter.c:439
+#: parameter.c:444
 #, c-format
 msgid "Unkown option character 0x%x.\n"
-msgstr ""
+msgstr "不明なオプション文字です： 0x%x .\n"
 
-#: parameter.c:443
+#: parameter.c:448
 msgid "Unhandled option\n"
 msgstr "利用できないオプション\n"
 
-#: parameter.c:450
+#: parameter.c:455
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr "%s: マシンが一台も指定されていません．\n"
 
-#: parameter.c:465
+#: parameter.c:470
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"

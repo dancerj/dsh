@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-25 16:50+0900\n"
+"POT-Creation-Date: 2002-09-25 17:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,12 +144,12 @@ msgstr ""
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:228 parameter.c:418
+#: parameter.c:228 parameter.c:423
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:233 parameter.c:422
+#: parameter.c:233 parameter.c:427
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
@@ -174,83 +174,83 @@ msgstr ""
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr ""
 
-#: parameter.c:350
+#: parameter.c:355
 msgid "Adding all machines to the list\n"
 msgstr ""
 
-#: parameter.c:363
+#: parameter.c:368
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr ""
 
-#: parameter.c:369
+#: parameter.c:374
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr ""
 
-#: parameter.c:378
+#: parameter.c:383
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr ""
 
-#: parameter.c:382
+#: parameter.c:387
 msgid "Verbose flag on\n"
 msgstr ""
 
-#: parameter.c:386
+#: parameter.c:391
 msgid "Verbose flag off\n"
 msgstr ""
 
-#: parameter.c:390
+#: parameter.c:395
 msgid "Show machine names on output\n"
 msgstr ""
 
-#: parameter.c:394
+#: parameter.c:399
 msgid "Duplicate input to all processes\n"
 msgstr ""
 
-#: parameter.c:398
+#: parameter.c:403
 msgid "Buffer size used for dupliation\n"
 msgstr ""
 
-#: parameter.c:402
+#: parameter.c:407
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr ""
 
-#: parameter.c:406
+#: parameter.c:411
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:426
+#: parameter.c:431
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:430
+#: parameter.c:435
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:437
+#: parameter.c:442
 #, c-format
 msgid "Unkown option -%c.\n"
 msgstr ""
 
-#: parameter.c:439
+#: parameter.c:444
 #, c-format
 msgid "Unkown option character 0x%x.\n"
 msgstr ""
 
-#: parameter.c:443
+#: parameter.c:448
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:450
+#: parameter.c:455
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""
 
-#: parameter.c:465
+#: parameter.c:470
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"
