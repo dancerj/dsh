@@ -63,19 +63,24 @@ linkedlist*
 read_machinenetgroup(linkedlist * machinelist,
                     const char * groupname)
 {
-  if (setnetgrent(groupname)) {
-    char *hostp, *userp, *domainp;
-    while (getnetgrent(&hostp, &userp, &domainp))
-      {
-	if (NULL != hostp)
-	  machinelist = lladd(machinelist, hostp);
-      }
-    endnetgrent();
-  } else {
-    fprintf(stderr, PROGRAM_NAME
-	    ": Unknown netgroup %s.\n",
-	    groupname);
-  }
+  if (setnetgrent(groupname)) 
+    {
+      char *hostp=NULL, *userp=NULL, *domainp=NULL;
+      
+      while (getnetgrent(&hostp, &userp, &domainp))
+	{
+	  if (NULL != hostp)
+	    machinelist = lladd(machinelist, hostp);
+	  
+	}
+      endnetgrent();
+    } 
+  else
+    {
+      fprintf(stderr, PROGRAM_NAME
+	      ": Unknown netgroup %s.\n",
+	      groupname);
+    }
   return machinelist;
 }
 
@@ -251,7 +256,7 @@ parse_options ( int ac, char ** av)
   };
   
   
-  while((c = getopt_long (ac, av, "vqm:ar:g:hVcwo:Mn:", long_options, &index_point)) != -1)
+  while((c = getopt_long (ac, av, "vqm:ar:f:g:hVcwo:Mn:", long_options, &index_point)) != -1)
     {
       switch (c)
 	{
@@ -265,16 +270,17 @@ parse_options ( int ac, char ** av)
 	  }	  
 	  break;	  
 	case 'g':
-	  if (verbose_flag) printf ("Adding group %s to the list\n", optarg);
 	  {
             if ('@' == *optarg)
               {			/* using libc call for using netgroup. */
                 /* +1 to skip @ */
+		if (verbose_flag) printf ("Adding netgroup %s to the list\n", optarg + 1);
                 machinelist = read_machinenetgroup(machinelist, optarg+1);
               }
             else
               {			/* using dsh's own method. */
 		char * buf1, *buf2;
+		if (verbose_flag) printf ("Adding group %s to the list\n", optarg);
 		asprintf(&buf1, "/etc/dsh/group/%s", optarg);
 		asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg);
 		machinelist = read_machinelist (machinelist, buf2, buf1); 
