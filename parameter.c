@@ -257,6 +257,32 @@ open_devnull(void)
   dup2 (in, 0);
 }
 
+
+/**
+ * Split the option string with "," as delimiter, and 
+ * add the hostnames to the linked list.
+ *
+ * @return linked list with items added.
+ */
+static linkedlist*
+split_machines_list_and_add_machines(linkedlist* machinelist, const char * optarg)
+{
+  char * s = strdup (optarg);
+  char * next ;
+  char * current = s;
+  
+  while ((next = strchr(current,',')))
+    {
+      *next = 0;
+      machinelist = lladd(machinelist, current);
+      current = next + 1;
+    }
+  machinelist = lladd(machinelist, current);
+  
+  free(s);
+  return machinelist;
+}
+
 /**
  * Option parsing routine.
  *
@@ -359,7 +385,7 @@ parse_options ( int ac, char ** av)
 	  break;	  
 	case 'm':
 	  if (verbose_flag) printf (_("Adding machine %s to list\n"), optarg);
-	  machinelist = lladd(machinelist, optarg);
+	  machinelist = split_machines_list_and_add_machines (machinelist, optarg);
 	  break;
 	case 'n':
 	  if (verbose_flag) printf (_("Topology number set to %s\n"), optarg);
