@@ -1,7 +1,7 @@
 bin_PROGRAMS=dsh
 dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
 dist_man_MANS=dsh.1  dsh.conf.5 
-noinst_dist_man_MANS=dsh.conf.ja.5 dsh.ja.1
+translated_man=dsh.conf.ja.5 dsh.ja.1
 sysconf_DATA=dsh.conf
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
 
@@ -20,7 +20,8 @@ TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LANG=C
 
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
-	$(TESTS) tests/list.file tests/list.space.file
+	$(TESTS) tests/list.file tests/list.space.file \
+	$(translated_man)
 
 
 # Make debian pristine-source

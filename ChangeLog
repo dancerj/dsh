@@ -1,5 +1,9 @@
 2003-05-29  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.7.cvs.1
+	* ja pages were not included in the distribution, include as
+	  EXTRA_DIST
+	
 	* configure.ac: 0.23.7
 
 	* NEWS: created file, added info on this release of dsh.
