@@ -34,6 +34,9 @@
 #include "linkedlist.h"
 #include "parameter.h"
 
+#include "gettext.h"
+#define _(A) gettext(A)
+
 char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
 int wait_shell=1;		/* waiting for shell to execute (concurrence) */
@@ -141,7 +144,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
             
       if ((-1 == pipe (capture_stdout)) || (-1 == pipe (capture_stderr)))
 	{
-	  fprintf(stderr, PACKAGE ": cannot create pipe\n");
+	  fprintf(stderr, _("%s: cannot create pipe\n"), PACKAGE);
 	  return -1;
 	}
       
@@ -157,7 +160,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	}
       else if (childid == -1)
 	{			/* do some error processing */
-	  fprintf (stderr, "%s: Cannot spawn process\n", PACKAGE);
+	  fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
 	  exit (EXIT_FAILURE);	  
 	}      
       else if (0 != (childid = fork ()))
@@ -172,7 +175,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	}
       else if (childid == -1)
 	{			/* do some error processing */
-	  fprintf (stderr, "%s: Cannot spawn process\n", PACKAGE);
+	  fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
 	  exit (EXIT_FAILURE);	  
 	}
       else
@@ -180,7 +183,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	  if ((-1 == dup2 (capture_stdout[1], 1))||
 	      (-1 == dup2 (capture_stderr[1], 2)))
 	    {
-	      fprintf(stderr, PACKAGE ": Failed playing with pipe\n");
+	      fprintf(stderr, PACKAGE ": %s\n", _("Failed playing with pipe"));
 	      exit (EXIT_FAILURE);
 	    }
 	  close (capture_stdout[0]);
@@ -188,7 +191,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	  close (capture_stderr[0]);
 	  close (capture_stderr[1]);
 	  llexec (remoteshell_command, commandline);
-	  fprintf(stderr, PACKAGE ": Failed executing %s with llexec call\n", remoteshell_command);
+	  fprintf(stderr, _("%s: Failed executing %s with llexec call\n"), PACKAGE, remoteshell_command);
 	  exit (EXIT_FAILURE);
 	}
       
@@ -361,7 +364,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
     {
       if (wait_shell && verbose_flag) 
 	{
-	  fprintf (stderr, "--- Executing on %s \n", machinelist->string);
+	  fprintf (stderr, _("--- Executing on %s \n"), machinelist->string);
 	}
       execute_rsh (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r);
       for (i=0; (i < nummachines) && machinelist; ++i)
@@ -371,7 +374,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
     while(-1 != (waitpid(WAIT_ANY, NULL, 0)));	/* waiting for all. */
   
   if (verbose_flag)
-    fprintf(stderr, "--- Terminated running\n");
+    fprintf(stderr, _("--- Terminated running\n"));
   
   return 0;  
 }
@@ -389,10 +392,15 @@ main(int ac, char ** av)
 {
   char *buf=NULL;
   
+  setlocale (LC_ALL, "");
+  bindtextdomain(PACKAGE_NAME, LOCALEDIR);
+  textdomain(PACKAGE_NAME);
+
+  
   load_configfile(DSH_CONF);
   if (asprintf (&buf, "%s/.dsh/dsh.conf", getenv("HOME")) < 0)
     {
-      fprintf (stderr, "dsh: asprintf failed\n");
+      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
       exit (1);
     }  
   load_configfile(buf);

@@ -39,13 +39,16 @@
 #include "parameter.h"
 #include "libdshconfig.h"
 
+#include "gettext.h"
+#define _(A) gettext(A)
+
 static void * 
 malloc_with_error(int size)
 {
   void * u = malloc (size);
   if (!u)
     {
-      fprintf (stderr, PACKAGE ": failed to allocate memory of %i bytes\n", size);
+      fprintf (stderr, _("%s: failed to allocate memory of %i bytes\n"), PACKAGE, size);
       exit(1);      
     }
   return u;  
@@ -83,9 +86,9 @@ read_machinenetgroup(linkedlist * machinelist,
     } 
   else
     {
-      fprintf(stderr, PACKAGE
-	      ": Unknown netgroup %s.\n",
-	      groupname);
+      fprintf(stderr, 
+	      _("%s: Unknown netgroup %s.\n"),
+	      PACKAGE, groupname);
     }
   return machinelist;
 }
@@ -110,11 +113,11 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
     {
       if (alternatelistfile)
 	fprintf (stderr, 
-		 "%s: File %s nor %s could not be opened for read\n", 
+		 _("%s: File %s nor %s could not be opened for read\n"),
 		 PACKAGE, listfile, alternatelistfile);
       else
 	fprintf (stderr, 
-		 "%s: File %s could not be opened for read\n", 
+		 _("%s: File %s could not be opened for read\n"), 
 		 PACKAGE, listfile);
     }  
   free (buf);  
@@ -123,9 +126,9 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
 
 int print_version(void)
 {
-  printf("Distributed Shell / Dancer\'s shell version %s \n"
+  printf(_("Distributed Shell / Dancer\'s shell version %s \n"
 	 "Copyright 2001,2002 Junichi Uekawa, \n"
-	 "distributed under the terms and conditions of GPL version 2\n\n",
+	 "distributed under the terms and conditions of GPL version 2\n\n"),
 	 VERSION);
   return 0;
 }
@@ -134,20 +137,21 @@ int
 print_help (void)
 {
   print_version();
-  printf("-v --verbose                   Verbose output\n"
-	 "-q --quiet                     Quiet\n"	
-	 "-M --show-machine-names        prepend the host name on output\n"
-	 "-m --machine [machinename]     Execute on machine\n"
-	 "-n --num-topology              How to divide the machines\n"
-	 "-a --all                       Execute on all machines\n"
-	 "-g --group [groupname]         Execute on group member\n"
-	 "-f --file [file]               Use the file as list of machines\n"
-	 "-r --remoteshell [shellname]   Execute using shell (rsh/ssh)\n"
-	 "-o --remoteshellopt [option]   Option to give to shell \n"
-	 "-h --help                      Give out this message\n"
-	 "-w --wait-shell                Sequentially execute shell\n"
-	 "-c --concurrent-shell          Execute shell concurrently\n"
-	 "-V --version                   Give out version information\n\n"
+  printf(_(
+	   "-v --verbose                   Verbose output\n"
+	   "-q --quiet                     Quiet\n"	
+	   "-M --show-machine-names        prepend the host name on output\n"
+	   "-m --machine [machinename]     Execute on machine\n"
+	   "-n --num-topology              How to divide the machines\n"
+	   "-a --all                       Execute on all machines\n"
+	   "-g --group [groupname]         Execute on group member\n"
+	   "-f --file [file]               Use the file as list of machines\n"
+	   "-r --remoteshell [shellname]   Execute using shell (rsh/ssh)\n"
+	   "-o --remoteshellopt [option]   Option to give to shell \n"
+	   "-h --help                      Give out this message\n"
+	   "-w --wait-shell                Sequentially execute shell\n"
+	   "-c --concurrent-shell          Execute shell concurrently\n"
+	   "-V --version                   Give out version information\n\n")
  );
   return 0;
 }
@@ -166,7 +170,7 @@ load_configfile(const char * dsh_conf)
   char * buf_a=NULL;
   char * buf_b=NULL;
   
-  if(verbose_flag) printf("Loading config file %s\n", dsh_conf);
+  if(verbose_flag) printf(_("Loading config file %s\n"), dsh_conf);
 
   if (f && (t = open_dshconfig(f, '=')))
     {
@@ -175,38 +179,37 @@ load_configfile(const char * dsh_conf)
 	  buf_a = line -> title;
 	  buf_b = line -> data;
 
-	  if(verbose_flag) printf(" Parameter %s is %s\n", buf_a, buf_b);
+	  if(verbose_flag) printf(_(" Parameter %s is %s\n"), buf_a, buf_b);
 	  if (!strcmp(buf_a, "remoteshell"))
 	    {
-		  if (verbose_flag) printf("Using %s as the remote shell\n", buf_b);
+		  if (verbose_flag) printf(_("Using %s as the remote shell\n"), buf_b);
 		  remoteshell_command = strdup (buf_b);
 	    }	      
 	  else if (!strcmp(buf_a, "remoteshellopt"))
 	    {
-	      if (verbose_flag) printf("Adding [%s] to shell options\n", buf_b);
+	      if (verbose_flag) printf(_("Adding [%s] to shell options\n"), buf_b);
 	      remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, buf_b);
 	    }	  
 	  else if (!strcmp(buf_a, "waitshell"))
 	    {
 	      wait_shell = atoi ( buf_b );		  
-	      if (verbose_flag) printf("Setting wait-shell to  [%i]\n", wait_shell);
+	      if (verbose_flag) printf(_("Setting wait-shell to  [%i]\n"), wait_shell);
 	    }	      
 	  else if (!strcmp(buf_a, "showmachinenames"))
 	    {
 	      show_machine_names = atoi ( buf_b );
-	      if (verbose_flag) printf("Setting showmachinenames to  [%i]\n", show_machine_names);
+	      if (verbose_flag) printf(_("Setting showmachinenames to  [%i]\n"), show_machine_names);
 	    }	      
 	  else if (!strcmp(buf_a, "verbose"))
 	    {
 	      verbose_flag = atoi ( buf_b );
-	      if (verbose_flag) printf("Setting verbose to  [%i]\n", verbose_flag);
+	      if (verbose_flag) printf(_("Setting verbose to  [%i]\n"), verbose_flag);
 	    }	      
 	  else
 	    {
 	      fprintf (stderr, 
-		       PACKAGE
-		       ": unparsed configuration file line %s found in %s\n",
-		       buf_a, dsh_conf);
+		       _("%s: unparsed configuration file line %s found in %s\n"),
+		       PACKAGE, buf_a, dsh_conf);
 	    }
 	}
 
@@ -258,7 +261,7 @@ parse_options ( int ac, char ** av)
       switch (c)
 	{
 	case 'a':
-	  if (verbose_flag) printf ("Adding all machines to the list\n");
+	  if (verbose_flag) printf (_("Adding all machines to the list\n"));
 	  {
 	    char * buf;
 	    asprintf(&buf, "%s/.dsh/machines.list", getenv("HOME"));	    
@@ -271,13 +274,13 @@ parse_options ( int ac, char ** av)
             if ('@' == *optarg)
               {			/* using libc call for using netgroup. */
                 /* +1 to skip @ */
-		if (verbose_flag) printf ("Adding netgroup %s to the list\n", optarg + 1);
+		if (verbose_flag) printf (_("Adding netgroup %s to the list\n"), optarg + 1);
                 machinelist = read_machinenetgroup(machinelist, optarg+1);
               }
             else
               {			/* using dsh's own method. */
 		char * buf1, *buf2;
-		if (verbose_flag) printf ("Adding group %s to the list\n", optarg);
+		if (verbose_flag) printf (_("Adding group %s to the list\n"), optarg);
 		asprintf(&buf1, DSHCONFDIR"/group/%s", optarg);
 		asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg);
 		machinelist = read_machinelist (machinelist, buf2, buf1); 
@@ -286,27 +289,27 @@ parse_options ( int ac, char ** av)
 	  }
 	  break;	  
 	case 'f':
-	  if (verbose_flag) printf ("Adding file %s to the list\n", optarg);
+	  if (verbose_flag) printf (_("Adding file %s to the list\n"), optarg);
 	  machinelist = read_machinelist (machinelist, optarg, NULL); 
 	  break;	  
 	case 'v':
-	  if (verbose_flag) printf ("Verbose flag on\n");
+	  if (verbose_flag) printf (_("Verbose flag on\n"));
 	  verbose_flag=1;	  
 	  break;
 	case 'q':
-	  if (verbose_flag) printf ("Verbose flag off\n");
+	  if (verbose_flag) printf (_("Verbose flag off\n"));
 	  verbose_flag=0; 
 	  break;
 	case 'M':
-	  if (verbose_flag) printf ("Show machine names on output\n");
+	  if (verbose_flag) printf (_("Show machine names on output\n"));
 	  show_machine_names = 1;
 	  break;	  
 	case 'm':
-	  if (verbose_flag) printf ("Adding machine %s to list\n", optarg);
+	  if (verbose_flag) printf (_("Adding machine %s to list\n"), optarg);
 	  machinelist = lladd(machinelist, optarg);
 	  break;
 	case 'n':
-	  if (verbose_flag) printf ("Topology number set to %s\n", optarg);
+	  if (verbose_flag) printf (_("Topology number set to %s\n"), optarg);
 	  num_topology = atoi (optarg);	  
 	  break;	  
 	case 'h':
@@ -318,30 +321,30 @@ parse_options ( int ac, char ** av)
 	  exit(1);
 	  break;	  
 	case 'r':		/* specify the shell command */
-	  if (verbose_flag) printf("Using %s as the remote shell\n", optarg);
+	  if (verbose_flag) printf(_("Using %s as the remote shell\n"), optarg);
 	  remoteshell_command = strdup (optarg);
 	  break;	  
 	case 'o':		/* specify the shell command options */
-	  if (verbose_flag) printf("Adding [%s] to shell options\n", optarg);
+	  if (verbose_flag) printf(_("Adding [%s] to shell options\n"), optarg);
 	  remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, optarg);
 	  break;	  
 	case 'w':		/* wait shell */
-	  if (verbose_flag) printf ("Wait for shell to finish executing\n");
+	  if (verbose_flag) printf (_("Wait for shell to finish executing\n"));
 	  wait_shell=1;
 	  break;
 	case 'c':		/* concurrent shell */
-	  if (verbose_flag) printf ("Do not wait for shell to finish\n");
+	  if (verbose_flag) printf (_("Do not wait for shell to finish\n"));
 	  wait_shell=0;
 	  break;
 	default:
-	  if (verbose_flag) printf ("Unhandled option\n");
+	  if (verbose_flag) printf (_("Unhandled option\n"));
 	  break;	  
 	}
     }
 
   if (!machinelist)
     {
-      fprintf (stderr, "%s: no machine specified\n", av[0]);
+      fprintf (stderr, _("%s: no machine specified\n"), PACKAGE);
       return 1;
     }
 

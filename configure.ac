@@ -12,6 +12,12 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 AC_C_CONST
 
+ALL_LINGUAS=ja
+AM_GNU_GETTEXT([external])
+AC_CHECK_FUNC(gettext,,AC_CHECK_LIB(intl,gettext,,AC_ERROR([Gettext not found])))
+localedir='${datadir}/locale'
+AC_SUBST(localedir)
+
 AC_CHECK_HEADERS([getopt.h])
 AC_CHECK_FUNCS([asprintf strdup getopt_long getline])
 AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_ERROR([dshconfig not found!!])])
@@ -26,6 +32,6 @@ if test "x$GCC" = "xyes"; then
 fi
 changequote([,])dnl
 
-AC_OUTPUT([
+AC_OUTPUT([ po/Makefile.in m4/Makefile 
 Makefile
 ])

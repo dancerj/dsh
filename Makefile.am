@@ -1,9 +1,9 @@
 bin_PROGRAMS=dsh
-dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h
+dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
 man_MANS=dsh.1
 sysconf_DATA=dsh.conf
-EXTRA_DIST=$(man_MANS) $(sysconf_DATA) autogen.sh
-dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\""
+EXTRA_DIST= config.rpath $(man_MANS) $(sysconf_DATA) autogen.sh
+dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
 
 # Make debian pristine-source
 ../@PACKAGE@_@VERSION@.orig.tar.gz: 
@@ -26,3 +26,7 @@ upload-dist-all: distcheck
 	scp @PACKAGE@-@VERSION@.tar.gz viper2.netfort.gr.jp:public_html/software/downloads
 	scp @PACKAGE@-@VERSION@.tar.gz mikilab.doshisha.ac.jp:parallel-research/software
 	$(MAKE) ../@PACKAGE@_@VERSION@.orig.tar.gz
+
+SUBDIRS = m4 po
+
+ACLOCAL_AMFLAGS = -I m4

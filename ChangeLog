@@ -1,3 +1,29 @@
+2002-09-11  Junichi Uekawa  <dancer@debian.org>
+
+	* parameter.c (parse_options): update and mark for translation
+
+	* Makefile.am (dsh_CFLAGS): add localedir to defines.
+	(SUBDIRS): add po
+
+	* dsh.c: include gettext.h
+	(do_execute_with_optional_pipe): gettextize string.
+	(main): add setlocale, bindtextdomain, textdomain.
+
+	* Makefile.am (dsh_SOURCES): add gettext.h
+
+	* gettext.h: add from gettext.
+
+	* configure.ac: AM_GNU_GETTEXT([external]);
+	(localedir): add localedir definition, ALL_LINGUAS definition, and 
+	gettext function checking.
+
+2002-09-11  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* Makefile.am (SUBDIRS): New variable.
+	(ACLOCAL_AMFLAGS): New variable.
+	(EXTRA_DIST): Add config.rpath.
+	* configure.ac (AC_OUTPUT): Add po/Makefile.in,
+
 2002-09-06  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.20.2
