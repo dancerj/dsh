@@ -502,9 +502,10 @@ main(int ac, char ** av)
   char *buf=NULL;
   
   setlocale (LC_ALL, "");
-  bindtextdomain(PACKAGE_NAME, LOCALEDIR);
-  textdomain(PACKAGE_NAME);
-
+  if (!textdomain(PACKAGE_NAME))
+    if (!bindtextdomain(PACKAGE_NAME, LOCALEDIR))
+      fprintf ("%s: failed to call bindtextdomain\n", PACKAGE);
+  
   
   load_configfile(DSH_CONF);
   if (asprintf (&buf, "%s/.dsh/dsh.conf", getenv("HOME")) < 0)
