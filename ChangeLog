@@ -1,3 +1,7 @@
+2002-09-25  Junichi Uekawa  <dancer@debian.org>
+
+	* Makefile.am (TESTS_ENVIRONMENT): add environment for LC_ALL and LANG
+
 2002-09-24  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: add AC_PROG_MAKE_SET as advised by info page for using SUBDIR
