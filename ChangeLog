@@ -1,3 +1,8 @@
+2002-10-09  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.2.cvs.1
+	change version so that we know.
+
 2002-10-07  Junichi Uekawa  <dancer@debian.org>
 
 	* debian/rules (DSH): remove unneeded definitions
