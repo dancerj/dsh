@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(dsh, 0.23.1)
-AM_INIT_AUTOMAKE(dsh, 0.23.1)
+AC_INIT(dsh, 0.23.1.aix.1)
+AM_INIT_AUTOMAKE(dsh, 0.23.1.aix.1)
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
@@ -18,7 +18,7 @@ AC_C_CONST
 
 ALL_LINGUAS=ja
 AM_GNU_GETTEXT([external])
-AC_CHECK_FUNC(gettext,,AC_CHECK_LIB(intl,gettext,,AC_ERROR([Gettext not found])))
+AC_CHECK_FUNC(gettext,,AC_CHECK_LIB(intl,gettext,,AC_MSG_WARN([Gettext not found])))
 localedir='${datadir}/locale'
 AC_SUBST(localedir)
 
@@ -27,7 +27,7 @@ AC_CHECK_HEADERS([getopt.h fcntl.h libintl.h locale.h stdlib.h netdb.h string.h 
 AC_CHECK_FUNCS([asprintf strdup getopt_long getline dup2 setlocale strcasecmp strchr])
 
 dnl check for libs
-AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_ERROR([dshconfig not found!!])])
+AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_MSG_ERROR([dshconfig not found!!])])
 
 dnl Check if it is a GNU getopt that munges parameter option orderings.
 dnl and stops munging if + is specified.

@@ -1,8 +1,18 @@
 2002-09-30  Junichi Uekawa  <dancer@debian.org>
 
+	* parameter.c (read_machinelist): use size_t instead of int, 
+	because getline parameter is in size_t, and AIX likes 
+	size_t to be a long.
+	(parse_options): change ifdef statement because AIX 
+	cpp barfs on #ifdef outside of function.
+	move config.h inclusion to start.
+
+	* configure.ac: change gettext check to be warning.
+	version 0.23.1.aix.1
+
 	* configure.ac: version 0.23.1, translation is updated,
 	and more checks are in place.
-	
+
 	* configure.ac: add checks that are recommended by 
 	autoconf. They aren't really handled right now, but you know
 	configure is barfing, at least.

@@ -20,6 +20,7 @@
  */
 #define _GNU_SOURCE
 
+#include "config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,7 +36,6 @@
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif
-#include "config.h"
 #include "linkedlist.h"
 #include "parameter.h"
 #include "libdshconfig.h"
@@ -139,7 +139,7 @@ linkedlist*
 read_machinelist(linkedlist * machinelist, const char * listfile, const char*alternatelistfile)
 {
   FILE * f;
-  int bufferlen = 1024;  
+  size_t bufferlen = 1024;  
   char * buf = malloc_with_error(bufferlen);
   
   if ((f = fopen (listfile, "r")) || ((NULL != alternatelistfile) && (f=fopen(alternatelistfile, "r"))))
@@ -342,11 +342,14 @@ parse_options ( int ac, char ** av)
 #define getopt_long(a,b,c,d,e) getopt(a,b,c)
 #endif  
   
-  while((c = getopt_long (ac, av, 
 #ifdef GETOPT_WITH_GNU_REORDERING_EXTENTION
-			  "+"	/* add this to get GNU getopt to work in POSIX manner */
+#define EXTRAVALUE			  "+"	/* add this to get GNU getopt to work in POSIX manner */
+#else
+#define EXTRAVALUE
 #endif
-			  "vqm:ar:f:g:hVcwo:Mn:ib:", 
+
+  while((c = getopt_long (ac, av, 
+			  EXTRAVALUE "vqm:ar:f:g:hVcwo:Mn:ib:", 
 			  long_options, &index_point)) != -1)
     {
       switch (c)
