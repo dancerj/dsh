@@ -1,6 +1,7 @@
 0.23.9.cvs.1 - ??
 
  + doc++ documentation fixes.
+ + fix compile error on SunOS.
 
 0.23.9 - 7 Jun 2003.
 

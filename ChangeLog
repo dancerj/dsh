@@ -1,4 +1,16 @@
+2003-06-08  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.9.cvs.2
+
 2003-06-07  Junichi Uekawa  <dancer@debian.org>
+
+	* Makefile.am (build-man/dsh.conf.5): 
+	(build-man/dsh.1): do not use $<, which is not supported on AIX
+	and SunOS make.
+	Tomo Hiroyasu <tomo@is.doshisha.ac.jp>
+
+	* configure.ac: add libdshconfig.h check, reported from 
+	Tomo Hiroyasu <tomo@is.doshisha.ac.jp>
 
 	* dsh.c (dsh_update_exit_code): use EXIT_SUCCESS instead of 0.
 

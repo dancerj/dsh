@@ -46,11 +46,11 @@ uninstall-local:
 
 build-man/dsh.1: ${srcdir}/dsh.1
 	-mkdir build-man
-	sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < $< > $@
+	sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < ${srcdir}/dsh.1 > $@
 
 build-man/dsh.conf.5: ${srcdir}/dsh.conf.5
 	-mkdir build-man
-	sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < $< > $@
+	sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < ${srcdir}/dsh.conf.5 > $@
 
 clean-local:
 	-rm -f $(man_MANS)
