@@ -1,3 +1,7 @@
+2004-11-13  Junichi Uekawa  <dancer@debian.org>
+
+	* TODO: Update todo file.
+
 2004-11-10  Junichi Uekawa  <dancer@debian.org>
 
 	* debian/copyright (Copyright): update copyright year.

@@ -11,5 +11,9 @@ Some wishlist:
 * rsh with timeout : rsh does not time out and fail... bug in rsh ?
 * implement dcp
 * in.drshd for dummy connection.
+* ssh timeout configuration, can you change the time it takes to
+   timeout?
+* ldap option, fork option for machine list
+* per-machine ssh/rsh specification.
 
 $Id$
