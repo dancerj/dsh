@@ -1,5 +1,11 @@
 2003-09-16  Junichi Uekawa  <dancer@debian.org>
 
+	* Makefile.am (TESTS): add the test here.
+
+	* dsh.c (execute_rsh_single): add debug verbose message.
+
+	* tests/param-F-forklimit.sh: new test for visually checking.
+
 	* tests/param-f-fail.sh: fixed a bug in script.
 
 	* Makefile.am (TESTS): add test.
