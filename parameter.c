@@ -130,7 +130,8 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
       while (-1 != getline (&buf, &bufferlen, f))
 	{
 	  const char * strippedstring = stripwhitespace(buf);
-	  machinelist=lladd(machinelist,strippedstring);
+	  if (strippedstring)
+	    machinelist=lladd(machinelist,strippedstring); 
 	}
       fclose(f);
     }

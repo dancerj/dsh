@@ -3,6 +3,7 @@
 	* parameter.c (stripwhitespace): change stripn to stripwhitespace
 	and strip whitespace while we are at it.
 	(read_machinelist): strip whitespace when reading config file.
+	(read_machinelist): properly ignore blank lines.
 
 	* dsh.c (run_input_forking_child_processes_process): trying to debug the thing now.
 	(run_input_forking_child_processes_process): I made a mistake.
