@@ -1,7 +1,7 @@
 #! /bin/sh
 # test to check that -F parameter is working properly
 date 
-./dsh -v -rsleep -M -m 1,2,3,4,5 -F 3 
+./dsh -v -rsleep -M -m 5,4,3,2,1 -F 3 
 case $? in
     0)
 	;;
