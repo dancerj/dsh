@@ -34,6 +34,7 @@
 #include "dsh.h"
 #include "linkedlist.h"
 #include "parameter.h"
+#include "config.h"
 
 char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
@@ -59,7 +60,7 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
   
   if (!f || !standard_output)
     {
-      fprintf(stderr, "%s: Could not open descriptor [%i] or [%i]\n", PROGRAM_NAME, fd_in, fd_out);
+      fprintf(stderr, "%s: Could not open descriptor [%i] or [%i]\n", PACKAGE, fd_in, fd_out);
       return -1; 
     }
   
@@ -90,7 +91,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
             
       if ((-1 == pipe (capture_stdout)) || (-1 == pipe (capture_stderr)))
 	{
-	  fprintf(stderr, PROGRAM_NAME ": cannot create pipe\n");
+	  fprintf(stderr, PACKAGE ": cannot create pipe\n");
 	  return -1;
 	}
       
@@ -106,7 +107,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	}
       else if (childid == -1)
 	{			/* do some error processing */
-	  fprintf (stderr, "%s: Cannot spawn process\n", PROGRAM_NAME);
+	  fprintf (stderr, "%s: Cannot spawn process\n", PACKAGE);
 	  exit (EXIT_FAILURE);	  
 	}      
       else if (0 != (childid = fork ()))
@@ -121,7 +122,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	}
       else if (childid == -1)
 	{			/* do some error processing */
-	  fprintf (stderr, "%s: Cannot spawn process\n", PROGRAM_NAME);
+	  fprintf (stderr, "%s: Cannot spawn process\n", PACKAGE);
 	  exit (EXIT_FAILURE);	  
 	}
       else
@@ -129,7 +130,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	  if ((-1 == dup2 (capture_stdout[1], 1))||
 	      (-1 == dup2 (capture_stderr[1], 2)))
 	    {
-	      fprintf(stderr, PROGRAM_NAME ": Failed playing with pipe\n");
+	      fprintf(stderr, PACKAGE ": Failed playing with pipe\n");
 	      exit (EXIT_FAILURE);
 	    }
 	  close (capture_stdout[0]);
@@ -137,7 +138,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	  close (capture_stderr[0]);
 	  close (capture_stderr[1]);
 	  llexec (remoteshell_command, commandline);
-	  fprintf(stderr, PROGRAM_NAME ": Failed executing %s with llexec call\n", remoteshell_command);
+	  fprintf(stderr, PACKAGE ": Failed executing %s with llexec call\n", remoteshell_command);
 	  exit (EXIT_FAILURE);
 	}
       
@@ -197,13 +198,13 @@ execute_rsh_single (const char * remoteshell_command,
 					       tmp, pipe_option, 
 					       param_machinename)))
 	{
-	  fprintf(stderr, PROGRAM_NAME 
+	  fprintf(stderr, PACKAGE 
 		  ": Failed to execute remote shell command %s\n", 
 		  remoteshell_command);
 	  exit (EXIT_FAILURE);
 	}
 				/* what follows should never occur */
-      fprintf (stderr, PROGRAM_NAME 
+      fprintf (stderr, PACKAGE
 	       ": Unexpected error occurred, do_execute_with_optional_pipe failed, and returned an error code that is not -1\n");
       exit (EXIT_FAILURE);
     }
@@ -228,7 +229,7 @@ execute_rsh_multiple (const char * remoteshell_command,
   linkedlist* tmp_start ;  
   char * numstring;
 
-  extraparam = lladd(extraparam, PROGRAM_NAME);
+  extraparam = lladd(extraparam, PACKAGE);
 
   tmp = tmp_start = lldup(machinelist);  
   while (tmp && (nummachines -- > 0))

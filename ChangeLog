@@ -1,3 +1,16 @@
+2002-06-01  Junichi Uekawa  <dancer@debian.org>
+
+
+	* dsh.c (do_execute_with_optional_pipe): use PACKAGE instead of PROGRAM_NAME
+	(do_execute_with_optional_pipe): 
+
+	* parameter.c (read_machinelist): 
+	* parameter.c (load_configfile): ditto
+
+	* configure.in: add AM_MAINTAINER_MODE
+
+	* dsh.h (DSH_CONF): remove PROGRAM_NAME
+
 2002-05-31  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.in: change version number to 0.0.19pre

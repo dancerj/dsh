@@ -41,7 +41,7 @@ malloc_with_error(int size)
   void * u = malloc (size);
   if (!u)
     {
-      fprintf (stderr, PROGRAM_NAME ": failed to allocate memory of %i bytes\n", size);
+      fprintf (stderr, PACKAGE ": failed to allocate memory of %i bytes\n", size);
       exit(1);      
     }
   return u;  
@@ -79,7 +79,7 @@ read_machinenetgroup(linkedlist * machinelist,
     } 
   else
     {
-      fprintf(stderr, PROGRAM_NAME
+      fprintf(stderr, PACKAGE
 	      ": Unknown netgroup %s.\n",
 	      groupname);
     }
@@ -107,11 +107,11 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
       if (alternatelistfile)
 	fprintf (stderr, 
 		 "%s: File %s nor %s could not be opened for read\n", 
-		 PROGRAM_NAME, listfile, alternatelistfile);
+		 PACKAGE, listfile, alternatelistfile);
       else
 	fprintf (stderr, 
 		 "%s: File %s could not be opened for read\n", 
-		 PROGRAM_NAME, listfile);
+		 PACKAGE, listfile);
     }  
   free (buf);  
   return machinelist;  
@@ -200,7 +200,7 @@ load_configfile(const char * dsh_conf)
 	  else
 	    {
 	      fprintf (stderr, 
-		       PROGRAM_NAME
+		       PACKAGE
 		       ": unparsed configuration file line %s found in %s\n",
 		       buf_a, dsh_conf);
 	    }
