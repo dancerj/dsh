@@ -6,6 +6,7 @@ Makefile.in
 aclocal.m4
 autom4te.cache
 autoscan.log
+build-man
 build-stamp
 compile
 confdefs.h
