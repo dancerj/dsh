@@ -51,7 +51,9 @@ msgstr "%s: リモートシェル命令 %s の実行に失敗しました\n"
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
 "returned an error code that is not -1\n"
-msgstr "%s: 予期せぬエラーがおこりました．do_execute_with_optional_pipe が失敗し，-1 以外のエラーコードを返してきました．\n"
+msgstr ""
+"%s: 予期せぬエラーがおこりました．do_execute_with_optional_pipe が失敗し，-1 "
+"以外のエラーコードを返してきました．\n"
 
 #: dsh.c:385
 #, c-format

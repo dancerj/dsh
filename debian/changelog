@@ -1,3 +1,11 @@
+dsh (0.20.4-1) unstable; urgency=low
+
+  * New upstream version
+  * Minor bugfix which should fix the -rssh -cn4 option to work in 
+    an expected way.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 14 Sep 2002 13:32:22 +0900
+
 dsh (0.20.3-1) unstable; urgency=low
 
   * New upstream version
