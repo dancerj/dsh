@@ -1,3 +1,10 @@
+2002-03-28  Junichi Uekawa  <dancer@debian.org>
+
+	* libdshconfig.c (dshconfig_splitline): created a new function, so that this piece of code can be re-used.
+	(read_oneline): changed to use dshconfig_splitline instead
+	(read_oneline): fixing things, so that dancer acpi can use this 
+	parser routine instead.
+
 2002-03-18  Junichi Uekawa  <dancer@debian.org>
 
 	* debian/rules: install the libs and other things in the right package

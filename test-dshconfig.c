@@ -25,7 +25,7 @@
 /* parse and dump the input to output */
 int main()
 {
-  dshconfig * t = open_dshconfig(stdin, '=');
+  dshconfig * t = open_dshconfig(stdin, ':');
   dshconfig_internal * line;
   if (!t)
     return 1;
