@@ -7,6 +7,7 @@ autom4te.cache
 autoscan.log
 build-stamp
 compile
+confdefs.h
 config.cache
 config.guess
 config.h

@@ -1,3 +1,8 @@
+2002-06-15  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.in: emit error if dshconfig is not found.
+	version 0.0.19.6
+
 2002-06-14  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.in: 0.0.19.5
