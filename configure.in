@@ -13,6 +13,7 @@ AM_PROG_LIBTOOL
 AC_C_CONST
 
 AC_CHECK_FUNCS(strdup)
+AC_CHECK_LIB([dshconfig], [open_dshconfig])
 
 dnl Use -Wall if we have gcc.
 changequote(,)dnl

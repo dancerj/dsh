@@ -3,6 +3,8 @@
 Makefile
 Makefile.in
 aclocal.m4
+autom4te.cache
+autoscan.log
 build-stamp
 config.cache
 config.guess
@@ -13,6 +15,7 @@ config.status
 config.sub
 configure
 configure-stamp
+configure.scan
 depcomp
 dsh
 dsh-*.tar.gz
