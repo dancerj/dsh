@@ -1,3 +1,12 @@
+2003-06-09  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.10.cvs.1
+
+	* Makefile.am (build-man/dsh.conf.5): reorder things so that 
+	it does not error-out on solaris.
+	It was verified that it builds on cygwin fine, by 
+	Tomo Hiroyasu.
+
 2003-06-08  Junichi Uekawa  <dancer@debian.org>
 
 	* THANKS: create file to list people who have reported bugs on 
