@@ -1,3 +1,17 @@
+2002-04-20  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/control (Build-Depends): remove libtool dependency.
+
+	* Makefile (install): updated to remove libtool reference.
+
+	* debian/control (Build-Depends): add build-depends on libtool.
+
+	* Makefile: removed libdshconfig trace
+
+	* debian/rules (clean): remove libdshconfig trace.
+
+	* move libdshconfig from dsh source to separate package
+
 2002-03-31  Junichi Uekawa  <dancer@debian.org>
 
 	* libdshconfig.c (free_dshconfig): free the title and data for each item, fix memleak.

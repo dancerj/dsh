@@ -3,8 +3,9 @@ dsh (0.0.19) unstable; urgency=low
   * Using libdshconfig.so library in config file parsing.
   * adding libdshconfig0{,-dev} package, possibly required by dmachinemon
     and others.
+  * remove libdshconfig to another package, and depend on it.
 
- -- Junichi Uekawa <dancer@debian.org>  Mon, 18 Mar 2002 10:47:35 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Sat, 20 Apr 2002 23:48:32 +0900
 
 dsh (0.0.18) unstable; urgency=low
 
