@@ -7,11 +7,13 @@
 
 # This is the debhelper compatability version to use.
 export DH_COMPAT=3
+PACKAGE_VERSION=`dpkg-parsechangelog | sed -n 's/Version: //p'`
 
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
 	# Add here commands to configure the package.
+	echo "#define DSH_VERSION \"${PACKAGE_VERSION}\" " > dshversion.h 
 
 	touch configure-stamp
 
@@ -37,7 +39,10 @@ install: build
 	# Add here commands to install the package into debian/dsh.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dsh
 	cp $(CURDIR)/debian/machines.list $(CURDIR)/debian/dsh/etc/dsh/machines.list
+	cp $(CURDIR)/dsh.conf $(CURDIR)/debian/dsh/etc/dsh/dsh.conf
 	ln -s ../machines.list $(CURDIR)/debian/dsh/etc/dsh/group/all
+	install -d $(CURDIR)/debian/dsh/usr/lib/update-cluster
+	install -m 755 $(CURDIR)/debian/dsh.updatelist $(CURDIR)/debian/dsh/usr/lib/update-cluster/
 
 # Build architecture-independent files here.
 binary-indep: build install

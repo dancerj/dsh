@@ -12,8 +12,10 @@ dsh (0.0.17) unstable; urgency=low
     debian/README.Debian
   * debian/postinst: fixed string comparison, it used to say "==", but it
     should have been "="
+  * debian/rules: changed the method to obtain the version string for
+    dshversion.h.
 
- -- Junichi Uekawa <dancer@debian.org>  Sun, 23 Dec 2001 14:27:18 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 23 Dec 2001 14:29:23 +0900
 
 dsh (0.0.16) unstable; urgency=low
 
