@@ -1,3 +1,9 @@
+2003-07-20  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: Include unistd.h for netdb.h checking.
+	Tru64 Unix defines setnetgrent in netdb.h, and setnetgrent returns void.
+	0.23.11.cvs.2
+
 2003-07-19  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: cvs.1

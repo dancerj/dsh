@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-m4_define(DSHVERSION,0.23.11.cvs.1)
+m4_define(DSHVERSION,0.23.11.cvs.2)
 AC_INIT(dsh, DSHVERSION)
 AM_INIT_AUTOMAKE(dsh, DSHVERSION)
 AM_CONFIG_HEADER(config.h)
@@ -39,7 +39,8 @@ dnl and stops munging if + is specified.
 
 
 AC_MSG_CHECKING([netdb.h has setnetgrent that returns void])
-AC_TRY_COMPILE([#include <netdb.h>],
+AC_TRY_COMPILE([#include <unistd.h>
+#include <netdb.h>],
 [{char * c;int i = setnetgrent(c);}],[setnetgrentwithvoid=no],[setnetgrentwithvoid=yes])
 
 case ${setnetgrentwithvoid} in 
