@@ -1,5 +1,8 @@
 2002-09-18  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.21.2 
+	with even more minor cosmetic bugfixes, which does not address the main problem.
+
 	* dsh.c (run_input_forking_child_processes_process): call open_devnull for default case.
 
 	* parameter.h (open_devnull): define
