@@ -1,3 +1,9 @@
+dsh (0.25.5-2) UNRELEASED; urgency=low
+
+  * add uscan file
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 30 Mar 2005 09:41:55 +0900
+
 dsh (0.25.5-1) unstable; urgency=low
 
   * New upstream version
