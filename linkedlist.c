@@ -28,6 +28,9 @@
 #include "linkedlist.h"
 #include "parameter.h"
 
+#include "gettext.h"
+#define _(A) gettext(A)
+
 /**
    free a linked list.
  */
@@ -45,12 +48,18 @@ llfree(linkedlist* a)
 
 /** 
  * add a char to linked list
+ *
+ * @newly added list, or exit(1) on error
  */
 linkedlist* 
 lladd(linkedlist*next, const char * b)
 {
   linkedlist*tmp= malloc_with_error(sizeof(linkedlist));
-  tmp->string = strdup(b);
+  if (!(tmp->string = strdup(b)))
+    {
+      fprintf (_("Out of memory in lladd\n"));
+      exit (1);
+    }
   tmp->next=next;  
   return tmp;
 }
@@ -58,6 +67,8 @@ lladd(linkedlist*next, const char * b)
 /**
  * concatenate linked list.  
  * a comes after b.
+ *
+ * @return concatenated list, never errors.
  */
 linkedlist* 
 llcat(linkedlist*a, linkedlist*b)
@@ -74,6 +85,8 @@ llcat(linkedlist*a, linkedlist*b)
 
 /**
  * Reverse the order of the linked list.
+ *
+ * @return the reversed list, never NULL.
  */
 linkedlist* 
 llreverse(linkedlist*a)
@@ -93,6 +106,8 @@ llreverse(linkedlist*a)
 
 /**
  * duplicate the list 
+ *
+ * @return the new list member, or NULL in failure
  */
 linkedlist* 
 lldup(const linkedlist*a)
@@ -105,6 +120,8 @@ lldup(const linkedlist*a)
 
 /**
  * Count the number of members in the list
+ *
+ * @return number of members.
  */
 int 
 llcount (const linkedlist*a)

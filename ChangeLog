@@ -1,3 +1,12 @@
+2002-10-19  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.2.cvs.2
+
+	* autogen.sh: remove ./configure from autogen script.
+
+	* linkedlist.c (lladd): add error checking in lladd routine.
+	add gettext related includes.
+
 2002-10-09  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.2.cvs.1
