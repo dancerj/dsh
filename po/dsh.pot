@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-20 20:48+0900\n"
+"POT-Creation-Date: 2004-06-06 17:24+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,8 +71,8 @@ msgstr ""
 msgid "... Waiting for process to end with waitpid"
 msgstr ""
 
-#: dsh.c:432 dsh.c:442 dsh.c:641 parameter.c:437 parameter.c:459
-#: parameter.c:465
+#: dsh.c:432 dsh.c:442 dsh.c:641 parameter.c:441 parameter.c:463
+#: parameter.c:469
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
@@ -117,26 +117,26 @@ msgstr ""
 msgid "%s: failed to allocate memory of %i bytes\n"
 msgstr ""
 
-#: parameter.c:139
+#: parameter.c:143
 #, c-format
 msgid "%s: Unknown netgroup %s.\n"
 msgstr ""
 
-#: parameter.c:146
+#: parameter.c:150
 msgid "This platform does not support NIS database routines"
-msgstr ""
-
-#: parameter.c:177
-#, c-format
-msgid "%s: File %s nor %s could not be opened for read\n"
 msgstr ""
 
 #: parameter.c:181
 #, c-format
+msgid "%s: File %s nor %s could not be opened for read\n"
+msgstr ""
+
+#: parameter.c:185
+#, c-format
 msgid "%s: File %s could not be opened for read\n"
 msgstr ""
 
-#: parameter.c:194
+#: parameter.c:198
 #, c-format
 msgid ""
 "Distributed Shell / Dancer's shell version %s \n"
@@ -145,7 +145,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: parameter.c:209
+#: parameter.c:213
 #, c-format
 msgid ""
 "-v --verbose                   Verbose output\n"
@@ -168,164 +168,164 @@ msgid ""
 "\n"
 msgstr ""
 
-#: parameter.c:243
+#: parameter.c:247
 #, c-format
 msgid "Loading config file %s\n"
 msgstr ""
 
-#: parameter.c:252
+#: parameter.c:256
 #, c-format
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:255 parameter.c:525
+#: parameter.c:259 parameter.c:529
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:260 parameter.c:529
+#: parameter.c:264 parameter.c:533
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
 
-#: parameter.c:266
+#: parameter.c:270
 #, c-format
 msgid "Setting wait-shell to  [%i]\n"
 msgstr ""
 
-#: parameter.c:271
+#: parameter.c:275
 #, c-format
 msgid "Setting pipe option to  [%i]\n"
 msgstr ""
 
-#: parameter.c:279
+#: parameter.c:283
 #, c-format
 msgid "Setting fork limit to  [%i] and wait_shell to [%i]\n"
 msgstr ""
 
-#: parameter.c:285
+#: parameter.c:289
 #, c-format
 msgid "Setting verbose to  [%i]\n"
 msgstr ""
 
-#: parameter.c:290
+#: parameter.c:294
 #, c-format
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr ""
 
-#: parameter.c:348
+#: parameter.c:352
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"
 msgstr ""
 
-#: parameter.c:354
+#: parameter.c:358
 msgid "Cannot specify fork limit of less than 0\n"
 msgstr ""
 
-#: parameter.c:360
+#: parameter.c:364
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell without fork limit need to be "
 "specified together\n"
 msgstr ""
 
-#: parameter.c:366
+#: parameter.c:370
 #, c-format
 msgid "%s: fork limit and wait shell cannot be specified at the same time\n"
 msgstr ""
 
-#: parameter.c:432
+#: parameter.c:436
 #, c-format
 msgid "Adding all machines to the list\n"
 msgstr ""
 
-#: parameter.c:450
+#: parameter.c:454
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr ""
 
-#: parameter.c:456
+#: parameter.c:460
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr ""
 
-#: parameter.c:475
+#: parameter.c:479
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr ""
 
-#: parameter.c:481
+#: parameter.c:485
 #, c-format
 msgid "Setting forklimit to %i and wait_shell to %i\n"
 msgstr ""
 
-#: parameter.c:484
+#: parameter.c:488
 #, c-format
 msgid "Verbose flag on\n"
 msgstr ""
 
-#: parameter.c:488
+#: parameter.c:492
 #, c-format
 msgid "Verbose flag off\n"
 msgstr ""
 
-#: parameter.c:492
+#: parameter.c:496
 #, c-format
 msgid "Show machine names on output\n"
 msgstr ""
 
-#: parameter.c:496
+#: parameter.c:500
 #, c-format
 msgid "Duplicate input to all processes\n"
 msgstr ""
 
-#: parameter.c:500
+#: parameter.c:504
 #, c-format
 msgid "Buffer size used for dupliation\n"
 msgstr ""
 
-#: parameter.c:504
+#: parameter.c:508
 #, c-format
 msgid "Buffer size needs to be greater than 1\n"
 msgstr ""
 
-#: parameter.c:509
+#: parameter.c:513
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr ""
 
-#: parameter.c:513
+#: parameter.c:517
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:533
+#: parameter.c:537
 #, c-format
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:537
+#: parameter.c:541
 #, c-format
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:544
+#: parameter.c:548
 #, c-format
 msgid "Unkown option -%c.\n"
 msgstr ""
 
-#: parameter.c:546
+#: parameter.c:550
 #, c-format
 msgid "Unkown option character 0x%x.\n"
 msgstr ""
 
-#: parameter.c:550
+#: parameter.c:554
 #, c-format
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:557
+#: parameter.c:561
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""

@@ -1,3 +1,11 @@
+dsh (0.25.3-1) unstable; urgency=low
+
+  * New upstream version
+  - Rebuild with libdshconfig with versioned symbols
+  - support # as comments in machine files (closes: #249794)
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun,  6 Jun 2004 17:30:05 +0900
+
 dsh (0.25.2.1-1) unstable; urgency=low
 
   * New upstream version

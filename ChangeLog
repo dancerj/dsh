@@ -1,3 +1,9 @@
+2004-06-06  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/control (Build-Depends): add versioned dependency on libdshconfig for versioned symbols.
+
+	* configure.ac: 0.25.3
+
 2004-05-30  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.25.2.1.cvs.2
