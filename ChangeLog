@@ -1,5 +1,9 @@
 2002-10-19  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.3
+
+	* linkedlist.c (lladd): fix typo.
+
 	* configure.ac: 0.23.2.cvs.2
 
 	* autogen.sh: remove ./configure from autogen script.

@@ -57,7 +57,7 @@ lladd(linkedlist*next, const char * b)
   linkedlist*tmp= malloc_with_error(sizeof(linkedlist));
   if (!(tmp->string = strdup(b)))
     {
-      fprintf (_("Out of memory in lladd\n"));
+      fprintf (stderr, _("Out of memory in lladd\n"));
       exit (1);
     }
   tmp->next=next;  
