@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-18 20:33+0900\n"
+"POT-Creation-Date: 2002-09-19 17:34+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,51 +60,51 @@ msgstr ""
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr ""
 
-#: dsh.c:442
+#: dsh.c:448
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:472
+#: dsh.c:478
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:476
+#: dsh.c:482
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:493
+#: dsh.c:499
 msgid "--- Terminated running\n"
 msgstr ""
 
-#: dsh.c:512
+#: dsh.c:522
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
 
-#: parameter.c:56
+#: parameter.c:57
 #, c-format
 msgid "%s: failed to allocate memory of %i bytes\n"
 msgstr ""
 
-#: parameter.c:95
+#: parameter.c:112
 #, c-format
 msgid "%s: Unknown netgroup %s.\n"
 msgstr ""
 
-#: parameter.c:121
+#: parameter.c:142
 #, c-format
 msgid "%s: File %s nor %s could not be opened for read\n"
 msgstr ""
 
-#: parameter.c:125
+#: parameter.c:146
 #, c-format
 msgid "%s: File %s could not be opened for read\n"
 msgstr ""
 
-#: parameter.c:134
+#: parameter.c:155
 #, c-format
 msgid ""
 "Distributed Shell / Dancer's shell version %s \n"
@@ -113,7 +113,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: parameter.c:146
+#: parameter.c:167
 msgid ""
 "-v --verbose                   Verbose output\n"
 "-q --quiet                     Quiet\n"
@@ -134,113 +134,113 @@ msgid ""
 "\n"
 msgstr ""
 
-#: parameter.c:180
+#: parameter.c:201
 #, c-format
 msgid "Loading config file %s\n"
 msgstr ""
 
-#: parameter.c:189
+#: parameter.c:210
 #, c-format
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:192 parameter.c:356
+#: parameter.c:213 parameter.c:377
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:197 parameter.c:360
+#: parameter.c:218 parameter.c:381
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
 
-#: parameter.c:203
+#: parameter.c:224
 #, c-format
 msgid "Setting wait-shell to  [%i]\n"
 msgstr ""
 
-#: parameter.c:208
+#: parameter.c:229
 #, c-format
 msgid "Setting pipe option to  [%i]\n"
 msgstr ""
 
-#: parameter.c:213
+#: parameter.c:234
 #, c-format
 msgid "Setting verbose to  [%i]\n"
 msgstr ""
 
-#: parameter.c:218
+#: parameter.c:239
 #, c-format
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr ""
 
-#: parameter.c:288
+#: parameter.c:309
 msgid "Adding all machines to the list\n"
 msgstr ""
 
-#: parameter.c:301
+#: parameter.c:322
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr ""
 
-#: parameter.c:307
+#: parameter.c:328
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr ""
 
-#: parameter.c:316
+#: parameter.c:337
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr ""
 
-#: parameter.c:320
+#: parameter.c:341
 msgid "Verbose flag on\n"
 msgstr ""
 
-#: parameter.c:324
+#: parameter.c:345
 msgid "Verbose flag off\n"
 msgstr ""
 
-#: parameter.c:328
+#: parameter.c:349
 msgid "Show machine names on output\n"
 msgstr ""
 
-#: parameter.c:332
+#: parameter.c:353
 msgid "Duplicate input to all processes\n"
 msgstr ""
 
-#: parameter.c:336
+#: parameter.c:357
 msgid "Buffer size used for dupliation\n"
 msgstr ""
 
-#: parameter.c:340
+#: parameter.c:361
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr ""
 
-#: parameter.c:344
+#: parameter.c:365
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:364
+#: parameter.c:385
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:368
+#: parameter.c:389
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:372
+#: parameter.c:393
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:379
+#: parameter.c:400
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""
 
-#: parameter.c:394
+#: parameter.c:415
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"
