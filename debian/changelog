@@ -1,4 +1,4 @@
-dsh (0.0.19.4-1) unstable; urgency=low
+dsh (0.20.1-1) unstable; urgency=low
 
   * New upstream version
   * Using libdshconfig.so library in config file parsing.
@@ -7,7 +7,7 @@ dsh (0.0.19.4-1) unstable; urgency=low
   * Make the package into a non-native package.
   * call configure with --mandir and --sysconfdir parameters.
 
- -- Junichi Uekawa <dancer@debian.org>  Fri, 14 Jun 2002 19:58:32 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 24 Jul 2002 17:55:35 +0900
 
 dsh (0.0.18) unstable; urgency=low
 
