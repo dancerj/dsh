@@ -1,0 +1,5 @@
+# machine list example 
+ # another comment
+# another test
+hostname
+this#notcomment

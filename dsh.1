@@ -60,6 +60,12 @@ machines to execute on.
 Add all machines found in the specified file
 to the list of machines that the specified command is executed.
 
+The file should list one machine specification per line (with the same
+syntax as the 
+.I machinename
+argument). 
+Lines starting with "#" are ignored.
+
 From version 0.21.4, 
 Specifying the same machine several times using any of the 
 machine specification options will result in

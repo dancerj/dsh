@@ -63,9 +63,11 @@ malloc_with_error(int size)
   return u;  
 }
 
-/* 
+/**
  * remove \n and other things from string
  * and return the new pointer.
+ *
+ * Will skip lines starting with a # 
  */
 static const char *
 stripwhitespace(char * buf)
@@ -75,7 +77,9 @@ stripwhitespace(char * buf)
 
   while (*pointer && isspace(*pointer))
     pointer ++;
-  if (!*pointer)			/* if it is nothing, return NULL */
+  if ((!*pointer) ||
+      (*pointer == '#'))	
+    /* if it is nothing, or is a comment return NULL */
     return NULL;
 
   revpointer = pointer + strlen (pointer) - 1;

@@ -25,8 +25,8 @@ TESTS=tests/param-f.sh \
 	tests/param-gnu-getopt.sh \
 	tests/news-okay.sh \
 	tests/segv-catcher.sh \
-	tests/test-bufferoverflow.sh
-
+	tests/test-bufferoverflow.sh \
+	tests/machinelist-comment-test.sh
 
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \
@@ -34,6 +34,7 @@ TESTS_ENVIRONMENT=bindir=$(bindir) \
 	VERSION=@VERSION@ 
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file tests/list.space.file \
+	tests/machinelist-comment.txt \
 	$(translated_man) $(original_man) \
 	dsh.spec
 

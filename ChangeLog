@@ -1,3 +1,22 @@
+2004-05-30  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.25.2.1.cvs.2
+
+	* Makefile.am (EXTRA_DIST): add
+	(TESTS): add test.
+
+	* tests/machinelist-comment.txt: test data
+
+	* tests/machinelist-comment-test.sh: test
+
+	* NEWS: Add notes
+
+	* THANKS: update
+
+	* parameter.c (stripwhitespace): Add code contributed from Alexander Zangerl <az@snafu.priv.at>
+
+	* dsh.1: update documentation.
+
 2004-05-27  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.25.2.1.cvs.1
