@@ -16,21 +16,23 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * A library to read dsh config file style data files. Header file.
+ * tester for libdshconfig.
  */
 
-typedef struct dshconfig_internal
-{
-  char * title;
-  char * data;
-  struct dshconfig_internal * next;
-} dshconfig_internal;
+#include <stdio.h>
+#include "libdshconfig.h"
 
-typedef struct dshconfig 
+int main()
 {
-  dshconfig_internal * config;
-} dshconfig ;
-
-dshconfig *
-open_dshconfig (FILE* file, char delimiter) ;
+  dshconfig * t = open_dshconfig(stdin, ':');
+  dshconfig_internal * line;
+  if (!t)
+    return 1;
+  
+  for (line = t->config; line; line = line -> next)
+    {
+      printf ("[%s]=[%s]\n", line->title, line->data);
+    }  
+  return 0;
+}
 

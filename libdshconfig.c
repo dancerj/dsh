@@ -19,6 +19,12 @@
  * A library to read dsh config file style data files.
  */
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "libdshconfig.h"
 
 /** 
    The ugly function to do the config file reading.
@@ -26,22 +32,24 @@
 
    Return value of NULL indicates termination and/or error.
  */
+
+
 static dshconfig_internal*
 read_oneline (FILE* f, int delimiter)
 {
   /* read one line and return */
-  dshconfig_internal * d = malloc (sizeof dshconfig_internal);
+  dshconfig_internal * d = malloc (sizeof (dshconfig_internal));
   char* s = NULL;
   int size = 0;
-  int pos;
-  int i;
+  char* pos;
+  char* i;
 
   if (!d)
     return 0;
 
   while (getline (&s, &size, f) != -1)
     {
-      if (pos = strchr(s, '#'))	/* handle comments, # and not \# */
+      if (0!=(pos = strchr(s, '#')))	/* handle comments, # and not \# */
 	if (*(pos-1) != '\\')
 	  *pos = 0;
       
@@ -49,7 +57,7 @@ read_oneline (FILE* f, int delimiter)
 	{
 	  continue;
 	}
-      *(pos++) = 0; 
+      *(pos++) = 0; 		/* terminate the string, and pos points to start of "data" */
 
       /* removing the space at end of title */
       for (i = pos - 2; i > s; --i)
@@ -67,7 +75,7 @@ read_oneline (FILE* f, int delimiter)
       d->title=strdup(i);
 
       /* removing the space at the end of data*/
-      for (i = strlen(pos) + pos; i > pos; --i)
+      for (i = strlen(pos) + pos - 1; i > pos; --i)
 	{
 	  if (!isspace (*i))
 	    break;
@@ -104,18 +112,19 @@ open_dshconfig (FILE* file, char delimiter)
   
   d->config = NULL;
   
-  while (t = read_oneline (file, delimiter))
+  while (0!=(t = read_oneline (file, delimiter)))
     {
-      if (d->config)
+      t->next = NULL;
+      if (NULL != d->config)
 	{
-	  for (i=d->config; i->next; i=i->next);
-	  i->next = t;
+	  for (i = d->config; i -> next; i = i-> next);
+	  i -> next = t;
 	}
       else
 	{
-	  t->next = NULL;
 	  d->config = t;
 	}
     }
   return d;
 }
+

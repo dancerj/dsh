@@ -1,3 +1,16 @@
+2002-03-18  Junichi Uekawa  <dancer@debian.org>
+
+	* libdshconfig.c (read_oneline): fixing many bugs, to make it work. Yeah, it never compiled.
+	(read_oneline): fix end bug.
+
+	* libdshconfig.h: add declaration for open_dshconfig
+
+	* test-dshconfig.c (main): create a new program to test the function
+
+2002-02-27  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/changelog: Mark for release
+
 2002-02-05  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c: some beautification

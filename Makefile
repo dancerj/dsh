@@ -3,7 +3,7 @@
 PACKAGENAME=dsh
 OBJECTS=dsh.o linkedlist.o parameter.o
 
-all: $(PACKAGENAME)
+all: $(PACKAGENAME) test-apps
 
 clean:
 	rm -f *~ *.bak *.o $(PACKAGENAME)
@@ -11,8 +11,14 @@ clean:
 $(PACKAGENAME): $(OBJECTS)
 	$(CC) -O2 $(OBJECTS) -o $@
 
+
+test-apps: test-dshconfig
+
+test-dshconfig: test-dshconfig.o libdshconfig.o
+	$(CC) -O2 $^ -o $@
+
 %.o: %.c
-	$(CC) -O2 -Wall -c -o $@ $<
+	$(CC) -g -O2 -Wall -c -o $@ $<
 
 install: $(PACKAGENAME)
 	cp $(PACKAGENAME) $(DESTDIR)/usr/bin
