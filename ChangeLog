@@ -1,3 +1,9 @@
+2003-07-26  Junichi Uekawa  <dancer@debian.org>
+
+	* NEWS: 0.23.12
+
+	* configure.ac: Fix the checking message for libdshconfig.h
+
 2003-07-20  Junichi Uekawa  <dancer@debian.org>
 
 	* NEWS: Add notes that Tru64 UNIX and HP-UX are now supported

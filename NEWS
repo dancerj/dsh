@@ -1,4 +1,4 @@
-0.23.11.cvs.2 - 20 Jul 2003.
+0.23.12 - 26 Jul 2003.
 
  + Support Tru64 UNIX. Two testsuits fail due to shell features, but it works.
  + Support HP-UX

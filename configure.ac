@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-m4_define(DSHVERSION,0.23.11.cvs.2)
+m4_define(DSHVERSION,0.23.12)
 AC_INIT(dsh, DSHVERSION)
 AM_INIT_AUTOMAKE(dsh, DSHVERSION)
 AM_CONFIG_HEADER(config.h)
@@ -25,7 +25,7 @@ AC_SUBST(localedir)
 
 dnl check for header files.
 AC_CHECK_HEADERS([getopt.h fcntl.h libintl.h locale.h stdlib.h netdb.h string.h unistd.h  ])
-AC_MSG_RESULT([Checking for libdshconfig.h ... ])
+AC_MSG_CHECKING([for libdshconfig.h ])
 AC_COMPILE_IFELSE([
 #include <libdshconfig.h>
 ],AC_MSG_RESULT([yes]),AC_MSG_ERROR([needs libdshconfig.h to compile]))
