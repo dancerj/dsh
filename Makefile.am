@@ -5,6 +5,10 @@ sysconf_DATA=dsh.conf
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
 
+check_PROGRAMS=dsh
+TESTS=tests/param-f.sh tests/param-f-fail.sh  tests/param-m.sh
+
+
 # Make debian pristine-source
 ../@PACKAGE@_@VERSION@.orig.tar.gz: 
 	if [ ! -f $@ ]; then $(MAKE) distcheck && dch -v "@VERSION@-1" "New upstream version" && mv @PACKAGE@-@VERSION@.tar.gz ../@PACKAGE@_@VERSION@.orig.tar.gz; \
@@ -27,6 +31,6 @@ upload-dist-all: distcheck
 	scp @PACKAGE@-@VERSION@.tar.gz mikilab.doshisha.ac.jp:parallel-research/software
 	$(MAKE) ../@PACKAGE@_@VERSION@.orig.tar.gz
 
-SUBDIRS = m4 po 
+SUBDIRS = m4 po tests
 
 ACLOCAL_AMFLAGS = -I m4

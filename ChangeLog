@@ -1,5 +1,27 @@
 2002-09-22  Junichi Uekawa  <dancer@debian.org>
 
+	* tests/Makefile.am (EXTRA_DIST): dist target
+	* Makefile.am (TESTS): add to test target
+	* tests/param-f-fail.sh: add new test to check failure to -f.
+
+	* parameter.c (read_machinelist): fail on error to 
+	open the file.
+	(read_machinenetgroup): fail on error.
+	exit(1) on failure.
+
+	* Makefile.am (SUBDIRS): add support for tests.
+	(check_PROGRAMS): add dsh to check_PROGRAMS as well
+
+	* tests/list.file: file list to use with -f option.
+
+	* tests/param-m.sh: test -m option.
+
+	* tests/param-f.sh: test -f option.
+
+	* configure.ac: add tests/Makefile
+
+	* tests/Makefile.am (EXTRA_DIST): create testsuite.
+
 	* configure.ac: 0.22.0
 	some new features are being added. Bump up the version.
 	start debugging those features :)

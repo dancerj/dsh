@@ -32,6 +32,8 @@ if test "x$GCC" = "xyes"; then
 fi
 changequote([,])dnl
 
-AC_OUTPUT([ po/Makefile.in m4/Makefile 
+AC_CONFIG_FILES([ po/Makefile.in m4/Makefile 
 Makefile
+tests/Makefile
 ])
+AC_OUTPUT

@@ -127,6 +127,7 @@ read_machinenetgroup(linkedlist * machinelist,
       fprintf(stderr, 
 	      _("%s: Unknown netgroup %s.\n"),
 	      PACKAGE, groupname);
+      exit (1);			/* it should fail on error. */
     }
   return machinelist;
 }
@@ -161,6 +162,7 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
 	fprintf (stderr, 
 		 _("%s: File %s could not be opened for read\n"), 
 		 PACKAGE, listfile);
+      exit (1);      		/* It should fail on error */
     }  
   free (buf);  
   return machinelist;  
