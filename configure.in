@@ -13,7 +13,7 @@ AM_PROG_LIBTOOL
 AC_C_CONST
 
 AC_CHECK_HEADERS([getopt.h])
-AC_CHECK_FUNCS([strdup getopt_long])
+AC_CHECK_FUNCS([strdup getopt_long getline])
 AC_CHECK_LIB([dshconfig], [open_dshconfig])
 
 dnl Use -Wall if we have gcc.

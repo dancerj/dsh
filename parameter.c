@@ -28,11 +28,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+
+#include "config.h"
+
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif
-
-#include <config.h>
 #include "dsh.h"
 #include "config.h"
 #include "linkedlist.h"

@@ -2,6 +2,9 @@
 
 	* configure.in: 0.0.19.3
 
+	* parameter.c, dsh.c, linkedlist.c: revert use of <config.h> to use "config.h".
+	someone else is providing config.h somewhere, breaking my build.
+
 	* parameter.c: add ifdef for HAVE_GETOPT_H, and getopt_long
 	Thanks to Petter Reinholdtsen <pere@hungry.com>
 
