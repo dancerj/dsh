@@ -1,3 +1,7 @@
+2002-09-14  Junichi Uekawa  <dancer@debian.org>
+
+	* ja.po: updated translation
+
 2002-09-11  Junichi Uekawa  <dancer@debian.org>
 
 	* POTFILES.in: add dsh.c, parameter.c

@@ -253,7 +253,7 @@ execute_rsh_single (const char * remoteshell_command,
       
       if (verbose_flag) 
 	{
-	  printf( "DUMPing parameters passed to llexec\n");
+	  printf(_( "DUMPing parameters passed to llexec\n"));
 	  lldump(tmp);
 	}	  
       
@@ -261,14 +261,14 @@ execute_rsh_single (const char * remoteshell_command,
 					       tmp, pipe_option, 
 					       param_machinename)))
 	{
-	  fprintf(stderr, PACKAGE 
-		  ": Failed to execute remote shell command %s\n", 
-		  remoteshell_command);
+	  fprintf(stderr,  
+		  _("%s: Failed to execute remote shell command %s\n"), 
+		  PACKAGE, remoteshell_command);
 	  exit (EXIT_FAILURE);
 	}
 				/* what follows should never occur */
-      fprintf (stderr, PACKAGE
-	       ": Unexpected error occurred, do_execute_with_optional_pipe failed, and returned an error code that is not -1\n");
+      fprintf (stderr, 
+	       _("%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and returned an error code that is not -1\n"), PACKAGE);
       exit (EXIT_FAILURE);
     }
   else
