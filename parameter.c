@@ -430,6 +430,15 @@ parse_options ( int ac, char ** av)
 	  if (verbose_flag) printf (_("Do not wait for shell to finish\n"));
 	  wait_shell=0;
 	  break;
+	case '?':
+#ifndef HAVE_GETOPT_LONG
+	  /* getopt-long handles this option properly. */
+	  if (isprint (optopt))
+	    fprintf (stderr, _("Unkown option -%c.\n"), optopt);
+	  else
+	    fprintf (stderr, _("Unkown option character 0x%x.\n"), optopt);
+#endif	  
+	  return 1;
 	default:
 	  if (verbose_flag) printf (_("Unhandled option\n"));
 	  break;	  

@@ -2,11 +2,16 @@ bin_PROGRAMS=dsh
 dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
 dist_man_MANS=dsh.1
 sysconf_DATA=dsh.conf
-EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
 
 check_PROGRAMS=dsh
-TESTS=tests/param-f.sh tests/param-f-fail.sh  tests/param-m.sh
+TESTS=tests/param-f.sh \
+	tests/param-f-fail.sh \
+	tests/param-m.sh \
+	tests/param-unknown.sh  \
+	tests/param-cn4.sh
+
+EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh 
 
 
 # Make debian pristine-source

@@ -1,6 +1,6 @@
 #!/bin/sh
 # test to check that -f parameter fails properly.
-set -ex
+set -e
 if ./dsh -recho -M -f ${srcdir}/tests/nonexistent.file ; then
     exit 1
 else

@@ -1,3 +1,16 @@
+2002-09-23  Junichi Uekawa  <dancer@debian.org>
+
+	* tests/param-cn4.sh: check the -cn4 option is working.
+	* tests/Makefile.am (EXTRA_DIST): add 
+	* Makefile.am (TESTS): add
+
+	* tests/param-unknown.sh: add test for unknown param
+	* Makefile.am (TESTS): add
+	* tests/Makefile.am (EXTRA_DIST): add.
+
+	* parameter.c (parse_options): handle unknown option parameter properly.
+	(parse_options): abort on wrong option.
+
 2002-09-22  Junichi Uekawa  <dancer@debian.org>
 
 	* tests/Makefile.am (EXTRA_DIST): dist target
