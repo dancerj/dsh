@@ -1,3 +1,11 @@
+2004-12-03  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.25.4
+
+	* dsh.c: include signal.h if it exists.
+
+	* configure.ac (localedir): add check for signal.h
+
 2004-11-13  Junichi Uekawa  <dancer@debian.org>
 
 	* TODO: Update todo file.

@@ -1,5 +1,6 @@
-0.25.3.cvs.1 10 Nov 2004.
+0.25.4 3 Dec 2004.
 
+ + Fix compilation error on solaris, include signal.h
  + fix copyright year, and remove obsolete mail address.
 
 0.25.3 - 6 Jun 2004.

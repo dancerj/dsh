@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-06 17:24+0900\n"
+"POT-Creation-Date: 2004-12-03 08:54+0900\n"
 "PO-Revision-Date: 2004-01-22 08:54+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
@@ -14,46 +14,46 @@ msgstr ""
 "Content-Type: text/plain; charset=EUC-JP\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dsh.c:124
+#: dsh.c:127
 #, c-format
 msgid "%s: Could not open descriptor [%i] or [%i]\n"
 msgstr "%s: デスクリプタ [%i] も [%i] も開けません\n"
 
-#: dsh.c:153
+#: dsh.c:156
 #, c-format
 msgid "%s: cannot create pipe\n"
 msgstr "%s: パイプを作成できません\n"
 
-#: dsh.c:169
+#: dsh.c:172
 #, c-format
 msgid "%s: Cannot spawn process\n"
 msgstr "%s: プロセスを実行できません\n"
 
-#: dsh.c:179
+#: dsh.c:182
 msgid "Failed playing with pipe"
 msgstr "パイプを利用するのに失敗"
 
-#: dsh.c:208
+#: dsh.c:211
 #, c-format
 msgid "%s: Failed on constructing a pipe and forking\n"
 msgstr "%s: パイプの作成とフォークに失敗しました．\n"
 
-#: dsh.c:214
+#: dsh.c:217
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr "%s: %s をllexecで実行しようとして失敗しました\n"
 
-#: dsh.c:314
+#: dsh.c:317
 #, c-format
 msgid "DUMPing parameters passed to llexec\n"
 msgstr "llexecに与えられたパラメータをダンプしています\n"
 
-#: dsh.c:323
+#: dsh.c:326
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
 msgstr "%s: リモートシェル命令 %s の実行に失敗しました\n"
 
-#: dsh.c:329
+#: dsh.c:332
 #, c-format
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
@@ -62,52 +62,52 @@ msgstr ""
 "%s: 予期せぬエラーがおこりました．do_execute_with_optional_pipe が失敗し，-1 "
 "以外のエラーコードを返してきました．\n"
 
-#: dsh.c:336
+#: dsh.c:339
 #, c-format
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr "%s: execute_rsh_singleでforkに失敗しました．\n"
 
-#: dsh.c:358
+#: dsh.c:361
 msgid "... Waiting for process to end with waitpid"
 msgstr "... waitpidでプロセスが終了するのを待っています"
 
-#: dsh.c:432 dsh.c:442 dsh.c:641 parameter.c:441 parameter.c:463
+#: dsh.c:435 dsh.c:445 dsh.c:644 parameter.c:441 parameter.c:463
 #: parameter.c:469
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr "%s: asprintf が失敗しました\n"
 
-#: dsh.c:514
+#: dsh.c:517
 #, c-format
 msgid "%s: Process terminated (before write).\n"
 msgstr "%s: プロセスが終了しました (書き込み中に)．\n"
 
-#: dsh.c:533
+#: dsh.c:536
 #, c-format
 msgid "%s: fork failed trying to dupilcate input\n"
 msgstr "%s: 入力を複製するのに fork に失敗しました\n"
 
-#: dsh.c:542
+#: dsh.c:545
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr "%s: 入力複製プロセスをforkしました\n"
 
-#: dsh.c:574
+#: dsh.c:577
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr "--- %s で実行\n"
 
-#: dsh.c:578
+#: dsh.c:581
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr "%s: execute_rshが失敗しました, rsh の実行に失敗しました\n"
 
-#: dsh.c:603
+#: dsh.c:606
 #, c-format
 msgid "%s: Child process %i exited with signal %i\n"
 msgstr "%s: 子プロセス %i がシグナル %i で終了しました．\n"
 
-#: dsh.c:617
+#: dsh.c:620
 #, c-format
 msgid "--- Terminated running\n"
 msgstr "--- 実行終了\n"
@@ -137,10 +137,10 @@ msgid "%s: File %s could not be opened for read\n"
 msgstr "%s: %s を読み込みのために開く事ができませんでした\n"
 
 #: parameter.c:198
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Distributed Shell / Dancer's shell version %s \n"
-"Copyright 2001-2003 Junichi Uekawa, \n"
+"Copyright 2001-2004 Junichi Uekawa, \n"
 "distributed under the terms and conditions of GPL version 2\n"
 "\n"
 msgstr ""
