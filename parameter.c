@@ -28,7 +28,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#ifdef HAVE_GETOPT_H
 #include <getopt.h>
+#endif
+
 #include <config.h>
 #include "dsh.h"
 #include "config.h"
@@ -221,8 +224,8 @@ parse_options ( int ac, char ** av)
   int c;			/* option */
   linkedlist * machinelist = NULL;
   linkedlist * rshcommandline_r = NULL; /* command line for rsh in reverse order*/
-  
-  
+
+#ifdef HAVE_GETOPT_LONG
   static struct option long_options[]=
   {
     {"verbose", no_argument, 0, 'v'},
@@ -246,7 +249,9 @@ parse_options ( int ac, char ** av)
     {"concurrent-shell", no_argument, 0, 'c'},
     {0,0,0,0}
   };
-  
+#else
+#define getopt_long(a,b,c,d,e) getopt(a,b,c)
+#endif  
   
   while((c = getopt_long (ac, av, "vqm:ar:f:g:hVcwo:Mn:", long_options, &index_point)) != -1)
     {

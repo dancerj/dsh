@@ -47,6 +47,54 @@ int num_topology=1;		/* number of topology to use as a block to execute rsh.
 				*/
 linkedlist* remoteshell_command_opt_r=NULL; /* reverse-ordered list of rsh options. */
 
+/* local function defining "getline" */
+#ifndef HAVE_GETLINE
+/* an imcomplete, and wrong implementation of getline */
+static ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
+{
+  const int GETLINESIZE = 256;
+  int fgl;
+  
+  if (!*LINEPTR)
+    *LINEPTR= malloc (GETLINESIZE);
+  if (*N != GETLINESIZE)
+    *LINEPTR = realloc (*LINEPTR, GETLINESIZE);
+  if (!*LINEPTR)
+    {
+      return -1;
+    }
+  if (!fgets (*LINEPTR, GETLINESIZE - 1, STREAM))
+    return -1;
+  
+  *N = strlen (*LINEPTR);
+  return GETLINESIZE;
+  
+}
+#endif
+
+#ifndef HAVE_ASPRINTF
+#include <stdarg.h>
+int asprintf(char **strp, const char *fmt, ...)
+{
+  ssize_t buflen = 50 * strlen(fmt); /* pick a number, any number */
+  *strp = malloc(buflen);
+
+  if (*strp)
+  {
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(*strp, buflen, fmt, ap);
+    va_end(ap);
+    return buflen;
+  } 
+  return -1;
+}
+#endif /* HAVE_ASPRINTF  */
+
+#if !defined(WAIT_ANY)
+#define WAIT_ANY ((pid_t)-1)
+#endif /* WAIT_ANY */
+
 /*
   A process that just echoes back
  */

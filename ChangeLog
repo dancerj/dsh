@@ -1,3 +1,17 @@
+2002-06-14  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.in: 0.0.19.3
+
+	* parameter.c: add ifdef for HAVE_GETOPT_H, and getopt_long
+	Thanks to Petter Reinholdtsen <pere@hungry.com>
+
+	* dsh.c (asprintf): add asprintf definition.
+	Thanks to Petter Reinholdtsen <pere@hungry.com>
+	(getline): copy getline definition from libdshconfig.
+
+	* configure.in: add AC_CHECK_HEDAERS/FUNCS for getopt
+	Thanks to Petter Reinholdtsen <pere@hungry.com>
+
 2002-06-13  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.in: 0.0.19.2
