@@ -1,5 +1,7 @@
 2002-03-28  Junichi Uekawa  <dancer@debian.org>
 
+	* libdshconfig.h: added declaration for dshconfig_splitline.
+
 	* libdshconfig.c (dshconfig_splitline): created a new function, so that this piece of code can be re-used.
 	(read_oneline): changed to use dshconfig_splitline instead
 	(read_oneline): fixing things, so that dancer acpi can use this 
