@@ -219,7 +219,11 @@ load_configfile(const char * dsh_conf)
   return 0;  
 }
 
-
+/**
+ * Option parsing routine.
+ *
+ * Remember to update other places, such as execute_rsh_multiple routine when changing here.
+ */
 int
 parse_options ( int ac, char ** av)
 {

@@ -324,12 +324,12 @@ execute_rsh_multiple (const char * remoteshell_command,
 
   asprintf(&buffer, "-n%i", num_topology);  
   extraparam=lladd (extraparam, buffer);
-  free(numstring);  
+  free(buffer);  
 
   /* add remoteshell command */
   asprintf(&buffer, "-r%s", remoteshell_command);  
   extraparam=lladd (extraparam, buffer);
-  free(numstring);  
+  free(buffer);  
 
 				/* end of extra options. */
   extraparam=lladd (extraparam, "--");
