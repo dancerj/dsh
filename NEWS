@@ -1,8 +1,10 @@
-0.23.7.cvs.2 - ???
+0.23.9 - ??
 
  + really include .ja manpages
  + review and improve manual page wordings
  + install .ja manpages through the build process.
+ + exit code of dsh is determined by exit code of child process,
+   the first non-zero exit code is used.
 
 0.23.7 - 29 May 2003
 

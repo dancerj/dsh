@@ -30,6 +30,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <locale.h>
+#include <assert.h>
 
 #include "dsh.h"
 #include "linkedlist.h"
@@ -222,9 +223,14 @@ int dsh_exit_code = 0;
 void
 dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
 {
+  /* DEBUGDEBUGDEBUG */
   /* default behavior was to always ignore. */
-  if (exit_code_of_child && (!dsh_exit_code))
-    dsh_exit_code = exit_code_of_child ;
+  fprintf (stderr, "e-code %i, child %i\n", dsh_exit_code, exit_code_of_child);
+  if ((exit_code_of_child != 0) && (dsh_exit_code == 0))
+    {
+      dsh_exit_code = exit_code_of_child ;
+      fprintf (stderr, "set exit %i\n", dsh_exit_code);
+    }
 }
 
 static int * fd_output_array = NULL; /** array of fd to duplicate input to */
@@ -253,7 +259,7 @@ execute_rsh_single (const char * remoteshell_command,
 		    int pipe_option /** The pipe option */)
 {  
   int childpid;
-  int childstatus;
+  int childstatus = 0;
   int input_pipe [2];
   
   if (pipe_option & PIPE_OPTION_INPUT)
@@ -337,9 +343,17 @@ execute_rsh_single (const char * remoteshell_command,
 	}
       if (wait_shell)
 	{
-	  waitpid(childpid, &childstatus, 0);	/* wait for termination, 
-						   if it was required */
-	  dsh_update_exit_code(WEXITSTATUS(childstatus));
+	    /* wait for termination, 
+	       if it was required */
+	  if (-1 != waitpid(childpid, &childstatus, 0))
+	    {
+	      assert(WIFEXITED(childstatus));
+	      dsh_update_exit_code(WEXITSTATUS(childstatus));
+	    }
+	  else
+	    {
+	      assert(0);	/* weird error condition. */
+	    }
 	}
       
       return 0;
@@ -446,6 +460,8 @@ execute_rsh ( const char * remoteshell_command,
 /**
  * Forks off to do read from input, and duplicate it to
  * output the same thing to all of individual remote processes
+ *
+ * Used for processing the -i option
  */
 void
 run_input_forking_child_processes_process()
@@ -534,10 +550,13 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 
   if (!wait_shell)
     {
-      int exitstat;
+      int childstatus = 0;
       /* waiting for all. */
-      while(-1 != (waitpid(WAIT_ANY, &exitstat, 0)))
-	dsh_update_exit_code(WEXITSTATUS(exitstat));      
+      while(-1 != (waitpid(WAIT_ANY, &childstatus, 0)))
+	{
+	  assert(WIFEXITED(childstatus));
+	  dsh_update_exit_code(WEXITSTATUS(childstatus));
+	}
     }
   
   if (verbose_flag)

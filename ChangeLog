@@ -1,4 +1,18 @@
+2003-06-06  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.8.cvs.1
+
+	* NEWS: mark so that 0.23.8 had broken tests, skip that version.
+
 2003-06-05  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.c (execute_rsh_single): assert that thing is child is exited.
+
+	* configure.ac: 0.23.8
+
+	* NEWS: update news.
+
+	* Makefile.am (viper): remove rules for mikilab
 
 	* configure.ac: 0.23.7.cvs.5
 

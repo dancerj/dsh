@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-06-05 21:29+0900\n"
+"POT-Creation-Date: 2003-06-05 22:49+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,49 +44,49 @@ msgstr ""
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr ""
 
-#: dsh.c:301
+#: dsh.c:304
 msgid "DUMPing parameters passed to llexec\n"
 msgstr ""
 
-#: dsh.c:310
+#: dsh.c:313
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
 msgstr ""
 
-#: dsh.c:316
+#: dsh.c:319
 #, c-format
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
 "returned an error code that is not -1\n"
 msgstr ""
 
-#: dsh.c:323
+#: dsh.c:326
 #, c-format
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr ""
 
-#: dsh.c:397 dsh.c:407 dsh.c:564 parameter.c:369 parameter.c:391
+#: dsh.c:400 dsh.c:410 dsh.c:567 parameter.c:369 parameter.c:391
 #: parameter.c:397
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
 
-#: dsh.c:483
+#: dsh.c:486
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:515
+#: dsh.c:518
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:519
+#: dsh.c:522
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:541
+#: dsh.c:544
 msgid "--- Terminated running\n"
 msgstr ""
 
