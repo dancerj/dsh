@@ -508,6 +508,8 @@ main(int ac, char ** av)
       if (!bindtextdomain(PACKAGE_NAME, LOCALEDIR))
 	fprintf (stderr, "%s: failed to call bindtextdomain\n", PACKAGE);
     }
+  else
+    fprintf (stderr, "%s: success\n", PACKAGE);
   
   
   
