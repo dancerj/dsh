@@ -32,6 +32,9 @@
 #include <sys/wait.h>
 
 #include "dsh.h"
+#ifdef HAVE_NETGROUP_H
+#include <netgroup.h>
+#endif
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>

@@ -1,3 +1,14 @@
+2003-07-30  Junichi Uekawa  <dancer@debian.org>
+
+	* NEWS: update
+
+	* configure.ac: 0.23.12.cvs.1
+
+	* parameter.c: include netgroup.h conditionally.
+
+	* configure.ac (localedir): check for netgroup.h, which netbsd seems to have, and conditionally include netgroup.h for checking setnetgrent.
+	
+
 2003-07-26  Junichi Uekawa  <dancer@debian.org>
 
 	* NEWS: 0.23.12

@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-m4_define(DSHVERSION,0.23.12)
+m4_define(DSHVERSION,0.23.12.cvs.1)
 AC_INIT(dsh, DSHVERSION)
 AM_INIT_AUTOMAKE(dsh, DSHVERSION)
 AM_CONFIG_HEADER(config.h)
@@ -24,7 +24,7 @@ localedir='${datadir}/locale'
 AC_SUBST(localedir)
 
 dnl check for header files.
-AC_CHECK_HEADERS([getopt.h fcntl.h libintl.h locale.h stdlib.h netdb.h string.h unistd.h  ])
+AC_CHECK_HEADERS([getopt.h fcntl.h libintl.h locale.h stdlib.h netdb.h string.h unistd.h netgroup.h ])
 AC_MSG_CHECKING([for libdshconfig.h ])
 AC_COMPILE_IFELSE([
 #include <libdshconfig.h>
@@ -37,10 +37,13 @@ AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_MSG_ERROR([dshconfig not found
 dnl Check if it is a GNU getopt that munges parameter option orderings.
 dnl and stops munging if + is specified.
 
-
 AC_MSG_CHECKING([netdb.h has setnetgrent that returns void])
 AC_TRY_COMPILE([#include <unistd.h>
-#include <netdb.h>],
+#include <netdb.h>
+#ifdef HAVE_NETGROUP_H
+#include <netgroup.h>
+#endif
+],
 [{char * c;int i = setnetgrent(c);}],[setnetgrentwithvoid=no],[setnetgrentwithvoid=yes])
 
 case ${setnetgrentwithvoid} in 

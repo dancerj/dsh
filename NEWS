@@ -1,3 +1,8 @@
+0.23.12.cvs.1 - 30 Jul 2003
+
+ + Support NetBSD 1.6. 
+ + check for netgroup.h for setnetgrent.
+
 0.23.12 - 26 Jul 2003.
 
  + Support Tru64 UNIX. Two testsuits fail due to shell features, but it works.
