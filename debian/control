@@ -11,12 +11,14 @@ Depends: ${shlibs:Depends}
 Suggests: update-cluster
 Description: dancer's shell, or distributed shell
  Executes specified command on a group of computers using remote shell
- methods such as rsh. 
+ methods such as rsh or ssh. 
  .
- dsh aims to be a distributed shell with speed and efficiency, 
- although it has not reached that goal yet.
+ dsh can parallelise job submission using several algorithms, such as using 
+ fan-out method or opening as much connections as possible.
+ It also supports "interactive mode" for interactive maintenance of 
+ remote hosts.
  .
- Something that is pretty handy when setting up clusters.
+ This tool is handy for administration of PC clusters.
  .
  http://www.netfort.gr.jp/~dancer/software/dsh.html
 
