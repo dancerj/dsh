@@ -2,7 +2,9 @@
 
  + doc++ documentation fixes.
  + fix compile error on SunOS.
+   thanks to Tomo Hiroyasu <tomo@is.doshisha.ac.jp>
  + check for setnetgrent before using, should fix build on cygwin.
+   thanks to Tomo Hiroyasu <tomo@is.doshisha.ac.jp>
 
 0.23.9 - 7 Jun 2003.
 

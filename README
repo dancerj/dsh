@@ -1,4 +1,5 @@
-For documentation, please read the documentation files found under
-debian/ directory.
+This is Dancer's shell, a Distributed Shell implementation.
 
-debian/README.Debian, and debian/copyright seems to cover most parts.
+Please read dsh.1 manpage for details on how to use the program,
+and dsh.conf.5 manpage for how to configure.
+

@@ -1,6 +1,12 @@
 2003-06-08  Junichi Uekawa  <dancer@debian.org>
 
-	* configure.ac: 0.23.9.cvs.3
+	* THANKS: create file to list people who have reported bugs on 
+	dsh.
+
+	* configure.ac: 0.23.10
+	
+	* README: modify the contents so that it contains some information
+	rather than unhelpful pointer.
 
 	* parameter.c (read_machinenetgroup): check for setnetgrent 
 	and do dummy action when not available.
@@ -10,6 +16,7 @@
 	* configure.ac: 0.23.9.cvs.2
 	check for funcs setnetgrent getnetgrent endnetngrent which seem not 
 	to be available on cygwin. 
+	reported by Tomo Hiroyasu <tomo@is.doshisha.ac.jp>
 
 2003-06-07  Junichi Uekawa  <dancer@debian.org>
 
