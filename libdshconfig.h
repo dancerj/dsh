@@ -34,3 +34,7 @@ typedef struct dshconfig
 dshconfig *
 open_dshconfig (FILE* file, char delimiter) ;
 
+void
+free_dshconfig(dshconfig* d);
+
+

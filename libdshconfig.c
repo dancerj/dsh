@@ -32,8 +32,6 @@
 
    Return value of NULL indicates termination and/or error.
  */
-
-
 static dshconfig_internal*
 read_oneline (FILE* f, int delimiter)
 {
@@ -126,5 +124,18 @@ open_dshconfig (FILE* file, char delimiter)
 	}
     }
   return d;
+}
+
+void
+free_dshconfig(dshconfig* d)
+{
+  dshconfig_internal * i;
+  for (i=d->config; i; )
+    {
+      dshconfig_internal * tmp = i->next ;
+      free (i);
+      i=tmp;
+    }
+  free (d);
 }
 

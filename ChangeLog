@@ -1,5 +1,12 @@
 2002-03-18  Junichi Uekawa  <dancer@debian.org>
 
+	* libdshconfig.h: declare free_dshconfig
+
+	* libdshconfig.c (free_dshconfig): add new function. Probably required.
+
+	* Makefile (install): fixed makefile
+	(libdshconfig.la): making a shared lib.
+
 	* libdshconfig.c (read_oneline): fixing many bugs, to make it work. Yeah, it never compiled.
 	(read_oneline): fix end bug.
 
