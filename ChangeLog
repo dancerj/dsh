@@ -1,5 +1,9 @@
 2002-05-31  Junichi Uekawa  <dancer@debian.org>
 
+	* Makefile.am (dsh_SOURCES): fix Make rule to allow distcheck to succeed.
+
+	* debian/changelog: make it a non-native package.
+
 	* Makefile.am, configure.in, autogen.sh: added
 
 	* debian/rules (configure-stamp): remove reference to dshversion.h

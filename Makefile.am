@@ -1,9 +1,9 @@
 bin_PROGRAMS=dsh
-dsh_SOURCES= dsh.c linkedlist.c parameter.c
+dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h
 dsh_LDFLAGS= -ldshconfig
 
 # Make debian pristine-source
-../@PACKAGE@_@VERSION@.orig.tar.gz: dist
+../@PACKAGE@_@VERSION@.orig.tar.gz: distcheck
 	mv @PACKAGE@-@VERSION@.tar.gz ../@PACKAGE@_@VERSION@.orig.tar.gz
 
 debiandist: ../@PACKAGE@_@VERSION@.orig.tar.gz
