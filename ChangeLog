@@ -1,5 +1,44 @@
 2002-09-16  Junichi Uekawa  <dancer@debian.org>
 
+	* dsh.1: document -b.
+
+	* parameter.c (print_help): document -i and -b
+	(parse_options): add -b handling.
+
+	* parameter.h: add declaration for malloc_with_error
+
+	* parameter.c (malloc_with_error): make the static function public.
+	Remove the same function from linkedlist.c
+
+	* dsh.1: document --duplicate-input
+
+	* parameter.c (parse_options): add -i --duplicate-input option.
+
+	* dsh.c: define buffer_size; default is 1024.
+
+	* parameter.h: define buffer_size;
+
+	* dsh.c (run_input_forking_child_processes_process): implement the writing out.
+	(do_shell): call the run_input_forking_child_processes_process.
+
+	* parameter.c (parse_options), and other places: change var name to pipe_option.
+
+	* parameter.h: change show_machine_names to pipe_option
+
+	* dsh.c (main): remove call to open_devnull
+	change name of show_machine_names to pipe_option.
+
+	* parameter.c (open_devnull): move from dsh.c to parameter.c
+	(parse_options): sanity check.
+	(parse_options): call open_devnull.
+
+	* dsh.c (do_execute_with_optional_pipe): use PIPE_OPTION_OUTPUT instead of hardcoding
+	(execute_rsh_single): add partial PIPE_OPTION_INPUT handling routine.
+
+	* parameter.c (parse_options): use PIPE_OPTION_OUTPUT instead of hardcoding 1.
+
+	* dsh.h (PIPE_OPTION_INPUT): add constant for options..
+
 	* debian/control (Description): add upstream URL in description line.
 
 2002-09-14  Junichi Uekawa  <dancer@debian.org>

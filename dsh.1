@@ -84,6 +84,20 @@ Prepends machine names on the standard output. Useful to be used in
 conjunction with the 
 .B "--concurrent-shell" 
 option so that the output is slightly more parsable.
+
+.TP
+.BI "--duplicate-input | -i "
+Duplicates the input to dsh process to individual process that are remotely
+invoked. Needs to have 
+.B "--concurrent-shell" 
+set.
+
+.TP
+.BI "--bufsize | -b [" "buffer-size in bytes" "]"
+Sets the buffer size used in replicating input for 
+.B "--duplicate-input" 
+option.
+
 .TP
 .BI "--version | -V "
 Outputs version information and exits.

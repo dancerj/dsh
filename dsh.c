@@ -41,13 +41,19 @@
 char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
 int wait_shell=1;		/* waiting for shell to execute (concurrence) */
-int show_machine_names=0;	/* show machine names */
+int pipe_option=0;	        /* show machine names -- piping option. */
 int num_topology=1;		/* number of topology to use as a block to execute rsh. 
 				 1 = for-loop
 				 2 = binary-tree
 				 4 = quad-tree.
 				*/
 linkedlist* remoteshell_command_opt_r=NULL; /* reverse-ordered list of rsh options. */
+int buffer_size = 1024;		/* buffer size. */
+
+
+
+
+
 
 /* function defining "getline" */
 #ifndef HAVE_GETLINE
@@ -187,7 +193,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 						  pretty flags*/
 			       const char * machinename)
 {
-  if (pipe_option & 1)		/* pipe the outputs */
+  if (pipe_option & PIPE_OPTION_OUTPUT)		/* pipe the outputs */
     {
       if (fork_and_pipe_echoing_routine(1, machinename) ||
 	  fork_and_pipe_echoing_routine(2, machinename))
@@ -197,17 +203,25 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	}
     }
 
-  if (pipe_option &2)
-    {
-      /* NO-OP right now. */
-    }
-
   llexec ( remoteshell_command, commandline );
   fprintf(stderr, _("%s: Failed executing %s with llexec call\n"), PACKAGE, remoteshell_command);
   exit (EXIT_FAILURE);
 }
 
-					   
+
+
+static int * fd_output_array = NULL; /** array of fd to duplicate input to */
+static int fd_output_array_len = 0;
+/**
+ * adds an fd to the list of fds to be processed by the input-duplication daemon.
+ */
+static void
+add_fd_to_output_array(int fd)
+{
+  fd_output_array_len ++ ;
+  fd_output_array = realloc (fd_output_array, fd_output_array_len * sizeof(int));
+  fd_output_array[fd_output_array_len - 1] = fd;
+}
 
 /**
  * spawns rsh/ssh session on single machine
@@ -223,14 +237,29 @@ execute_rsh_single (const char * remoteshell_command,
 {  
   int childpid;
   int childstatus;
-   
+  int input_pipe [2];
+  
+  if (pipe_option & PIPE_OPTION_INPUT)
+    {
+      pipe (input_pipe);
+    }  
+
+  /* Execute the rsh process */
   if (0==(childpid=fork()))
     {				/* child process */
       linkedlist * tmp = NULL;
-      char * machinename = strdup (param_machinename); /* we will always exit() from here, so no need to free this myself. */
+      char * machinename = strdup (param_machinename); /* we will always exit() from here, so no need
+							  to free this myself. */
       char * username = machinename;
       linkedlist * local_remoteshell_command_opt_r = lldup(remoteshell_command_opt_r);      
-      
+
+      /* input piping */
+      if (pipe_option & PIPE_OPTION_INPUT)
+	{
+	  dup2 (input_pipe[0],0);
+	  close (input_pipe[1]);
+	  close (input_pipe[0]);
+	}
 				/* process to handle username@hostname */
       if (NULL != (machinename = strchr(machinename,'@')))
 	{			/* username was specified */
@@ -279,8 +308,14 @@ execute_rsh_single (const char * remoteshell_command,
     }
   else
     {
+      if (pipe_option & PIPE_OPTION_INPUT)
+	{
+	  close (input_pipe[0]);
+	  /* add input_pipe[1] to the array of outputs one must handle here... */
+	  add_fd_to_output_array(input_pipe[1]);
+	}
       if (wait_shell)
-	  waitpid(childpid, &childstatus, 0);	/* wait for termination */
+	  waitpid(childpid, &childstatus, 0);	/* wait for termination, if it was required */
     }
   return 0;
 }
@@ -328,7 +363,7 @@ execute_rsh_multiple (const char * remoteshell_command,
     extraparam=lladd (extraparam, "-w");
   else
     extraparam=lladd (extraparam, "-c");
-  if (show_machine_names)
+  if (pipe_option)
     extraparam=lladd (extraparam, "-M");
   
 
@@ -365,9 +400,45 @@ execute_rsh ( const char * remoteshell_command,
 	      const linkedlist * rshcommandline_r)
 {				
   if (nummachines == 1)
-    return execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, show_machine_names);
+    return execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, pipe_option);
   else
     return execute_rsh_multiple (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r);
+}
+
+/**
+ * Forks off to do read from input, and duplicate it to
+ * output the same thing to all of individual remote processes
+ */
+void
+run_input_forking_child_processes_process()
+{
+  int ret;
+  char * buf;
+  int count ;
+  int i;
+  
+  switch (fork())
+    {
+    case 0:
+      /* the child process */
+      buf = malloc_with_error ( buffer_size );
+      while ((count = read(0, buf, buffer_size)) != -1 )
+	{
+	  for (i = 0; i < fd_output_array_len; ++i )
+	    {
+	      write (fd_output_array [i], buf, count);
+	    }
+	}      
+      break;
+    case -1:
+      /* fork failed */
+      break;
+    default:
+      /* parent returns without doing anything */
+      if (verbose_flag)
+	printf (_("%s: forked off input forking process\n"), PACKAGE);
+    }
+  
 }
 
 
@@ -406,6 +477,11 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
       for (i=0; (i < nummachines) && machinelist; ++i)
 	  machinelist = machinelist -> next;
     }
+
+  /* I have executed on all processes, I can now start cleaning up process...  */
+  if (pipe_option &= PIPE_OPTION_INPUT)
+    run_input_forking_child_processes_process();  
+
   if (!wait_shell)
     while(-1 != (waitpid(WAIT_ANY, NULL, 0)));	/* waiting for all. */
   
@@ -415,15 +491,6 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   return 0;  
 }
 
-/** 
- * open /dev/null as stdin
- */
-static void 
-open_devnull(void)
-{
-  int in = open ("/dev/null", O_RDONLY);
-  dup2 (in, 0);
-}
 
 int
 main(int ac, char ** av)
@@ -443,10 +510,6 @@ main(int ac, char ** av)
     }  
   load_configfile(buf);
   free (buf);
-
-  open_devnull();		/* this should be deprecated when
-				   show_machine_names &2 is implemented
-				 */
 
   return parse_options(ac, av);  
 }

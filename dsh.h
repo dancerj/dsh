@@ -20,10 +20,16 @@
 #ifdef __DSH_H__
 #error dsh.h included more than once.
 #endif
+#define __DSH_H__
 
 #include "config.h"
 
 #define DSH_CONF DSHCONFDIR "/dsh.conf"
+
+/** pipe the output, and add machine names */
+#define PIPE_OPTION_OUTPUT 1
+/** pipe the input, and add input duplication */
+#define PIPE_OPTION_INPUT 2
 
 #ifndef HAVE_GETLINE
 /* an imcomplete, and wrong implementation of getline */

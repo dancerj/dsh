@@ -17,21 +17,22 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
+void * malloc_with_error(int size);
 int load_configfile(const char * dsh_conf);
 int parse_options ( int ac, char ** av);
 extern char * remoteshell_command;
 
-extern int  verbose_flag;		/* verbosity flag */
-extern int wait_shell;		/* waiting for shell to execute (concurrence) */
-extern int  show_machine_names;	/* &1 = show machine names ...  
+extern int  verbose_flag;		/** verbosity flag */
+extern int wait_shell;		/** waiting for shell to execute (concurrence) */
+extern int  pipe_option;	/** &1 = show machine names ...  
 				   &2 = duplicate input.
 				 */
-extern int  num_topology;		/* number of topology to use as a block to execute rsh. 
+extern int  num_topology;		/** number of topology to use as a block to execute rsh. 
 				 1 = for-loop
 				 2 = binary-tree
 				 4 = quad-tree.
 				*/
-extern linkedlist* remoteshell_command_opt_r; /* reverse-ordered list of rsh options. */
+extern linkedlist* remoteshell_command_opt_r; /** reverse-ordered list of rsh options. */
+extern int buffer_size;		/* buffer size for running the input process. */
 
 

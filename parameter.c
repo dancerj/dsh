@@ -25,9 +25,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <netdb.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
 
 #include "dsh.h"
 
@@ -42,7 +42,12 @@
 #include "gettext.h"
 #define _(A) gettext(A)
 
-static void * 
+/**
+ * allocate memory with error
+ *
+ * @return allocated memory
+ */
+void * 
 malloc_with_error(int size)
 {
   void * u = malloc (size);
@@ -140,7 +145,9 @@ print_help (void)
   printf(_(
 	   "-v --verbose                   Verbose output\n"
 	   "-q --quiet                     Quiet\n"	
-	   "-M --show-machine-names        prepend the host name on output\n"
+	   "-M --show-machine-names        Prepend the host name on output\n"
+	   "-i --duplicate-input           Duplicate input given to dsh\n"
+	   "-b --bufsize                   Change buffer size used in input duplication\n"
 	   "-m --machine [machinename]     Execute on machine\n"
 	   "-n --num-topology              How to divide the machines\n"
 	   "-a --all                       Execute on all machines\n"
@@ -197,8 +204,8 @@ load_configfile(const char * dsh_conf)
 	    }	      
 	  else if (!strcmp(buf_a, "showmachinenames"))
 	    {
-	      show_machine_names |= (atoi ( buf_b ) != 0 );
-	      if (verbose_flag) printf(_("Setting showmachinenames to  [%i]\n"), show_machine_names);
+	      pipe_option |= (atoi ( buf_b ) != 0 );
+	      if (verbose_flag) printf(_("Setting pipe option to  [%i]\n"), pipe_option);
 	    }	      
 	  else if (!strcmp(buf_a, "verbose"))
 	    {
@@ -216,13 +223,24 @@ load_configfile(const char * dsh_conf)
       free_dshconfig(t);
       fclose(f);
     }  
-  return 0;  
+  return 0;
+}
+
+/** 
+ * open /dev/null as stdin
+ */
+static void 
+open_devnull(void)
+{
+  int in = open ("/dev/null", O_RDONLY);
+  dup2 (in, 0);
 }
 
 /**
  * Option parsing routine.
  *
  * Remember to update other places, such as execute_rsh_multiple routine when changing here.
+ * @return 1 on failure.
  */
 int
 parse_options ( int ac, char ** av)
@@ -238,6 +256,8 @@ parse_options ( int ac, char ** av)
     {"verbose", no_argument, 0, 'v'},
     {"quiet", no_argument, 0, 'q'},
     {"show-machine-names", no_argument, 0, 'M'},
+    {"duplicate-input", no_argument, 0, 'i'},
+    {"bufsize", required_argument, 0, 'b'},
 
 				/* machine-specification */
     {"machine", required_argument, 0, 'm'},
@@ -260,7 +280,7 @@ parse_options ( int ac, char ** av)
 #define getopt_long(a,b,c,d,e) getopt(a,b,c)
 #endif  
   
-  while((c = getopt_long (ac, av, "vqm:ar:f:g:hVcwo:Mn:", long_options, &index_point)) != -1)
+  while((c = getopt_long (ac, av, "vqm:ar:f:g:hVcwo:Mn:ib:", long_options, &index_point)) != -1)
     {
       switch (c)
 	{
@@ -306,7 +326,15 @@ parse_options ( int ac, char ** av)
 	  break;
 	case 'M':
 	  if (verbose_flag) printf (_("Show machine names on output\n"));
-	  show_machine_names |= 1;
+	  pipe_option |= PIPE_OPTION_OUTPUT;
+	  break;	  
+	case 'i':
+	  if (verbose_flag) printf (_("Duplicate input to all processes\n"));
+	  pipe_option |= PIPE_OPTION_INPUT;
+	  break;	  
+	case 'b':
+	  if (verbose_flag) printf (_("Buffer size used for dupliation\n"));
+	  buffer_size = atoi(optarg);	  
 	  break;	  
 	case 'm':
 	  if (verbose_flag) printf (_("Adding machine %s to list\n"), optarg);
@@ -359,6 +387,17 @@ parse_options ( int ac, char ** av)
 	rshcommandline_r = lladd(rshcommandline_r, av[i]);
       }
   }
+  
+  /* sanity checking */
+  if ((pipe_option & PIPE_OPTION_INPUT) && wait_shell )
+    {
+      fprintf (stderr, _("%s: Input duplication and concurrent shell need to be specified together\n"), PACKAGE);
+      return 1;
+    }
+  
+
+  if (!(pipe_option & PIPE_OPTION_INPUT))
+    open_devnull();		/* open /dev/null if no input pipe is required */
 
 				/* actually execute the code. */
   return do_shell(machinelist, rshcommandline_r);

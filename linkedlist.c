@@ -27,19 +27,6 @@
 #include "dsh.h"
 #include "linkedlist.h"
 
-static void * 
-malloc_with_error(int size)
-{
-  void * u = malloc (size);
-  if (!u)
-    {
-      fprintf (stderr, PACKAGE ": failed to allocate memory of %i bytes\n", size);
-      exit(1);      
-    }
-  return u;  
-}
-
-
 /**
    free a linked list.
  */
