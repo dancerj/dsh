@@ -1,0 +1,9 @@
+Some wishlist:
+
+     fanout with dshd opening connections, through ssh.
+     Some kind of FIFO set up, with something listening onto it.
+
+
+     rsh with timeout : rsh does not time out and fail... bug in rsh ?
+
+     $Id$
