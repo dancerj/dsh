@@ -412,7 +412,6 @@ execute_rsh ( const char * remoteshell_command,
 void
 run_input_forking_child_processes_process()
 {
-  int ret;
   char * buf;
   int count ;
   int i;
@@ -429,6 +428,10 @@ run_input_forking_child_processes_process()
 	      write (fd_output_array [i], buf, count);
 	    }
 	}      
+      for (i = 0; i < fd_output_array_len; ++i )
+	{
+	  close (fd_output_array [i]);
+	}
       break;
     case -1:
       /* fork failed */
@@ -438,7 +441,6 @@ run_input_forking_child_processes_process()
       if (verbose_flag)
 	printf (_("%s: forked off input forking process\n"), PACKAGE);
     }
-  
 }
 
 

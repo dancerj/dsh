@@ -1,5 +1,7 @@
 2002-09-16  Junichi Uekawa  <dancer@debian.org>
 
+	* dsh.c (run_input_forking_child_processes_process): properly close fd when process terminates.
+
 	* linkedlist.c: add include for parameter.h
 
 	* dsh.1: document -b.

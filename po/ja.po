@@ -5,48 +5,48 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
-"POT-Creation-Date: 2002-09-14 13:13+0900\n"
-"PO-Revision-Date: 2002-09-14 13:15+0900\n"
+"POT-Creation-Date: 2002-09-16 18:30+0900\n"
+"PO-Revision-Date: 2002-09-16 18:35+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=EUC-JP\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dsh.c:145
+#: dsh.c:151
 #, c-format
 msgid "%s: cannot create pipe\n"
 msgstr "%s: パイプを作成できません\n"
 
-#: dsh.c:159
+#: dsh.c:165
 #, c-format
 msgid "%s: Cannot spawn process\n"
 msgstr "%s: プロセスを実行できません\n"
 
-#: dsh.c:166
+#: dsh.c:172
 msgid "Failed playing with pipe"
 msgstr "パイプを利用するのに失敗"
 
-#: dsh.c:195
+#: dsh.c:201
 #, c-format
 msgid "%s: Failed on constructing a pipe and forking\n"
 msgstr "%s: パイプの作成とフォークに失敗しました．\n"
 
-#: dsh.c:206
+#: dsh.c:207
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr "%s: %s をllexecで実行しようとして失敗しました\n"
 
-#: dsh.c:253
+#: dsh.c:284
 msgid "DUMPing parameters passed to llexec\n"
 msgstr "llexecに与えられたパラメータをダンプしています\n"
 
-#: dsh.c:262
+#: dsh.c:293
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
 msgstr "%s: リモートシェル命令 %s の実行に失敗しました\n"
 
-#: dsh.c:268
+#: dsh.c:299
 #, c-format
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
@@ -55,41 +55,56 @@ msgstr ""
 "%s: 予期せぬエラーがおこりました．do_execute_with_optional_pipe が失敗し，-1 "
 "以外のエラーコードを返してきました．\n"
 
-#: dsh.c:385
+#: dsh.c:306
+#, c-format
+msgid "%s: fork failed, in execute_rsh_single\n"
+msgstr "%s: execute_rsh_singleでforkに失敗しました．\n"
+
+#: dsh.c:439
+#, c-format
+msgid "%s: forked off input forking process\n"
+msgstr "%s: 入力複製プロセスをforkしました\n"
+
+#: dsh.c:468
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr "--- %s で実行\n"
 
-#: dsh.c:397
+#: dsh.c:472
+#, c-format
+msgid "%s: execute_rsh failed, rsh invocation failure.\n"
+msgstr "%s: execute_rshが失敗しました, rsh の実行に失敗しました\n"
+
+#: dsh.c:489
 msgid "--- Terminated running\n"
 msgstr "--- 実行終了\n"
 
-#: dsh.c:423
+#: dsh.c:508
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr "%s: asprintf が失敗しました\n"
 
-#: parameter.c:51
+#: parameter.c:56
 #, c-format
 msgid "%s: failed to allocate memory of %i bytes\n"
 msgstr "%s: %i バイトのメモリの取得に失敗しました\n"
 
-#: parameter.c:90
+#: parameter.c:95
 #, c-format
 msgid "%s: Unknown netgroup %s.\n"
 msgstr "%s: %s は不明なネットグループです．\n"
 
-#: parameter.c:116
+#: parameter.c:121
 #, c-format
 msgid "%s: File %s nor %s could not be opened for read\n"
 msgstr "%s: %s も %s も読み込みのために開けませんでした\n"
 
-#: parameter.c:120
+#: parameter.c:125
 #, c-format
 msgid "%s: File %s could not be opened for read\n"
 msgstr "%s: %s を読み込みのために開く事ができませんでした\n"
 
-#: parameter.c:129
+#: parameter.c:134
 #, c-format
 msgid ""
 "Distributed Shell / Dancer's shell version %s \n"
@@ -102,11 +117,13 @@ msgstr ""
 "distributed under the terms and conditions of GPL version 2\n"
 "\n"
 
-#: parameter.c:141
+#: parameter.c:146
 msgid ""
 "-v --verbose                   Verbose output\n"
 "-q --quiet                     Quiet\n"
-"-M --show-machine-names        prepend the host name on output\n"
+"-M --show-machine-names        Prepend the host name on output\n"
+"-i --duplicate-input           Duplicate input given to dsh\n"
+"-b --bufsize                   Change buffer size used in input duplication\n"
 "-m --machine [machinename]     Execute on machine\n"
 "-n --num-topology              How to divide the machines\n"
 "-a --all                       Execute on all machines\n"
@@ -123,6 +140,8 @@ msgstr ""
 "-v --verbose                   出力を多く\n"
 "-q --quiet                     出力抑制\n"
 "-M --show-machine-names        出力の先頭にホスト名を追加表示\n"
+"-i --duplicate-input           入力を全プロセスに複製\n"
+"-b --bufsize                   入力複製の利用バッファサイズを変更\n"
 "-m --machine [machinename]     指定したマシンで実行\n"
 "-n --num-topology              マシンをどう分割するか指定\n"
 "-a --all                       全マシンで実行\n"
@@ -136,100 +155,117 @@ msgstr ""
 "-V --version                   バージョン情報を表示\n"
 "\n"
 
-#: parameter.c:173
+#: parameter.c:180
 #, c-format
 msgid "Loading config file %s\n"
 msgstr "設定ファイル %s を読み込んでいます\n"
 
-#: parameter.c:182
+#: parameter.c:189
 #, c-format
 msgid " Parameter %s is %s\n"
 msgstr "パラメータ %s は %s\n"
 
-#: parameter.c:185 parameter.c:328
+#: parameter.c:192 parameter.c:356
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr "リモートシェルとして %s を利用\n"
 
-#: parameter.c:190 parameter.c:332
+#: parameter.c:197 parameter.c:360
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr "シェルのオプションに [%s] を追加\n"
 
-#: parameter.c:196
+#: parameter.c:203
 #, c-format
 msgid "Setting wait-shell to  [%i]\n"
 msgstr "シェル待ち変数を [%i] に設定します\n"
 
-#: parameter.c:201
+#: parameter.c:208
 #, c-format
-msgid "Setting showmachinenames to  [%i]\n"
-msgstr "showmachinenames を [%i] に設定します\n"
+msgid "Setting pipe option to  [%i]\n"
+msgstr "パイプオプションを [%i] に設定します\n"
 
-#: parameter.c:206
+#: parameter.c:213
 #, c-format
 msgid "Setting verbose to  [%i]\n"
 msgstr "verbose を [%i] に設定します\n"
 
-#: parameter.c:211
+#: parameter.c:218
 #, c-format
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr "%s: 未処理の設定ファイル行 %s が %s にあります\n"
 
-#: parameter.c:268
+#: parameter.c:288
 msgid "Adding all machines to the list\n"
 msgstr "全マシンをリストに追加します\n"
 
-#: parameter.c:281
+#: parameter.c:301
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr "ネットグループ %s をリストに追加します\n"
 
-#: parameter.c:287
+#: parameter.c:307
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr "グループ %s をリストに追加します\n"
 
-#: parameter.c:296
+#: parameter.c:316
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr "ファイル %s をリストに追加します\n"
 
-#: parameter.c:300
+#: parameter.c:320
 msgid "Verbose flag on\n"
 msgstr "冗長フラグオン\n"
 
-#: parameter.c:304
+#: parameter.c:324
 msgid "Verbose flag off\n"
 msgstr "冗長フラグオフ\n"
 
-#: parameter.c:308
+#: parameter.c:328
 msgid "Show machine names on output\n"
 msgstr "出力にマシン名を表示\n"
 
-#: parameter.c:312
+#: parameter.c:332
+msgid "Duplicate input to all processes\n"
+msgstr "全プロセスに入力を複製\n"
+
+#: parameter.c:336
+msgid "Buffer size used for dupliation\n"
+msgstr "複製に利用するバッファサイズ\n"
+
+#: parameter.c:340
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr "マシン %s をリストに追加します\n"
 
-#: parameter.c:316
+#: parameter.c:344
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr "トポロジ番号を %s に設定\n"
 
-#: parameter.c:336
+#: parameter.c:364
 msgid "Wait for shell to finish executing\n"
 msgstr "シェルが終了するのを待つ\n"
 
-#: parameter.c:340
+#: parameter.c:368
 msgid "Do not wait for shell to finish\n"
 msgstr "シェルが終了するのを待たない\n"
 
-#: parameter.c:344
+#: parameter.c:372
 msgid "Unhandled option\n"
 msgstr "利用できないオプション\n"
 
-#: parameter.c:351
+#: parameter.c:379
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr "%s: マシンが一台も指定されていません．\n"
+
+#: parameter.c:394
+#, c-format
+msgid ""
+"%s: Input duplication and concurrent shell need to be specified together\n"
+msgstr "%s: 入力複製と並列シェル実行を同時に指定する必要があります\n"
+
+#~ msgid "Setting showmachinenames to  [%i]\n"
+#~ msgstr "showmachinenames を [%i] に設定します\n"
