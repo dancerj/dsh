@@ -156,7 +156,7 @@ fork_and_pipe_echoing_routine (
   if (0 != (childid = fork()))
     {	
       int status;
-      /* The child process.  -- isn't this the parent process?*/
+      /* The parent process */
       close (capture_fd[1]);
       if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
@@ -171,7 +171,8 @@ fork_and_pipe_echoing_routine (
     }      
   else
     {
-      /* This is the real child process -- ??? 
+      /* The child process -- this is the main trunc
+	 I don't want dsh to wait for the termination of this process.
        */
       if (-1 == dup2 (capture_fd[1], fdid))
 	{
@@ -479,6 +480,9 @@ execute_rsh ( const char * remoteshell_command,
  * output the same thing to all of individual remote processes
  *
  * Used for processing the -i option
+ *
+ * By the time this routine is called, the child rsh processes are 
+ * up and running.
  */
 void
 run_input_forking_child_processes_process()
@@ -493,7 +497,7 @@ run_input_forking_child_processes_process()
     case 0:
       /* the child process */
       buf = malloc_with_error ( buffer_size );
-      signal(SIGPIPE, SIG_IGN);	/* I'll handle SIGPIPE with SIGPIPE */
+      signal(SIGPIPE, SIG_IGN);	/* I'll handle SIGPIPE with EPIPE */
       
       while ((count = read(0, buf, buffer_size)) != -1 )
 	{

@@ -1,3 +1,12 @@
+dsh (0.25.1-1) unstable; urgency=low
+
+  * New upstream version
+    Fix assertion error, and document workaround; 
+    use Ctrl-D instead of exit for now 
+    (Closes: #228513).
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 22 Jan 2004 09:16:45 +0900
+
 dsh (0.25.0-1) unstable; urgency=low
 
   * New upstream version
