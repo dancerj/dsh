@@ -153,13 +153,15 @@ fork_and_pipe_echoing_routine (
       return -1;
     }
   if (0 != (childid = fork()))
-    {			
+    {	
+      int status;
       /* The child process.  */
       close (capture_fd[1]);
       if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
-      exit(EXIT_SUCCESS);	/* actually, it should just get the
-				   child process return code. */
+      waitpid (WAIT_ANY, &status, 0); /* need to error check this ? */
+      assert(WIFEXITED(status));
+      exit(WEXITSTATUS(status));
     }
   else if (childid == -1)
     {			/* do some error processing */
@@ -223,13 +225,10 @@ int dsh_exit_code = 0;
 void
 dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
 {
-  /* DEBUGDEBUGDEBUG */
   /* default behavior was to always ignore. */
-  fprintf (stderr, "e-code %i, child %i\n", dsh_exit_code, exit_code_of_child);
-  if ((exit_code_of_child != 0) && (dsh_exit_code == 0))
+  if ((exit_code_of_child != EXIT_SUCCESS) && (dsh_exit_code == EXIT_SUCCESS))
     {
       dsh_exit_code = exit_code_of_child ;
-      fprintf (stderr, "set exit %i\n", dsh_exit_code);
     }
 }
 
@@ -332,7 +331,7 @@ execute_rsh_single (const char * remoteshell_command,
 	       _("%s: fork failed, in execute_rsh_single\n"), PACKAGE);
       return -1;
     }
-  else
+  else				/* parent process */
     {
       if (pipe_option & PIPE_OPTION_INPUT)
 	{
@@ -360,7 +359,6 @@ execute_rsh_single (const char * remoteshell_command,
     }
   /* nobody reaches here. */
 }
-
 
 /**
  * spawns dsh session on other machines
@@ -491,6 +489,7 @@ run_input_forking_child_processes_process()
       exit (EXIT_SUCCESS);
     case -1:
       /* fork failed */
+      fprintf(stderr,_("%s: fork failed trying to dupilcate input\n"), PACKAGE);
       break;
     default:
       /* parent process closes the output array. */
@@ -565,7 +564,9 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   return dsh_exit_code;
 }
 
-
+/**
+ * The main code.
+ */
 int
 main(int ac, char ** av)
 {

@@ -1,11 +1,12 @@
-dsh (0.23.8-0) UNRELEASED; urgency=low
+dsh (0.23.9-1) unstable; urgency=low
 
   * New upstream version
   - improved manual build system.
   - update man pages.
   - exit code reflects child exit codes
+  * Install NEWS file.
 
- -- Junichi Uekawa <dancer@debian.org>  Thu,  5 Jun 2003 23:20:59 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Sat,  7 Jun 2003 02:22:56 +0900
 
 dsh (0.23.7-1) unstable; urgency=low
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
-"POT-Creation-Date: 2003-06-05 22:49+0900\n"
+"POT-Creation-Date: 2003-06-07 02:11+0900\n"
 "PO-Revision-Date: 2003-06-05 21:32+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
@@ -13,45 +13,45 @@ msgstr ""
 "Content-Type: text/plain; charset=EUC-JP\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dsh.c:123
+#: dsh.c:124
 #, c-format
 msgid "%s: Could not open descriptor [%i] or [%i]\n"
 msgstr "%s: デスクリプタ [%i] も [%i] も開けません\n"
 
-#: dsh.c:151
+#: dsh.c:152
 #, c-format
 msgid "%s: cannot create pipe\n"
 msgstr "%s: パイプを作成できません\n"
 
-#: dsh.c:165
+#: dsh.c:168
 #, c-format
 msgid "%s: Cannot spawn process\n"
 msgstr "%s: プロセスを実行できません\n"
 
-#: dsh.c:172
+#: dsh.c:175
 msgid "Failed playing with pipe"
 msgstr "パイプを利用するのに失敗"
 
-#: dsh.c:201
+#: dsh.c:204
 #, c-format
 msgid "%s: Failed on constructing a pipe and forking\n"
 msgstr "%s: パイプの作成とフォークに失敗しました．\n"
 
-#: dsh.c:207
+#: dsh.c:210
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr "%s: %s をllexecで実行しようとして失敗しました\n"
 
-#: dsh.c:304
+#: dsh.c:309
 msgid "DUMPing parameters passed to llexec\n"
 msgstr "llexecに与えられたパラメータをダンプしています\n"
 
-#: dsh.c:313
+#: dsh.c:318
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
 msgstr "%s: リモートシェル命令 %s の実行に失敗しました\n"
 
-#: dsh.c:319
+#: dsh.c:324
 #, c-format
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
@@ -60,33 +60,33 @@ msgstr ""
 "%s: 予期せぬエラーがおこりました．do_execute_with_optional_pipe が失敗し，-1 "
 "以外のエラーコードを返してきました．\n"
 
-#: dsh.c:326
+#: dsh.c:331
 #, c-format
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr "%s: execute_rsh_singleでforkに失敗しました．\n"
 
-#: dsh.c:400 dsh.c:410 dsh.c:567 parameter.c:369 parameter.c:391
+#: dsh.c:412 dsh.c:422 dsh.c:584 parameter.c:369 parameter.c:391
 #: parameter.c:397
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr "%s: asprintf が失敗しました\n"
 
-#: dsh.c:486
+#: dsh.c:500
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr "%s: 入力複製プロセスをforkしました\n"
 
-#: dsh.c:518
+#: dsh.c:532
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr "--- %s で実行\n"
 
-#: dsh.c:522
+#: dsh.c:536
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr "%s: execute_rshが失敗しました, rsh の実行に失敗しました\n"
 
-#: dsh.c:544
+#: dsh.c:561
 msgid "--- Terminated running\n"
 msgstr "--- 実行終了\n"
 

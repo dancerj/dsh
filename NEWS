@@ -1,4 +1,8 @@
-0.23.9 - ??
+0.23.9.cvs.1 - ??
+
+ + doc++ documentation fixes.
+
+0.23.9 - 7 Jun 2003.
 
  + really include .ja manpages
  + review and improve manual page wordings

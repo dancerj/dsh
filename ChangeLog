@@ -1,3 +1,40 @@
+2003-06-07  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.c (dsh_update_exit_code): use EXIT_SUCCESS instead of 0.
+
+	* configure.ac: 0.23.9.cvs.1
+	
+	* dsh.c (run_input_forking_child_processes_process): add error message for forking
+
+	* tests/param-i.sh: change to support getopt which does not support -rhoge 
+	style command-line specification.
+	added extra test, to see what is giving warnings.
+
+	* parameter.c: update docs.
+	(print_version): update copyright statement.
+	(read_machinenetgroup): update doc; duplicates are removed.
+
+	* linkedlist.c: update docs.
+
+	* parameter.h: fix doc strings.
+
+	* configure.ac: 0.23.9
+
+	* NEWS: update
+
+	* dsh.c (fork_and_pipe_echoing_routine): and re-revert to use it as the 
+	parent process; and return the child exit-code to the parent.
+
+	* dsh.conf (verbose): change default to not show machinenames.
+
+	* tests/param-r-invalid.sh: add more checks
+
+	* dsh.c (fork_and_pipe_echoing_routine): child process
+	is the one who does echoing back process, not the parent process.
+	Changing the way around.
+	I don't know if it will cause problems, but return-code handling is much better now.
+	
+
 2003-06-06  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.8.cvs.1

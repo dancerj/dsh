@@ -44,7 +44,7 @@
 #define _(A) gettext(A)
 
 /**
- * allocate memory with error
+ * allocate memory, and abort with error
  *
  * @return allocated memory
  */
@@ -88,6 +88,8 @@ stripwhitespace(char * buf)
 /**
  * Add hostname to machinelist if and only if 
  * the host does not already exist in the machine list.
+ *
+ * @return linked list where machinename is added if it does not exist already
  */
 static linkedlist *
 machinelist_lladd(linkedlist * machinelist,
@@ -102,7 +104,6 @@ machinelist_lladd(linkedlist * machinelist,
 
 /*
  * Load machine list from netgroup (typically NIS)
- * Todo: Should perhaps remove duplicates.
  *
  * Code contributed from Petter Reinholdtsen on 22 Dec 2001.
  */
@@ -173,15 +174,21 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
   return machinelist;  
 }
 
+/**
+ * Print version string
+ */
 int print_version(void)
 {
   printf(_("Distributed Shell / Dancer\'s shell version %s \n"
-	 "Copyright 2001,2002 Junichi Uekawa, \n"
+	 "Copyright 2001-2003 Junichi Uekawa, \n"
 	 "distributed under the terms and conditions of GPL version 2\n\n"),
 	 VERSION);
   return 0;
 }
 
+/**
+ * print help
+ */
 int
 print_help (void)
 {
@@ -208,7 +215,9 @@ print_help (void)
 }
 
 
-				/* load the configuration file. */
+/**
+ * load the configuration file.
+ */
 int
 load_configfile(const char * dsh_conf)
 {

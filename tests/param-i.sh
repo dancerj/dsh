@@ -1,7 +1,16 @@
 #! /bin/sh
 # test whether the -i option works.
 
-[ "`echo test | ./dsh -Mcirecho -ma,b,c | sort`" = "\
+set -e 
+
+[ "`echo test | ./dsh -Mcir echo -ma,b,c $(cat) | sort`" = "\
+a: a test
+b: b test
+c: c test" ]
+
+[ "`echo test | ./dsh -Mcir echo -ma,b,c | sort`" = "\
 a: a
 b: b
 c: c" ]
+
+
