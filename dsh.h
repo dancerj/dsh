@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001 Junichi Uekawa
+ *  Copyright (C) 2001, 2002 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,15 +18,7 @@
  */
 
 
-
+#include "dshversion.h"
 #define PROGRAM_NAME "dsh"
-#define DSH_VERSION "0.0.1"
 #define DSH_CONF "/etc/dsh/dsh.conf"
 
-/*
-  typedef struct machine_id_tag
-  {
-  char * machinename;
-  struct machine_id_tag * next;
-  } machine_id;
-*/

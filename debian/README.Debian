@@ -1,7 +1,7 @@
 dsh for Debian
 --------------
 
-This is a distributed shell for Debian/Beowulf project.
+This is a "distributed shell" implementation for Debian/Beowulf project.
 Something that I would have liked, and everyone else have liked,
 but have not (apparently) existed in Debian.
 
@@ -9,6 +9,10 @@ This program supports update-cluster.
 You can manually run update-cluster-regenerate when you install this 
 package, to configure dsh with update-cluster configuration.
 Please see the documentation for update-cluster
+
+This program supports netgroup, which may be provided through 
+the libc, through the NSS, i.e. it is possible to use NIS information
+in dsh.
 
 
 The author has a home page at 

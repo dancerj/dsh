@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001 Junichi Uekawa
+ *  Copyright (C) 2001, 2002 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@ void llfree(linkedlist* a);
 linkedlist* lladd(linkedlist*next, const char * b);
 linkedlist* llcat(linkedlist*a, linkedlist*b);
 linkedlist* llreverse(linkedlist*a);
-linkedlist* lldup_r(linkedlist*a);
-linkedlist* lldup(linkedlist*a);
-int llcount (linkedlist*a);
-int llexec ( char * command, linkedlist*a);
-void lldump(linkedlist*a);
+linkedlist* lldup_r(const linkedlist*a);
+linkedlist* lldup(const linkedlist*a);
+int llcount (const linkedlist*a);
+int llexec (const char * command, const linkedlist*a);
+void lldump(const linkedlist*a);
