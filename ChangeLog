@@ -1,3 +1,9 @@
+2002-05-16  Junichi Uekawa  <dancer@debian.org>
+
+	* parameter.c (read_machinelist): minor cosmetic fix.
+	if alternatelistfile is NULL, do not try to display it in error 
+	message.
+
 2002-04-20  Junichi Uekawa  <dancer@debian.org>
 
 	* debian/control (Build-Depends): remove libtool dependency.

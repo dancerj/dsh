@@ -103,10 +103,14 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
     }
   else
     {
-      fprintf (stderr, 
-	       PROGRAM_NAME 
-	       ": File %s nor %s could not be opened for read\n", 
-	       listfile, alternatelistfile);
+      if (alternatelistfile)
+	fprintf (stderr, 
+		 "%s: File %s nor %s could not be opened for read\n", 
+		 PROGRAM_NAME, listfile, alternatelistfile);
+      else
+	fprintf (stderr, 
+		 "%s: File %s could not be opened for read\n", 
+		 PROGRAM_NAME, listfile);
     }  
   free (buf);  
   return machinelist;  
