@@ -128,13 +128,57 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
   return 0;  
 }
 
+/**
+ * Forks the output pipe routine for fd[x]
+ *
+ * @returns -1 on error, 0 on success
+ */
+static int 
+fork_and_pipe_echoing_routine (
+			       /** File descriptor ID */ int fdid,
+			       const char * machinename) 
+{
+  int childid;
+  int capture_fd[2];
+  if (-1 == pipe (capture_fd))
+    {
+      fprintf(stderr, _("%s: cannot create pipe\n"), PACKAGE);
+      return -1;
+    }
+  if (0 != (childid = fork()))
+    {			
+      /* The child process.  */
+      close (capture_fd[1]);
+      if (do_echoing_back(capture_fd[0], fdid, machinename))
+	exit (EXIT_FAILURE);
+      exit(EXIT_SUCCESS);	/* actually, it should just get the
+				   child process return code. */
+    }
+  else if (childid == -1)
+    {			/* do some error processing */
+      fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
+      return -1;
+    }      
+  else
+    {
+      if (-1 == dup2 (capture_fd[1], fdid))
+	{
+	  fprintf(stderr, PACKAGE ": %s\n", _("Failed playing with pipe"));
+	  return -1;
+	}
+      close (capture_fd[0]);
+      close (capture_fd[1]);
+    }
+  return 0;
+}
+
 /** 
  * Actually execute the program, with maybe a pipe process being forked.
  * the actual program execution is done by llexec.
  * This part does the optional pipe construction or direct llexec
  * depending on the flags.
  *
- * @returns -1 on failure, exit (1) on exec failure.
+ * @returns -1 on failure
  */
 static int
 do_execute_with_optional_pipe (const char * remoteshell_command,
@@ -145,58 +189,11 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 {
   if (pipe_option & 1)		/* pipe the outputs */
     {
-      int capture_stdout[2];	/* the pipe fd's to use to capturing std-ins */
-      int capture_stderr[2];
-      int childid;      
-            
-      if ((-1 == pipe (capture_stdout)) || (-1 == pipe (capture_stderr)))
-	{
-	  fprintf(stderr, _("%s: cannot create pipe\n"), PACKAGE);
+      if (fork_and_pipe_echoing_routine(1, machinename) ||
+	  fork_and_pipe_echoing_routine(1, machinename))
+	{	  
+	  fprintf(stderr, _("%s: Failed on constructing a pipe and forking\n"), PACKAGE);
 	  return -1;
-	}
-      
-      if (0 != (childid = fork()))
-	{			/* do some stdin processing */
-	  close (capture_stdout[1]);
-	  close (capture_stderr[0]);
-	  close (capture_stderr[1]);	  
-	  if (do_echoing_back(capture_stdout[0], 1, machinename))
-	    exit (EXIT_FAILURE);
-	  exit(EXIT_SUCCESS);	/* actually, it should just get the
-				   child process return code. */
-	}
-      else if (childid == -1)
-	{			/* do some error processing */
-	  fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
-	  exit (EXIT_FAILURE);	  
-	}      
-      else if (0 != (childid = fork ()))
-	{			/* do some stderr processing */
-	  
-	  close (capture_stdout[0]);
-	  close (capture_stdout[1]);
-	  close (capture_stderr[1]);	  
-	  if (do_echoing_back(capture_stderr[0], 2, machinename))
-	    exit (EXIT_FAILURE);
-	  exit (EXIT_SUCCESS);
-	}
-      else if (childid == -1)
-	{			/* do some error processing */
-	  fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
-	  exit (EXIT_FAILURE);	  
-	}
-      else
-	{			/* execute the child with redirects */
-	  if ((-1 == dup2 (capture_stdout[1], 1))||
-	      (-1 == dup2 (capture_stderr[1], 2)))
-	    {
-	      fprintf(stderr, PACKAGE ": %s\n", _("Failed playing with pipe"));
-	      exit (EXIT_FAILURE);
-	    }
-	  close (capture_stdout[0]);
-	  close (capture_stdout[1]);
-	  close (capture_stderr[0]);
-	  close (capture_stderr[1]);
 	}
     }
 

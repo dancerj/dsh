@@ -7,6 +7,9 @@
 	parameter passing.
 	(do_execute_with_optional_pipe): add the hook to do things properly
 	later.
+	(fork_and_pipe_echoing_routine): return -1 instead of exit(EXIT_FAILURE)
+	(do_execute_with_optional_pipe): changed implementation to use
+	fork_and_pipe_echoing_routine.
 
 	* parameter.c (parse_options): change show_machine_names = 1 to
 	|= 1.
