@@ -10,7 +10,7 @@ TESTS=tests/param-f.sh \
 	tests/param-m.sh \
 	tests/param-unknown.sh  \
 	tests/param-cn4.sh
-
+TESTS_ENVIRONMENT=bindir=$(bindir)
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file
 
