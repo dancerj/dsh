@@ -45,3 +45,7 @@ upload-dist-all: distcheck
 SUBDIRS = m4 po 
 
 ACLOCAL_AMFLAGS = -I m4
+
+doc: ${srcdir}/*.[ch]
+	doc++ --dir doc *.[ch]
+
