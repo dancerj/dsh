@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-10-19 17:18+0900\n"
+"POT-Creation-Date: 2002-10-21 22:50+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,28 +60,29 @@ msgstr ""
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr ""
 
-#: dsh.c:454
+#: dsh.c:379 dsh.c:389 dsh.c:539 parameter.c:368 parameter.c:390
+#: parameter.c:396
+#, c-format
+msgid "%s: asprintf failed\n"
+msgstr ""
+
+#: dsh.c:465
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:484
+#: dsh.c:495
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:488
+#: dsh.c:499
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:505
+#: dsh.c:516
 msgid "--- Terminated running\n"
-msgstr ""
-
-#: dsh.c:528
-#, c-format
-msgid "%s: asprintf failed\n"
 msgstr ""
 
 #: parameter.c:57
@@ -144,12 +145,12 @@ msgstr ""
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:233 parameter.c:431
+#: parameter.c:233 parameter.c:446
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:238 parameter.c:435
+#: parameter.c:238 parameter.c:450
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
@@ -178,79 +179,79 @@ msgstr ""
 msgid "Adding all machines to the list\n"
 msgstr ""
 
-#: parameter.c:376
+#: parameter.c:381
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr ""
 
-#: parameter.c:382
+#: parameter.c:387
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr ""
 
-#: parameter.c:391
+#: parameter.c:406
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr ""
 
-#: parameter.c:395
+#: parameter.c:410
 msgid "Verbose flag on\n"
 msgstr ""
 
-#: parameter.c:399
+#: parameter.c:414
 msgid "Verbose flag off\n"
 msgstr ""
 
-#: parameter.c:403
+#: parameter.c:418
 msgid "Show machine names on output\n"
 msgstr ""
 
-#: parameter.c:407
+#: parameter.c:422
 msgid "Duplicate input to all processes\n"
 msgstr ""
 
-#: parameter.c:411
+#: parameter.c:426
 msgid "Buffer size used for dupliation\n"
 msgstr ""
 
-#: parameter.c:415
+#: parameter.c:430
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr ""
 
-#: parameter.c:419
+#: parameter.c:434
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:439
+#: parameter.c:454
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:443
+#: parameter.c:458
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:450
+#: parameter.c:465
 #, c-format
 msgid "Unkown option -%c.\n"
 msgstr ""
 
-#: parameter.c:452
+#: parameter.c:467
 #, c-format
 msgid "Unkown option character 0x%x.\n"
 msgstr ""
 
-#: parameter.c:456
+#: parameter.c:471
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:463
+#: parameter.c:478
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""
 
-#: parameter.c:478
+#: parameter.c:493
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"

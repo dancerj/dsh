@@ -1,3 +1,11 @@
+dsh (0.23.4-1) unstable; urgency=low
+
+  * New upstream version
+  * Install upstream ChangeLog.
+  * Update standards-version to 3.5.7
+
+ -- Junichi Uekawa <dancer@debian.org>  Mon, 21 Oct 2002 22:50:44 +0900
+
 dsh (0.23.1-1) unstable; urgency=low
 
   * New upstream version
