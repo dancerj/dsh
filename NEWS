@@ -1,4 +1,4 @@
-0.23.12.cvs.1 - 30 Jul 2003
+0.24.0 - 5 Aug 2003.
 
  + Support NetBSD 1.6. 
  + check for netgroup.h for setnetgrent.

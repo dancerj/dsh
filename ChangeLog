@@ -1,3 +1,7 @@
+2003-08-05  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.24.0
+
 2003-07-30  Junichi Uekawa  <dancer@debian.org>
 
 	* NEWS: update
