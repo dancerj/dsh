@@ -1,3 +1,7 @@
+0.25.4.cvs.1 4 Jan 2005.
+
+ + Fix copyright year for 2004.
+
 0.25.4 3 Dec 2004.
 
  + Fix compilation error on solaris, include signal.h
