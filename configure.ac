@@ -1,7 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(dsh, 0.23.1.aix.1)
-AM_INIT_AUTOMAKE(dsh, 0.23.1.aix.1)
+m4_define(DSHVERSION,0.23.2)
+AC_INIT(dsh, DSHVERSION)
+AM_INIT_AUTOMAKE(dsh, DSHVERSION)
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
@@ -31,6 +32,18 @@ AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_MSG_ERROR([dshconfig not found
 
 dnl Check if it is a GNU getopt that munges parameter option orderings.
 dnl and stops munging if + is specified.
+
+
+AC_MSG_CHECKING([netdb.h has setnetgrent that returns void])
+AC_TRY_COMPILE([#include <netdb.h>],
+[{char * c;int i = setnetgrent(c);}],[setnetgrentwithvoid=no],[setnetgrentwithvoid=yes])
+
+case ${setnetgrentwithvoid} in 
+yes) AC_DEFINE(SETNETGRENT_RETURNS_VOID,,[If setnetgrent returns void like AIX systems, set this])
+     AC_MSG_RESULT([yes])
+      ;;
+no) AC_MSG_RESULT([no]) ;;
+esac
 
 getopt_gnu=0
 AC_MSG_CHECKING([getopt with a GNU opton reordering extention])
@@ -82,7 +95,7 @@ case ${getopt_gnu} in
   no_workaround) AC_MSG_RESULT([no, without workaround]) ;;
   posix) AC_MSG_RESULT([no, POSIX compliant]) ;;
   cross) AC_MSG_RESULT([cross-compiling, ignore]) ;;
-  *)AC_MSG_RESULT([unexpected result :${getopt_gnu}])
+  *)AC_MSG_RESULT([unexpected result :${getopt_gnu}]) ;;
 esac
 
 dnl Use -Wall if we have gcc.

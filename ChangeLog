@@ -1,5 +1,23 @@
 2002-09-30  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.2
+	Compiles and works on AIX.
+
+	* tests/param-unknown.sh: add -u to check.
+	along with --unknown-parameter.
+
+	* dsh.c (do_echoing_back_process): use size_t for getline argument.
+
+	* configure.ac: 0.23.1.aix.2
+
+	* parameter.c (read_machinenetgroup): 
+	work around AIX and work around void function.
+
+	* configure.ac: check for setnetgrent
+	(SETNETGRENT_RETURNS_VOID): check for setnetgrent which
+	returns void (AIX is possibly broken in this respect, so
+	work around it).
+
 	* parameter.c (read_machinelist): use size_t instead of int, 
 	because getline parameter is in size_t, and AIX likes 
 	size_t to be a long.

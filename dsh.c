@@ -114,7 +114,7 @@ static int
 do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
 {
   char * buf = NULL;
-  int bufsize = 0;
+  size_t bufsize = 0;
   FILE*f = fdopen (fd_in, "r");
   FILE*standard_output = fdopen (fd_out, "w");
   

@@ -110,7 +110,12 @@ linkedlist*
 read_machinenetgroup(linkedlist * machinelist,
                     const char * groupname)
 {
-  if (setnetgrent(groupname)) 
+#ifdef SETNETGRENT_RETURNS_VOID
+#define WORKAROUND_SETNETGRENT , 1
+#else
+#define WORKAROUND_SETNETGRENT
+#endif
+  if (setnetgrent(groupname) WORKAROUND_SETNETGRENT) 
     {
       char *hostp=NULL, *userp=NULL, *domainp=NULL;
       
