@@ -291,7 +291,7 @@ execute_rsh_multiple (const char * remoteshell_command,
   linkedlist* extraparam = NULL;
   linkedlist* tmp;  
   linkedlist* tmp_start ;  
-  char * numstring;
+  char * buffer;
 
   extraparam = lladd(extraparam, DSH_COMMANDLINE);
 
@@ -320,9 +320,15 @@ execute_rsh_multiple (const char * remoteshell_command,
     extraparam=lladd (extraparam, "-c");
   if (show_machine_names)
     extraparam=lladd (extraparam, "-M");
+  
 
-  asprintf(&numstring, "-n%i", num_topology);  
-  extraparam=lladd (extraparam, numstring);
+  asprintf(&buffer, "-n%i", num_topology);  
+  extraparam=lladd (extraparam, buffer);
+  free(numstring);  
+
+  /* add remoteshell command */
+  asprintf(&buffer, "-r%s", remoteshell_command);  
+  extraparam=lladd (extraparam, buffer);
   free(numstring);  
 
 				/* end of extra options. */

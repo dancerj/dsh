@@ -11,6 +11,7 @@
 	(do_execute_with_optional_pipe): changed implementation to use
 	fork_and_pipe_echoing_routine.
 	(do_execute_with_optional_pipe): fix typo
+	(execute_rsh_multiple): pass -r option to other end when doing -nX.
 
 	* parameter.c (parse_options): change show_machine_names = 1 to
 	|= 1.
