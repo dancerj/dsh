@@ -54,6 +54,7 @@ build-man/dsh.conf.5: ${srcdir}/dsh.conf.5
 clean-local:
 	-rm -f $(man_MANS)
 	-rmdir build-man
+	-rm -r doc
 
 # Make debian pristine-source
 ../@PACKAGE@_@VERSION@.orig.tar.gz: 

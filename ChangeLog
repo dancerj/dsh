@@ -1,3 +1,13 @@
+2003-06-05  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.7.cvs.4
+	
+	* dsh.c: define dsh_exit_code, default to 0.
+	(do_shell): return dsh_exit_code instead of '0'.
+	update file copyright.
+	(dsh_update_exit_code): create a template for adding full features.
+	I'd add things later.
+
 2003-06-04  Junichi Uekawa  <dancer@debian.org>
 
 	* Makefile.am (install-data-local): typo in install location of 

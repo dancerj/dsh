@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001, 2002 Junichi Uekawa
+ *  Copyright (C) 2001, 2002, 2003 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -319,8 +319,12 @@ execute_rsh_single (const char * remoteshell_command,
 	  add_fd_to_output_array(input_pipe[1]);
 	}
       if (wait_shell)
+	{
 	  waitpid(childpid, &childstatus, 0);	/* wait for termination, 
 						   if it was required */
+	  dsh_update_exit_code(WEXITSTATUS(childstatus));
+	}
+      
       return 0;
     }
   /* nobody reaches here. */
@@ -468,13 +472,31 @@ run_input_forking_child_processes_process()
     }
 }
 
+/**
+   The exit code to give after successful termination of the dsh program.
+ */
+int dsh_exit_code = 0;
+
+/**
+   How to update the dsh exit code.
+
+   dsh may return exit code generated from all of its child processes,
+   this is the core engine. Currently does nothing.
+ */
+void
+dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
+{
+}
 
 /**
    Called after the command-line parsing.
    do the shell execution without caring
    about what actually would happen
 
-   @returns -1 on failure, 0 on success
+   @return -1 on failure
+   @return dsh_exit_code on success
+
+   return value is used as dsh exit code.
 */
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
@@ -510,12 +532,17 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
     run_input_forking_child_processes_process();  
 
   if (!wait_shell)
-    while(-1 != (waitpid(WAIT_ANY, NULL, 0)));	/* waiting for all. */
+    {
+      int exitstat;
+      /* waiting for all. */
+      while(-1 != (waitpid(WAIT_ANY, &exitstat, 0)))
+	dsh_update_exit_code(WEXITSTATUS(exitstat));      
+    }
   
   if (verbose_flag)
     fprintf(stderr, _("--- Terminated running\n"));
   
-  return 0;  
+  return dsh_exit_code;
 }
 
 
