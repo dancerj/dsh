@@ -504,9 +504,9 @@ main(int ac, char ** av)
   setlocale (LC_ALL, "");
   if (!textdomain(PACKAGE_NAME))
     {
-      fprintf ("%s: failed to call textdomain\n", PACKAGE);
+      fprintf (stderr, "%s: failed to call textdomain\n", PACKAGE);
       if (!bindtextdomain(PACKAGE_NAME, LOCALEDIR))
-	fprintf ("%s: failed to call bindtextdomain\n", PACKAGE);
+	fprintf (stderr, "%s: failed to call bindtextdomain\n", PACKAGE);
     }
   
   
