@@ -1,3 +1,17 @@
+2002-10-22  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.4.cvs.1
+
+	* Makefile.am (TESTS): update
+	(EXTRA_DIST): add test.space.file
+
+	* tests/param-f-with-space.sh: test with reading file with space
+	to make sure that:
+	#165746: dsh.updatelist generates invalid /etc/dsh/machines.list
+	is not happening.
+
+	* tests/list.space.file: file with space.
+
 2002-10-21  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.4

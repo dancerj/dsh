@@ -7,6 +7,7 @@ dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PAC
 check_PROGRAMS=dsh
 TESTS=tests/param-f.sh \
 	tests/param-f-fail.sh \
+	tests/param-f-with-space.sh \
 	tests/param-m.sh \
 	tests/param-unknown.sh  \
 	tests/param-i.sh  \
@@ -17,7 +18,7 @@ TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LANG=C
 
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
-	$(TESTS) tests/list.file
+	$(TESTS) tests/list.file tests/list.space.file
 
 
 # Make debian pristine-source
