@@ -1,3 +1,9 @@
+2002-10-07  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/rules (DSH): remove unneeded definitions
+
+	* debian/control (Standards-Version): update standards-version to 3.5.7
+
 2002-10-02  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: spelling mistake in configure script. fix.

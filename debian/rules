@@ -7,9 +7,6 @@
 
 # This is the debhelper compatability version to use.
 export DH_COMPAT=3
-PACKAGE_VERSION=`dpkg-parsechangelog | sed -n 's/Version: //p'`
-
-DSH=$(CURDIR)/debian/dsh
 
 configure: configure-stamp
 configure-stamp:
