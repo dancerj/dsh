@@ -1,3 +1,8 @@
+Known bugs:
+
+* dsh -ic does not terminate when remote program terminates, it only 
+  really terminates when local connection is terminated.
+
 Some wishlist:
 
 * fanout with dshd opening connections, through ssh.
