@@ -1,5 +1,10 @@
 2002-06-13  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.in: 0.0.19.2
+
+	* Makefile.am (man_MANS): add dsh.1 to man_MANS, and EXTRA_DIST
+	Thanks to Petter Reinholdtsen <pere@hungry.com>
+
 	* configure.in: check libdshconfig for open_dshconfig
 
 	* linkedlist.c, parameter.c, dsh.c: #include <config.h> instead of "config.h"
@@ -11,7 +16,7 @@
 	* autogen.sh: add --force
 
 	* dsh.c (do_echoing_back): add a missing free for buf,
-	thanks to: Petter Reinholdtsen <pere@hungry.com>
+	Thanks to Petter Reinholdtsen <pere@hungry.com>
 
 	* configure.in: version 0.0.19.0
 

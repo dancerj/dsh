@@ -1,6 +1,8 @@
 bin_PROGRAMS=dsh
 dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h
 dsh_LDFLAGS= -ldshconfig
+man_MANS=dsh.1
+EXTRA_DIST=$(man_MANS)
 
 # Make debian pristine-source
 ../@PACKAGE@_@VERSION@.orig.tar.gz: 
