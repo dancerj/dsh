@@ -2,3 +2,4 @@ Makefile
 Makefile.in
 POTFILES
 ja.gmo
+remove-potcdate.sed

@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Junichi Uekawa
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
 "POT-Creation-Date: 2002-09-11 18:59+0900\n"
-"PO-Revision-Date: 2002-09-11 18:07+0900\n"
+"PO-Revision-Date: 2002-09-11 19:05+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,6 +75,10 @@ msgid ""
 "distributed under the terms and conditions of GPL version 2\n"
 "\n"
 msgstr ""
+"分散シェル，もしくはダンサーのシェル バージョン %s\n"
+"Copyright 2001,2002 Junichi Uekawa, \n"
+"distributed under the terms and conditions of GPL version 2\n"
+"\n"
 
 #: parameter.c:141
 msgid ""
@@ -94,6 +98,21 @@ msgid ""
 "-V --version                   Give out version information\n"
 "\n"
 msgstr ""
+"-v --verbose                   出力を多く\n"
+"-q --quiet                     出力抑制\n"
+"-M --show-machine-names        出力の先頭にホスト名を追加表示\n"
+"-m --machine [machinename]     指定したマシンで実行\n"
+"-n --num-topology              マシンをどう分割するか指定\n"
+"-a --all                       全マシンで実行\n"
+"-g --group [groupname]         グループメンバに対して実行\n"
+"-f --file [file]               ファイルをマシンのリストとして利用\n"
+"-r --remoteshell [shellname]   指定したシェルを利用して実行(rsh/ssh)\n"
+"-o --remoteshellopt [option]   シェルに与えるオプション\n"
+"-h --help                      このメッセージを表示\n"
+"-w --wait-shell                逐次的にシェルを実行\n"
+"-c --concurrent-shell          並列でシェルを実行\n"
+"-V --version                   バージョン情報を表示\n"
+"\n"
 
 #: parameter.c:173
 #, c-format
