@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-09-11 18:59+0900\n"
+"POT-Creation-Date: 2002-09-14 13:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,35 +15,56 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dsh.c:147
+#: dsh.c:145
 #, c-format
 msgid "%s: cannot create pipe\n"
 msgstr ""
 
-#: dsh.c:163 dsh.c:178
+#: dsh.c:159
 #, c-format
 msgid "%s: Cannot spawn process\n"
 msgstr ""
 
-#: dsh.c:186
+#: dsh.c:166
 msgid "Failed playing with pipe"
 msgstr ""
 
-#: dsh.c:194
+#: dsh.c:195
+#, c-format
+msgid "%s: Failed on constructing a pipe and forking\n"
+msgstr ""
+
+#: dsh.c:206
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr ""
 
-#: dsh.c:367
+#: dsh.c:253
+msgid "DUMPing parameters passed to llexec\n"
+msgstr ""
+
+#: dsh.c:262
+#, c-format
+msgid "%s: Failed to execute remote shell command %s\n"
+msgstr ""
+
+#: dsh.c:268
+#, c-format
+msgid ""
+"%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
+"returned an error code that is not -1\n"
+msgstr ""
+
+#: dsh.c:385
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:377
+#: dsh.c:397
 msgid "--- Terminated running\n"
 msgstr ""
 
-#: dsh.c:403
+#: dsh.c:423
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
@@ -106,12 +127,12 @@ msgstr ""
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:185 parameter.c:324
+#: parameter.c:185 parameter.c:328
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:190 parameter.c:328
+#: parameter.c:190 parameter.c:332
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
@@ -136,60 +157,60 @@ msgstr ""
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr ""
 
-#: parameter.c:264
+#: parameter.c:268
 msgid "Adding all machines to the list\n"
 msgstr ""
 
-#: parameter.c:277
+#: parameter.c:281
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr ""
 
-#: parameter.c:283
+#: parameter.c:287
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr ""
 
-#: parameter.c:292
+#: parameter.c:296
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr ""
 
-#: parameter.c:296
+#: parameter.c:300
 msgid "Verbose flag on\n"
 msgstr ""
 
-#: parameter.c:300
+#: parameter.c:304
 msgid "Verbose flag off\n"
 msgstr ""
 
-#: parameter.c:304
-msgid "Show machine names on output\n"
-msgstr ""
-
 #: parameter.c:308
-#, c-format
-msgid "Adding machine %s to list\n"
+msgid "Show machine names on output\n"
 msgstr ""
 
 #: parameter.c:312
 #, c-format
+msgid "Adding machine %s to list\n"
+msgstr ""
+
+#: parameter.c:316
+#, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:332
+#: parameter.c:336
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:336
+#: parameter.c:340
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:340
+#: parameter.c:344
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:347
+#: parameter.c:351
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""
