@@ -1,3 +1,9 @@
+2002-06-12  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.in: version 0.0.19.0
+
+	* Makefile.am: update prinstine-source generator/Debian 
+
 2002-06-01  Junichi Uekawa  <dancer@debian.org>
 
 
