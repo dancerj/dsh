@@ -1,5 +1,24 @@
 2003-06-05  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.7.cvs.5
+
+	* dsh.ja.1: update
+
+	* dsh.1: update docs on exit code.
+
+	* dsh.c (dsh_update_exit_code): use the first non-zero exit 
+	  code as return code.
+
+	* Makefile.am (TESTS): add param-r-invalid
+
+	* tests/param-r-invalid.sh: create new test for -rinvalid-exec-file
+
+	* dsh.c (do_echoing_back_process): more translation
+
+	* parameter.c (parse_options): update doc.
+
+	* tests/param-f-fail.sh: explicitly check for return code value.
+
 	* configure.ac: 0.23.7.cvs.4
 	
 	* dsh.c: define dsh_exit_code, default to 0.

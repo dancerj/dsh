@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001, 2002 Junichi Uekawa
+ *  Copyright (C) 2001, 2002, 2003 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -308,6 +308,7 @@ split_machines_list_and_add_machines(linkedlist* machinelist, const char * optar
  *
  * Remember to update other places, such as execute_rsh_multiple routine when changing here.
  * @return 1 on failure.
+ * @return 0 on success.
  */
 int
 parse_options ( int ac, char ** av)

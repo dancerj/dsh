@@ -123,10 +123,12 @@ a value greater than 2 would result in dsh being spawned on other
 machines as well. 
 
 .SH "EXIT STATUS"
-Usually zero. There is no real way to usefully use the return value of
-tasks.
+The first non-zero exit code of child processes is returned,
+or zero if none returned non-zero exit code.
 
-On error in command-line options, it will return EXIT_FAILURE.
+1 if error is found in command-line specifications.
+
+
 .SH "EXAMPLES"
 .TP
 .B "dsh -a w "

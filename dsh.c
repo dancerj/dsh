@@ -120,7 +120,7 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
   
   if (!f || !standard_output)
     {
-      fprintf(stderr, "%s: Could not open descriptor [%i] or [%i]\n", PACKAGE, fd_in, fd_out);
+      fprintf(stderr, _("%s: Could not open descriptor [%i] or [%i]\n"), PACKAGE, fd_in, fd_out);
       return -1; 
     }
   
@@ -208,7 +208,24 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
   exit (EXIT_FAILURE);
 }
 
+/**
+   The exit code to give after successful termination of the dsh program.
+ */
+int dsh_exit_code = 0;
 
+/**
+   How to update the dsh exit code.
+
+   dsh may return exit code generated from all of its child processes,
+   this is the core engine. 
+ */
+void
+dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
+{
+  /* default behavior was to always ignore. */
+  if (exit_code_of_child && (!dsh_exit_code))
+    dsh_exit_code = exit_code_of_child ;
+}
 
 static int * fd_output_array = NULL; /** array of fd to duplicate input to */
 static int fd_output_array_len = 0;
@@ -470,22 +487,6 @@ run_input_forking_child_processes_process()
       /* do not read from stdin. */
       open_devnull();
     }
-}
-
-/**
-   The exit code to give after successful termination of the dsh program.
- */
-int dsh_exit_code = 0;
-
-/**
-   How to update the dsh exit code.
-
-   dsh may return exit code generated from all of its child processes,
-   this is the core engine. Currently does nothing.
- */
-void
-dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
-{
 }
 
 /**

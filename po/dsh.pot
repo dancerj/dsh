@@ -7,13 +7,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-01-24 14:34+0900\n"
+"POT-Creation-Date: 2003-06-05 21:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: dsh.c:123
+#, c-format
+msgid "%s: Could not open descriptor [%i] or [%i]\n"
+msgstr ""
 
 #: dsh.c:151
 #, c-format
@@ -39,49 +44,49 @@ msgstr ""
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr ""
 
-#: dsh.c:287
+#: dsh.c:301
 msgid "DUMPing parameters passed to llexec\n"
 msgstr ""
 
-#: dsh.c:296
+#: dsh.c:310
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
 msgstr ""
 
-#: dsh.c:302
+#: dsh.c:316
 #, c-format
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
 "returned an error code that is not -1\n"
 msgstr ""
 
-#: dsh.c:309
+#: dsh.c:323
 #, c-format
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr ""
 
-#: dsh.c:379 dsh.c:389 dsh.c:539 parameter.c:368 parameter.c:390
-#: parameter.c:396
+#: dsh.c:397 dsh.c:407 dsh.c:564 parameter.c:369 parameter.c:391
+#: parameter.c:397
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
 
-#: dsh.c:465
+#: dsh.c:483
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:495
+#: dsh.c:515
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:499
+#: dsh.c:519
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:516
+#: dsh.c:541
 msgid "--- Terminated running\n"
 msgstr ""
 
@@ -145,12 +150,12 @@ msgstr ""
 msgid " Parameter %s is %s\n"
 msgstr ""
 
-#: parameter.c:233 parameter.c:451
+#: parameter.c:233 parameter.c:452
 #, c-format
 msgid "Using %s as the remote shell\n"
 msgstr ""
 
-#: parameter.c:238 parameter.c:455
+#: parameter.c:238 parameter.c:456
 #, c-format
 msgid "Adding [%s] to shell options\n"
 msgstr ""
@@ -175,87 +180,87 @@ msgstr ""
 msgid "%s: unparsed configuration file line %s found in %s\n"
 msgstr ""
 
-#: parameter.c:363
+#: parameter.c:364
 msgid "Adding all machines to the list\n"
 msgstr ""
 
-#: parameter.c:381
+#: parameter.c:382
 #, c-format
 msgid "Adding netgroup %s to the list\n"
 msgstr ""
 
-#: parameter.c:387
+#: parameter.c:388
 #, c-format
 msgid "Adding group %s to the list\n"
 msgstr ""
 
-#: parameter.c:406
+#: parameter.c:407
 #, c-format
 msgid "Adding file %s to the list\n"
 msgstr ""
 
-#: parameter.c:410
+#: parameter.c:411
 msgid "Verbose flag on\n"
 msgstr ""
 
-#: parameter.c:414
+#: parameter.c:415
 msgid "Verbose flag off\n"
 msgstr ""
 
-#: parameter.c:418
+#: parameter.c:419
 msgid "Show machine names on output\n"
 msgstr ""
 
-#: parameter.c:422
+#: parameter.c:423
 msgid "Duplicate input to all processes\n"
 msgstr ""
 
-#: parameter.c:426
+#: parameter.c:427
 msgid "Buffer size used for dupliation\n"
 msgstr ""
 
-#: parameter.c:430
+#: parameter.c:431
 msgid "Buffer size needs to be greater than 1\n"
 msgstr ""
 
-#: parameter.c:435
+#: parameter.c:436
 #, c-format
 msgid "Adding machine %s to list\n"
 msgstr ""
 
-#: parameter.c:439
+#: parameter.c:440
 #, c-format
 msgid "Topology number set to %s\n"
 msgstr ""
 
-#: parameter.c:459
+#: parameter.c:460
 msgid "Wait for shell to finish executing\n"
 msgstr ""
 
-#: parameter.c:463
+#: parameter.c:464
 msgid "Do not wait for shell to finish\n"
 msgstr ""
 
-#: parameter.c:470
+#: parameter.c:471
 #, c-format
 msgid "Unkown option -%c.\n"
 msgstr ""
 
-#: parameter.c:472
+#: parameter.c:473
 #, c-format
 msgid "Unkown option character 0x%x.\n"
 msgstr ""
 
-#: parameter.c:476
+#: parameter.c:477
 msgid "Unhandled option\n"
 msgstr ""
 
-#: parameter.c:483
+#: parameter.c:484
 #, c-format
 msgid "%s: no machine specified\n"
 msgstr ""
 
-#: parameter.c:498
+#: parameter.c:499
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"
