@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
-"POT-Creation-Date: 2002-09-16 18:37+0900\n"
+"POT-Creation-Date: 2002-09-18 20:33+0900\n"
 "PO-Revision-Date: 2002-09-16 18:35+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
@@ -65,21 +65,21 @@ msgstr "%s: execute_rsh_singleでforkに失敗しました．\n"
 msgid "%s: forked off input forking process\n"
 msgstr "%s: 入力複製プロセスをforkしました\n"
 
-#: dsh.c:470
+#: dsh.c:472
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr "--- %s で実行\n"
 
-#: dsh.c:474
+#: dsh.c:476
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr "%s: execute_rshが失敗しました, rsh の実行に失敗しました\n"
 
-#: dsh.c:491
+#: dsh.c:493
 msgid "--- Terminated running\n"
 msgstr "--- 実行終了\n"
 
-#: dsh.c:510
+#: dsh.c:512
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr "%s: asprintf が失敗しました\n"

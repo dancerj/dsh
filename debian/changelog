@@ -1,10 +1,10 @@
-dsh (0.21.1-1) unstable; urgency=low
+dsh (0.21.2-1) unstable; urgency=low
 
   * New upstream version
   * Fix minor bug with "-i" option, which did not terminate 
     correctly.
 
- -- Junichi Uekawa <dancer@debian.org>  Wed, 18 Sep 2002 20:21:36 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 18 Sep 2002 20:37:15 +0900
 
 dsh (0.21.0-1) unstable; urgency=low
 
