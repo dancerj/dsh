@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(configure.in)
-AM_INIT_AUTOMAKE(dsh, 0.0.19.6)
+AM_INIT_AUTOMAKE(dsh, 0.0.19.7)
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
@@ -13,7 +13,7 @@ AM_PROG_LIBTOOL
 AC_C_CONST
 
 AC_CHECK_HEADERS([getopt.h])
-AC_CHECK_FUNCS([strdup getopt_long getline])
+AC_CHECK_FUNCS([asprintf strdup getopt_long getline])
 AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_ERROR([dshconfig not found!!])])
 
 dnl Use -Wall if we have gcc.

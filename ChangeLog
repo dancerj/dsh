@@ -1,3 +1,9 @@
+2002-06-23  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.h: fix typo.
+	* configure.in: look for asprintf
+	version 0.0.19.7
+	
 2002-06-19  Junichi Uekawa  <dancer@debian.org>
 
 	* Makefile.am (man_MANS): remove dsh_LDFLAGS, it's set in configure.
