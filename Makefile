@@ -4,6 +4,7 @@ PACKAGENAME=dsh
 OBJECTS=dsh.lo linkedlist.lo parameter.lo libdshconfig.la
 SONAME=0:0:0
 LIBTOOL=libtool
+CFLAGS=-O2 -g -Wall
 
 all: $(PACKAGENAME) test-apps
 
@@ -12,19 +13,19 @@ clean:
 	$(LIBTOOL) --mode=clean rm -f *.lo *.la 
 
 $(PACKAGENAME): $(OBJECTS)
-	$(LIBTOOL) $(CC) --mode=link -O2 $(OBJECTS) -o $@
+	$(LIBTOOL) $(CC) --mode=link $(CFLAGS) $(OBJECTS) -o $@
 
 test-apps: test-dshconfig
 
 test-dshconfig: test-dshconfig.lo libdshconfig.la
-	$(LIBTOOL) --mode=link $(CC) -O2 $^ -o $@
+	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $^ -o $@
 
 libdshconfig.la: libdshconfig.lo
 	# specifying -rpath /usr/lib should not set rpath, but is required for libtool to make shared lib.
-	$(LIBTOOL) --mode=link $(CC) -rpath /usr/lib -export-dynamic -version-info $(SONAME) $^ -o $@ 
+	$(LIBTOOL) --mode=link $(CC) -rpath /usr/lib -export-dynamic -version-info $(SONAME) $^ -o $@ $(CFLAGS) 
 
 %.lo: %.c
-	$(LIBTOOL) --mode=compile $(CC) -g -O2 -Wall -c -o $@ $<
+	$(LIBTOOL) --mode=compile $(CC) -c -o $@ $< $(CFLAGS) 
 
 install: $(PACKAGENAME)
 	install -d -m 755 $(PACKAGENAME) $(DESTDIR)/usr/bin

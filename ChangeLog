@@ -1,5 +1,7 @@
 2002-03-18  Junichi Uekawa  <dancer@debian.org>
 
+	* libdshconfig.c (read_oneline): fix it so that # at the start of line won't cause segv.
+
 	* dsh.conf: modified to make it look different and for debugging dsh.
 
 	* parameter.c (load_configfile): rewrite the config reader using libdshconfig.

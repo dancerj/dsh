@@ -48,7 +48,7 @@ read_oneline (FILE* f, int delimiter)
   while (getline (&s, &size, f) != -1)
     {
       if (0!=(pos = strchr(s, '#')))	/* handle comments, # and not \# */
-	if (*(pos-1) != '\\')
+	if ((pos == s) || (*(pos-1) != '\\'))
 	  *pos = 0;
       
       if ((pos = strchr(s, delimiter)) == NULL)	/* if the line has no delimiter, get another one */
