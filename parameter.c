@@ -342,7 +342,12 @@ parse_options ( int ac, char ** av)
 #define getopt_long(a,b,c,d,e) getopt(a,b,c)
 #endif  
   
-  while((c = getopt_long (ac, av, "vqm:ar:f:g:hVcwo:Mn:ib:", long_options, &index_point)) != -1)
+  while((c = getopt_long (ac, av, 
+#ifdef GETOPT_WITH_GNU_REORDERING_EXTENTION
+			  "+"	/* add this to get GNU getopt to work in POSIX manner */
+#endif
+			  "vqm:ar:f:g:hVcwo:Mn:ib:", 
+			  long_options, &index_point)) != -1)
     {
       switch (c)
 	{

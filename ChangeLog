@@ -1,5 +1,14 @@
 2002-09-25  Junichi Uekawa  <dancer@debian.org>
 
+	* Makefile.am (TESTS): added the new test.
+
+	* tests/param-gnu-getopt.sh: check for the GNU getopt hackery.
+
+	* parameter.c (parse_options): add GNU getopt hackery to make it work with POSIX manner.
+
+	* configure.ac: use @<:@@:>@ autoconf quadrigraph
+	Check that getopt is a GNU getopt, and allow for escapes.
+
 	* Makefile.am (TESTS_ENVIRONMENT): add environment for LC_ALL and LANG
 
 2002-09-24  Junichi Uekawa  <dancer@debian.org>

@@ -10,7 +10,8 @@ TESTS=tests/param-f.sh \
 	tests/param-m.sh \
 	tests/param-unknown.sh  \
 	tests/param-i.sh  \
-	tests/param-cn4.sh
+	tests/param-cn4.sh \
+	tests/param-gnu-getopt.sh
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \
 	LANG=C
