@@ -84,6 +84,22 @@ stripwhitespace(char * buf)
   return pointer;
 }
 
+
+/**
+ * Add hostname to machinelist if and only if 
+ * the host does not already exist in the machine list.
+ */
+static linkedlist *
+machinelist_lladd(linkedlist * machinelist,
+		  const char * machinename)
+{
+  if (llmatch(machinelist, machinename)) /* if there is match, ignore */
+    return machinelist;
+  else
+    return lladd(machinelist, machinename);
+}
+
+
 /*
  * Load machine list from netgroup (typically NIS)
  * Todo: Should perhaps remove duplicates.
@@ -101,7 +117,7 @@ read_machinenetgroup(linkedlist * machinelist,
       while (getnetgrent(&hostp, &userp, &domainp))
 	{
 	  if (NULL != hostp)
-	    machinelist = lladd(machinelist, hostp);
+	    machinelist = machinelist_lladd(machinelist, hostp);
 	  
 	}
       endnetgrent();
@@ -131,7 +147,7 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
 	{
 	  const char * strippedstring = stripwhitespace(buf);
 	  if (strippedstring)
-	    machinelist=lladd(machinelist,strippedstring); 
+	    machinelist=machinelist_lladd(machinelist,strippedstring); 
 	}
       fclose(f);
     }
@@ -271,10 +287,10 @@ split_machines_list_and_add_machines(linkedlist* machinelist, const char * optar
   while ((next = strchr(current,',')))
     {
       *next = 0;
-      machinelist = lladd(machinelist, current);
+      machinelist = machinelist_lladd(machinelist, current);
       current = next + 1;
     }
-  machinelist = lladd(machinelist, current);
+  machinelist = machinelist_lladd(machinelist, current);
   
   free(s);
   return machinelist;

@@ -1,3 +1,19 @@
+2002-09-22  Junichi Uekawa  <dancer@debian.org>
+	
+	* parameter.c (machinelist_lladd): implement using llmatch.
+	This fixes Debian BUG
+	Bug#161845: dsh: Weak parsing of /etc/dsh/dsh.conf, and of options 
+	Philippe Troin <phil@fifi.org>
+	
+	* linkedlist.h: add definition of llmatch
+
+	* linkedlist.c (llmatch): string-matching routine.
+
+	* parameter.c 
+	(split_machines_list_and_add_machines, read_machinenetgroup) 
+	(read_machinelist): use machinelist_lladd instead of lladd
+	(machinelist_lladd): new function.
+
 2002-09-21  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c (execute_rsh_single): add notes on when NOT to fork.

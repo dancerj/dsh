@@ -161,3 +161,19 @@ lldump(const linkedlist*a)
   lldump_recursion(a);
   printf ("\n");
 }
+
+/**
+ * Find matching member from the linked list.
+ *
+ * @return pointer to matching member item, or NULL
+ */
+const linkedlist * 
+llmatch(const linkedlist * a, const char * search)
+{
+  for ( ; a; a=a->next)
+    {
+      if (!strcasecmp (a->string, search))
+	return a;
+    }
+  return NULL;
+}

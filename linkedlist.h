@@ -32,3 +32,5 @@ linkedlist* lldup(const linkedlist*a);
 int llcount (const linkedlist*a);
 int llexec (const char * command, const linkedlist*a);
 void lldump(const linkedlist*a);
+const linkedlist * llmatch(const linkedlist * a, const char * search);
+
