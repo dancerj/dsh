@@ -1,6 +1,7 @@
 # dsh translation
 # Copyright (C) 2002 Junichi Uekawa.
 # Junichi Uekawa <dancer@debian.org>, 2002.
+#
 #, fuzzy
 msgid ""
 msgstr ""
