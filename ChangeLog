@@ -1,3 +1,30 @@
+2005-03-16  Junichi Uekawa  <dancer@debian.org>
+
+	* tests/param-f-with-space.sh (d): updated test
+
+	* tests/param-f.sh: updated test
+
+	* tests/param-cn4.sh: updated test
+
+	* tests/param-m.sh): updated test
+
+	* parameter.c (parse_options): reverse the list to make proper 
+	order for machinelist
+
+	* debian/copyright (Copyright): update
+
+	* NEWS: update
+
+	* configure.ac: 0.25.4.cvs.2
+
+	* Makefile.am: add new test
+
+	* tests/machinelist-order.sh: new test
+
+2005-03-12  Junichi Uekawa  <dancer@debian.org>
+
+	* TODO: solaris compilation error is fixed, close.
+
 2005-01-04  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.25.4.cvs.1

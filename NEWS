@@ -1,6 +1,8 @@
-0.25.4.cvs.1 4 Jan 2005.
+0.25.5 16 Mar 2005.
 
  + Fix copyright year for 2004.
+ + Machine-list ordering fix; it used to be in reverse-order, but it is now in
+   specified order
 
 0.25.4 3 Dec 2004.
 

@@ -26,7 +26,8 @@ TESTS=tests/param-f.sh \
 	tests/news-okay.sh \
 	tests/segv-catcher.sh \
 	tests/test-bufferoverflow.sh \
-	tests/machinelist-comment-test.sh
+	tests/machinelist-comment-test.sh \
+	tests/machinelist-order.sh
 
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \

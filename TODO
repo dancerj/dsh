@@ -2,7 +2,6 @@ Known bugs:
 
 * dsh -ic does not terminate when remote program terminates, it only 
   really terminates when local connection is terminated.
-* doesn't compile on Solaris  (2004 Dec 1)
 
 Some wishlist:
 

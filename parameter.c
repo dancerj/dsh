@@ -578,6 +578,10 @@ parse_options ( int ac, char ** av)
   if (!(pipe_option & PIPE_OPTION_INPUT))
     open_devnull();		/* open /dev/null if no input pipe is required */
 
+
+  /* reverse the list, which is in reverse order, to make the right order */
+  machinelist = llreverse (machinelist);
+  
 				/* actually execute the code. */
   return do_shell(machinelist, rshcommandline_r);
 }

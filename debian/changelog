@@ -1,3 +1,11 @@
+dsh (0.25.5-1) unstable; urgency=low
+
+  * New upstream version
+  - reverse iteration of machinelist is now modified to be in the 
+    'proper' order. (closes: #291586)
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 16 Mar 2005 09:12:22 +0900
+
 dsh (0.25.4-1) unstable; urgency=low
 
   * New upstream version

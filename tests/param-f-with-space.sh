@@ -3,7 +3,7 @@
 
 set -e
 [ "`./dsh -recho -M -f ${srcdir}/tests/list.space.file -f ${srcdir}/tests/list.space.file `" = \
-"d: d
-cc: cc
+"a: a
 b: b
-a: a" ]; 
+cc: cc
+d: d" ]; 
