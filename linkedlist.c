@@ -26,6 +26,7 @@
 #include <unistd.h>
 #include "dsh.h"
 #include "linkedlist.h"
+#include "parameter.h"
 
 /**
    free a linked list.

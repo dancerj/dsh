@@ -1,5 +1,7 @@
 2002-09-16  Junichi Uekawa  <dancer@debian.org>
 
+	* linkedlist.c: add include for parameter.h
+
 	* dsh.1: document -b.
 
 	* parameter.c (print_help): document -i and -b
