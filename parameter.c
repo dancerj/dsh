@@ -229,7 +229,7 @@ load_configfile(const char * dsh_conf)
 /** 
  * open /dev/null as stdin
  */
-static void 
+void 
 open_devnull(void)
 {
   int in = open ("/dev/null", O_RDONLY);

@@ -36,3 +36,7 @@ extern linkedlist* remoteshell_command_opt_r; /** reverse-ordered list of rsh op
 extern int buffer_size;		/* buffer size for running the input process. */
 
 
+
+void open_devnull(void);
+
+

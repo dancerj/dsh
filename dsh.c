@@ -440,6 +440,8 @@ run_input_forking_child_processes_process()
       /* parent returns without doing anything */
       if (verbose_flag)
 	printf (_("%s: forked off input forking process\n"), PACKAGE);
+      /* do not read from stdin. */
+      open_devnull();
     }
 }
 
