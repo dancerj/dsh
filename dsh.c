@@ -247,9 +247,11 @@ execute_rsh_single (const char * remoteshell_command,
   /* Execute the rsh process */
   if (0==(childpid=fork()))
     {				/* child process */
+      /* Must NOT fork again from this point until I say otherwise */
       linkedlist * tmp = NULL;
-      char * machinename = strdup (param_machinename); /* we will always exit() from here, so no need
-							  to free this myself. */
+      char * machinename = 
+	strdup (param_machinename); /* we will always exit() from here, so
+				       no need to free this myself. */
       char * username = machinename;
       linkedlist * local_remoteshell_command_opt_r = lldup(remoteshell_command_opt_r);      
 
@@ -259,6 +261,7 @@ execute_rsh_single (const char * remoteshell_command,
 	  dup2 (input_pipe[0],0);
 	  close (input_pipe[1]);
 	  close (input_pipe[0]);
+	  /* Must NOT fork again before this point. */
 	}
 				/* process to handle username@hostname */
       if (NULL != (machinename = strchr(machinename,'@')))
@@ -279,7 +282,7 @@ execute_rsh_single (const char * remoteshell_command,
       tmp = llcat (tmp, lldup(rshcommandline_r));
       tmp = llreverse(tmp);
       
-      if (verbose_flag) 
+      if (verbose_flag) 	/* debugging */
 	{
 	  printf(_( "DUMPing parameters passed to llexec\n"));
 	  lldump(tmp);
@@ -311,13 +314,16 @@ execute_rsh_single (const char * remoteshell_command,
       if (pipe_option & PIPE_OPTION_INPUT)
 	{
 	  close (input_pipe[0]);
-	  /* add input_pipe[1] to the array of outputs one must handle here... */
+	  /* add input_pipe[1] to the array of outputs one 
+	     must handle here... */
 	  add_fd_to_output_array(input_pipe[1]);
 	}
       if (wait_shell)
-	  waitpid(childpid, &childstatus, 0);	/* wait for termination, if it was required */
+	  waitpid(childpid, &childstatus, 0);	/* wait for termination, 
+						   if it was required */
+      return 0;
     }
-  return 0;
+  /* nobody reaches here. */
 }
 
 
