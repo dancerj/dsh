@@ -134,15 +134,16 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
  * This part does the optional pipe construction or direct llexec
  * depending on the flags.
  *
- * @returns -1 on failure, 1 on exec failure.
+ * @returns -1 on failure, exit (1) on exec failure.
  */
 static int
 do_execute_with_optional_pipe (const char * remoteshell_command,
 			       const linkedlist * commandline,
-			       int pipe_option,
+			       int pipe_option , /** 1=pipe output and put
+						  pretty flags*/
 			       const char * machinename)
 {
-  if (pipe_option)		/* pipe the outputs */
+  if (pipe_option & 1)		/* pipe the outputs */
     {
       int capture_stdout[2];	/* the pipe fd's to use to capturing std-ins */
       int capture_stderr[2];
@@ -197,6 +198,11 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	  close (capture_stderr[0]);
 	  close (capture_stderr[1]);
 	}
+    }
+
+  if (pipe_option &2)
+    {
+      /* NO-OP right now. */
     }
 
   llexec ( remoteshell_command, commandline );
@@ -273,7 +279,11 @@ execute_rsh_single (const char * remoteshell_command,
 }
 
 
-				/* spawns dsh session on other machines */
+/**
+ * spawns dsh session on other machines
+ *
+ * TODO: quote properly.
+ */
 static void
 execute_rsh_multiple (const char * remoteshell_command, 
 		      const linkedlist * remoteshell_command_opt_r, 
@@ -314,8 +324,7 @@ execute_rsh_multiple (const char * remoteshell_command,
   if (show_machine_names)
     extraparam=lladd (extraparam, "-M");
 
-  extraparam=lladd (extraparam, "-n");
-  asprintf(&numstring, "%i", num_topology);  
+  asprintf(&numstring, "-n%i", num_topology);  
   extraparam=lladd (extraparam, numstring);
   free(numstring);  
 
@@ -337,7 +346,7 @@ static void
 execute_rsh ( const char * remoteshell_command, 
 	      const linkedlist * remoteshell_command_opt_r,
 	      const linkedlist * machinelist,
-	      int nummachines,
+	      int nummachines /** The number of machines to invoke rsh at the same time */,
 	      const linkedlist * rshcommandline_r)
 {				
   if (nummachines == 1)
@@ -356,7 +365,7 @@ execute_rsh ( const char * remoteshell_command,
 */
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
-{	
+{
   int nummachines = llcount(machinelist) / num_topology ;  
   int i;
 
@@ -373,6 +382,8 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 	  fprintf (stderr, _("--- Executing on %s \n"), machinelist->string);
 	}
       execute_rsh (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r);
+      
+      /* skip the machines that program was executed on, and repeat */
       for (i=0; (i < nummachines) && machinelist; ++i)
 	  machinelist = machinelist -> next;
     }

@@ -3,6 +3,10 @@
 	* dsh.c (main): note the plan; when show_machine_names &2 == 1,
 	it should read input and duplicate the value to all other 
 	processes.
+	(execute_rsh_multiple): simplify code with "-n 4" to "-n4" kind of
+	parameter passing.
+	(do_execute_with_optional_pipe): add the hook to do things properly
+	later.
 
 	* parameter.c (parse_options): change show_machine_names = 1 to
 	|= 1.
