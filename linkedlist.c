@@ -22,11 +22,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include "dsh.h"
 #include "linkedlist.h"
 
-static void * malloc_with_error(int size)
+static void * 
+malloc_with_error(int size)
 {
   void * u = malloc (size);
   if (!u)
@@ -37,25 +39,32 @@ static void * malloc_with_error(int size)
   return u;  
 }
 
-void llfree(linkedlist* a)
-{
+
+				/* free a linked list. */
+void 
+llfree(linkedlist* a)
+{				/* add paranoia checks */
   if (!a)
     return;
   llfree(a->next);
+  a->next = NULL;
   free (a->string);  
+  a->string = NULL;
   free (a);  
 }
 
-linkedlist* lladd(linkedlist*next, const char * b)
+linkedlist* 
+lladd(linkedlist*next, const char * b)
 {
   linkedlist*tmp= malloc_with_error(sizeof(linkedlist));
-  tmp->string = malloc_with_error(strlen(b)+1);
-  strcpy(tmp->string, b);
+  tmp->string = strdup(b);
   tmp->next=next;  
   return tmp;
 }
 
-linkedlist* llcat(linkedlist*a, linkedlist*b)
+				/* a comes after b.  */
+linkedlist* 
+llcat(linkedlist*a, linkedlist*b)
 {
   linkedlist* orig=b;
   
@@ -67,7 +76,8 @@ linkedlist* llcat(linkedlist*a, linkedlist*b)
   return orig;  
 }
 
-linkedlist* llreverse(linkedlist*a)
+linkedlist* 
+llreverse(linkedlist*a)
 {
   linkedlist*prev=NULL;
   linkedlist*next;
@@ -83,7 +93,8 @@ linkedlist* llreverse(linkedlist*a)
 }
 
 
-linkedlist* lldup(linkedlist*a)
+linkedlist* 
+lldup(const linkedlist*a)
 {
   if (a)
     return lladd (lldup(a->next), a->string);
@@ -92,7 +103,8 @@ linkedlist* lldup(linkedlist*a)
 }
 
 
-int llcount (linkedlist*a)
+int 
+llcount (const linkedlist*a)
 {				/* count members */
   if (a)
     return llcount(a->next)+1 ;
@@ -101,12 +113,12 @@ int llcount (linkedlist*a)
 }
 
 				/* execute shell according to linked list */
-int llexec (char * command, linkedlist*a)
+int
+llexec (const char * command, const linkedlist * a)
 {
   char ** av;
   int ac = llcount(a) + 1 ;
   int i=1;
-
 
   av = malloc_with_error (sizeof (char * ) * ac + 1);
   while (a)
@@ -115,13 +127,16 @@ int llexec (char * command, linkedlist*a)
       a=a->next;
     }
   av[ac] = NULL;
-  av[0] = command;
+  av[0] = strdup(command);  
   execvp (command, av);  
+  free (av[0]);  
   free (av);
-  return 1;  
+  return 1;			/* when this function returns,
+				   there was an error executing the program */
 }
 
-static void lldump_recursion(linkedlist*a)
+static void 
+lldump_recursion(const linkedlist*a)
 {
   if (a)
     {
@@ -130,9 +145,9 @@ static void lldump_recursion(linkedlist*a)
     }
 }
 
-void lldump(linkedlist*a)
+void 
+lldump(const linkedlist*a)
 {
-  printf ("--- Dumping command-line\n");  
   lldump_recursion(a);
   printf ("\n");
 }

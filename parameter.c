@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <netdb.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -50,6 +51,32 @@ stripn(char * buf)
 {
   buf = strchr ( buf, '\n');
   if (buf) *buf = 0;
+}
+
+/*
+ * Load machine list from netgroup (typically NIS)
+ * Todo: Should perhaps remove duplicates.
+ *
+ * Code contributed from Petter Reinholdtsen on 22 Dec 2001.
+ */
+linkedlist*
+read_machinenetgroup(linkedlist * machinelist,
+                    const char * groupname)
+{
+  if (setnetgrent(groupname)) {
+    char *hostp, *userp, *domainp;
+    while (getnetgrent(&hostp, &userp, &domainp))
+      {
+	if (NULL != hostp)
+	  machinelist = lladd(machinelist, hostp);
+      }
+    endnetgrent();
+  } else {
+    fprintf(stderr, PROGRAM_NAME
+	    ": Unknown netgroup %s.\n",
+	    groupname);
+  }
+  return machinelist;
 }
 
 linkedlist* 
@@ -240,11 +267,19 @@ parse_options ( int ac, char ** av)
 	case 'g':
 	  if (verbose_flag) printf ("Adding group %s to the list\n", optarg);
 	  {
-	    char * buf1, *buf2;
-	    asprintf(&buf1, "/etc/dsh/group/%s", optarg);
-	    asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg);
-	    machinelist = read_machinelist (machinelist, buf2, buf1); 
-	    free(buf1);free(buf2);
+            if ('@' == *optarg)
+              {			/* using libc call for using netgroup. */
+                /* +1 to skip @ */
+                machinelist = read_machinenetgroup(machinelist, optarg+1);
+              }
+            else
+              {			/* using dsh's own method. */
+		char * buf1, *buf2;
+		asprintf(&buf1, "/etc/dsh/group/%s", optarg);
+		asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg);
+		machinelist = read_machinelist (machinelist, buf2, buf1); 
+		free(buf1);free(buf2);
+	      }
 	  }
 	  break;	  
 	case 'f':

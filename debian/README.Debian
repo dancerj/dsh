@@ -3,7 +3,20 @@ dsh for Debian
 
 This is a distributed shell for Debian/Beowulf project.
 Something that I would have liked, and everyone else have liked,
-but have not existed in Debian.
+but have not (apparently) existed in Debian.
+
+This program supports update-cluster.
+You can manually run update-cluster-regenerate when you install this 
+package, to configure dsh with update-cluster configuration.
+Please see the documentation for update-cluster
 
 
- -- Junichi Uekawa <dancer@debian.org>, Mon, 14 May 2001 22:53:04 +0900
+The author has a home page at 
+  http://www.netfort.gr.jp/~dancer/
+and the primary page for dsh is at 
+  http://www.netfort.gr.jp/~dancer/software/dsh.html
+
+
+enjoy.
+
+ -- Junichi Uekawa <dancer@debian.org>, Mon, 21 Aug 2001 22:54:04 +0900

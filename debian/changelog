@@ -1,8 +1,17 @@
 dsh (0.0.17) unstable; urgency=low
 
-  * dsh.1, parameter.c: adding support for specifying arbitrary machine list specifications.
+  * dsh.1, parameter.c: adding support for specifying arbitrary machine list
+    specifications. the command-line "-f"
+  * dsh.1: updated, with redundant tags removed.
+  * dsh.1, parameter.c: updated with a patch from Petter Reinholdtsen to
+    support netgroups in dsh group specification. (closes: 126153)
+  * Created file AUTHORS to give credits on who the code was written.
+  * Marking the upstream homepage and address on README.Debian
+  * Changed function indentation style to suit my new favor.
+  * Added top-level README documentation, which suggests reading of
+    debian/README.Debian
 
- -- Junichi Uekawa <dancer@debian.org>  Thu, 20 Dec 2001 11:42:56 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 23 Dec 2001 01:24:38 +0900
 
 dsh (0.0.16) unstable; urgency=low
 

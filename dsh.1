@@ -30,19 +30,23 @@ allows
 .I username@machinename
 where remote shell is invoked with the option to make it of 
 .I username.
-.PP
+
 .TP
 .BI "--all | -a " 
 Add all machines found in 
 .B /etc/dsh/machines.list
 to the list of machines that the specified command is executed.
-.PP
+
 .TP
 .BI "--group " "groupname" " | -g " "groupname "
 Add all machines found in 
 .BI /etc/dsh/group/ groupname
- to the list of machines that the specified command is executed.
-.PP
+to the list of machines that the specified command is executed.
+
+If groupname is on the form
+.BI "@netgroup"
+then the machines in the given netgroup is used to specify the list of
+machines to execute on.
 
 .TP
 .BI "--file " "machinefile" " | -f " "machinefile"
@@ -54,26 +58,26 @@ to the list of machines that the specified command is executed.
 Execute remote shell 
 .I shellname
 as the remote shell. Usually "rsh" and "ssh" are available
-.PP
+
 .TP
 .BI "--remoteshellopt " "rshoption " "| -o " "rshoption "
 Add one option 
 .I rshoption
 to the list of options passed on to the remote shell. 
-.PP
+
 .TP
 .BI "--help | -h "
 Output help message and exits.
-.PP
+
 .TP
 .BI "--wait-shell | -w " 
 Executes on each machine and waits for the execution finishing before
 moving on to the next machine.
-.PP
+
 .TP
 .BI "--concurrent-shell | -c "
 Executes shell concurrently.
-.PP
+
 .TP
 .BI "--show-machine-names | -M "
 Prepends machine names on the standard output. Useful to be used in
@@ -83,7 +87,7 @@ option so that the output is slightly more parsable.
 .TP
 .BI "--version | -V "
 Outputs version information and exits.
-.PP
+
 .TP
 .BI "--num-topology | -N "
 Changes the current topology from 1. 1 is the default behavior of
@@ -91,7 +95,7 @@ spawning the shell from one node to every node. Changing the number to
 a value greater than 2 would result in dsh being spawned on other
 machines as well. 
 .B "BE CAREFUL!! This code has not been tested thoroughly."
-.PP
+
 .SH "EXIT STATUS"
 Usually zero. There is no real way to usefully use the return value of
 tasks.

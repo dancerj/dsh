@@ -1,0 +1,9 @@
+
+DSH -- dancer's shell or the distributed shell, Authors.
+
+
+Junichi Uekawa 
+	<dancer@debian.org> 
+	<dancer@netfort.gr.jp>
+	<dancer@mikilab.doshisha.ac.jp> -- coded most parts.
+Petter Reinholdtsen -- contributed the code to do NIS netgroup lookups.
