@@ -9,7 +9,10 @@ AC_ISC_POSIX
 AC_PROG_CC
 AM_PROG_CC_STDC
 AC_PROG_MAKE_SET
+
+
 AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
 AM_PROG_LIBTOOL
 AC_C_CONST
 
@@ -19,8 +22,11 @@ AC_CHECK_FUNC(gettext,,AC_CHECK_LIB(intl,gettext,,AC_ERROR([Gettext not found]))
 localedir='${datadir}/locale'
 AC_SUBST(localedir)
 
-AC_CHECK_HEADERS([getopt.h])
-AC_CHECK_FUNCS([asprintf strdup getopt_long getline])
+dnl check for header files.
+AC_CHECK_HEADERS([getopt.h fcntl.h libintl.h locale.h stdlib.h netdb.h string.h unistd.h])
+AC_CHECK_FUNCS([asprintf strdup getopt_long getline dup2 setlocale strcasecmp strchr])
+
+dnl check for libs
 AC_CHECK_LIB([dshconfig], [open_dshconfig],[],[AC_ERROR([dshconfig not found!!])])
 
 dnl Check if it is a GNU getopt that munges parameter option orderings.
