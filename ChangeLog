@@ -1,5 +1,13 @@
 2002-03-18  Junichi Uekawa  <dancer@debian.org>
 
+	* dsh.conf: modified to make it look different and for debugging dsh.
+
+	* parameter.c (load_configfile): rewrite the config reader using libdshconfig.
+
+	* test-dshconfig.c (main): comment.
+
+	* libdshconfig.c (free_dshconfig): add error check.
+
 	* libdshconfig.h: declare free_dshconfig
 
 	* libdshconfig.c (free_dshconfig): add new function. Probably required.

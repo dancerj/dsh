@@ -126,10 +126,16 @@ open_dshconfig (FILE* file, char delimiter)
   return d;
 }
 
+/**
+   Frees up memory allocated by open_dshconfig.
+ */
 void
 free_dshconfig(dshconfig* d)
 {
   dshconfig_internal * i;
+
+  if (!d)
+    return;
   for (i=d->config; i; )
     {
       dshconfig_internal * tmp = i->next ;

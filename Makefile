@@ -1,7 +1,7 @@
 # Makefile for dancer's shell, copyright 2002 Junichi Uekawa
 
 PACKAGENAME=dsh
-OBJECTS=dsh.o linkedlist.o parameter.o
+OBJECTS=dsh.lo linkedlist.lo parameter.lo libdshconfig.la
 SONAME=0:0:0
 LIBTOOL=libtool
 
@@ -12,7 +12,7 @@ clean:
 	$(LIBTOOL) --mode=clean rm -f *.lo *.la 
 
 $(PACKAGENAME): $(OBJECTS)
-	$(CC) -O2 $(OBJECTS) -o $@
+	$(LIBTOOL) $(CC) --mode=link -O2 $(OBJECTS) -o $@
 
 test-apps: test-dshconfig
 

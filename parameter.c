@@ -32,6 +32,7 @@
 #include "dsh.h"
 #include "linkedlist.h"
 #include "parameter.h"
+#include "libdshconfig.h"
 
 static void * 
 malloc_with_error(int size)
@@ -150,72 +151,57 @@ do_shell(linkedlist * machinelist, linkedlist*);
 int
 load_configfile(const char * dsh_conf)
 {
-  FILE * f = fopen (dsh_conf, "r");  
+  dshconfig * t;
+  dshconfig_internal * line;
+  FILE*f = fopen (dsh_conf, "r");  
   char * buf_a=NULL;
   char * buf_b=NULL;
-  char * buf=NULL;
-  int bufsize=0;  
   
-  if (f)
-    {
-      if(verbose_flag) printf("Loading config file %s\n", dsh_conf);
-      
-      while (-1 != getline (&buf, &bufsize, f))
-	{
-	  if (( buf [0] == '#' ) || (strlen (buf) < 3) || (NULL==strchr(buf, '=')))
-	    continue;
+  if(verbose_flag) printf("Loading config file %s\n", dsh_conf);
 
-	  buf_a = buf_b = NULL;	  
-	  if ( 2 == sscanf (buf, "%*[ \t]%a[^ \t=]%*[ \t]=%*[ \t]%a[^ \t\n]%*[ \t]\n", 
-			    &buf_a, &buf_b))
+  if (f && (t = open_dshconfig(f, '=')))
+    {
+      for (line = t->config; line; line=line->next)
+	{
+	  buf_a = line -> title;
+	  buf_b = line -> data;
+
+	  if(verbose_flag) printf(" Parameter %s is %s\n", buf_a, buf_b);
+	  if (!strcmp(buf_a, "remoteshell"))
 	    {
-	      if(verbose_flag) printf(" Parameter %s is %s\n", buf_a, buf_b);
-	      if (!strcmp(buf_a, "remoteshell"))
-		{
 		  if (verbose_flag) printf("Using %s as the remote shell\n", buf_b);
 		  remoteshell_command = strdup (buf_b);
-		}	      
-	      else if (!strcmp(buf_a, "remoteshellopt"))
-		{
-		  if (verbose_flag) printf("Adding [%s] to shell options\n", buf_b);
-		  remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, buf_b);
-		}	  
-	      else if (!strcmp(buf_a, "waitshell"))
-		{
-		  wait_shell = atoi ( buf_b );		  
-		  if (verbose_flag) printf("Setting wait-shell to  [%i]\n", wait_shell);
-		}	      
-	      else if (!strcmp(buf_a, "showmachinenames"))
-		{
-		  show_machine_names = atoi ( buf_b );
-		  if (verbose_flag) printf("Setting showmachinenames to  [%i]\n", show_machine_names);
-		}	      
-	      else if (!strcmp(buf_a, "verbose"))
-		{
-		  verbose_flag = atoi ( buf_b );
-		  if (verbose_flag) printf("Setting verbose to  [%i]\n", verbose_flag);
-		}	      
-	      else
-		{
-		  if (buf_a[0] != '#') 
-		    fprintf (stderr, 
-			     PROGRAM_NAME
-			     ": unknown configuration file field %s found\n",
-			     buf_a);
-		}
-	    }
+	    }	      
+	  else if (!strcmp(buf_a, "remoteshellopt"))
+	    {
+	      if (verbose_flag) printf("Adding [%s] to shell options\n", buf_b);
+	      remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, buf_b);
+	    }	  
+	  else if (!strcmp(buf_a, "waitshell"))
+	    {
+	      wait_shell = atoi ( buf_b );		  
+	      if (verbose_flag) printf("Setting wait-shell to  [%i]\n", wait_shell);
+	    }	      
+	  else if (!strcmp(buf_a, "showmachinenames"))
+	    {
+	      show_machine_names = atoi ( buf_b );
+	      if (verbose_flag) printf("Setting showmachinenames to  [%i]\n", show_machine_names);
+	    }	      
+	  else if (!strcmp(buf_a, "verbose"))
+	    {
+	      verbose_flag = atoi ( buf_b );
+	      if (verbose_flag) printf("Setting verbose to  [%i]\n", verbose_flag);
+	    }	      
 	  else
 	    {
 	      fprintf (stderr, 
 		       PROGRAM_NAME
 		       ": unparsed configuration file line %s found in %s\n",
-		       buf, dsh_conf);
+		       buf_a, dsh_conf);
 	    }
-	  
-	  if(buf_a)free (buf_a);
-	  if(buf_b)free (buf_b);
 	}
-      
+
+      free_dshconfig(t);
       fclose(f);
     }  
   return 0;  
