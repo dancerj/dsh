@@ -9,10 +9,10 @@ clean:
 	rm -f *~ *.bak *.o $(PACKAGENAME)
 
 $(PACKAGENAME): $(OBJECTS)
-	gcc -O2 $(OBJECTS) -o $@
+	$(CC) -O2 $(OBJECTS) -o $@
 
 %.o: %.c
-	gcc -O2 -Wall -c -o $@ $<
+	$(CC) -O2 -Wall -c -o $@ $<
 
 install: $(PACKAGENAME)
 	cp $(PACKAGENAME) $(DESTDIR)/usr/bin

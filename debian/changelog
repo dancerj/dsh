@@ -3,8 +3,9 @@ dsh (0.0.18) unstable; urgency=low
   * New version. (not released)
   * updated README.Debian
   * updated copyright for year 2002.
+  * Makefile uses $(CC) instead of hardcoding "gcc"
 
- -- Junichi Uekawa <dancer@debian.org>  Fri,  4 Jan 2002 21:10:54 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Tue,  8 Jan 2002 00:35:55 +0900
 
 dsh (0.0.17) unstable; urgency=low
 
