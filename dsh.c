@@ -279,7 +279,7 @@ execute_rsh_multiple (const char * remoteshell_command,
   linkedlist* tmp_start ;  
   char * numstring;
 
-  extraparam = lladd(extraparam, PACKAGE);
+  extraparam = lladd(extraparam, DSH_COMMANDLINE);
 
   tmp = tmp_start = lldup(machinelist);  
   while (tmp && (nummachines -- > 0))

@@ -3,7 +3,7 @@ dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h
 man_MANS=dsh.1
 sysconf_DATA=dsh.conf
 EXTRA_DIST=$(man_MANS) $(sysconf_DATA) autogen.sh
-dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\""
+dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\""
 
 # Make debian pristine-source
 ../@PACKAGE@_@VERSION@.orig.tar.gz: 
