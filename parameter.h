@@ -34,9 +34,8 @@ extern int  num_topology;		/** number of topology to use as a block to execute r
 				*/
 extern linkedlist* remoteshell_command_opt_r; /** reverse-ordered list of rsh options. */
 extern int buffer_size;		/* buffer size for running the input process. */
-
-
-
 void open_devnull(void);
 
+/* function defined in dsh.c */
+int do_shell(linkedlist * machinelist, linkedlist*);
 

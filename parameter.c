@@ -185,9 +185,6 @@ print_help (void)
 }
 
 
-int
-do_shell(linkedlist * machinelist, linkedlist*);
-
 				/* load the configuration file. */
 int
 load_configfile(const char * dsh_conf)

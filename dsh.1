@@ -20,7 +20,7 @@ Verbose output of the execution process is output.
 Makes output quieter.
 .PP
 .TP
-.BI "--machine " machinename " | -m " machinename
+.BI "--machine | -m " "[machinename[,machinename]*]"
 Adds 
 .I machinename 
 to the list of machines that the command is exeuted.
@@ -30,6 +30,11 @@ allows
 .I username@machinename
 where remote shell is invoked with the option to make it of 
 .I username.
+
+From version 0.21.4, it is possible to specify 
+in the format of 
+.I "username@machinename,username@machinename,username@machinename"
+so that multiple hosts can be specified with comma-delimited values.
 
 .TP
 .BI "--all | -a " 

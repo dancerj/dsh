@@ -1,3 +1,15 @@
+2002-09-20  Junichi Uekawa  <dancer@debian.org>
+
+	* parameter.h (do_shell): move over a function declaration to 
+	parameter.h so that checks will exist, from parameter.c
+
+	* dsh.1: document the new feature, the "," delimiter for -m
+	option.
+
+	* parameter.c (split_machines_list_and_add_machines): new function,
+	allow specifying of -m host1,host2 kind of parameter.
+	(parse_options): use the split_machines_list_and_add_machines
+
 2002-09-19  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.21.3
