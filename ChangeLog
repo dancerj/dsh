@@ -1,5 +1,9 @@
 2002-10-22  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.4.cvs.2
+
+	* dsh.1: update manual page
+
 	* configure.ac: 0.23.4.cvs.1
 
 	* Makefile.am (TESTS): update

@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-m4_define(DSHVERSION,0.23.4.cvs.1)
+m4_define(DSHVERSION,0.23.4.cvs.2)
 AC_INIT(dsh, DSHVERSION)
 AM_INIT_AUTOMAKE(dsh, DSHVERSION)
 AM_CONFIG_HEADER(config.h)

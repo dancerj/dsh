@@ -1,4 +1,4 @@
-.TH "dsh" 1 "2001 May 13" "Debian-Beowulf/Dancer" "Dancer Tools reference"
+.TH "dsh" 1 "2002 Oct 22" "Debian-Beowulf/Dancer" "Dancer Tools reference"
 .SH NAME
 dsh \- Distributed shell, or dancer's shell
 .SH SYNOPSIS
@@ -136,7 +136,7 @@ Shows list of users logged in on all workstations using ssh. (It
 should be of note that when using ssh, ssh-agent is handy.)
 .PP
 .TP
-.B "./dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'"
+.B "dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'"
 Shows the load average of machines node1 and node2.
 .PP
 .SH "FILES"
@@ -164,10 +164,11 @@ for copying files to remote systems.
 Configuration files should really be able to do something more than it
 does now.
 
-Currently, the algorithm for the 
-.B "-M"
-option is not verified to be right, yet. 
 .SH "AUTHOR"
 Junichi Uekawa (dancer@debian.org)
+
+Upstream page is available at 
+.B "http://www.netfort.gr.jp/~dancer/software/dsh.html"
+
 .SH "SEE ALSO"
 .BR "rsh" "(1), " "ssh" "(1)"
