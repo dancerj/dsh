@@ -3,6 +3,7 @@
 	* configure.ac: update for autoconf1.5, change to ac. 
 	probably requires automake 1.6
 	version 0.0.19.8
+	change to version 0.20.0
 
 2002-06-23  Junichi Uekawa  <dancer@debian.org>
 
