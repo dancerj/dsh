@@ -1,3 +1,7 @@
+2002-06-13  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.c: #include <config.h> instead of "config.h"
+
 2002-06-12  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.in: version 0.0.19.1

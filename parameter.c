@@ -29,6 +29,7 @@
 #include <sys/wait.h>
 
 #include <getopt.h>
+#include <config.h>
 #include "dsh.h"
 #include "config.h"
 #include "linkedlist.h"

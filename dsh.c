@@ -34,7 +34,7 @@
 #include "dsh.h"
 #include "linkedlist.h"
 #include "parameter.h"
-#include "config.h"
+#include <config.h>
 
 char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
