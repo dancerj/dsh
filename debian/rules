@@ -15,8 +15,6 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 	# Add here commands to configure the package.
-	echo "#define DSH_VERSION \"${PACKAGE_VERSION}\" " > dshversion.h 
-
 	touch configure-stamp
 
 build: configure-stamp build-stamp

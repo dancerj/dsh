@@ -30,6 +30,7 @@
 
 #include <getopt.h>
 #include "dsh.h"
+#include "config.h"
 #include "linkedlist.h"
 #include "parameter.h"
 #include "libdshconfig.h"
@@ -121,7 +122,7 @@ int print_version(void)
   printf("Distributed Shell / Dancer\'s shell version %s \n"
 	 "Copyright 2001 Junichi Uekawa, \n"
 	 "distributed under the terms and conditions of GPL version 2\n\n",
-	 DSH_VERSION);
+	 VERSION);
   return 0;
 }
 

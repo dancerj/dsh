@@ -1,3 +1,11 @@
+2002-05-31  Junichi Uekawa  <dancer@debian.org>
+
+	* Makefile.am, configure.in, autogen.sh: added
+
+	* debian/rules (configure-stamp): remove reference to dshversion.h
+
+	* parameter.c: use VERSION instead of DSH_VERSION
+
 2002-05-26  Junichi Uekawa  <dancer@debian.org>
 
 	* TODO: update TODO, with notes on bug.
