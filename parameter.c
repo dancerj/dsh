@@ -75,7 +75,7 @@ stripwhitespace(char * buf)
   if (*pointer)			/* if it is nothing, return NULL */
     return NULL;
 
-  revpointer = (strlen (pointer) - 1);
+  revpointer = pointer + strlen (pointer) - 1;
 
   /* strip whitespace from end. */
   while (revpointer > pointer && isspace(revpointer))
