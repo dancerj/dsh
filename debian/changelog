@@ -1,3 +1,13 @@
+dsh (0.21.3-1) unstable; urgency=low
+
+  * New upstream version
+  * Fix bug with "-i" option, and properly terminate 
+    when applications are terminated.
+  * Fix machine-list file reading, so that whitespace in the file 
+    is ignored.
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 19 Sep 2002 17:35:13 +0900
+
 dsh (0.21.2-1) unstable; urgency=low
 
   * New upstream version
