@@ -322,7 +322,9 @@ msgstr "0以下のforklimitを指定できません\n"
 msgid ""
 "%s: Input duplication and concurrent shell without fork limit need to be "
 "specified together\n"
-msgstr "%s: 入力複製と並列度を制限しない並列シェル実行を同時に指定する必要があります\n"
+msgstr ""
+"%s: 入力複製と並列度を制限しない並列シェル実行を同時に指定する必要がありま"
+"す\n"
 
 #: parameter.c:558
 #, c-format

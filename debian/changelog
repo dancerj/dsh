@@ -1,8 +1,10 @@
-dsh (0.24.2-2) UNRELEASED; urgency=low
+dsh (0.25.0-1) unstable; urgency=low
 
-  * update description.
+  * New upstream version
+  - support windowing of connections.
+  * update package description.
 
- -- Junichi Uekawa <dancer@debian.org>  Wed, 17 Sep 2003 06:13:33 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 17 Sep 2003 07:11:32 +0900
 
 dsh (0.24.2-1) unstable; urgency=low
 

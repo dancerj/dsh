@@ -1,5 +1,9 @@
 2003-09-17  Junichi Uekawa  <dancer@debian.org>
 
+	* NEWS: update.
+
+	* configure.ac: 0.25.0
+
 	* debian/control (Description): update description to 
 	explain that this thing has window-limit.
 

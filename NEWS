@@ -1,4 +1,4 @@
-0.24.2.cvs.1 - 16 Sep 2003.
+0.25.0 - 17 Sep 2003.
 
  + Add fork limit feature; so that a limited number of connection are 
    utilized for -c option.
