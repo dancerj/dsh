@@ -1,3 +1,11 @@
+dsh (0.23.7-1) unstable; urgency=low
+
+  * New upstream version
+  - updated manual pages.
+  * updated copyright file.
+
+ -- Junichi Uekawa <dancer@debian.org>  Thu, 29 May 2003 23:03:45 +0900
+
 dsh (0.23.6-1) unstable; urgency=low
 
   * New upstream version

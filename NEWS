@@ -1,0 +1,7 @@
+0.23.7 - 29 May 2003
+
+ ! fixed dsh.1 manpage
+ + added dsh.conf.5 manpage
+ + added dsh.ja.1 manpage
+ + added dsh.conf.ja.5 manpage
+ + updated ja.po

@@ -2,12 +2,11 @@
 # Copyright (C) 2002 Junichi Uekawa.
 # Junichi Uekawa <dancer@debian.org>, 2002.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: dsh\n"
 "POT-Creation-Date: 2003-01-24 14:34+0900\n"
-"PO-Revision-Date: 2002-10-19 17:39+0900\n"
+"PO-Revision-Date: 2003-05-29 22:11+0900\n"
 "Last-Translator: Junichi Uekawa <dancer@debian.org>\n"
 "Language-Team: Japanese <dancer@debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -238,7 +237,7 @@ msgstr "複製に利用するバッファサイズ\n"
 
 #: parameter.c:430
 msgid "Buffer size needs to be greater than 1\n"
-msgstr ""
+msgstr "バッファサイズは1より大きい必要があります\n"
 
 #: parameter.c:435
 #, c-format

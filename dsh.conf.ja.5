@@ -1,0 +1,59 @@
+.TH "dsh.conf" 5 "2003 May 29" "Debian-Beowulf/Dancer" "Dancer ツールリファレンス"
+.SH "名前"
+dsh.conf \- 分散シェル．もしくはダンサーのシェルのための設定ファイル
+.SH "説明"
+.B "/etc/dsh/dsh.conf"
+が
+.B "dsh"
+プログラムに利用するデフォルトの値を保持しています．
+
+.B dsh.conf
+のエントリーは次のような形式になります：
+.PP
+.BI "オプション" "=" "値"
+.PP
+1と0を値として指定するとそれぞれ「YES」と「NO」の意味になります．
+
+.SH "形式"
+.TP
+.BI "remoteshell=" "rsh"
+
+.I rsh
+をリモートシェルとして指定する．
+
+.TP
+.BI "remoteshellopt=" "rsh-opt"
+.I rsh-opt
+をリモートシェルを実行する時の追加オプションとして利用する．
+
+.TP
+.BI "waitshell=" "1"
+1を指定するとシェルは毎回のコマンドの実行が終了するのを待つ．
+.B "-c"
+と
+.B "-w"
+オプションを参照：
+.BI "dsh(" "1" ")"
+
+.TP
+.BI "showmachinenames=" "1"
+
+出力の最初にマシン名を表示する．
+.B "-M"
+オプションを参照：
+.BI "dsh(" "1" ")"
+
+.TP
+.BI "verbose=" "1"
+冗長な出力を出す．
+
+.SH "ファイル"
+.TP
+.B "/etc/dsh/dsh.conf"
+dshの設定ファイル
+
+.SH "著者"
+dshは上川純一 <dancer@debian.org>が書きました
+
+.SH "関連項目"
+.BI "dsh (" "1" ")"

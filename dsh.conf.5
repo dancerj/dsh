@@ -1,0 +1,65 @@
+.TH "dsh.conf" 5 "2003 May 29" "Debian-Beowulf/Dancer" "Dancer Tools reference"
+.SH "NAME"
+dsh.conf \- configuration file for distributed shell, or dancer's shell
+.SH "DESCRIPTION"
+.B "/etc/dsh/dsh.conf"
+contains default values used in the 
+.B "dsh"
+program invocation.
+
+An entry in 
+.B dsh.conf
+comes in the following format:
+.PP
+.BI "option" "=" "value"
+.PP
+where value is "1" or "0" when it requires boolean value.
+0 means NO, and 1 means YES.
+
+.SH "FORMAT"
+.TP
+.BI "remoteshell=" "rsh"
+
+Specify
+.I rsh
+as remote shell
+
+.TP
+.BI "remoteshellopt=" "rsh-opt"
+Specify
+.I rsh-opt
+as an extra option for the invoked remote shell.
+
+.TP
+.BI "waitshell=" "1"
+Specify 1 to to make the shell wait for each individual invocation.
+See 
+.B "-c"
+and
+.B "-w"
+option for 
+.BI "dsh(" "1" ")"
+
+.TP
+.BI "showmachinenames=" "1"
+
+Show machine names in front of each output.
+See
+.B "-M"
+option for 
+.BI "dsh(" "1" ")"
+
+.TP
+.BI "verbose=" "1"
+Give verbose output.
+
+.SH "FILES"
+.TP
+.B "/etc/dsh/dsh.conf"
+Configuration for dsh
+
+.SH "AUTHOR"
+dsh was written by Junichi Uekawa <dancer@debian.org>
+
+.SH "SEE ALSO"
+.BI "dsh (" "1" ")"

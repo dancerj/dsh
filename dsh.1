@@ -1,4 +1,4 @@
-.TH "dsh" 1 "2002 Oct 22" "Debian-Beowulf/Dancer" "Dancer Tools reference"
+.TH "dsh" 1 "2003 May 29" "Debian-Beowulf/Dancer" "Dancer Tools reference"
 .SH NAME
 dsh \- Distributed shell, or dancer's shell
 .SH SYNOPSIS
@@ -13,7 +13,7 @@ time. An utility to effectively do a
 The options available are as follows.
 .TP
 .B "--verbose | -v" 
-Verbose output of the execution process is output.
+Give verbose output of the execution process.
 .PP
 .TP
 .B "--quiet | -q"
@@ -67,7 +67,8 @@ multiple invocations merged into one.
 .BI "--remoteshell " "shellname " "| -r " "shellname "
 Execute remote shell 
 .I shellname
-as the remote shell. Usually "rsh" and "ssh" are available
+as the remote shell. Usually any of "rsh", "remsh" or "ssh" 
+are available
 
 .TP
 .BI "--remoteshellopt " "rshoption " "| -o " "rshoption "
@@ -118,7 +119,6 @@ Changes the current topology from 1. 1 is the default behavior of
 spawning the shell from one node to every node. Changing the number to
 a value greater than 2 would result in dsh being spawned on other
 machines as well. 
-.B "BE CAREFUL!! This code has not been tested thoroughly."
 
 .SH "EXIT STATUS"
 Usually zero. There is no real way to usefully use the return value of
@@ -132,7 +132,8 @@ Shows list of users logged in on all workstations.
 .PP
 .TP
 .B "dsh -r ssh -a -- w "
-Shows list of users logged in on all workstations using ssh. (It
+Shows list of users logged in on all workstations, and
+use ssh command to connect. (It
 should be of note that when using ssh, ssh-agent is handy.)
 .PP
 .TP
@@ -149,7 +150,7 @@ command-line option is specified.
 .TP
 .BI "/etc/dsh/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
 List of machine names to be used for when 
-.B "-g" 
+.BI "-g " "groupname"
 command-line option is specified.
 .PP
 .TP
@@ -171,4 +172,8 @@ Upstream page is available at
 .B "http://www.netfort.gr.jp/~dancer/software/dsh.html"
 
 .SH "SEE ALSO"
-.BR "rsh" "(1), " "ssh" "(1)"
+.BR "rsh" "(1), " 
+.BR "ssh" "(1), " 
+.BR "remsh" "(1), "
+.BR "dsh.conf" "(5) "
+

@@ -1,3 +1,23 @@
+2003-05-29  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.7
+
+	* NEWS: created file, added info on this release of dsh.
+
+	* Makefile.am (noinst_dist_man_MANS): Japanese translation are 
+	noinst targets for now, since automake doesn't install them to 
+	proper places.
+
+	* dsh.conf.ja.5: created new file.
+
+	* Makefile.am (dist_man_MANS): add files.
+
+	* dsh.conf.5: created new file.
+
+	* dsh.ja.1: create japanese translation.
+
+	* dsh.1: update docs, mention remsh.
+
 2003-01-24  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.6
