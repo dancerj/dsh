@@ -1,5 +1,7 @@
 2003-07-20  Junichi Uekawa  <dancer@debian.org>
 
+	* NEWS: Add notes that Tru64 UNIX and HP-UX are now supported
+
 	* configure.ac: Include unistd.h for netdb.h checking.
 	Tru64 Unix defines setnetgrent in netdb.h, and setnetgrent returns void.
 	0.23.11.cvs.2

@@ -1,3 +1,8 @@
+0.23.11.cvs.2 - 20 Jul 2003.
+
+ + Support Tru64 UNIX. Two testsuits fail due to shell features, but it works.
+ + Support HP-UX
+
 0.23.11 - 12 Jun 2003.
 
  + check for libdshconfig.h before compiling
