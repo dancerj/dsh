@@ -1,5 +1,7 @@
 2002-09-25  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.0, introducing new code to make dsh perform with POSIXly correct getopt behavior.
+
 	* Makefile.am (TESTS): added the new test.
 
 	* tests/param-gnu-getopt.sh: check for the GNU getopt hackery.
