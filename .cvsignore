@@ -20,6 +20,7 @@ configure
 configure-stamp
 configure.scan
 depcomp
+doc
 dsh
 dsh-*.tar.gz
 install-sh
