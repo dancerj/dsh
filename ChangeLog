@@ -1,5 +1,9 @@
 2004-01-21  Junichi Uekawa  <dancer@debian.org>
 
+	* dsh.c (run_input_forking_child_processes_process): Add some kind of message.
+	"Process terminated (before write)." message should be eliminated somewhere in the
+	future.
+
 	* NEWS: update news.
 
 	* configure.ac: 0.25.0.cvs.2

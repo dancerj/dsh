@@ -2,6 +2,8 @@
 
  + Fix hangling of SIGPIPE when remote process is finished before
    local noticing, with -ci option.
+ - It will emit "Process terminated (before write)." for now; The case of 
+   remote giving EOF before local should probably be handled, but not yet.
 
 0.25.0 - 17 Sep 2003.
 

@@ -505,8 +505,11 @@ run_input_forking_child_processes_process()
 		{
 		  /* handle errors */
 		  if (errno == EPIPE)
-		    /* pipe ended */
-		    goto out_of_while;
+		    {
+		      fprintf (stderr, _("%s: Process terminated (before write).\n"), PACKAGE);
+		      /* pipe ended */
+		      goto out_of_while;
+		    }
 		  else
 		    perror("dsh: write");
 		}
