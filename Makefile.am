@@ -34,7 +34,8 @@ TESTS_ENVIRONMENT=bindir=$(bindir) \
 	VERSION=@VERSION@ 
 EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file tests/list.space.file \
-	$(translated_man) $(original_man)
+	$(translated_man) $(original_man) \
+	dsh.spec
 
 install-data-local: 
 	for LANGS in $(man_languages) ; do \

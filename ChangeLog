@@ -1,3 +1,11 @@
+2004-05-27  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.25.2.1.cvs.1
+
+	* dsh.spec: Appended
+
+	* Makefile.am (EXTRA_DIST): add dsh spec file.
+
 2004-04-25  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: re-dist 0.25.2.1
