@@ -432,7 +432,7 @@ run_input_forking_child_processes_process()
 	{
 	  close (fd_output_array [i]);
 	}
-      break;
+      exit (0);
     case -1:
       /* fork failed */
       break;
