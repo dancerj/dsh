@@ -1,3 +1,7 @@
+2002-09-24  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: add AC_PROG_MAKE_SET as advised by info page for using SUBDIR
+
 2002-09-23  Junichi Uekawa  <dancer@debian.org>
 
 	* debian/dsh.updatelist: update the machines list to use ${CLUSTERXML} format
