@@ -46,7 +46,7 @@ no) AC_MSG_RESULT([no]) ;;
 esac
 
 getopt_gnu=0
-AC_MSG_CHECKING([getopt with a GNU opton reordering extention])
+AC_MSG_CHECKING([getopt with a GNU option reordering extention])
 AC_TRY_RUN([
 #define _GNU_SOURCE
 #include <getopt.h>
