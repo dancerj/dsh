@@ -1,5 +1,12 @@
 2002-09-14  Junichi Uekawa  <dancer@debian.org>
 
+	* dsh.c (do_echoing_back_process): change the function name, to clarify that this is a process..
+	(do_shell): add error message
+	(do_shell): return value
+	(execute_rsh): return value
+	(execute_rsh_multiple): return value
+	(execute_rsh_single): return value
+
 	* configure.ac: 0.20.4
 
 	* parameter.c (parse_options): add notes on what is problematic about it.

@@ -105,7 +105,7 @@ int asprintf(char **strp, const char *fmt, ...)
  * @returns -1 on error, 0 on success.
  */
 static int
-do_echoing_back(int fd_in, int fd_out, const char * prompt)
+do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
 {
   char * buf = NULL;
   int bufsize = 0;
@@ -124,8 +124,8 @@ do_echoing_back(int fd_in, int fd_out, const char * prompt)
     } 
   if (buf)
     free (buf);
-  
-  return 0;  
+
+  return 0;
 }
 
 /**
@@ -149,7 +149,7 @@ fork_and_pipe_echoing_routine (
     {			
       /* The child process.  */
       close (capture_fd[1]);
-      if (do_echoing_back(capture_fd[0], fdid, machinename))
+      if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
       exit(EXIT_SUCCESS);	/* actually, it should just get the
 				   child process return code. */
@@ -209,15 +209,17 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 
 					   
 
-/*
- * spawns rsh session on single machine
+/**
+ * spawns rsh/ssh session on single machine
+ *
+ * @returns -1 on failure, 0 on success
  */
-static void
+static int
 execute_rsh_single (const char * remoteshell_command, 
 		    const linkedlist * remoteshell_command_opt_r, 
 		    const char * param_machinename,
 		    const linkedlist * rshcommandline_r,
-		    int pipe_option)
+		    int pipe_option /** The pipe option */)
 {  
   int childpid;
   int childstatus;
@@ -268,11 +270,19 @@ execute_rsh_single (const char * remoteshell_command,
 	       _("%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and returned an error code that is not -1\n"), PACKAGE);
       exit (EXIT_FAILURE);
     }
+  else if (childpid==-1)
+    {
+      /* fork failed */
+      fprintf (stderr, 
+	       _("%s: fork failed, in execute_rsh_single\n"), PACKAGE);
+      return -1;
+    }
   else
     {
       if (wait_shell)
 	  waitpid(childpid, &childstatus, 0);	/* wait for termination */
     }
+  return 0;
 }
 
 
@@ -281,7 +291,7 @@ execute_rsh_single (const char * remoteshell_command,
  *
  * TODO: quote properly.
  */
-static void
+static int
 execute_rsh_multiple (const char * remoteshell_command, 
 		      const linkedlist * remoteshell_command_opt_r, 
 		      const linkedlist * machinelist, 
@@ -335,7 +345,7 @@ execute_rsh_multiple (const char * remoteshell_command,
   extraparam=lladd (extraparam, "--");
   rshcommandline_r = llcat (extraparam, lldup(rshcommandline_r));
 
-  execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, 0);
+  return execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, 0);
 }
 
 /**
@@ -344,8 +354,10 @@ execute_rsh_multiple (const char * remoteshell_command,
    executes rsh to execute command.
    depending on the parameter and 
    status.
+
+   @return 0 on success, -1 on failure.
 */
-static void
+static int
 execute_rsh ( const char * remoteshell_command, 
 	      const linkedlist * remoteshell_command_opt_r,
 	      const linkedlist * machinelist,
@@ -353,9 +365,9 @@ execute_rsh ( const char * remoteshell_command,
 	      const linkedlist * rshcommandline_r)
 {				
   if (nummachines == 1)
-    execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, show_machine_names);
+    return execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, show_machine_names);
   else
-    execute_rsh_multiple (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r);
+    return execute_rsh_multiple (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r);
 }
 
 
@@ -364,7 +376,7 @@ execute_rsh ( const char * remoteshell_command,
    do the shell execution without caring
    about what actually would happen
 
-   @returns 0.
+   @returns -1 on failure, 0 on success
 */
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
@@ -384,7 +396,11 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 	{
 	  fprintf (stderr, _("--- Executing on %s \n"), machinelist->string);
 	}
-      execute_rsh (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r);
+      if (execute_rsh (remoteshell_command, remoteshell_command_opt_r, machinelist, nummachines, rshcommandline_r))
+	{
+	  fprintf(stderr, _("%s: execute_rsh failed, rsh invocation failure.\n"), PACKAGE);
+	  return -1;
+	}
       
       /* skip the machines that program was executed on, and repeat */
       for (i=0; (i < nummachines) && machinelist; ++i)
@@ -399,7 +415,9 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   return 0;  
 }
 
-/** open /dev/null as stdin */
+/** 
+ * open /dev/null as stdin
+ */
 static void 
 open_devnull(void)
 {
