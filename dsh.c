@@ -29,6 +29,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <locale.h>
 
 #include "dsh.h"
 #include "linkedlist.h"
