@@ -1,3 +1,10 @@
+dsh (0.23.5-1) unstable; urgency=low
+
+  * New upstream version
+  * Documentation update and test updates.
+
+ -- Junichi Uekawa <dancer@debian.org>  Wed, 27 Nov 2002 14:17:07 +0900
+
 dsh (0.23.4-1) unstable; urgency=low
 
   * New upstream version

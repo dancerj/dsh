@@ -1,3 +1,7 @@
+2002-11-27  Junichi Uekawa  <dancer@debian.org>
+
+	* configure.ac: 0.23.5
+
 2002-11-12  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.23.4.cvs.3
