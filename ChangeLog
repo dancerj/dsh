@@ -1,6 +1,6 @@
 2002-06-13  Junichi Uekawa  <dancer@debian.org>
 
-	* dsh.c: #include <config.h> instead of "config.h"
+	* linkedlist.c, parameter.c, dsh.c: #include <config.h> instead of "config.h"
 
 2002-06-12  Junichi Uekawa  <dancer@debian.org>
 
