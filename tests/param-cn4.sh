@@ -1,5 +1,5 @@
-#!/bin/sh
-echo Check that cn4 option is working. not
+#! /bin/sh
+echo Check that cn4 option is working. 
 set -e
 [ "`./dsh -recho -ma,b,c,d,e,f,g,h,i,j,k,l,m,n -Mcn4 | sort`" = "\
 b ${bindir}/dsh -m b -m a -c -M -n4 -recho --
