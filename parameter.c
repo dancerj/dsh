@@ -111,6 +111,8 @@ linkedlist*
 read_machinenetgroup(linkedlist * machinelist,
                     const char * groupname)
 {
+#ifdef HAVE_SETNETGRENT
+
 #ifdef SETNETGRENT_RETURNS_VOID
 #define WORKAROUND_SETNETGRENT , 1
 #else
@@ -135,7 +137,14 @@ read_machinenetgroup(linkedlist * machinelist,
 	      PACKAGE, groupname);
       exit (1);			/* it should fail on error. */
     }
+
+#else  /* HAVE_SETNETGRENT */
+  fprintf(stderr, "%s: %s\n", PACKAGE, 
+	  _("This platform does not support NIS database routines"));
+  #warning "disabled setnetgrent support"
+#endif
   return machinelist;
+
 }
 
 /**

@@ -1,6 +1,15 @@
 2003-06-08  Junichi Uekawa  <dancer@debian.org>
 
+	* configure.ac: 0.23.9.cvs.3
+
+	* parameter.c (read_machinenetgroup): check for setnetgrent 
+	and do dummy action when not available.
+
+	* TODO: update TODO file.
+
 	* configure.ac: 0.23.9.cvs.2
+	check for funcs setnetgrent getnetgrent endnetngrent which seem not 
+	to be available on cygwin. 
 
 2003-06-07  Junichi Uekawa  <dancer@debian.org>
 
