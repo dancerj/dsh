@@ -1,5 +1,9 @@
 2002-05-31  Junichi Uekawa  <dancer@debian.org>
 
+	* Makefile.am (../@PACKAGE@_@VERSION@.orig.tar.gz): fix the target not to overwrite pristine upstream tarball.
+
+	* configure.in: fix typo in package name.
+
 	* Makefile.am (dsh_SOURCES): fix Make rule to allow distcheck to succeed.
 
 	* debian/changelog: make it a non-native package.
