@@ -1,8 +1,8 @@
 bin_PROGRAMS=dsh
 dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
-man_MANS=dsh.1
+dist_man_MANS=dsh.1
 sysconf_DATA=dsh.conf
-EXTRA_DIST= config.rpath $(man_MANS) $(sysconf_DATA) autogen.sh
+EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
 
 # Make debian pristine-source
