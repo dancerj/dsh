@@ -20,6 +20,7 @@ TESTS=tests/param-f.sh \
 	tests/param-cn4.sh \
 	tests/param-b-0.sh \
 	tests/param-r-invalid.sh \
+	tests/param-F-invalid.sh \
 	tests/param-gnu-getopt.sh \
 	tests/news-okay.sh \
 	tests/test-bufferoverflow.sh
