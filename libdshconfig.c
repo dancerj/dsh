@@ -1,0 +1,98 @@
+/*
+ *  DSH / dancer's shell or the distributed shell
+ *  Copyright (C) 2001, 2002 Junichi Uekawa
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * A library to read dsh config file style data files.
+ */
+
+
+/** 
+   The ugly function to do the config file reading.
+   It will read one non-commentline and return to the caller.
+
+   Return value of NULL indicates termination and/or error.
+ */
+static dshconfig_internal*
+read_oneline (FILE* f, int delimiter)
+{
+  /* read one line and return */
+  dshconfig_internal * d = malloc (sizeof dshconfig_internal);
+  char* s = NULL;
+  int size = 0;
+  int pos;
+  int i;
+
+  if (!d)
+    return 0;
+
+  while (getline (&s, &size, f) != -1)
+    {
+      if (pos = strchr(s, '#'))	/* handle comments, # and not \# */
+	if (*(pos-1) != '\\')
+	  *pos = 0;
+      
+      if ((pos = strchr(s, delimiter)) == NULL)	/* if the line has no delimiter, get another one */
+	{
+	  continue;
+	}
+      *(pos++) = 0; 
+
+      /* removing the space at end of title */
+      for (i = pos - 2; i > s; --i)
+	{
+	  if (!isspace (*i))
+	    break;
+	  else
+	    *i = 0;
+	}
+
+      /* removing the space in the beginning in title */
+      for (i = s; i < pos; ++i)
+	if (!isspace (*i))
+	  break;
+      d->title=strdup(i);
+
+      /* removing the space at the end of data*/
+      for (i = strlen(pos) + pos; i > pos; --i)
+	{
+	  if (!isspace (*i))
+	    break;
+	  else
+	    *i = 0;
+	}
+
+      /* removing space at the beginning in data */
+      for (i = pos; i < pos + strlen (pos); ++i)
+	if (!isspace (*i))
+	  break;
+      d->data=strdup(i);
+
+      free (s);
+      return d;
+    }
+  
+  free (d);
+  if (s) free (s);
+  return 0;
+}
+
+
+dshconfig *
+open_dshconfig (FILE* file, char delimiter) 
+{
+  
+}
