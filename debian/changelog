@@ -3,9 +3,10 @@ dsh (0.0.18) unstable; urgency=low
   * New version. (not released)
   * updated README.Debian
   * updated copyright for year 2002.
-  * Makefile uses $(CC) instead of hardcoding "gcc"
+  * Makefile uses $(CC) instead of hardcoding "gcc", just to be cross-build
+    friendly.
 
- -- Junichi Uekawa <dancer@debian.org>  Tue,  8 Jan 2002 00:35:55 +0900
+ -- Junichi Uekawa <dancer@debian.org>  Mon, 14 Jan 2002 03:41:32 +0900
 
 dsh (0.0.17) unstable; urgency=low
 
