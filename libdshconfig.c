@@ -181,6 +181,8 @@ free_dshconfig(dshconfig* d)
   for (i=d->config; i; )
     {
       dshconfig_internal * tmp = i->next ;
+      free (i->title);
+      free (i->data);
       free (i);
       i=tmp;
     }
