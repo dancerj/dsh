@@ -503,8 +503,12 @@ main(int ac, char ** av)
   
   setlocale (LC_ALL, "");
   if (!textdomain(PACKAGE_NAME))
-    if (!bindtextdomain(PACKAGE_NAME, LOCALEDIR))
-      fprintf ("%s: failed to call bindtextdomain\n", PACKAGE);
+    {
+      fprintf ("%s: failed to call textdomain\n", PACKAGE);
+      if (!bindtextdomain(PACKAGE_NAME, LOCALEDIR))
+	fprintf ("%s: failed to call bindtextdomain\n", PACKAGE);
+    }
+  
   
   
   load_configfile(DSH_CONF);
