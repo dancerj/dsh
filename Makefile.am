@@ -6,6 +6,10 @@ translated_man=dsh.conf.ja.5 dsh.ja.1
 sysconf_DATA=dsh.conf
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
 
+# space-delimited list of languages the manual pages are provided.
+#  dsh.LL.1 and dsh.conf.LL.5
+man_languages=ja
+
 check_PROGRAMS=dsh
 TESTS=tests/param-f.sh \
 	tests/param-f-fail.sh \
@@ -24,13 +28,19 @@ EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(translated_man) $(original_man)
 
 install-data-local: 
-	for LANGS in ja ; do \
+	for LANGS in $(man_languages) ; do \
 		mkdir -p $(DESTDIR)$(mandir)/$$LANGS/man1 ;\
 		mkdir -p $(DESTDIR)$(mandir)/$$LANGS/man5 ;\
-		sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < dsh.$$LANGS.1 \
+		sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < ${srcdir}/dsh.$$LANGS.1 \
 			> $(DESTDIR)$(mandir)/$$LANGS/man1/dsh.1 ; \
-		sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < dsh.conf.$$LANGS.5 \
-			> $(DESTDIR)$(mandir)/$$LANGS/man1/dsh.conf.5 ; \
+		sed -e 's,[@]sysconfdir[@],$(sysconfdir),' < ${srcdir}/dsh.conf.$$LANGS.5 \
+			> $(DESTDIR)$(mandir)/$$LANGS/man5/dsh.conf.5 ; \
+	done
+
+uninstall-local: 
+	for LANGS in $(man_languages) ; do \
+		rm -f $(DESTDIR)$(mandir)/$$LANGS/man1/dsh.1 \
+			$(DESTDIR)$(mandir)/$$LANGS/man5/dsh.conf.5 ; \
 	done
 
 build-man/dsh.1: ${srcdir}/dsh.1

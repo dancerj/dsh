@@ -1,5 +1,15 @@
 2003-06-04  Junichi Uekawa  <dancer@debian.org>
 
+	* Makefile.am (install-data-local): typo in install location of 
+	dsh.conf.5
+
+	* debian/compat: define compat version of 3.
+
+	* configure.ac: 0.23.7.cvs.3 -- passes make distcheck
+
+	* Makefile.am (install-data-local): add missing ${srcdir}
+	(uninstall-local): add uninstall target.
+
 	* configure.ac: 0.23.7.cvs.2
 
 	* NEWS: update.
