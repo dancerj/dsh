@@ -13,7 +13,7 @@ config.sub
 configure
 configure-stamp
 depcomp
-dsg-*.tar.gz
+dsh-*.tar.gz
 dsh
 install-sh
 libtool
