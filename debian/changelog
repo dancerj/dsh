@@ -1,3 +1,11 @@
+dsh (0.22.0-1) unstable; urgency=low
+
+  * New upstream version
+  * Fix duplicate machine entry to be unified (closes: #161845) 
+  * Allow use of "," delimiter for -m option.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 22 Sep 2002 20:31:00 +0900
+
 dsh (0.21.3-1) unstable; urgency=low
 
   * New upstream version
