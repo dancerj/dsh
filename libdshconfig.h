@@ -45,6 +45,9 @@ free_dshconfig(dshconfig* d);
 dshconfig_internal *
 dshconfig_splitline(const char * original, char delimiter);
 
+const char * 
+dshconfig_searchdata (const dshconfig * d, const char * index );
+
 #endif
 
 

@@ -27,8 +27,23 @@
 #include "libdshconfig.h"
 
 /**
-   The function used to split a line
+   Function to search member
+ */
+const char * 
+dshconfig_searchdata (const dshconfig * d, const char * index )
+{
+  dshconfig_internal * i = d->config;
+  for (; i; i = i -> next )
+    {
+      if (! strcmp (i->title, index ))
+	return i->data;
+    }  
+  return NULL;
+}
 
+
+/**
+   The function used to split a line
  */
 dshconfig_internal *
 dshconfig_splitline(const char * original, char delimiter)
