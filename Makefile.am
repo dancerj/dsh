@@ -21,7 +21,9 @@ TESTS=tests/param-f.sh \
 	tests/param-b-0.sh \
 	tests/param-r-invalid.sh \
 	tests/param-gnu-getopt.sh \
-	tests/news-okay.sh 
+	tests/news-okay.sh \
+	tests/test-bufferoverflow.sh
+
 
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \

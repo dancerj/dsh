@@ -1,3 +1,11 @@
+dsh (0.24.2-1) unstable; urgency=low
+
+  * New upstream version
+  - added check for the 'security hole' to see if it really exists.
+  * Standards-version: 3.6.1
+
+ -- Junichi Uekawa <dancer@debian.org>  Tue, 26 Aug 2003 08:39:39 +0900
+
 dsh (0.24.0-1) unstable; urgency=low
 
   * New upstream version

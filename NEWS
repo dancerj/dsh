@@ -1,3 +1,8 @@
+0.24.2 - 26 Aug 2003.
+
+ + Add check for the alleged security hole (HOME environment variable buffer overflow).
+   run "make check" to run the check: test-bufferoverflow.
+
 0.24.0 - 5 Aug 2003.
 
  + Support NetBSD 1.6. 
