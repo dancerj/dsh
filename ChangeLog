@@ -1,3 +1,12 @@
+2004-11-10  Junichi Uekawa  <dancer@debian.org>
+
+	* debian/copyright (Copyright): update copyright year.
+
+	* parameter.c (print_version): update copyright info to say 2004.
+
+	* AUTHORS: remove dancer@mikilab.doshisha.ac.jp from mail address.
+	No longer valid.
+
 2004-06-06  Junichi Uekawa  <dancer@debian.org>
 
 	* debian/control (Build-Depends): add versioned dependency on libdshconfig for versioned symbols.
