@@ -25,9 +25,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#ifdef HAVE_SIGNAL_H
-#include <signal.h>
-#endif
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -37,6 +34,11 @@
 #include <errno.h>
 
 #include "dsh.h"
+
+#ifdef HAVE_SIGNAL_H
+#include <signal.h>
+#endif
+
 #include "linkedlist.h"
 #include "parameter.h"
 

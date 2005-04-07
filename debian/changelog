@@ -1,5 +1,7 @@
-dsh (0.25.5-2) UNRELEASED; urgency=low
+dsh (0.25.6-1) unstable; urgency=low
 
+  * New upstream version
+  - fix build failure on solaris.
   * add uscan file
 
  -- Junichi Uekawa <dancer@debian.org>  Wed, 30 Mar 2005 09:41:55 +0900
