@@ -1,3 +1,9 @@
+dsh (0.25.6-2) UNRELEASED; urgency=low
+
+  * fix manual page.
+
+ -- Junichi Uekawa <dancer@debian.org>  Sun, 10 Jul 2005 20:06:00 +0900
+
 dsh (0.25.6-1) unstable; urgency=low
 
   * New upstream version

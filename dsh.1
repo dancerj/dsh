@@ -1,9 +1,9 @@
-.TH "dsh" 1 "2003 Sep 17" "Debian-Beowulf/Dancer" "Dancer Tools reference"
+.TH "dsh" 1 "2005 Jul 10" "Debian-Beowulf/Dancer" "Dancer Tools reference"
 .SH NAME
 dsh \- Distributed shell, or dancer's shell
 .SH SYNOPSIS
-.BI "dsh [-m " "machinename" " | -a | -g " "groupname" "] [-r " \
-"remoteshellname" "] [-c | -w | -i | -F " "forklimit" " ] -- " "commandline"
+.BI "dsh [\-m " "machinename" " | \-a | \-g " "groupname" "] [\-r " \
+"remoteshellname" "] [\-c | \-w | \-i | \-F " "forklimit" " ] \-\- " "commandline"
 .SH DESCRIPTION
 .B dsh
 executes command remotely on several different machines at the same
@@ -14,15 +14,15 @@ in bourne shell.
 .SH OPTIONS
 The options available are as follows.
 .TP
-.B "--verbose | -v" 
+.B "\-\-verbose | \-v" 
 Give verbose output of the execution process.
 .PP
 .TP
-.B "--quiet | -q"
+.B "\-\-quiet | \-q"
 Makes output quieter.
 .PP
 .TP
-.BI "--machine | -m " "[machinename[,machinename]*]"
+.BI "\-\-machine | \-m " "[machinename[,machinename]*]"
 Adds 
 .I machinename 
 to the list of machines that the command is exeuted.
@@ -39,13 +39,13 @@ in the format of
 so that multiple hosts can be specified with comma-delimited values.
 
 .TP
-.BI "--all | -a " 
+.BI "\-\-all | \-a " 
 Add all machines found in 
 .B /etc/dsh/machines.list
 to the list of machines that the specified command is executed.
 
 .TP
-.BI "--group " "groupname" " | -g " "groupname "
+.BI "\-\-group " "groupname" " | \-g " "groupname "
 Add all machines found in 
 .BI /etc/dsh/group/ groupname
 to the list of machines that the specified command is executed.
@@ -56,7 +56,7 @@ then the machines in the given netgroup is used to specify the list of
 machines to execute on.
 
 .TP
-.BI "--file " "machinefile" " | -f " "machinefile"
+.BI "\-\-file " "machinefile" " | \-f " "machinefile"
 Add all machines found in the specified file
 to the list of machines that the specified command is executed.
 
@@ -72,43 +72,43 @@ machine specification options will result in
 multiple invocations merged into one.
 
 .TP
-.BI "--remoteshell " "shellname " "| -r " "shellname "
+.BI "\-\-remoteshell " "shellname " "| \-r " "shellname "
 Execute remote shell 
 .I shellname
 as the remote shell. Usually any of "rsh", "remsh" or "ssh" 
 are available
 
 .TP
-.BI "--remoteshellopt " "rshoption " "| -o " "rshoption "
+.BI "\-\-remoteshellopt " "rshoption " "| \-o " "rshoption "
 Add one option 
 .I rshoption
 to the list of options passed on to the remote shell. 
 
 .TP
-.BI "--help | -h "
+.BI "\-\-help | \-h "
 Output help message and exits.
 
 .TP
-.BI "--wait-shell | -w " 
+.BI "\-\-wait\-shell | \-w " 
 Executes on each machine and waits for the execution finishing before
 moving on to the next machine.
 
 .TP
-.BI "--concurrent-shell | -c "
+.BI "\-\-concurrent\-shell | \-c "
 Executes shell concurrently.
 
 .TP
-.BI "--show-machine-names | -M "
+.BI "\-\-show\-machine\-names | \-M "
 Prepends machine names on the standard output. Useful to be used in
 conjunction with the 
-.B "--concurrent-shell" 
+.B "\-\-concurrent\-shell" 
 option so that the output is slightly more parsable.
 
 .TP
-.BI "--duplicate-input | -i "
+.BI "\-\-duplicate\-input | \-i "
 Duplicates the input to dsh process to individual process that are remotely
 invoked. Needs to have 
-.B "--concurrent-shell" 
+.B "\-\-concurrent\-shell" 
 set.
 
 Due to limitations in current implementation,
@@ -116,32 +116,32 @@ it is only useful for running shell.
 Terminate the shell session with ctrl-D.
 
 .TP
-.BI "--bufsize | -b [" "buffer-size in bytes" "]"
+.BI "\-\-bufsize | \-b [" "buffer-size in bytes" "]"
 Sets the buffer size used in replicating input for 
-.B "--duplicate-input" 
+.B "\-\-duplicate\-input" 
 option.
 
 .TP
-.BI "--version | -V "
+.BI "\-\-version | \-V "
 Outputs version information and exits.
 
 .TP
-.BI "--num-topology | -N "
+.BI "\-\-num\-topology | \-N "
 Changes the current topology from 1. 1 is the default behavior of
 spawning the shell from one node to every node. Changing the number to
 a value greater than 2 would result in dsh being spawned on other
 machines as well. 
 
 .TP
-.BI "--forklimit | -F " "fork limit"
+.BI "\-\-forklimit | \-F " "fork limit"
 Similar to 
-.B "-c"
+.B "\-c"
 with a limit on the number of simultaneous connections.
 dsh will wait before creating new connection if the limit is 
 reached.
 Useful when the number of nodes to be accessed 
 is going somewhere above 200, and using
-.B "-N"
+.B "\-N"
 option is not possible.
 
 .SH "EXIT STATUS"
@@ -154,30 +154,30 @@ or zero if none returned non-zero exit code.
 
 .SH "EXAMPLES"
 .TP
-.B "dsh -a w "
+.B "dsh \-a w "
 Shows list of users logged in on all workstations.
 .PP
 .TP
-.B "dsh -r ssh -a -- w "
+.B "dsh \-r ssh \-a \-\- w "
 Shows list of users logged in on all workstations, and
 use ssh command to connect. (It
 should be of note that when using ssh, ssh-agent is handy.)
 .PP
 .TP
-.B "dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'"
+.B "dsh \-r ssh \-m node1 \-m node2 \-c \-\- 'echo $HOSTNAME $(cat/proc/loadavg )'"
 Shows the load average of machines node1 and node2.
 .PP
 .SH "FILES"
 .TP
 .B "@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list"
 List of machine names to be used for when 
-.B -a
+.B \-a
 command-line option is specified.
 .PP
 .TP
 .BI "@sysconfdir@/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
 List of machine names to be used for when 
-.BI "-g " "groupname"
+.BI "\-g " "groupname"
 command-line option is specified.
 .PP
 .TP

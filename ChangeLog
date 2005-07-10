@@ -1,3 +1,7 @@
+2005-07-10  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.1: updated manual page to use \- rather than - in places.
+
 2005-04-08  Junichi Uekawa  <dancer@debian.org>
 
 	* configure.ac: 0.25.6
