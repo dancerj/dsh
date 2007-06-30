@@ -79,11 +79,11 @@ clean-local:
 debiandist: ../@PACKAGE@_@VERSION@.orig.tar.gz
 
 viper: distcheck
-	scp @PACKAGE@-@VERSION@.tar.gz viper2.netfort.gr.jp:public_html/software/downloads
+	scp @PACKAGE@-@VERSION@.tar.gz aegis.netfort.gr.jp:public_html/software/downloads
 	rm -f @PACKAGE@-@VERSION@.tar.gz
 
 upload-dist-all: distcheck
-	scp @PACKAGE@-@VERSION@.tar.gz viper2.netfort.gr.jp:public_html/software/downloads
+	scp @PACKAGE@-@VERSION@.tar.gz aegis.netfort.gr.jp:public_html/software/downloads
 	$(MAKE) ../@PACKAGE@_@VERSION@.orig.tar.gz
 
 SUBDIRS = m4 po 

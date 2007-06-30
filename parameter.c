@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001, 2002, 2003, 2004, 2005 Junichi Uekawa
+ *  Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -276,7 +276,7 @@ load_configfile(const char * dsh_conf)
 	    }	      
 	  else if (!strcmp(buf_a, "forklimit"))
 	    {
-	      forklimit = (atoi ( buf_b ) != 0 );
+	      forklimit = atoi ( buf_b );
 	      wait_shell = 0;
 	      if (verbose_flag)
 		{
