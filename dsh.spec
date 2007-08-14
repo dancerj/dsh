@@ -1,47 +1,72 @@
-%define name	dsh
-%define ver		0.25.2
-%define rel		1
+Summary: 	Run a single command on many hosts.
+Name: 		dsh
+Version: 	0.25.8
+Release: 	2%{?disttag}
+License: 	GPL
+Group: 		Applications/Internet
+URL: 		http://www.netfort.gr.jp/~dancer/software/dsh.html.en
+Source0: 	http://www.netfort.gr.jp/~dancer/software/downloads/dsh-%{version}.tar.gz
+Patch:		dsh-0.25.6-hide-machine-names-option.patch
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot-%(%{__id_u} -n)
+BuildRequires:	libdshconfig-devel
 
-Summary			:	SSH Shell for connection to multiple server at one time
-Name				:	%{name}
-Version			:	%{ver}
-Release			:	%{rel}
-Copyright		:	GPL
-Group				:	Applications/Internet
-URL				:	http://www.netfort.gr.jp/~dancer/software/downloads/list.cgi
-Source			:	%{name}-%{ver}.tar.gz
-BuildRoot		:	/var/tmp/%{name}-buildroot
-BuildRequires	:	libdshconfig-devel
-Requires			:	libdshconfig
 
 %description
-Distributed shell. Runs command through rsh or ssh on a cluster of machines.
-Requires libdshconfig to be already installed on the system.
+Distributed shell. Runs command through rsh or ssh on a cluster of
+machines.
+
 
 %prep
 %setup -q
+%patch -p0 -b .hide
+
 
 %build
 %configure
-make
+make %{?_smp_mflags}
+
 
 %install
-rm -rf "$RPM_BUILD_ROOT"
-make DESTDIR="$RPM_BUILD_ROOT" install
+rm -rf $RPM_BUILD_ROOT
+%makeinstall
+%find_lang dsh
 
-%files
-%defattr(-,root,root)
-%defattr(-,root,root)
-%attr(0644,root,root) /usr/share/locale/ja/LC_MESSAGES/dsh.mo
-%attr(0644,root,root) /usr/share/man/ja/man1/dsh.1.gz
-%attr(0644,root,root) /usr/share/man/ja/man5/dsh.conf.5.gz
-%attr(0644,root,root) /usr/share/man/man1/dsh.1.gz
-%attr(0644,root,root) /usr/share/man/man5/dsh.conf.5.gz
-%attr(0755,root,root) /usr/bin/dsh
-%attr(0644,root,root) /etc/dsh.conf
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+
+%files -f %{name}.lang
+%defattr(-,root,root,-)
+%doc COPYING README
+%config(noreplace) %{_sysconfdir}/dsh.conf
+%{_bindir}/dsh
+%{_mandir}/man1/dsh.1*
+%{_mandir}/man5/dsh.conf.5*
+%{_mandir}/*/man1/dsh.1*
+%{_mandir}/*/man5/dsh.conf.5*
+
 
 %changelog
-* Mon May 10 2004 Erik Wasser <ew@iquer.net>
-- Initial spec-file
-- Please don't hurt me.
+* Wed Jun 13 2007 Dams <anvil[AT]livna.org> - 0.25.8-2
+- Updated to 0.25.8
+
+* Tue Jan  2 2007 Dams <anvil[AT]livna.org> - 0.25.6-2
+- Added patch to not print machine names
+
+* Tue Feb 14 2006 Dams <anvil[AT]livna.org> - 0.25.6-1
+- Updated to 0.25.6
+
+* Tue Feb  1 2005 Dams <anvil[AT]livna.org> 0.25.4-2
+- Fixed some typo
+
+* Wed Jan 26 2005 Dams <anvil[AT]livna.org> 0.25.4-1
+- Updated to 0.25.4
+
+* Thu Jun  3 2004 Dams <anvil[AT]livna.org> 0:0.25.2-0.fdr.1
+- Updated to 0.25.2
+- More man pages
+
+* Thu Jun  3 2004 Dams <anvil[AT]livna.org> 
+- Initial build.
 

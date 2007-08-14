@@ -1,3 +1,7 @@
+2007-08-15  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.spec: add contributed spec file.
+
 2007-05-18  Junichi Uekawa  <dancer@debian.org>
 
 	* Makefile.am (upload-dist-all): change from viper to aegis.
