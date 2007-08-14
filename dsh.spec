@@ -1,12 +1,11 @@
 Summary: 	Run a single command on many hosts.
 Name: 		dsh
-Version: 	0.25.8
+Version: 	0.25.9
 Release: 	2%{?disttag}
 License: 	GPL
 Group: 		Applications/Internet
 URL: 		http://www.netfort.gr.jp/~dancer/software/dsh.html.en
 Source0: 	http://www.netfort.gr.jp/~dancer/software/downloads/dsh-%{version}.tar.gz
-Patch:		dsh-0.25.6-hide-machine-names-option.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot-%(%{__id_u} -n)
 BuildRequires:	libdshconfig-devel
 
