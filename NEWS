@@ -1,3 +1,7 @@
+0.25.9 XXX
+
+ + --hide-machine-names
+
 0.25.8 18 May 2007
 
  + fix forklimit config file option.
