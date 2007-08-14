@@ -213,6 +213,7 @@ print_help (void)
 	   "-v --verbose                   Verbose output\n"
 	   "-q --quiet                     Quiet\n"	
 	   "-M --show-machine-names        Prepend the host name on output\n"
+	   "-H --hide-machine-names        Do not prepend host name on output\n"
 	   "-i --duplicate-input           Duplicate input given to dsh\n"
 	   "-b --bufsize                   Change buffer size used in input duplication\n"
 	   "-m --machine [machinename]     Execute on machine\n"
@@ -395,6 +396,7 @@ parse_options ( int ac, char ** av)
     {"verbose", no_argument, 0, 'v'},
     {"quiet", no_argument, 0, 'q'},
     {"show-machine-names", no_argument, 0, 'M'},
+    {"hide-machine-names", no_argument, 0, 'H'},
     {"duplicate-input", no_argument, 0, 'i'},
     {"bufsize", required_argument, 0, 'b'},
 
@@ -427,7 +429,7 @@ parse_options ( int ac, char ** av)
 #endif
 
   while((c = getopt_long (ac, av, 
-			  EXTRAVALUE "vqm:ar:f:g:hVcwo:Mn:ib:F:", 
+			  EXTRAVALUE "vqm:ar:f:g:hVcwo:MHn:ib:F:", 
 			  long_options, &index_point)) != -1)
     {
       switch (c)
@@ -495,6 +497,10 @@ parse_options ( int ac, char ** av)
 	case 'M':
 	  if (verbose_flag) printf (_("Show machine names on output\n"));
 	  pipe_option |= PIPE_OPTION_OUTPUT;
+	  break;	  
+	case 'H':
+	  if (verbose_flag) printf (_("Dont show machine names on output\n"));
+	  pipe_option &=  ~(PIPE_OPTION_OUTPUT);
 	  break;	  
 	case 'i':
 	  if (verbose_flag) printf (_("Duplicate input to all processes\n"));
