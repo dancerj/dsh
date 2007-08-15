@@ -2,7 +2,7 @@ Source: dsh
 Section: net
 Priority: optional
 Maintainer: Junichi Uekawa <dancer@debian.org>
-Build-Depends: debhelper (>> 3.0.0), libdshconfig1-dev (>= 0.20.11-1)
+Build-Depends: debhelper (>> 3.0.0), libdshconfig1-dev (>= 0.20.11-1), po4a
 Standards-Version: 3.7.2
 
 Package: dsh
