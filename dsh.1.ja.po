@@ -1,0 +1,552 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-08-15 08:57+0900\n"
+"PO-Revision-Date: 2007-08-15 08:57+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-jp\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+# type: TH
+#: dsh.1:1
+#, no-wrap
+msgid "dsh"
+msgstr "dsh"
+
+# type: TH
+#: dsh.1:1
+#, no-wrap
+msgid "2007 Aug 15"
+msgstr "2007 Aug 15"
+
+# type: TH
+#: dsh.1:1
+#, no-wrap
+msgid "Debian-Beowulf/Dancer"
+msgstr "Debian-Beowulf/Dancer"
+
+# type: TH
+#: dsh.1:1
+#, no-wrap
+msgid "Dancer Tools reference"
+msgstr "Dancer ツールリファレンス"
+
+# type: SH
+#: dsh.1:2
+#, no-wrap
+msgid "NAME"
+msgstr "名前"
+
+# type: Plain text
+#: dsh.1:4
+msgid "dsh - Distributed shell, or dancer's shell"
+msgstr "dsh - 分散シェル．もしくはダンサーのシェル"
+
+# type: SH
+#: dsh.1:4
+#, no-wrap
+msgid "SYNOPSIS"
+msgstr "書式"
+
+# type: Plain text
+#: dsh.1:7
+msgid ""
+"B<dsh [-m >I<machinename>B< | -a | -g >I<groupname>B<] [-r "
+">I<remoteshellname>B<] [-c | -w | -i | -F >I<forklimit>B< ] -- "
+">I<commandline>"
+msgstr ""
+"B<dsh [-m >I<マシン名>B< | -a | -g >I<グループ名>B<] [-r >I<リモートシェル名"
+">B<] [-c | -w | -i | -F >I<forklimit>B< ] -- >I<コマンドライン>"
+
+# type: SH
+#: dsh.1:7
+#, no-wrap
+msgid "DESCRIPTION"
+msgstr "説明"
+
+# type: Plain text
+#: dsh.1:13
+msgid ""
+"B<dsh> executes command remotely on several different machines at the same "
+"time. An utility to effectively do a B<for a in $(seq 1 10); do rsh $a "
+"command; done> in bourne shell."
+msgstr ""
+"B<dsh> は複数のマシンで同時にコマンドを実行するためのユーティリティーです． "
+"このユーティリティーはBourneシェルで表現すると B<for a in $(seq 1 10); do "
+"rsh $a command; done> と同等の事ができます．"
+
+# type: SH
+#: dsh.1:14
+#, no-wrap
+msgid "OPTIONS"
+msgstr "オプション"
+
+# type: Plain text
+#: dsh.1:16
+msgid "The options available are as follows."
+msgstr "利用可能なオプションは以下の通りです"
+
+# type: TP
+#: dsh.1:16
+#, no-wrap
+msgid "B<--verbose | -v>"
+msgstr "B<--verbose | -v>"
+
+# type: Plain text
+#: dsh.1:19
+msgid "Give verbose output of the execution process."
+msgstr "冗長な出力を出します．"
+
+# type: TP
+#: dsh.1:20
+#, no-wrap
+msgid "B<--quiet | -q>"
+msgstr "B<--quiet | -q>"
+
+# type: Plain text
+#: dsh.1:23
+msgid "Makes output quieter."
+msgstr "出力を静かにします．"
+
+# type: TP
+#: dsh.1:24
+#, no-wrap
+msgid "B<--machine | -m >I<[machinename[,machinename]*]>"
+msgstr "B<--machine | -m >I<[マシン名[,マシン名]*]>"
+
+# type: Plain text
+#: dsh.1:35
+msgid ""
+"Adds I<machinename> to the list of machines that the command is exeuted.  "
+"The syntax of I<machinename> allows I<username@machinename> where remote "
+"shell is invoked with the option to make it of I<username.>"
+msgstr ""
+"I<マシン名> をコマンドが実行されるマシンの一覧に追加します． I<マシン名> の形"
+"式は I<ユーザ名@マシン名> という形をとります．この形式を利用すると I<ユーザ名"
+"> でリモートホストにログインできます．"
+
+# type: Plain text
+#: dsh.1:40
+msgid ""
+"From version 0.21.4, it is possible to specify in the format of "
+"I<username@machinename,username@machinename,username@machinename> so that "
+"multiple hosts can be specified with comma-delimited values."
+msgstr ""
+"バージョン 0.21.4 から I<ユーザ名@マシン名,ユーザ名@マシン名,ユーザ名@マシン"
+"名> の形式で複数のホストをコンマ区切りで指定することができるようになりまし"
+"た．"
+
+# type: TP
+#: dsh.1:41
+#, no-wrap
+msgid "B<--all | -a >"
+msgstr "B<--all | -a >"
+
+# type: Plain text
+#: dsh.1:46
+msgid ""
+"Add all machines found in B</etc/dsh/machines.list> to the list of machines "
+"that the specified command is executed."
+msgstr ""
+"Add all machines found in B</etc/dsh/machines.list> にある全ホストを指定した"
+"コマンドを実行するホストの一覧に追加します．"
+
+# type: TP
+#: dsh.1:47
+#, no-wrap
+msgid "B<--group >I<groupname>B< | -g >I<groupname >"
+msgstr "B<--group >I<groupname>B< | -g >I<groupname >"
+
+# type: Plain text
+#: dsh.1:52
+msgid ""
+"Add all machines found in B</etc/dsh/group/>I<groupname> to the list of "
+"machines that the specified command is executed."
+msgstr ""
+"B</etc/dsh/group/>I<グループ名> にある全ホストを指定したコマンドを実行するホ"
+"ストの一覧に追加します．"
+
+# type: Plain text
+#: dsh.1:57
+msgid ""
+"If groupname is on the form B<@netgroup> then the machines in the given "
+"netgroup is used to specify the list of machines to execute on."
+msgstr ""
+"グループ名が B<@ネットグループ> の形式で指定されているのなら，指定されたネッ"
+"トグループを コマンドを実行するためのホストの一覧に追加します．"
+
+# type: TP
+#: dsh.1:58
+#, no-wrap
+msgid "B<--file >I<machinefile>B< | -f >I<machinefile>"
+msgstr "B<--file >I<マシンファイル>B< | -f >I<マシンファイル>"
+
+# type: Plain text
+#: dsh.1:62
+msgid ""
+"Add all machines found in the specified file to the list of machines that "
+"the specified command is executed."
+msgstr ""
+"指定したファイルにある全ホストを指定したコマンドを実行するホストの一覧に追加"
+"します．"
+
+# type: Plain text
+#: dsh.1:68
+msgid ""
+"The file should list one machine specification per line (with the same "
+"syntax as the I<machinename> argument).  Lines starting with \"#\" are "
+"ignored."
+msgstr ""
+"ファイルの中では一行に一台づつマシンを指定します（ I<machinename> と同じ書式"
+"で指定します）。 \"#\"で開始する行は無視されます。"
+
+# type: Plain text
+#: dsh.1:73
+msgid ""
+"From version 0.21.4, Specifying the same machine several times using any of "
+"the machine specification options will result in multiple invocations merged "
+"into one."
+msgstr ""
+"バージョン 0.21.4 から同じマシンを複数回指定すると， 一つの実行にマージされる"
+"ようになりました．"
+
+# type: TP
+#: dsh.1:74
+#, no-wrap
+msgid "B<--remoteshell >I<shellname >B<| -r >I<shellname >"
+msgstr "B<--remoteshell >I<シェル名 >B<| -r >I<シェル名 >"
+
+# type: Plain text
+#: dsh.1:80
+msgid ""
+"Execute remote shell I<shellname> as the remote shell. Usually any of \"rsh"
+"\", \"remsh\" or \"ssh\" are available"
+msgstr ""
+"I<シェル名> というリモートシェルを利用する． 通常 \"rsh\" や \"remsh\" や "
+"\"ssh\" が利用可能です．"
+
+# type: TP
+#: dsh.1:81
+#, no-wrap
+msgid "B<--remoteshellopt >I<rshoption >B<| -o >I<rshoption >"
+msgstr "B<--remoteshellopt >I<リモートシェルオプション >B<| -o >I<リモートシェルオプション >"
+
+# type: Plain text
+#: dsh.1:86
+msgid ""
+"Add one option I<rshoption> to the list of options passed on to the remote "
+"shell."
+msgstr ""
+"I<リモートシェルオプション> をリモートシェルに与えるオプションのリストに追加"
+"する．"
+
+# type: TP
+#: dsh.1:87
+#, no-wrap
+msgid "B<--help | -h >"
+msgstr "B<--help | -h >"
+
+# type: Plain text
+#: dsh.1:90
+msgid "Output help message and exits."
+msgstr "ヘルプメッセージを出力して終了する．"
+
+# type: TP
+#: dsh.1:91
+#, no-wrap
+msgid "B<--wait-shell | -w >"
+msgstr "B<--wait-shell | -w >"
+
+# type: Plain text
+#: dsh.1:95
+msgid ""
+"Executes on each machine and waits for the execution finishing before moving "
+"on to the next machine."
+msgstr "各マシンで実行し，実行し終ってから次のマシンで実行する．"
+
+# type: TP
+#: dsh.1:96
+#, no-wrap
+msgid "B<--concurrent-shell | -c >"
+msgstr "B<--concurrent-shell | -c >"
+
+# type: Plain text
+#: dsh.1:99
+msgid "Executes shell concurrently."
+msgstr "シェルを並列に実行する．"
+
+# type: TP
+#: dsh.1:100
+#, no-wrap
+msgid "B<--show-machine-names | -M >"
+msgstr "B<--show-machine-names | -M >"
+
+# type: Plain text
+#: dsh.1:106
+msgid ""
+"Prepends machine names on the standard output. Useful to be used in "
+"conjunction with the B<--concurrent-shell> option so that the output is "
+"slightly more parsable."
+msgstr ""
+"マシン名を標準出力の出力に追加する． B<--concurrent-shell> オプションと同時に"
+"使うと出力が多少は見やすくなる．"
+
+# type: TP
+#: dsh.1:107
+#, no-wrap
+msgid "B<--hide-machine-names | -H >"
+msgstr "B<--hide-machine-names | -H >"
+
+# type: Plain text
+#: dsh.1:110
+msgid "Do not prepend machine names on the standard output."
+msgstr "マシン名を標準出力の出力に追加しない．"
+
+# type: TP
+#: dsh.1:111
+#, no-wrap
+msgid "B<--duplicate-input | -i >"
+msgstr "B<--duplicate-input | -i >"
+
+# type: Plain text
+#: dsh.1:117
+msgid ""
+"Duplicates the input to dsh process to individual process that are remotely "
+"invoked. Needs to have B<--concurrent-shell> set."
+msgstr ""
+"dshプロセスの入力を各リモートプロセスに分配する． B<--concurrent-shell> オプ"
+"ションを指定している必要がある．"
+
+# type: Plain text
+#: dsh.1:121
+msgid ""
+"Due to limitations in current implementation, it is only useful for running "
+"shell.  Terminate the shell session with ctrl-D."
+msgstr ""
+"現在の実装の制限により，シェルを実行する以外の用途には訳に立たない． シェルの"
+"セッションを終了するには，CtrlーDを押すこと．"
+
+# type: TP
+#: dsh.1:122
+#, no-wrap
+msgid "B<--bufsize | -b [>I<buffer-size in bytes>B<]>"
+msgstr "B<--bufsize | -b [>I<バッファサイズ(バイト)>B<]>"
+
+# type: Plain text
+#: dsh.1:127
+msgid ""
+"Sets the buffer size used in replicating input for B<--duplicate-input> "
+"option."
+msgstr ""
+"B<--duplicate-input> の入力を複製する際に利用するバッファサイズを指定する．"
+
+# type: TP
+#: dsh.1:128
+#, no-wrap
+msgid "B<--version | -V >"
+msgstr "B<--version | -V >"
+
+# type: Plain text
+#: dsh.1:131
+msgid "Outputs version information and exits."
+msgstr "バージョン情報を出力して終了する．"
+
+# type: TP
+#: dsh.1:132
+#, no-wrap
+msgid "B<--num-topology | -N >"
+msgstr "B<--num-topology | -N >"
+
+# type: Plain text
+#: dsh.1:138
+msgid ""
+"Changes the current topology from 1. 1 is the default behavior of spawning "
+"the shell from one node to every node. Changing the number to a value "
+"greater than 2 would result in dsh being spawned on other machines as well."
+msgstr ""
+"トポロジを1から変更する． 1がデフォルトの1ノードから全ノードにシェルを実行す"
+"るスタイルです． 2以上の値に指定すると，dshが他のマシンでも実行されるようにな"
+"ります．"
+
+# type: TP
+#: dsh.1:139
+#, no-wrap
+msgid "B<--forklimit | -F >I<fork limit>"
+msgstr "B<--forklimit | -F >I<fork limit>"
+
+# type: Plain text
+#: dsh.1:150
+msgid ""
+"Similar to B<-c> with a limit on the number of simultaneous connections.  "
+"dsh will wait before creating new connection if the limit is reached.  "
+"Useful when the number of nodes to be accessed is going somewhere above 200, "
+"and using B<-N> option is not possible."
+msgstr ""
+"B<-c> と同様の効果を持つ． このオプションは同時接続の数に制限を設ける． 限界"
+"を越えた場合，新しい接続を作成する前に他の接続が終了するのを待つ． 同時にアク"
+"セスするホストの数が200を越えており， B<-N> オプションを利用することが好まし"
+"くない環境の場合に利用する．"
+
+# type: SH
+#: dsh.1:151
+#, no-wrap
+msgid "EXIT STATUS"
+msgstr "終了コード"
+
+# type: Plain text
+#: dsh.1:154
+msgid ""
+"The first non-zero exit code of child processes is returned, or zero if none "
+"returned non-zero exit code."
+msgstr ""
+"最初のゼロ以外の終了コードを返した子プロセスの終了コードを返します． もし全て"
+"のプロセスがゼロを終了コードとして返したのなら，0を返します．"
+
+# type: Plain text
+#: dsh.1:157
+msgid ""
+"1 if error is found in command-line specifications.  2 if signal is received "
+"from child processes."
+msgstr "コマンドラインオプションの失敗があった場合は，EXIT_FAILUREを返します．"
+
+# type: SH
+#: dsh.1:159
+#, no-wrap
+msgid "EXAMPLES"
+msgstr "例"
+
+# type: TP
+#: dsh.1:160
+#, no-wrap
+msgid "B<dsh -a w >"
+msgstr "B<dsh -a w >"
+
+# type: Plain text
+#: dsh.1:163
+msgid "Shows list of users logged in on all workstations."
+msgstr "全ワークステーションにログインしているユーザの一覧を表示します．"
+
+# type: TP
+#: dsh.1:164
+#, no-wrap
+msgid "B<dsh -r ssh -a -- w >"
+msgstr "B<dsh -r ssh -a -- w >"
+
+# type: Plain text
+#: dsh.1:169
+msgid ""
+"Shows list of users logged in on all workstations, and use ssh command to "
+"connect. (It should be of note that when using ssh, ssh-agent is handy.)"
+msgstr ""
+"sshを利用して，全ワークステーションにログインしているユーザの一覧を表示しま"
+"す． (sshを利用するときには，ssh-agentを利用するのが良いでしょう．)"
+
+# type: TP
+#: dsh.1:170
+#, no-wrap
+msgid "B<dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'>"
+msgstr "B<dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'>"
+
+# type: Plain text
+#: dsh.1:173
+msgid "Shows the load average of machines node1 and node2."
+msgstr "node1とnode2の負荷平均を表示します．"
+
+# type: SH
+#: dsh.1:174
+#, no-wrap
+msgid "FILES"
+msgstr "ファイル"
+
+# type: TP
+#: dsh.1:175
+#, no-wrap
+msgid "B<@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list>"
+msgstr "B<@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list>"
+
+# type: Plain text
+#: dsh.1:180
+msgid ""
+"List of machine names to be used for when B<-a> command-line option is "
+"specified."
+msgstr "B<-a> コマンドラインオプションが指定されたときに利用するマシンの一覧．"
+
+# type: TP
+#: dsh.1:181
+#, no-wrap
+msgid "B<@sysconfdir@/group/>I<groupname>B< | $(HOME)/.dsh/group/>I<groupname>"
+msgstr "B<@sysconfdir@/group/>I<groupname>B< | $(HOME)/.dsh/group/>I<groupname>"
+
+# type: Plain text
+#: dsh.1:186
+msgid ""
+"List of machine names to be used for when B<-g >I<groupname> command-line "
+"option is specified."
+msgstr "B<-g >I<グループ名> オプションが指定されたときに利用するマシンの一覧"
+
+# type: TP
+#: dsh.1:187
+#, no-wrap
+msgid "B<@sysconfdir@/dsh.conf | $(HOME)/.dsh/dsh.conf >"
+msgstr "B<@sysconfdir@/dsh.conf | $(HOME)/.dsh/dsh.conf >"
+
+# type: Plain text
+#: dsh.1:190
+msgid "Configuration file containing the day-to-day default."
+msgstr "毎日使うデフォルト設定の書いてあるファイル．"
+
+# type: SH
+#: dsh.1:191
+#, no-wrap
+msgid "BUGS"
+msgstr "バグ"
+
+# type: Plain text
+#: dsh.1:195
+msgid "There should be a B<dcp> for copying files to remote systems."
+msgstr "ファイルをコピーするための B<dcp> プログラムがあるべきだろう．"
+
+# type: Plain text
+#: dsh.1:198
+msgid ""
+"Configuration files should really be able to do something more than it does "
+"now."
+msgstr "設定ファイルももっと柔軟になるべきだ．"
+
+# type: SH
+#: dsh.1:199
+#, no-wrap
+msgid "AUTHOR"
+msgstr "著者"
+
+# type: Plain text
+#: dsh.1:201
+msgid "Junichi Uekawa (dancer@debian.org)"
+msgstr "上川純一 (dancer@debian.org)"
+
+# type: Plain text
+#: dsh.1:204
+msgid ""
+"Upstream page is available at B<http://www.netfort.gr.jp/~dancer/software/"
+"dsh.html>"
+msgstr ""
+"ホームページは B<http://www.netfort.gr.jp/~dancer/software/dsh.html> にありま"
+"す．"
+
+# type: SH
+#: dsh.1:205
+#, no-wrap
+msgid "SEE ALSO"
+msgstr "関連項目"
+
+# type: Plain text
+#: dsh.1:210
+msgid "B<rsh>(1), B<ssh>(1), B<remsh>(1), B<dsh.conf>(5)"
+msgstr "B<rsh>(1), B<ssh>(1), B<remsh>(1), B<dsh.conf>(5)"

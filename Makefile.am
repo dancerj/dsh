@@ -39,6 +39,12 @@ EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(translated_man) $(original_man) \
 	dsh.spec
 
+dsh.1.ja.po: dsh.1
+	po4a-updatepo -f man -m dsh.1 -p dsh.1.ja.po 
+
+dsh.ja.1: dsh.1.ja.po
+	po4a-translate -f man -m dsh.1 -p dsh.1.ja.po -L euc-jp -l dsh.ja.1
+
 install-data-local: 
 	for LANGS in $(man_languages) ; do \
 		mkdir -p $(DESTDIR)$(mandir)/$$LANGS/man1 ;\

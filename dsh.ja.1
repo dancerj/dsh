@@ -1,188 +1,169 @@
-.TH "dsh" 1 "2003 Sep 17" "Debian-Beowulf/Dancer" "Dancer ツールリファレンス"
-\" 元ファイルのバージョン
-\" original-version: 1.13
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH dsh 1 "2007 Aug 15" Debian\-Beowulf/Dancer "Dancer ツールリファレンス"
 .SH 名前
 dsh \- 分散シェル．もしくはダンサーのシェル
 .SH 書式
-.BI "dsh [-m " "マシン名" " | -a | -g " "グループ名" "] [-r " \
-"リモートシェル名" "] [-c | -w | -i | -F " "forklimit" " ] -- " "コマンドライン"
+\fBdsh [\-m \fP\fIマシン名\fP\fB | \-a | \-g \fP\fIグループ名\fP\fB] [\-r
+\fP\fIリモートシェル名\fP\fB] [\-c | \-w | \-i | \-F \fP\fIforklimit\fP\fB ] \-\-
+\fP\fIコマンドライン\fP
 .SH 説明
-.B dsh
-は複数のマシンで同時にコマンドを実行するためのユーティリティーです．
-このユーティリティーはBourneシェルで表現すると
-.B "for a in $(seq 1 10); do rsh $a command; done"
-と同等の事ができます．
+\fBdsh\fP は複数のマシンで同時にコマンドを実行するためのユーティリティーです．
+このユーティリティーはBourneシェルで表現すると \fBfor a in $(seq 1 10); do
+rsh $a command; done\fP と同等の事ができます．
 
 .SH オプション
 利用可能なオプションは以下の通りです
-.TP
-.B "--verbose | -v" 
+.TP 
+\fB\-\-verbose | \-v\fP
 冗長な出力を出します．
 .PP
-.TP
-.B "--quiet | -q"
+.TP 
+\fB\-\-quiet | \-q\fP
 出力を静かにします．
 .PP
-.TP
-.BI "--machine | -m " "[マシン名[,マシン名]*]"
-.I マシン名
-をコマンドが実行されるマシンの一覧に追加します．
-.I マシン名
-の形式は
-.I ユーザ名@マシン名
-という形をとります．この形式を利用すると
-.I ユーザ名
-でリモートホストにログインできます．
+.TP 
+\fB\-\-machine | \-m \fP\fI[マシン名[,マシン名]*]\fP
+\fIマシン名\fP をコマンドが実行されるマシンの一覧に追加します． \fIマシン名\fP
+の形式は \fIユーザ名@マシン名\fP という形をとります．この形式を利用すると
+\fIユーザ名\fP でリモートホストにログインできます．
 
 バージョン 0.21.4 から
-.I "ユーザ名@マシン名,ユーザ名@マシン名,ユーザ名@マシン名"
+\fIユーザ名@マシン名,ユーザ名@マシン名,ユーザ名@マシン名\fP
 の形式で複数のホストをコンマ区切りで指定することができるようになりました．
 
-.TP
-.BI "--all | -a " 
-Add all machines found in 
-.B /etc/dsh/machines.list
+.TP 
+\fB\-\-all | \-a \fP
+Add all machines found in \fB/etc/dsh/machines.list\fP
 にある全ホストを指定したコマンドを実行するホストの一覧に追加します．
 
-.TP
-.BI "--group " "groupname" " | -g " "groupname "
-.BI /etc/dsh/group/ グループ名
+.TP 
+\fB\-\-group \fP\fIgroupname\fP\fB | \-g \fP\fIgroupname \fP
+\fB/etc/dsh/group/\fP\fIグループ名\fP
 にある全ホストを指定したコマンドを実行するホストの一覧に追加します．
 
-グループ名が
-.BI "@ネットグループ"
+グループ名が \fB@ネットグループ\fP
 の形式で指定されているのなら，指定されたネットグループを
 コマンドを実行するためのホストの一覧に追加します．
 
-.TP
-.BI "--file " "マシンファイル" " | -f " "マシンファイル"
+.TP 
+\fB\-\-file \fP\fIマシンファイル\fP\fB | \-f \fP\fIマシンファイル\fP
 指定したファイルにある全ホストを指定したコマンドを実行するホストの一覧に追加します．
+
+ファイルの中では一行に一台づつマシンを指定します（ \fImachinename\fP
+と同じ書式で指定します）。 "#"で開始する行は無視されます。
 
 バージョン 0.21.4 から同じマシンを複数回指定すると，
 一つの実行にマージされるようになりました．
 
-.TP
-.BI "--remoteshell " "シェル名 " "| -r " "シェル名 "
-.I シェル名
-というリモートシェルを利用する．
-通常 "rsh" や "remsh" や "ssh" が利用可能です．
+.TP 
+\fB\-\-remoteshell \fP\fIシェル名 \fP\fB| \-r \fP\fIシェル名 \fP
+\fIシェル名\fP というリモートシェルを利用する． 通常 "rsh" や "remsh" や "ssh"
+が利用可能です．
 
-.TP
-.BI "--remoteshellopt " "リモートシェルオプション " "| -o " "リモートシェルオプション "
-.I リモートシェルオプション
+.TP 
+\fB\-\-remoteshellopt \fP\fIリモートシェルオプション \fP\fB| \-o \fP\fIリモートシェルオプション \fP
+\fIリモートシェルオプション\fP
 をリモートシェルに与えるオプションのリストに追加する．
 
-.TP
-.BI "--help | -h "
+.TP 
+\fB\-\-help | \-h \fP
 ヘルプメッセージを出力して終了する．
 
-.TP
-.BI "--wait-shell | -w " 
+.TP 
+\fB\-\-wait\-shell | \-w \fP
 各マシンで実行し，実行し終ってから次のマシンで実行する．
 
-.TP
-.BI "--concurrent-shell | -c "
+.TP 
+\fB\-\-concurrent\-shell | \-c \fP
 シェルを並列に実行する．
 
-.TP
-.BI "--show-machine-names | -M "
-マシン名を標準出力の出力に追加する．
-.B "--concurrent-shell" 
+.TP 
+\fB\-\-show\-machine\-names | \-M \fP
+マシン名を標準出力の出力に追加する． \fB\-\-concurrent\-shell\fP
 オプションと同時に使うと出力が多少は見やすくなる．
 
-.TP
-.BI "--hide-machine-names | -H "
+.TP 
+\fB\-\-hide\-machine\-names | \-H \fP
 マシン名を標準出力の出力に追加しない．
 
-.TP
-.BI "--duplicate-input | -i "
-dshプロセスの入力を各リモートプロセスに分配する．
-.B "--concurrent-shell" 
+.TP 
+\fB\-\-duplicate\-input | \-i \fP
+dshプロセスの入力を各リモートプロセスに分配する． \fB\-\-concurrent\-shell\fP
 オプションを指定している必要がある．
 
 現在の実装の制限により，シェルを実行する以外の用途には訳に立たない．
 シェルのセッションを終了するには，CtrlーDを押すこと．
 
+.TP 
+\fB\-\-bufsize | \-b [\fP\fIバッファサイズ(バイト)\fP\fB]\fP
+\fB\-\-duplicate\-input\fP の入力を複製する際に利用するバッファサイズを指定する．
 
-.TP
-.BI "--bufsize | -b [" "バッファサイズ(バイト)" "]"
-.B "--duplicate-input" 
-の入力を複製する際に利用するバッファサイズを指定する．
-
-.TP
-.BI "--version | -V "
+.TP 
+\fB\-\-version | \-V \fP
 バージョン情報を出力して終了する．
 
-.TP
-.BI "--num-topology | -N "
+.TP 
+\fB\-\-num\-topology | \-N \fP
 トポロジを1から変更する．
 1がデフォルトの1ノードから全ノードにシェルを実行するスタイルです．
 2以上の値に指定すると，dshが他のマシンでも実行されるようになります．
 
-
-.TP
-.BI "--forklimit | -F " "fork limit"
-.B "-c"
-と同様の効果を持つ．
-このオプションは同時接続の数に制限を設ける．
+.TP 
+\fB\-\-forklimit | \-F \fP\fIfork limit\fP
+\fB\-c\fP と同様の効果を持つ． このオプションは同時接続の数に制限を設ける．
 限界を越えた場合，新しい接続を作成する前に他の接続が終了するのを待つ．
-同時にアクセスするホストの数が200を越えており，
-.B "-N"
+同時にアクセスするホストの数が200を越えており， \fB\-N\fP
 オプションを利用することが好ましくない環境の場合に利用する．
 
-.SH "終了コード"
+.SH 終了コード
 最初のゼロ以外の終了コードを返した子プロセスの終了コードを返します．
 もし全てのプロセスがゼロを終了コードとして返したのなら，0を返します．
 
 コマンドラインオプションの失敗があった場合は，EXIT_FAILUREを返します．
 
-.SH "例"
-.TP
-.B "dsh -a w "
+
+.SH 例
+.TP 
+\fBdsh \-a w \fP
 全ワークステーションにログインしているユーザの一覧を表示します．
 .PP
-.TP
-.B "dsh -r ssh -a -- w "
+.TP 
+\fBdsh \-r ssh \-a \-\- w \fP
 sshを利用して，全ワークステーションにログインしているユーザの一覧を表示します．
-(sshを利用するときには，ssh-agentを利用するのが良いでしょう．)
+(sshを利用するときには，ssh\-agentを利用するのが良いでしょう．)
 .PP
-.TP
-.B "dsh -r ssh -m node1 -m node2 -c -- 'echo $HOSTNAME $(cat/proc/loadavg )'"
+.TP 
+\fBdsh \-r ssh \-m node1 \-m node2 \-c \-\- 'echo $HOSTNAME $(cat/proc/loadavg )'\fP
 node1とnode2の負荷平均を表示します．
 .PP
-.SH "ファイル"
-.TP
-.B "@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list"
-.B -a
-コマンドラインオプションが指定されたときに利用するマシンの一覧．
+.SH ファイル
+.TP 
+\fB@sysconfdir@/machines.list | $(HOME)/.dsh/machines.list\fP
+\fB\-a\fP コマンドラインオプションが指定されたときに利用するマシンの一覧．
 .PP
-.TP
-.BI "@sysconfdir@/group/" "groupname" " | $(HOME)/.dsh/group/" "groupname" 
-.BI "-g " "グループ名"
-オプションが指定されたときに利用するマシンの一覧
-
+.TP 
+\fB@sysconfdir@/group/\fP\fIgroupname\fP\fB | $(HOME)/.dsh/group/\fP\fIgroupname\fP
+\fB\-g \fP\fIグループ名\fP オプションが指定されたときに利用するマシンの一覧
 .PP
-.TP
-.B "@sysconfdir@/dsh.conf | $(HOME)/.dsh/dsh.conf "
+.TP 
+\fB@sysconfdir@/dsh.conf | $(HOME)/.dsh/dsh.conf \fP
 毎日使うデフォルト設定の書いてあるファイル．
 .PP
-.SH "バグ"
-ファイルをコピーするための
-.B "dcp"
-プログラムがあるべきだろう．
+.SH バグ
+ファイルをコピーするための \fBdcp\fP プログラムがあるべきだろう．
 
 設定ファイルももっと柔軟になるべきだ．
 
-
-.SH "著者"
+.SH 著者
 上川純一 (dancer@debian.org)
 
-ホームページは
-.B "http://www.netfort.gr.jp/~dancer/software/dsh.html"
+ホームページは \fBhttp://www.netfort.gr.jp/~dancer/software/dsh.html\fP
 にあります．
 
-.SH "関連項目"
-.BR "rsh" "(1), " 
-.BR "ssh" "(1), "
-.BR "remsh" "(1), "
-.BR "dsh.conf" "(5) "
+.SH 関連項目
+\fBrsh\fP(1), \fBssh\fP(1), \fBremsh\fP(1), \fBdsh.conf\fP(5)
+

@@ -1,6 +1,7 @@
 0.25.9 XXX
 
  + --hide-machine-names
+ + use po4a to manage manpage translations.
 
 0.25.8 18 May 2007
 

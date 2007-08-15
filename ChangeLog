@@ -1,5 +1,9 @@
 2007-08-15  Junichi Uekawa  <dancer@debian.org>
 
+	* dsh.1.ja.po: new file
+
+	* Makefile.am (dsh.1.ja.po): makefile.
+
 	* parameter.c: hide-machine-names
 
 	* dsh.ja.1: document
