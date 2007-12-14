@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-15 09:00+0900\n"
+"POT-Creation-Date: 2007-12-14 09:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,98 +16,98 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dsh.c:129
+#: dsh.c:130
 #, c-format
 msgid "%s: Could not open descriptor [%i] or [%i]\n"
 msgstr ""
 
-#: dsh.c:158
+#: dsh.c:159
 #, c-format
 msgid "%s: cannot create pipe\n"
 msgstr ""
 
-#: dsh.c:174
+#: dsh.c:175
 #, c-format
 msgid "%s: Cannot spawn process\n"
 msgstr ""
 
-#: dsh.c:184
+#: dsh.c:185
 msgid "Failed playing with pipe"
 msgstr ""
 
-#: dsh.c:213
+#: dsh.c:214
 #, c-format
 msgid "%s: Failed on constructing a pipe and forking\n"
 msgstr ""
 
-#: dsh.c:219
+#: dsh.c:220
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
 msgstr ""
 
-#: dsh.c:319
+#: dsh.c:320
 #, c-format
 msgid "DUMPing parameters passed to llexec\n"
 msgstr ""
 
-#: dsh.c:328
+#: dsh.c:329
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
 msgstr ""
 
-#: dsh.c:334
+#: dsh.c:335
 #, c-format
 msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
 "returned an error code that is not -1\n"
 msgstr ""
 
-#: dsh.c:341
+#: dsh.c:342
 #, c-format
 msgid "%s: fork failed, in execute_rsh_single\n"
 msgstr ""
 
-#: dsh.c:363
+#: dsh.c:364
 msgid "... Waiting for process to end with waitpid"
 msgstr ""
 
-#: dsh.c:437 dsh.c:447 dsh.c:646 parameter.c:443 parameter.c:465
+#: dsh.c:438 dsh.c:448 dsh.c:647 parameter.c:443 parameter.c:465
 #: parameter.c:471
 #, c-format
 msgid "%s: asprintf failed\n"
 msgstr ""
 
-#: dsh.c:519
+#: dsh.c:520
 #, c-format
 msgid "%s: Process terminated (before write).\n"
 msgstr ""
 
-#: dsh.c:538
+#: dsh.c:539
 #, c-format
 msgid "%s: fork failed trying to dupilcate input\n"
 msgstr ""
 
-#: dsh.c:547
+#: dsh.c:548
 #, c-format
 msgid "%s: forked off input forking process\n"
 msgstr ""
 
-#: dsh.c:579
+#: dsh.c:580
 #, c-format
 msgid "--- Executing on %s \n"
 msgstr ""
 
-#: dsh.c:583
+#: dsh.c:584
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
 msgstr ""
 
-#: dsh.c:608
+#: dsh.c:609
 #, c-format
 msgid "%s: Child process %i exited with signal %i\n"
 msgstr ""
 
-#: dsh.c:622
+#: dsh.c:623
 #, c-format
 msgid "--- Terminated running\n"
 msgstr ""

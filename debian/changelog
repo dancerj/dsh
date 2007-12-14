@@ -1,3 +1,10 @@
+dsh (0.25.10-1) unstable; urgency=low
+
+  * New upstream version
+  - output is 'setlinebuf'd for better viewing.
+
+ -- Junichi Uekawa <dancer@debian.org>  Fri, 14 Dec 2007 09:05:39 +0900
+
 dsh (0.25.9-1) unstable; urgency=low
 
   * New upstream version

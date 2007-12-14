@@ -1,3 +1,7 @@
+2007-12-14  Junichi Uekawa  <dancer@debian.org>
+
+	* dsh.c (do_echoing_back_process): set line-buffering.
+
 2007-08-15  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.1.ja.po: new file

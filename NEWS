@@ -1,3 +1,8 @@
+0.25.10 14 Dec 2007
+
+ + Set line buffering, so that output of "dsh -ca " is properly
+ headered by line.
+
 0.25.9 15 Aug 2007
 
  + --hide-machine-names

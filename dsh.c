@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001, 2002, 2003, 2004, 2005 Junichi Uekawa
+ *  Copyright (C) 2001-2007 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -123,7 +123,8 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
   size_t bufsize = 0;
   FILE*f = fdopen (fd_in, "r");
   FILE*standard_output = fdopen (fd_out, "w");
-  
+  setlinebuf(standard_output);
+
   if (!f || !standard_output)
     {
       fprintf(stderr, _("%s: Could not open descriptor [%i] or [%i]\n"), PACKAGE, fd_in, fd_out);
