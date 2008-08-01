@@ -27,7 +27,8 @@ TESTS=tests/param-f.sh \
 	tests/segv-catcher.sh \
 	tests/test-bufferoverflow.sh \
 	tests/machinelist-comment-test.sh \
-	tests/machinelist-order.sh
+	tests/machinelist-order.sh \
+	tests/pipe-vs-redirect.sh
 
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \
