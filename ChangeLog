@@ -1,5 +1,8 @@
 2008-08-02  Junichi Uekawa  <dancer@debian.org>
 
+	* tests/sleepyshell.c: A C implementation that sleeps less than 1
+	second.
+
 	* tests/sleepyshell.sh: a fake remote shell command that does
 	sleep and echo. Use it for debugging.
 
