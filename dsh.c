@@ -82,11 +82,11 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
   setlinebuf(standard_output);
 
   /* do not die through the SIGHUP or SIGCHLD signal, yet */
-  sigemptyset (&newmask);
-  sigaddset (&newmask, SIGHUP);
-  sigaddset (&newmask, SIGCHLD);
+  sigemptyset(&newmask);
+  sigaddset(&newmask, SIGHUP);
+  sigaddset(&newmask, SIGCHLD);
 
-  if (sigprocmask (SIG_BLOCK, &newmask, &omask) < 0)
+  if (sigprocmask(SIG_BLOCK, &newmask, &omask)<0)
     {
       perror("sigprocmask");
       return -1;
@@ -98,11 +98,12 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
       return -1; 
     }
 
-  while (0 < getline(&buf, &bufsize, f))
+  while (0<getline(&buf, &bufsize, f))
     {
       fprintf (standard_output, "%s: %s", prompt, buf);
     } 
 
+  fflush (standard_output);	/* make sure I flush everything out */
   assert (feof(f));		/* make sure I am at the end of input file */
 
   if (buf)
@@ -131,12 +132,12 @@ fork_and_pipe_echoing_routine (
 {
   int childid;
   int capture_fd[2];
-  if (-1 == pipe (capture_fd))
+  if (-1==pipe(capture_fd))
     {
       fprintf(stderr, _("%s: cannot create pipe\n"), PACKAGE);
       return -1;
     }
-  if (0 != (childid = fork()))
+  if (0!=(childid=fork()))
     {	
       /* The parent process */
 
@@ -152,7 +153,7 @@ fork_and_pipe_echoing_routine (
       assert(WIFEXITED(status));
       exit(WEXITSTATUS(status));
     }
-  else if (childid == -1)
+  else if (childid==-1)
     {			/* do some error processing */
       fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
       return -1;
@@ -162,7 +163,7 @@ fork_and_pipe_echoing_routine (
       /* The child process -- this is the main trunc
 	 I don't want dsh to wait for the termination of this process.
        */
-      if (-1 == dup2 (capture_fd[1], fdid))
+      if (-1==dup2(capture_fd[1], fdid))
 	{
 	  fprintf(stderr, PACKAGE ": %s\n", _("Failed playing with pipe"));
 	  return -1;
@@ -198,7 +199,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 	}
     }
 
-  llexec ( remoteshell_command, commandline );
+  llexec(remoteshell_command, commandline);
   fprintf(stderr, _("%s: Failed executing %s with llexec call\n"), PACKAGE, remoteshell_command);
   fflush(stderr);
   exit (EXIT_FAILURE);
@@ -219,7 +220,8 @@ void
 dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
 {
   /* default behavior was to always ignore the child exit code. */
-  if ((exit_code_of_child != EXIT_SUCCESS) && (dsh_exit_code == EXIT_SUCCESS))
+  if ((exit_code_of_child!=EXIT_SUCCESS) &&
+      (dsh_exit_code==EXIT_SUCCESS))
     {
       dsh_exit_code = exit_code_of_child ;
     }
@@ -466,8 +468,8 @@ execute_rsh ( const char * remoteshell_command,
 }
 
 /**
- * Forks off to do read from input, and duplicate it to
- * output the same thing to all of individual remote processes
+ * Forks off to do read from input of dsh, and duplicate it to all
+ * child processes so that they can receive the same input.
  *
  * Used for processing the -i option
  *
@@ -494,14 +496,14 @@ run_input_forking_child_processes_process()
 	{
 	  if (count == 0)	/* if there is zero-byte read, it is an end-of-file */
 	    break;
-	  for (i = 0; i < fd_output_array_len; ++i )
+	  for (i=0; i<fd_output_array_len; ++i)
 	    {
-	      if (write (fd_output_array [i], buf, count) == -1)
+	      if (write(fd_output_array[i], buf, count) == -1)
 		{
 		  /* handle errors */
 		  if (errno == EPIPE)
 		    {
-		      fprintf (stderr, _("%s: Process terminated (before write).\n"), PACKAGE);
+		      fprintf(stderr, _("%s: Process terminated (before write).\n"), PACKAGE);
 		      /* pipe ended */
 		      goto out_of_while;
 		      /* This is going to terminate ALL processes 
@@ -513,9 +515,9 @@ run_input_forking_child_processes_process()
 	    }
 	}      
     out_of_while:
-      for (i = 0; i < fd_output_array_len; ++i )
+      for (i=0; i<fd_output_array_len; ++i)
 	{
-	  close (fd_output_array [i]);
+	  close(fd_output_array[i]);
 	}
       exit (EXIT_SUCCESS);
     case -1:
@@ -524,7 +526,7 @@ run_input_forking_child_processes_process()
       break;
     default:
       /* parent process closes the output array. */
-      for (i = 0; i < fd_output_array_len; ++i )
+      for (i=0; i < fd_output_array_len; ++i)
 	{
 	  close (fd_output_array [i]);
 	}
@@ -536,8 +538,10 @@ run_input_forking_child_processes_process()
 }
 
 /**
-   Called after the command-line parsing. 
-   This code will do the shell execution.
+   Shell dispatcher code. Called after the command-line parsing.  
+
+   This code is the starting point for the shell execution on multiple
+   hosts.
 
    @return -1 on failure
    @return dsh_exit_code on success
@@ -556,7 +560,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   nummachines = llcount(machinelist) / num_topology ;
   
   /* topology 1 is special. */
-  if ( nummachines == 0 || (num_topology == 1))
+  if (nummachines == 0 || num_topology == 1)
     {
       nummachines = 1;
     }    
@@ -589,7 +593,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
       int childpid;
       
       /* waiting for all. */
-      while(-1 != (childpid = waitpid(WAIT_ANY, &childstatus, 0)))
+      while (-1!=(childpid=waitpid(WAIT_ANY, &childstatus, 0)))
 	{
 	  /* Is child dead of signal ? i.e. segv, etc. */
 	  if (WIFSIGNALED(childstatus))
@@ -614,7 +618,8 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 }
 
 /**
- * The main code. Sets up internationalization.
+ * The entry point to dsh. Sets up internationalization, and then
+ * passes on control to other functions.
  */
 int
 main(int ac, char ** av)
@@ -630,7 +635,7 @@ main(int ac, char ** av)
   
   /* load configuration files. */
   load_configfile(DSH_CONF);
-  if (asprintf (&buf, "%s/.dsh/dsh.conf", getenv("HOME")) < 0)
+  if (0>asprintf(&buf, "%s/.dsh/dsh.conf", getenv("HOME")))
     {
       fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
       exit (1);
