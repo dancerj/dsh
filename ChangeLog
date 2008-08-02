@@ -1,6 +1,7 @@
 2008-08-03  Junichi Uekawa  <dancer@debian.org>
 
 	* parameter.c (open_devnull): add error checking.
+	(print_version): update version string for 2008.
 
 2008-08-02  Junichi Uekawa  <dancer@debian.org>
 
