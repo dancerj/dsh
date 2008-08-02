@@ -551,7 +551,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
   int i;
   
   assert (num_topology > 0);
-  assert (num_topology < llcount(machinelist));
+  assert (num_topology <= llcount(machinelist));
 
   nummachines = llcount(machinelist) / num_topology ;
   
