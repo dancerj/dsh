@@ -34,6 +34,7 @@
 #include <errno.h>
 
 #include "dsh.h"
+#include "compat.h"
 
 #ifdef HAVE_SIGNAL_H
 #include <signal.h>
@@ -61,54 +62,6 @@ int forklimit = 0; 		/* do not limit number of forks */
 /** current fork count; required for forklimit processing */
 static int currentforkcount = 0;
 
-/* function defining "getline" */
-#ifndef HAVE_GETLINE
-/* an imcomplete, and wrong implementation of getline */
-ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
-{
-  const int GETLINESIZE = 256;
-  int fgl;
-  
-  if (!*LINEPTR)
-    *LINEPTR= malloc (GETLINESIZE);
-  if (*N != GETLINESIZE)
-    *LINEPTR = realloc (*LINEPTR, GETLINESIZE);
-  if (!*LINEPTR)
-    {
-      return -1;
-    }
-  if (!fgets (*LINEPTR, GETLINESIZE - 1, STREAM))
-    return -1;
-  
-  *N = strlen (*LINEPTR);
-  return GETLINESIZE;
-  
-}
-#endif
-
-/* define asprintf if it doesn't exist */
-#ifndef HAVE_ASPRINTF
-#include <stdarg.h>
-int asprintf(char **strp, const char *fmt, ...)
-{
-  ssize_t buflen = 50 * strlen(fmt); /* pick a number, any number */
-  *strp = malloc(buflen);
-
-  if (*strp)
-  {
-    va_list ap;
-    va_start(ap, fmt);
-    vsnprintf(*strp, buflen, fmt, ap);
-    va_end(ap);
-    return buflen;
-  } 
-  return -1;
-}
-#endif /* HAVE_ASPRINTF  */
-
-#if !defined(WAIT_ANY)
-#define WAIT_ANY ((pid_t)-1)
-#endif /* WAIT_ANY */
 
 /**
  *  A process that just echoes back, reading fd_in using getline, 
@@ -166,7 +119,11 @@ fork_and_pipe_echoing_routine (
       close (capture_fd[1]);
       if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
-      waitpid (WAIT_ANY, &status, 0); /* need to error check this ? */
+      if (-1 == waitpid (WAIT_ANY, &status, 0))
+	{
+	  assert(0);
+	}
+
       assert(WIFEXITED(status));
       exit(WEXITSTATUS(status));
     }
@@ -227,15 +184,15 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 int dsh_exit_code = 0;
 
 /**
-   How to update the dsh exit code.
+   Updating the exit code of the child.
 
-   dsh may return exit code generated from all of its child processes,
-   this is the core engine. 
+   dsh will return the exit code of a random child process which did
+   not return success, if dsh itself was ran successfully.
  */
 void
 dsh_update_exit_code(int exit_code_of_child /** The exit code of the child process*/)
 {
-  /* default behavior was to always ignore. */
+  /* default behavior was to always ignore the child exit code. */
   if ((exit_code_of_child != EXIT_SUCCESS) && (dsh_exit_code == EXIT_SUCCESS))
     {
       dsh_exit_code = exit_code_of_child ;
@@ -244,6 +201,7 @@ dsh_update_exit_code(int exit_code_of_child /** The exit code of the child proce
 
 static int * fd_output_array = NULL; /** array of fd to duplicate input to */
 static int fd_output_array_len = 0;
+
 /**
  * adds an fd to the list of fds to be processed by the input-duplication daemon.
  */
@@ -257,7 +215,7 @@ add_fd_to_output_array(int fd)
 
 /**
  * spawns rsh/ssh session on single machine
- * This is still the main process forking the child process.
+ * I am the main process still, and I fork the child processes.
  *
  * @returns -1 on failure, 0 on success
  */
@@ -383,11 +341,12 @@ execute_rsh_single (const char * remoteshell_command,
       
       return 0;
     }
-  /* nobody reaches here. */
+  assert(0); /* nobody reaches here. */
 }
 
 /**
- * spawns dsh session on other machines
+ * spawns dsh session on other machines. The invoked dsh session in
+ * turn will invoke remote shell sessions.
  *
  * TODO: quote properly.
  * @return -1 on failure.
@@ -432,7 +391,6 @@ execute_rsh_multiple (const char * remoteshell_command,
   if (pipe_option)
     extraparam=lladd (extraparam, "-M");
   
-
   if (asprintf(&buffer, "-n%i", num_topology)<0)
     {
       fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
@@ -552,22 +510,26 @@ run_input_forking_child_processes_process()
 }
 
 /**
-   Called after the command-line parsing.
-   do the shell execution without caring
-   about what actually would happen
+   Called after the command-line parsing. 
+   This code will do the shell execution.
 
    @return -1 on failure
    @return dsh_exit_code on success
 
-   return value is used as dsh exit code.
+   return value is used as the main dsh exit code.
 */
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 {
-  int nummachines = llcount(machinelist) / num_topology ;  
+  int nummachines; 
   int i;
+  
+  assert (num_topology > 0);
+  assert (num_topology < llcount(machinelist));
 
-				/* topology 1 is special. */
+  nummachines = llcount(machinelist) / num_topology ;
+  
+  /* topology 1 is special. */
   if ( nummachines == 0 || (num_topology == 1))
     {
       nummachines = 1;

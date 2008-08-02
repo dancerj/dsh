@@ -1,5 +1,6 @@
 bin_PROGRAMS=dsh
-dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
+dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h \
+	compat.c compat.h
 original_man=dsh.1 dsh.conf.5 
 man_MANS=build-man/dsh.1 build-man/dsh.conf.5
 translated_man=dsh.conf.ja.5 dsh.ja.1
