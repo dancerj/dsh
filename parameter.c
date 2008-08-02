@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007 Junichi Uekawa
+ *  Copyright (C) 2001-2008 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -310,7 +310,13 @@ void
 open_devnull(void)
 {
   int in = open ("/dev/null", O_RDONLY);
-  dup2 (in, 0);
+  if (-1==in)
+    {
+      perror("open-devnull");
+      return;
+    }
+  if (-1==dup2 (in, 0))
+    perror("dup2-open-devnull");
 }
 
 
