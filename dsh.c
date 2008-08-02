@@ -73,7 +73,7 @@ static int currentforkcount = 0;
 static int
 do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
 {
-  char * buf = NULL;
+  char*buf = NULL;
   size_t bufsize = 0;
   FILE*f = fdopen (fd_in, "r");
   FILE*standard_output = fdopen (fd_out, "w");
@@ -85,6 +85,7 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
   sigemptyset(&newmask);
   sigaddset(&newmask, SIGHUP);
   sigaddset(&newmask, SIGCHLD);
+  sigaddset(&newmask, SIGPIPE);
 
   if (sigprocmask(SIG_BLOCK, &newmask, &omask)<0)
     {
@@ -94,24 +95,28 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
   
   if (!f || !standard_output)
     {
+      if(f) fclose(f);
+      if(standard_output) fclose(standard_output);
       fprintf(stderr, _("%s: Could not open descriptor [%i] or [%i]\n"), PACKAGE, fd_in, fd_out);
       return -1; 
     }
 
   while (0<getline(&buf, &bufsize, f))
     {
-      fprintf (standard_output, "%s: %s", prompt, buf);
+      fprintf(standard_output, "%s: %s", prompt, buf);
     } 
 
-  fflush (standard_output);	/* make sure I flush everything out */
-  assert (feof(f));		/* make sure I am at the end of input file */
+  fflush(standard_output);	/* make sure I flush everything out */
+  assert(feof(f));		/* make sure I am at the end of input file */
+  fclose(standard_output);
+  fclose(f);
 
   if (buf)
-    free (buf);
+    free(buf);
 
   /* unmask signal, probably not really required, but do it
      anyway */
-  sigprocmask (SIG_SETMASK, &omask, (sigset_t *) NULL); 
+  sigprocmask(SIG_SETMASK, &omask, (sigset_t *) NULL); 
 
   return 0;
 }
@@ -134,9 +139,13 @@ fork_and_pipe_echoing_routine (
   int capture_fd[2];
   if (-1==pipe(capture_fd))
     {
+      perror("pipe");
       fprintf(stderr, _("%s: cannot create pipe\n"), PACKAGE);
+      fflush(stderr);
       return -1;
     }
+  fflush(stderr);
+  fflush(stdout);
   if (0!=(childid=fork()))
     {	
       /* The parent process */
@@ -145,7 +154,7 @@ fork_and_pipe_echoing_routine (
       close (capture_fd[1]);
       if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
-      if (-1 == waitpid (WAIT_ANY, &status, 0))
+      if (-1 == waitpid(WAIT_ANY, &status, 0))
 	{
 	  assert(0);
 	}
@@ -155,7 +164,9 @@ fork_and_pipe_echoing_routine (
     }
   else if (childid==-1)
     {			/* do some error processing */
+      perror("fork");	/* I want to know the errno */
       fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
+      fflush(stderr);
       return -1;
     }      
   else
@@ -223,7 +234,7 @@ dsh_update_exit_code(int exit_code_of_child /** The exit code of the child proce
   if ((exit_code_of_child!=EXIT_SUCCESS) &&
       (dsh_exit_code==EXIT_SUCCESS))
     {
-      dsh_exit_code = exit_code_of_child ;
+      dsh_exit_code=exit_code_of_child;
     }
 }
 
@@ -236,9 +247,9 @@ static int fd_output_array_len = 0;
 static void
 add_fd_to_output_array(int fd)
 {
-  fd_output_array_len ++ ;
-  fd_output_array = realloc (fd_output_array, fd_output_array_len * sizeof(int));
-  fd_output_array[fd_output_array_len - 1] = fd;
+  fd_output_array_len++;
+  fd_output_array=realloc(fd_output_array, fd_output_array_len*sizeof(int));
+  fd_output_array[fd_output_array_len-1]=fd;
 }
 
 /**
@@ -260,9 +271,11 @@ execute_rsh_single (const char * remoteshell_command,
   
   if (pipe_option & PIPE_OPTION_INPUT)
     {
-      pipe (input_pipe);
+      pipe(input_pipe);
     }  
-
+  
+  fflush(stderr);
+  fflush(stdout);
   /* Execute the rsh process */
   if (0==(childpid=fork()))
     {				/* child process */
@@ -277,7 +290,7 @@ execute_rsh_single (const char * remoteshell_command,
       /* input piping */
       if (pipe_option & PIPE_OPTION_INPUT)
 	{
-	  dup2 (input_pipe[0],0);
+	  if (-1==dup2 (input_pipe[0],0)) perror("dup2-ers");
 	  close (input_pipe[1]);
 	  close (input_pipe[0]);
 	  /* Must NOT fork again before this point. */
@@ -483,6 +496,8 @@ run_input_forking_child_processes_process()
   int count ;
   int i;
 
+  fflush(stderr);
+  fflush(stdout);
   switch (fork())
     {
     case 0:
@@ -505,6 +520,7 @@ run_input_forking_child_processes_process()
 		    {
 		      fprintf(stderr, _("%s: Process terminated (before write).\n"), PACKAGE);
 		      /* pipe ended */
+		      fflush(stderr);
 		      goto out_of_while;
 		      /* This is going to terminate ALL processes 
 		       even if only one server terminated early. */
@@ -522,7 +538,9 @@ run_input_forking_child_processes_process()
       exit (EXIT_SUCCESS);
     case -1:
       /* fork failed */
+      perror("fork");      	/* I want to know the errno */
       fprintf(stderr,_("%s: fork failed trying to dupilcate input\n"), PACKAGE);
+      fflush(stderr);
       break;
     default:
       /* parent process closes the output array. */
