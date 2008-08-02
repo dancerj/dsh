@@ -1,6 +1,8 @@
 2008-08-02  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c: 2008
+	(do_echoing_back_process): block some signals in the pipe-reader
+	for a change.
 
 	* tests/sleepyshell.c: A C implementation that sleeps less than 1
 	second.

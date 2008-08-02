@@ -64,8 +64,9 @@ static int currentforkcount = 0;
 
 
 /**
- *  A process that just echoes back, reading fd_in using getline, 
- *  and writing to fd_out
+ *  A process that just echoes back, reading fd_in using getline, and
+ *  writing to fd_out. When this process returns, it expects process
+ *  exit.
  *
  * @returns -1 on error, 0 on success.
  */
@@ -76,27 +77,50 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
   size_t bufsize = 0;
   FILE*f = fdopen (fd_in, "r");
   FILE*standard_output = fdopen (fd_out, "w");
+  sigset_t newmask, omask;
+
   setlinebuf(standard_output);
 
+  /* do not die through the SIGHUP or SIGCHLD signal, yet */
+  sigemptyset (&newmask);
+  sigaddset (&newmask, SIGHUP);
+  sigaddset (&newmask, SIGCHLD);
+
+  if (sigprocmask (SIG_BLOCK, &newmask, &omask) < 0)
+    {
+      perror("sigprocmask");
+      return -1;
+    }
+  
   if (!f || !standard_output)
     {
       fprintf(stderr, _("%s: Could not open descriptor [%i] or [%i]\n"), PACKAGE, fd_in, fd_out);
       return -1; 
     }
 
-  while (0 <  getline(&buf, &bufsize, f))
+  while (0 < getline(&buf, &bufsize, f))
     {
       fprintf (standard_output, "%s: %s", prompt, buf);
     } 
+
+  assert (feof(f));		/* make sure I am at the end of input file */
+
   if (buf)
     free (buf);
+
+  /* unmask signal, probably not really required, but do it
+     anyway */
+  sigprocmask (SIG_SETMASK, &omask, (sigset_t *) NULL); 
 
   return 0;
 }
 
 /**
  * Forks the output pipe routine for fd[x]
- * this is the main process, forking the child process.
+ *
+ * This is the remote-shell-invoking process, used for execing the
+ * remote shell. child process is forked from here, and that child
+ * process does the echoing back.
  *
  * @returns -1 on error, 0 on success
  */
@@ -114,8 +138,9 @@ fork_and_pipe_echoing_routine (
     }
   if (0 != (childid = fork()))
     {	
-      int status;
       /* The parent process */
+
+      int status;
       close (capture_fd[1]);
       if (do_echoing_back_process(capture_fd[0], fdid, machinename))
 	exit (EXIT_FAILURE);
@@ -175,6 +200,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
 
   llexec ( remoteshell_command, commandline );
   fprintf(stderr, _("%s: Failed executing %s with llexec call\n"), PACKAGE, remoteshell_command);
+  fflush(stderr);
   exit (EXIT_FAILURE);
 }
 
