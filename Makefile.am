@@ -40,7 +40,8 @@ EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file tests/list.space.file \
 	tests/machinelist-comment.txt \
 	$(translated_man) $(original_man) \
-	dsh.spec
+	dsh.spec \
+	mkinstalldirs
 
 ${srcdir}/dsh.1.ja.po: ${srcdir}/dsh.1
 	po4a-updatepo -f man -m dsh.1 -p dsh.1.ja.po 
