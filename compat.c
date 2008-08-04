@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "dsh.h"
 #include "compat.h"
@@ -33,7 +34,6 @@
 ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
 {
   const int GETLINESIZE = 256;
-  int fgl;
   
   if (!*LINEPTR)
     *LINEPTR= malloc (GETLINESIZE);
