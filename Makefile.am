@@ -6,7 +6,6 @@ man_MANS=build-man/dsh.1 build-man/dsh.conf.5
 translated_man=dsh.conf.ja.5 dsh.ja.1
 sysconf_DATA=dsh.conf
 dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PACKAGE)\"" -DLOCALEDIR="\"$(localedir)\""
-sleepyshell_SOURCES= tests/sleepyshell.c
 
 # space-delimited list of languages the manual pages are provided.
 #  dsh.LL.1 and dsh.conf.LL.5
