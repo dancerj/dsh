@@ -41,6 +41,7 @@ EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	tests/machinelist-comment.txt \
 	$(translated_man) $(original_man) \
 	dsh.spec \
+	test_compat.c \
 	mkinstalldirs
 
 ${srcdir}/dsh.1.ja.po: ${srcdir}/dsh.1

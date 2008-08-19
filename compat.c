@@ -28,6 +28,13 @@
 #include "dsh.h"
 #include "compat.h"
 
+
+#ifdef __TEST_COMPAT_C__
+// for testing the code.
+#undef HAVE_GETLINE
+#undef HAVE_ASPRINTF
+#endif
+
 /* function defining "getline" */
 #ifndef HAVE_GETLINE
 /* an imcomplete, and wrong implementation of getline */
