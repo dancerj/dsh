@@ -169,9 +169,28 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char*alt
       while (-1 != getline (&buf, &bufferlen, f))
 	{
 	  const char * strippedstring = stripwhitespace(buf);
-	  if (strippedstring)
-	    machinelist=machinelist_lladd(machinelist,strippedstring); 
-	}
+	  if (strippedstring && *strippedstring == '@')
+	    {
+	      char *buf1 = 0, *buf2 = 0, *filename = strippedstring + 1;
+	      if (asprintf(&buf1, DSHCONFDIR"/group/%s", filename) < 0)
+		{
+		  fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		  return machinelist;
+		}
+	      if (asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), filename)<0)
+		{
+		  fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		  return machinelist;
+		}
+	      machinelist = read_machinelist (machinelist, buf2, buf1);
+	      free(buf1);free(buf2);
+	    }
+	  else
+	    {
+	      if (strippedstring)
+		machinelist=machinelist_lladd(machinelist,strippedstring);
+	    }
+	  }
       fclose(f);
     }
   else
