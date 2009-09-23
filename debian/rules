@@ -29,8 +29,8 @@ configure-stamp:
 	 ./configure --prefix=/usr --sysconfdir=/etc/dsh --mandir=/usr/share/man
 	touch configure-stamp
 
-build: configure-stamp build-stamp
-build-stamp:
+build: build-stamp
+build-stamp: configure-stamp
 	dh_testdir
 	$(MAKE)
 	$(MAKE) check
