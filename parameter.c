@@ -157,40 +157,45 @@ read_machinenetgroup(linkedlist * machinelist,
 /**
  * read the machine list file from file.
  */
-linkedlist* 
+linkedlist*
 read_machinelist(linkedlist * machinelist, const char * listfile, const char*alternatelistfile)
 {
   FILE * f;
-  size_t bufferlen = 1024;  
+  size_t bufferlen = 1024;
   char * buf = malloc_with_error(bufferlen);
-  
+
   if ((f = fopen (listfile, "r")) || ((NULL != alternatelistfile) && (f=fopen(alternatelistfile, "r"))))
     {
       while (-1 != getline (&buf, &bufferlen, f))
 	{
 	  const char * strippedstring = stripwhitespace(buf);
-	  if (strippedstring && *strippedstring == '@')
+	  if (strippedstring)
 	    {
-	      char *buf1 = 0, *buf2 = 0, *filename = strippedstring + 1;
-	      if (asprintf(&buf1, DSHCONFDIR"/group/%s", filename) < 0)
-		{
-		  fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
-		  return machinelist;
+	      if (*strippedstring == '@')
+		{ /* handle groups for host names starting with @ */
+		  char * buf1 = 0;
+		  char * buf2 = 0;
+		  char * filename = strippedstring + 1;
+
+		  if (asprintf(&buf1, DSHCONFDIR"/group/%s", filename) < 0)
+		    {
+		      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		      return machinelist;
+		    }
+		  if (asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), filename)<0)
+		    {
+		      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
+		      return machinelist;
+		    }
+		  machinelist = read_machinelist (machinelist, buf2, buf1);
+		  free(buf1);free(buf2);
 		}
-	      if (asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), filename)<0)
+	      else
 		{
-		  fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
-		  return machinelist;
+		  machinelist=machinelist_lladd(machinelist,strippedstring);
 		}
-	      machinelist = read_machinelist (machinelist, buf2, buf1);
-	      free(buf1);free(buf2);
 	    }
-	  else
-	    {
-	      if (strippedstring)
-		machinelist=machinelist_lladd(machinelist,strippedstring);
-	    }
-	  }
+	}
       fclose(f);
     }
   else
