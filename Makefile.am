@@ -103,3 +103,6 @@ ACLOCAL_AMFLAGS = -I m4
 doc: ${srcdir}/*.[ch]
 	doc++ --dir doc *.[ch]
 
+check-syntax:
+	$(CC) -c $(CFLAGS) $(CHK_SOURCES) -o/dev/null
+
