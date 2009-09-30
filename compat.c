@@ -41,7 +41,7 @@
 ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
 {
   const int GETLINESIZE = 256;
-  
+
   if (!*LINEPTR)
     *LINEPTR= malloc (GETLINESIZE);
   if (*N != GETLINESIZE)
@@ -52,10 +52,10 @@ ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM)
     }
   if (!fgets (*LINEPTR, GETLINESIZE - 1, STREAM))
     return -1;
-  
+
   *N = strlen (*LINEPTR);
   return GETLINESIZE;
-  
+
 }
 #endif
 
@@ -74,7 +74,7 @@ int asprintf(char **strp, const char *fmt, ...)
     vsnprintf(*strp, buflen, fmt, ap);
     va_end(ap);
     return buflen;
-  } 
+  }
   return -1;
 }
 #endif /* HAVE_ASPRINTF  */

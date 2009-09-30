@@ -16,7 +16,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * Main program. 
+ * Main program.
  */
 
 #define _GNU_SOURCE
@@ -50,7 +50,7 @@ char * remoteshell_command="rsh";
 int verbose_flag=0;		/* verbosity flag */
 int wait_shell=1;		/* waiting for shell to execute (concurrence) */
 int pipe_option=0;	        /* show machine names -- piping option. */
-int num_topology=1;		/* number of topology to use as a block to execute rsh. 
+int num_topology=1;		/* number of topology to use as a block to execute rsh.
 				 1 = for-loop
 				 2 = binary-tree
 				 4 = quad-tree.
@@ -92,19 +92,19 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
       perror("sigprocmask");
       return -1;
     }
-  
+
   if (!f || !standard_output)
     {
       if(f) fclose(f);
       if(standard_output) fclose(standard_output);
       fprintf(stderr, _("%s: Could not open descriptor [%i] or [%i]\n"), PACKAGE, fd_in, fd_out);
-      return -1; 
+      return -1;
     }
 
   while (0<getline(&buf, &bufsize, f))
     {
       fprintf(standard_output, "%s: %s", prompt, buf);
-    } 
+    }
 
   fflush(standard_output);	/* make sure I flush everything out */
   assert(feof(f));		/* make sure I am at the end of input file */
@@ -116,7 +116,7 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
 
   /* unmask signal, probably not really required, but do it
      anyway */
-  sigprocmask(SIG_SETMASK, &omask, (sigset_t *) NULL); 
+  sigprocmask(SIG_SETMASK, &omask, (sigset_t *) NULL);
 
   return 0;
 }
@@ -130,10 +130,10 @@ do_echoing_back_process(int fd_in, int fd_out, const char * prompt)
  *
  * @returns -1 on error, 0 on success
  */
-static int 
+static int
 fork_and_pipe_echoing_routine (
 			       /** File descriptor ID */ int fdid,
-			       const char * machinename) 
+			       const char * machinename)
 {
   int childid;
   int capture_fd[2];
@@ -147,7 +147,7 @@ fork_and_pipe_echoing_routine (
   fflush(stderr);
   fflush(stdout);
   if (0!=(childid=fork()))
-    {	
+    {
       /* The parent process */
 
       int status;
@@ -168,7 +168,7 @@ fork_and_pipe_echoing_routine (
       fprintf (stderr, _("%s: Cannot spawn process\n"), PACKAGE);
       fflush(stderr);
       return -1;
-    }      
+    }
   else
     {
       /* The child process -- this is the main trunc
@@ -185,7 +185,7 @@ fork_and_pipe_echoing_routine (
   return 0;
 }
 
-/** 
+/**
  * Actually execute the program, with maybe a pipe process being forked.
  * the actual program execution is done by llexec.
  * This part does the optional pipe construction or direct llexec
@@ -204,7 +204,7 @@ do_execute_with_optional_pipe (const char * remoteshell_command,
     {
       if (fork_and_pipe_echoing_routine(1, machinename) ||
 	  fork_and_pipe_echoing_routine(2, machinename))
-	{	  
+	{
 	  fprintf(stderr, _("%s: Failed on constructing a pipe and forking\n"), PACKAGE);
 	  return -1;
 	}
@@ -259,21 +259,21 @@ add_fd_to_output_array(int fd)
  * @returns -1 on failure, 0 on success
  */
 static int
-execute_rsh_single (const char * remoteshell_command, 
-		    const linkedlist * remoteshell_command_opt_r, 
+execute_rsh_single (const char * remoteshell_command,
+		    const linkedlist * remoteshell_command_opt_r,
 		    const char * param_machinename,
 		    const linkedlist * rshcommandline_r,
 		    int pipe_option /** The pipe option */)
-{  
+{
   int childpid;
   int childstatus = 0;
   int input_pipe [2];
-  
+
   if (pipe_option & PIPE_OPTION_INPUT)
     {
       pipe(input_pipe);
-    }  
-  
+    }
+
   fflush(stderr);
   fflush(stdout);
   /* Execute the rsh process */
@@ -281,11 +281,11 @@ execute_rsh_single (const char * remoteshell_command,
     {				/* child process */
       /* Must NOT fork again from this point until I say otherwise */
       linkedlist * tmp = NULL;
-      char * machinename = 
+      char * machinename =
 	strdup (param_machinename); /* we will always exit() from here, so
 				       no need to free this myself. */
       char * username = machinename;
-      linkedlist * local_remoteshell_command_opt_r = lldup(remoteshell_command_opt_r);      
+      linkedlist * local_remoteshell_command_opt_r = lldup(remoteshell_command_opt_r);
 
       /* input piping */
       if (pipe_option & PIPE_OPTION_INPUT)
@@ -305,39 +305,39 @@ execute_rsh_single (const char * remoteshell_command,
 	}
       else
 	{			/* no username was specified */
-	  machinename=username;	      
+	  machinename=username;
 	  username=NULL;
 	}
-      
+
       tmp = llcat (tmp, local_remoteshell_command_opt_r);
       tmp = lladd (tmp, machinename);
       tmp = llcat (tmp, lldup(rshcommandline_r));
       tmp = llreverse(tmp);
-      
+
       if (verbose_flag) 	/* debugging */
 	{
 	  printf(_( "DUMPing parameters passed to llexec\n"));
 	  lldump(tmp);
-	}	  
-      
-      if (-1 == (do_execute_with_optional_pipe(remoteshell_command, 
-					       tmp, pipe_option, 
+	}
+
+      if (-1 == (do_execute_with_optional_pipe(remoteshell_command,
+					       tmp, pipe_option,
 					       param_machinename)))
 	{
-	  fprintf(stderr,  
-		  _("%s: Failed to execute remote shell command %s\n"), 
+	  fprintf(stderr,
+		  _("%s: Failed to execute remote shell command %s\n"),
 		  PACKAGE, remoteshell_command);
 	  exit (EXIT_FAILURE);
 	}
 				/* what follows should never occur */
-      fprintf (stderr, 
+      fprintf (stderr,
 	       _("%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and returned an error code that is not -1\n"), PACKAGE);
       exit (EXIT_FAILURE);
     }
   else if (childpid==-1)
     {
       /* fork failed */
-      fprintf (stderr, 
+      fprintf (stderr,
 	       _("%s: fork failed, in execute_rsh_single\n"), PACKAGE);
       return -1;
     }
@@ -346,24 +346,24 @@ execute_rsh_single (const char * remoteshell_command,
       if (pipe_option & PIPE_OPTION_INPUT)
 	{
 	  close (input_pipe[0]);
-	  /* add input_pipe[1] to the array of outputs one 
+	  /* add input_pipe[1] to the array of outputs one
 	     must handle here... */
 	  add_fd_to_output_array(input_pipe[1]);
 	}
 
       currentforkcount ++;
-      
+
       if ((wait_shell)||	/* if wait_shell is specified */
 	  ((forklimit > 0) && (currentforkcount > forklimit)) /* or fork limit is exceeded */
 	  )
 	{
-	    /* wait for termination, 
+	    /* wait for termination,
 	       if it was required */
 	  if (verbose_flag)
 	    printf ("%s\n", _("... Waiting for process to end with waitpid"));
-	  
+
 	  if (-1 != waitpid(wait_shell ? /* wait for childpid; or ANY if forklimit.
-					    Setting this to ANY means it will go ahead when 
+					    Setting this to ANY means it will go ahead when
 					    any process ends, while waiting for childpid
 					    means to wait for last process, which is less efficient.
 					  */
@@ -379,7 +379,7 @@ execute_rsh_single (const char * remoteshell_command,
 	      assert(0);	/* weird error condition. */
 	    }
 	}
-      
+
       return 0;
     }
   assert(0); /* nobody reaches here. */
@@ -393,27 +393,27 @@ execute_rsh_single (const char * remoteshell_command,
  * @return -1 on failure.
  */
 static int
-execute_rsh_multiple (const char * remoteshell_command, 
-		      const linkedlist * remoteshell_command_opt_r, 
-		      const linkedlist * machinelist, 
-		      int nummachines, 
+execute_rsh_multiple (const char * remoteshell_command,
+		      const linkedlist * remoteshell_command_opt_r,
+		      const linkedlist * machinelist,
+		      int nummachines,
 		      const linkedlist * rshcommandline_r)
 {
   linkedlist* extraparam = NULL;
-  linkedlist* tmp;  
-  linkedlist* tmp_start ;  
+  linkedlist* tmp;
+  linkedlist* tmp_start ;
   char * buffer;
 
   extraparam = lladd(extraparam, DSH_COMMANDLINE);
 
-  tmp = tmp_start = lldup(machinelist);  
+  tmp = tmp_start = lldup(machinelist);
   while (tmp && (nummachines -- > 0))
     {
       extraparam=lladd (extraparam, "-m");
       extraparam=lladd (extraparam, tmp->string);
       tmp=tmp->next;
     }
-  llfree (tmp_start);  
+  llfree (tmp_start);
   tmp = tmp_start = llreverse(lldup(remoteshell_command_opt_r));
   while (tmp)
     {
@@ -421,7 +421,7 @@ execute_rsh_multiple (const char * remoteshell_command,
       extraparam=lladd (extraparam, tmp->string);
       tmp=tmp->next;
     }
-  llfree(tmp_start);  
+  llfree(tmp_start);
 				/* hand over any extra options here. */
   if (verbose_flag)
     extraparam=lladd (extraparam, "-v");
@@ -431,15 +431,15 @@ execute_rsh_multiple (const char * remoteshell_command,
     extraparam=lladd (extraparam, "-c");
   if (pipe_option)
     extraparam=lladd (extraparam, "-M");
-  
+
   if (asprintf(&buffer, "-n%i", num_topology)<0)
     {
       fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
       return -1;
     }
-  
+
   extraparam=lladd (extraparam, buffer);
-  free(buffer);  
+  free(buffer);
 
   /* add remoteshell command */
   if (asprintf(&buffer, "-r%s", remoteshell_command)<0)
@@ -447,9 +447,9 @@ execute_rsh_multiple (const char * remoteshell_command,
       fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
       return -1;
     }
-    
+
   extraparam=lladd (extraparam, buffer);
-  free(buffer);  
+  free(buffer);
 
 				/* end of extra options. */
   extraparam=lladd (extraparam, "--");
@@ -459,21 +459,21 @@ execute_rsh_multiple (const char * remoteshell_command,
 }
 
 /**
-   execute remote shell 
+   execute remote shell
    executes dsh on other machines, or
    executes rsh to execute command.
-   depending on the parameter and 
+   depending on the parameter and
    status.
 
    @return 0 on success, -1 on failure.
 */
 static int
-execute_rsh ( const char * remoteshell_command, 
+execute_rsh ( const char * remoteshell_command,
 	      const linkedlist * remoteshell_command_opt_r,
 	      const linkedlist * machinelist,
 	      int nummachines /** The number of machines to invoke rsh at the same time */,
 	      const linkedlist * rshcommandline_r)
-{				
+{
   if (nummachines == 1)
     return execute_rsh_single (remoteshell_command, remoteshell_command_opt_r, machinelist->string, rshcommandline_r, pipe_option);
   else
@@ -486,7 +486,7 @@ execute_rsh ( const char * remoteshell_command,
  *
  * Used for processing the -i option
  *
- * By the time this routine is called, the child rsh processes are 
+ * By the time this routine is called, the child rsh processes are
  * up and running.
  */
 void
@@ -505,7 +505,7 @@ run_input_forking_child_processes_process()
       buf = malloc_with_error ( buffer_size );
       signal(SIGPIPE, SIG_IGN);	/* I'll handle SIGPIPE with EPIPE */
 
-      /* This routine blocks even if all processes associated with 
+      /* This routine blocks even if all processes associated with
 	 fd_output_array is terminated */
       while ((count = read(0, buf, buffer_size)) != -1 )
 	{
@@ -522,14 +522,14 @@ run_input_forking_child_processes_process()
 		      /* pipe ended */
 		      fflush(stderr);
 		      goto out_of_while;
-		      /* This is going to terminate ALL processes 
+		      /* This is going to terminate ALL processes
 		       even if only one server terminated early. */
 		    }
 		  else
 		    perror("dsh: write");
 		}
 	    }
-	}      
+	}
     out_of_while:
       for (i=0; i<fd_output_array_len; ++i)
 	{
@@ -556,7 +556,7 @@ run_input_forking_child_processes_process()
 }
 
 /**
-   Shell dispatcher code. Called after the command-line parsing.  
+   Shell dispatcher code. Called after the command-line parsing.
 
    This code is the starting point for the shell execution on multiple
    hosts.
@@ -569,23 +569,23 @@ run_input_forking_child_processes_process()
 int
 do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 {
-  int nummachines; 
+  int nummachines;
   int i;
-  
+
   assert (num_topology > 0);
   assert (num_topology <= llcount(machinelist));
 
   nummachines = llcount(machinelist) / num_topology ;
-  
+
   /* topology 1 is special. */
   if (nummachines == 0 || num_topology == 1)
     {
       nummachines = 1;
-    }    
-  
+    }
+
   while (machinelist)
     {
-      if (wait_shell && verbose_flag) 
+      if (wait_shell && verbose_flag)
 	{
 	  fprintf (stderr, _("--- Executing on %s \n"), machinelist->string);
 	}
@@ -594,7 +594,7 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 	  fprintf(stderr, _("%s: execute_rsh failed, rsh invocation failure.\n"), PACKAGE);
 	  return -1;
 	}
-      
+
       /* skip the machines that program was executed on, and repeat */
       for (i=0; (i < nummachines) && machinelist; ++i)
 	  machinelist = machinelist -> next;
@@ -603,20 +603,20 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 
   /* Try forking the input using fork, for -i option. */
   if (pipe_option &= PIPE_OPTION_INPUT)
-    run_input_forking_child_processes_process();  
+    run_input_forking_child_processes_process();
 
   if (!wait_shell)
     {
       int childstatus = 0;
       int childpid;
-      
+
       /* waiting for all. */
       while (-1!=(childpid=waitpid(WAIT_ANY, &childstatus, 0)))
 	{
 	  /* Is child dead of signal ? i.e. segv, etc. */
 	  if (WIFSIGNALED(childstatus))
 	    {
-	      fprintf (stderr, _("%s: Child process %i exited with signal %i\n"), PACKAGE, childpid, 
+	      fprintf (stderr, _("%s: Child process %i exited with signal %i\n"), PACKAGE, childpid,
 		       WTERMSIG(childstatus));
 	      fflush (stderr);
 	      dsh_update_exit_code(2);
@@ -628,10 +628,10 @@ do_shell (linkedlist* machinelist, linkedlist*rshcommandline_r)
 	    }
 	}
     }
-  
+
   if (verbose_flag)
     fprintf(stderr, _("--- Terminated running\n"));
-  
+
   return dsh_exit_code;
 }
 
@@ -643,23 +643,23 @@ int
 main(int ac, char ** av)
 {
   char *buf=NULL;
-  
+
   setlocale (LC_ALL, "");
   if (!textdomain(PACKAGE_NAME))
     {
       if (!bindtextdomain(PACKAGE_NAME, LOCALEDIR))
 	fprintf (stderr, "%s: failed to call bindtextdomain\n", PACKAGE);
     }
-  
+
   /* load configuration files. */
   load_configfile(DSH_CONF);
   if (0>asprintf(&buf, "%s/.dsh/dsh.conf", getenv("HOME")))
     {
       fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
       exit (1);
-    }  
+    }
   load_configfile(buf);
   free (buf);
 
-  return parse_options(ac, av);  
+  return parse_options(ac, av);
 }
