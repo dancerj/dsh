@@ -1,0 +1,29 @@
+#! /bin/sh
+
+set -e
+
+if [ "$1" = "configure" ] && [ -z "$2" ]; then
+	if [ ! -e /etc/dsh/group/all ]
+	then
+		# manually create the symlink instead of shipping it
+		# see https://bugs.debian.org/788585
+		ln -s ../machines.list /etc/dsh/group/all
+	fi
+fi
+
+# see preinst
+SYMLINK="/etc/dsh/group/all"
+LASTVERSION="0.25.10-1.3~"
+
+if [ "$1" = "configure" ] &&
+   [ -n "$2" ] &&
+   dpkg --compare-versions -- "$2" le-nl "$LASTVERSION"; then
+	if [ -e ${SYMLINK}.dpkg-backup -o -h ${SYMLINK}.dpkg-backup ] &&
+	   [ ! -e "$SYMLINK" ]
+	then
+		mv -f "${SYMLINK}.dpkg-backup" "$SYMLINK"
+	fi
+fi
+
+#DEBHELPER#
+

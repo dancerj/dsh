@@ -1,29 +1,3 @@
-2008-08-03  Junichi Uekawa  <dancer@debian.org>
-
-	* parameter.c (open_devnull): add error checking.
-	(print_version): update version string for 2008.
-
-2008-08-02  Junichi Uekawa  <dancer@debian.org>
-
-	* dsh.c: 2008
-	(do_echoing_back_process): block some signals in the pipe-reader
-	for a change.
-
-	* tests/sleepyshell.c: A C implementation that sleeps less than 1
-	second.
-
-	* tests/sleepyshell.sh: a fake remote shell command that does
-	sleep and echo. Use it for debugging.
-
-	* tests/pipe-vs-redirect.sh: check that redirect and pipe output
-	will work.
-
-2008-02-02  Junichi Uekawa  <dancer@debian.org>
-
-	* test entry.
-	more test entry.
-	even more test entry
-
 2007-12-14  Junichi Uekawa  <dancer@debian.org>
 
 	* dsh.c (do_echoing_back_process): set line-buffering.

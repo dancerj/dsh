@@ -1,6 +1,5 @@
 bin_PROGRAMS=dsh
-dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h \
-	compat.c compat.h
+dsh_SOURCES= dsh.c linkedlist.c parameter.c dsh.h linkedlist.h parameter.h gettext.h
 original_man=dsh.1 dsh.conf.5 
 man_MANS=build-man/dsh.1 build-man/dsh.conf.5
 translated_man=dsh.conf.ja.5 dsh.ja.1
@@ -11,7 +10,7 @@ dsh_CFLAGS=-DDSHCONFDIR="\"$(sysconfdir)\"" -DDSH_COMMANDLINE="\"$(bindir)/$(PAC
 #  dsh.LL.1 and dsh.conf.LL.5
 man_languages=ja
 
-check_PROGRAMS=dsh tests/sleepyshell
+check_PROGRAMS=dsh
 TESTS=tests/param-f.sh \
 	tests/param-f-fail.sh \
 	tests/param-f-with-space.sh \
@@ -28,8 +27,7 @@ TESTS=tests/param-f.sh \
 	tests/segv-catcher.sh \
 	tests/test-bufferoverflow.sh \
 	tests/machinelist-comment-test.sh \
-	tests/machinelist-order.sh \
-	tests/pipe-vs-redirect.sh
+	tests/machinelist-order.sh
 
 TESTS_ENVIRONMENT=bindir=$(bindir) \
 	LC_ALL=C \
@@ -39,9 +37,7 @@ EXTRA_DIST= config.rpath $(sysconf_DATA) autogen.sh \
 	$(TESTS) tests/list.file tests/list.space.file \
 	tests/machinelist-comment.txt \
 	$(translated_man) $(original_man) \
-	dsh.spec \
-	test_compat.c \
-	mkinstalldirs
+	dsh.spec
 
 ${srcdir}/dsh.1.ja.po: ${srcdir}/dsh.1
 	po4a-updatepo -f man -m dsh.1 -p dsh.1.ja.po 
@@ -102,7 +98,4 @@ ACLOCAL_AMFLAGS = -I m4
 
 doc: ${srcdir}/*.[ch]
 	doc++ --dir doc *.[ch]
-
-check-syntax:
-	$(CC) -c $(CFLAGS) $(CHK_SOURCES) -o/dev/null
 

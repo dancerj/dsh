@@ -1,0 +1,22 @@
+#! /bin/sh
+
+set -e
+
+# Handle the upgrade from the symlink shipped in the package to the symlink
+# created by the postinst
+# see https://bugs.debian.org/788585
+
+# this code is based on symlink_to_dir in dpkg-maintscript-helper
+
+# note that this also works if /etc/dsh/group/all is not a symlink
+SYMLINK="/etc/dsh/group/all"
+LASTVERSION="0.25.10-1.3~"
+
+if [ "$1" = "install" -o "$1" = "upgrade" ] &&
+   [ -n "$2" ] && [ -h "$SYMLINK" -o -e "$SYMLINK" ] &&
+   dpkg --compare-versions -- "$2" le-nl "$LASTVERSION"; then
+	mv -f "$SYMLINK" "${SYMLINK}.dpkg-backup"
+fi
+
+#DEBHELPER#
+

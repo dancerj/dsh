@@ -1,10 +1,42 @@
-dsh (0.25.10-2) UNRELEASED; urgency=low
+dsh (0.25.10-1.4) unstable; urgency=medium
 
-  * prepare new release.
-  * debian/control: Add Vcs-Git entry.
-  * testsuite: check that large-scale cluster forking works properly
+  * Non-maintainer upload.
+  * Use strict mode in maintainer scripts. (Closes: #866270)
+  * Lintian fixes:
+    * Add ${misc:Depends} to the Depends line as debhelper is in use
+    * Add debian/source/format
+  * Add and integrate German program translation. Thanks to Chris Leick.
+    (Closes: #577157)
+  * Extend SEE ALSO to integrate links to alternative tools. Thanks jaalto.
+    (Closes: #518175)
+  * Add bash completion. Thanks to Jordi Funollet. (Closes: #528444)
 
- -- Junichi Uekawa <dancer@debian.org>  Sat, 02 Aug 2008 01:07:16 +0900
+ -- Helge Kreutzmann <debian@helgefjell.de>  Fri, 14 Dec 2018 08:14:20 +0100
+
+dsh (0.25.10-1.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Don't ship symlink for /etc/dsh/group/all. (Closes: #788585)
+
+ -- Ivo De Decker <ivodd@debian.org>  Sat, 08 Apr 2017 23:58:21 +0200
+
+dsh (0.25.10-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Move to debhelper compat level 9. (Closes: #817439)
+
+ -- Chris Lamb <lamby@debian.org>  Sun, 25 Sep 2016 14:50:25 +0200
+
+dsh (0.25.10-1.1) unstable; urgency=medium
+
+  [ Aurelien Jarno ]
+  * Non-maintainer upload.
+
+  [ Logan Rosen ]
+  * Use autotools-dev to update config.{sub,guess} for new arches (Closes:
+    #735633).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 04 Oct 2014 21:55:24 +0200
 
 dsh (0.25.10-1) unstable; urgency=low
 
@@ -50,7 +82,7 @@ dsh (0.25.6-1) unstable; urgency=low
 dsh (0.25.5-1) unstable; urgency=low
 
   * New upstream version
-  - reverse iteration of machinelist is now modified to be in the 
+  - reverse iteration of machinelist is now modified to be in the
     'proper' order. (closes: #291586)
 
  -- Junichi Uekawa <dancer@debian.org>  Wed, 16 Mar 2005 09:12:22 +0900
@@ -87,8 +119,8 @@ dsh (0.25.2-1) unstable; urgency=low
 dsh (0.25.1-1) unstable; urgency=low
 
   * New upstream version
-    Fix assertion error, and document workaround; 
-    use Ctrl-D instead of exit for now 
+    Fix assertion error, and document workaround;
+    use Ctrl-D instead of exit for now
     (Closes: #228513).
 
  -- Junichi Uekawa <dancer@debian.org>  Thu, 22 Jan 2004 09:16:45 +0900
@@ -198,7 +230,7 @@ dsh (0.23.1-1) unstable; urgency=low
 dsh (0.22.0-1) unstable; urgency=low
 
   * New upstream version
-  * Fix duplicate machine entry to be unified (closes: #161845) 
+  * Fix duplicate machine entry to be unified (closes: #161845)
   * Allow use of "," delimiter for -m option.
 
  -- Junichi Uekawa <dancer@debian.org>  Sun, 22 Sep 2002 20:31:00 +0900
@@ -206,9 +238,9 @@ dsh (0.22.0-1) unstable; urgency=low
 dsh (0.21.3-1) unstable; urgency=low
 
   * New upstream version
-  * Fix bug with "-i" option, and properly terminate 
+  * Fix bug with "-i" option, and properly terminate
     when applications are terminated.
-  * Fix machine-list file reading, so that whitespace in the file 
+  * Fix machine-list file reading, so that whitespace in the file
     is ignored.
 
  -- Junichi Uekawa <dancer@debian.org>  Thu, 19 Sep 2002 17:35:13 +0900
@@ -216,7 +248,7 @@ dsh (0.21.3-1) unstable; urgency=low
 dsh (0.21.2-1) unstable; urgency=low
 
   * New upstream version
-  * Fix minor bug with "-i" option, which did not terminate 
+  * Fix minor bug with "-i" option, which did not terminate
     correctly.
 
  -- Junichi Uekawa <dancer@debian.org>  Wed, 18 Sep 2002 20:37:15 +0900
@@ -232,7 +264,7 @@ dsh (0.21.0-1) unstable; urgency=low
 dsh (0.20.4-1) unstable; urgency=low
 
   * New upstream version
-  * Minor bugfix which should fix the -rssh -cn4 option to work in 
+  * Minor bugfix which should fix the -rssh -cn4 option to work in
     an expected way.
 
  -- Junichi Uekawa <dancer@debian.org>  Sat, 14 Sep 2002 13:32:22 +0900
@@ -339,7 +371,7 @@ dsh (0.0.9) unstable; urgency=low
   * clearing up some codes on what is const, in the hope to fix some
   outstanding bugs.
   * changed remaining _exit() to exit().
-  * Made "topology" execution to handle "-o" parameters, so that 
+  * Made "topology" execution to handle "-o" parameters, so that
     ssh can use forwarded auth keys with -o -A.
 
  -- Junichi Uekawa <dancer@debian.org>  Sat, 26 May 2001 02:19:32 +0900
@@ -351,7 +383,7 @@ dsh (0.0.8) unstable; urgency=low
   * changed all _exit() calls to exit()
   * Updated manpage dsh.1 to match the reality.
   * handles stderr output for -M option. All output that are sent to
-    stderr on the remote machines are displayed on the stderr of the 
+    stderr on the remote machines are displayed on the stderr of the
     local machine.
 
  -- Junichi Uekawa <dancer@debian.org>  Thu, 24 May 2001 01:57:10 +0900
@@ -374,8 +406,8 @@ dsh (0.0.6) unstable; urgency=low
 dsh (0.0.5) unstable; urgency=low
 
   * new release
-  * supports "topology". A method to spawn dsh on other machines to 
-    spawn more rsh from other machines. Trying to help a machine 
+  * supports "topology". A method to spawn dsh on other machines to
+    spawn more rsh from other machines. Trying to help a machine
     out from spawning all 256 or so rsh sessions.
     A topology of 2 will result in binary-tree arrangement.
     A topology of 3 would be better, I'd guess. Not thoroughly tested.
@@ -386,7 +418,7 @@ dsh (0.0.4) unstable; urgency=low
 
   * bugfixes and updates
   * Supports username@host format as a valid machine name specification.
-    It can be used in machines.list, and command line and 
+    It can be used in machines.list, and command line and
     everywhere (closes: #97819).
 
  -- Junichi Uekawa <dancer@debian.org>  Fri, 18 May 2001 02:50:02 +0900
@@ -417,5 +449,3 @@ dsh (0.0.1) unstable; urgency=low
   * Initial Release.
 
  -- Junichi Uekawa <dancer@debian.org>  Mon, 14 May 2001 22:53:04 +0900
-
-

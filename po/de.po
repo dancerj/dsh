@@ -1,59 +1,62 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Junichi Uekawa
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# German translation.
+# Copyright (C) 2001, 2002, 2003, 2004, 2005 Junichi Uekawa.
+# This file is distributed under the same license as the dsh package.
+# Chris Leick <c.leick@vollbio.de>, 2010.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: dsh 0.25.10-1\n"
+"Report-Msgid-Bugs-To: Junichi Uekawa <dancer@debian.org>\n"
 "POT-Creation-Date: 2007-12-14 09:02+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-04-10 12:11+0100\n"
+"Last-Translator: Chris Leick <c.leick@vollbio.de>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
 
 #: dsh.c:130
 #, c-format
 msgid "%s: Could not open descriptor [%i] or [%i]\n"
-msgstr ""
+msgstr "%s: Deskriptor [%i] oder [%i] konnte nicht geöffnet werden\n"
 
 #: dsh.c:159
 #, c-format
 msgid "%s: cannot create pipe\n"
-msgstr ""
+msgstr "%s: Pipe kann nicht erstellt werden\n"
 
 #: dsh.c:175
 #, c-format
 msgid "%s: Cannot spawn process\n"
-msgstr ""
+msgstr "%s: Prozess kann nicht gestartet werden\n"
 
 #: dsh.c:185
 msgid "Failed playing with pipe"
-msgstr ""
+msgstr "Spielen mit Pipe fehlgeschlagen"
 
 #: dsh.c:214
 #, c-format
 msgid "%s: Failed on constructing a pipe and forking\n"
 msgstr ""
+"%s: Einrichten einer Pipe und Start eines Folgeprozesses sind "
+"fehlgeschlagen\n"
 
 #: dsh.c:220
 #, c-format
 msgid "%s: Failed executing %s with llexec call\n"
-msgstr ""
+msgstr "%s: %s mit »llexec«-Aufruf auszuführen ist fehlgeschlagen\n"
 
 #: dsh.c:320
 #, c-format
 msgid "DUMPing parameters passed to llexec\n"
-msgstr ""
+msgstr "AUSGEGEBENE Parameter werden an »llexec« übergeben\n"
 
 #: dsh.c:329
 #, c-format
 msgid "%s: Failed to execute remote shell command %s\n"
-msgstr ""
+msgstr "%s: Die Ausführung des fernen Shell-Befehls %s ist fehlgeschlagen\n"
 
 #: dsh.c:335
 #, c-format
@@ -61,80 +64,82 @@ msgid ""
 "%s: Unexpected error occurred, do_execute_with_optional_pipe failed, and "
 "returned an error code that is not -1\n"
 msgstr ""
+"%s: Unerwarteter Fehler aufgetreten, »do_execute_with_optional_pipe« "
+"fehlgeschlagen und es wurde ein Fehlercode zurückgegeben, der nicht -1 ist\n"
 
 #: dsh.c:342
 #, c-format
 msgid "%s: fork failed, in execute_rsh_single\n"
-msgstr ""
+msgstr "%s: Verzweigen fehlgeschlagen in »execute_rsh_single«\n"
 
 #: dsh.c:364
 msgid "... Waiting for process to end with waitpid"
-msgstr ""
+msgstr "... Es wird auf den Prozess gewartet, um mit »waitpid« zu beenden"
 
 #: dsh.c:438 dsh.c:448 dsh.c:647 parameter.c:443 parameter.c:465
 #: parameter.c:471
 #, c-format
 msgid "%s: asprintf failed\n"
-msgstr ""
+msgstr "%s: »asprintf« fehlgeschlagen\n"
 
 #: dsh.c:520
 #, c-format
 msgid "%s: Process terminated (before write).\n"
-msgstr ""
+msgstr "%s: Prozess beendet (vor dem Schreiben)\n"
 
 #: dsh.c:539
 #, c-format
 msgid "%s: fork failed trying to dupilcate input\n"
-msgstr ""
+msgstr "%s: Verzweigen beim Versuch, Eingabe zu duplizieren, fehlgeschlagen \n"
 
 #: dsh.c:548
 #, c-format
 msgid "%s: forked off input forking process\n"
-msgstr ""
+msgstr "%s: Verzweigt aus Eingabeverzweigungsprozess\n"
 
 #: dsh.c:580
 #, c-format
 msgid "--- Executing on %s \n"
-msgstr ""
+msgstr "--- Ausführung auf %s \n"
 
 #: dsh.c:584
 #, c-format
 msgid "%s: execute_rsh failed, rsh invocation failure.\n"
-msgstr ""
+msgstr "%s: »execute_rsh« fehlgeschlagen, Scheitern des Rsh-Aufrufs\n"
 
 #: dsh.c:609
 #, c-format
 msgid "%s: Child process %i exited with signal %i\n"
-msgstr ""
+msgstr "%s: Kindprozess %i endete mit Signal %i\n"
 
 #: dsh.c:623
 #, c-format
 msgid "--- Terminated running\n"
-msgstr ""
+msgstr "--- Ausführung beendet\n"
 
 #: parameter.c:60
 #, c-format
 msgid "%s: failed to allocate memory of %i bytes\n"
-msgstr ""
+msgstr "%s: Reservieren von %i Byte Speicher fehlgeschlagen\n"
 
 #: parameter.c:143
 #, c-format
 msgid "%s: Unknown netgroup %s.\n"
-msgstr ""
+msgstr "%s: Unbekannte Netzgruppe %s.\n"
 
 #: parameter.c:150
 msgid "This platform does not support NIS database routines"
-msgstr ""
+msgstr "Diese Plattform unterstützt keine NIS-Datenbankroutinen"
 
 #: parameter.c:181
 #, c-format
 msgid "%s: File %s nor %s could not be opened for read\n"
-msgstr ""
+msgstr "%s: Weder Datei %s noch %s konnte zum Lesen geöffnet werden\n"
 
 #: parameter.c:185
 #, c-format
 msgid "%s: File %s could not be opened for read\n"
-msgstr ""
+msgstr "%s: Datei %s konnte nicht zum Lesen geöffnet werden\n"
 
 #: parameter.c:198
 #, c-format
@@ -144,6 +149,10 @@ msgid ""
 "distributed under the terms and conditions of GPL version 2\n"
 "\n"
 msgstr ""
+"Distributed Shell / Dancers Shell Version %s \n"
+"Copyright 2001-2005 Junichi Uekawa, \n"
+"verteilt unter den Bestimmungen und Bedingungen der GPL-Version 2\n"
+"\n"
 
 #: parameter.c:213
 #, c-format
@@ -168,61 +177,86 @@ msgid ""
 "-V --version                   Give out version information\n"
 "\n"
 msgstr ""
+"-v --verbose                   Detaillierte Ausgabe\n"
+"-q --quiet                     Still\n"
+"-M --show-machine-names        Der Ausgabe den Rechnernamen voranstellen\n"
+"-H --hide-machine-names        Der Ausgabe den Rechnernamen nicht\n"
+"                               voranstellen\n"
+"-i --duplicate-input           An Dsh übergebene Eingabe nicht duplizieren\n"
+"-b --bufsize                   In Eingabe-Duplizierung verwendete\n"
+"                               Puffergröße ändern\n"
+"-m --machine [machinename]     Auf Maschine ausführen\n"
+"-n --num-topology              Wie die Maschinen aufgeteilt werden\n"
+"-a --all                       Auf allen Maschinen ausführen\n"
+"-g --group [groupname]         Auf einem Gruppenmitglied ausführen\n"
+"-f --file [file]               Die Datei als Liste der Maschinen benutzen\n"
+"-r --remoteshell [shellname]   Ausführen unter Benutzung der Shell (Rsh/Ssh)\n"
+"-o --remoteshellopt [option]   Option to give to shell \n"
+"-h --help                      Diese Nachricht ausführen\n"
+"-w --wait-shell                Sequentielle Shell-Ausführung\n"
+"-c --concurrent-shell          Gleichzeitige Shell-Ausführung\n"
+"-F --forklimit [fork limit]    Gleichzeitig mit Begrenzung der Nummer\n"
+"-V --version                   Versionsinformationen ausgeben\n"
+"\n"
 
 #: parameter.c:248
 #, c-format
 msgid "Loading config file %s\n"
-msgstr ""
+msgstr "Konfigurationsdatei %s wird geladen\n"
 
 #: parameter.c:257
 #, c-format
 msgid " Parameter %s is %s\n"
-msgstr ""
+msgstr " Parameter %s ist %s\n"
 
 #: parameter.c:260 parameter.c:535
 #, c-format
 msgid "Using %s as the remote shell\n"
-msgstr ""
+msgstr "%s wird als ferne Shell benutzt\n"
 
 #: parameter.c:265 parameter.c:539
 #, c-format
 msgid "Adding [%s] to shell options\n"
-msgstr ""
+msgstr "[%s] wird zu Shell-Optionen hinzugefügt\n"
 
 #: parameter.c:271
 #, c-format
 msgid "Setting wait-shell to  [%i]\n"
-msgstr ""
+msgstr "»wait-shell« wird auf [%i] gesetzt\n"
 
 #: parameter.c:276
 #, c-format
 msgid "Setting pipe option to  [%i]\n"
-msgstr ""
+msgstr "»pipe«-Option wird auf [%i] gesetzt\n"
 
 #: parameter.c:284
 #, c-format
 msgid "Setting fork limit to  [%i] and wait_shell to [%i]\n"
-msgstr ""
+msgstr "»wfork limit« wird auf [%i] und »wait_shell« auf [%i] gesetzt\n"
 
 #: parameter.c:290
 #, c-format
 msgid "Setting verbose to  [%i]\n"
-msgstr ""
+msgstr "»verbose« wird auf [%i] gesetzt\n"
 
 #: parameter.c:295
 #, c-format
 msgid "%s: unparsed configuration file line %s found in %s\n"
-msgstr ""
+msgstr "%s: Nicht ausgewertete Konfigurationsdateizeile %s in %s gefunden\n"
 
 #: parameter.c:353
 #, c-format
 msgid ""
 "%s: Input duplication and concurrent shell need to be specified together\n"
 msgstr ""
+"%s: Eingabe-Duplizierung und gleichzeitige Shell müssen zusammen angegeben "
+"werden\n"
 
 #: parameter.c:359
 msgid "Cannot specify fork limit of less than 0\n"
 msgstr ""
+"Eine Verzweigungsbegrenzung, die kleiner als 0 ist, kann nicht angegeben "
+"werden\n"
 
 #: parameter.c:365
 #, c-format
@@ -230,113 +264,117 @@ msgid ""
 "%s: Input duplication and concurrent shell without fork limit need to be "
 "specified together\n"
 msgstr ""
+"%s: Eingabe-Duplizierung und gleichzeitige Shell ohne Verzweigungsbegrenzung "
+"müssen zusammen angegeben werden\n"
 
 #: parameter.c:371
 #, c-format
 msgid "%s: fork limit and wait shell cannot be specified at the same time\n"
 msgstr ""
+"%s: Verzweigungsbegrenzung und Warte-Shell können nicht gleichzeitig "
+"angegeben werden\n"
 
 #: parameter.c:438
 #, c-format
 msgid "Adding all machines to the list\n"
-msgstr ""
+msgstr "Alle Maschinen zur Liste hinzufügen\n"
 
 #: parameter.c:456
 #, c-format
 msgid "Adding netgroup %s to the list\n"
-msgstr ""
+msgstr "Netzgruppe %s zur Liste hinzufügen\n"
 
 #: parameter.c:462
 #, c-format
 msgid "Adding group %s to the list\n"
-msgstr ""
+msgstr "Gruppe %s zur Liste hinzufügen\n"
 
 #: parameter.c:481
 #, c-format
 msgid "Adding file %s to the list\n"
-msgstr ""
+msgstr "Datei %s zur Liste hinzufügen\n"
 
 #: parameter.c:487
 #, c-format
 msgid "Setting forklimit to %i and wait_shell to %i\n"
-msgstr ""
+msgstr "»forklimit« wird auf [%i] und »wait_shell« auf [%i] gesetzt\n"
 
 #: parameter.c:490
 #, c-format
 msgid "Verbose flag on\n"
-msgstr ""
+msgstr "Detailgrad-Markierung an\n"
 
 #: parameter.c:494
 #, c-format
 msgid "Verbose flag off\n"
-msgstr ""
+msgstr "Detailgrad-Markierung aus\n"
 
 #: parameter.c:498
 #, c-format
 msgid "Show machine names on output\n"
-msgstr ""
+msgstr "Maschinennamen in der Ausgabe anzeigen\n"
 
 #: parameter.c:502
 #, c-format
 msgid "Dont show machine names on output\n"
-msgstr ""
+msgstr "Maschinennamen in der Ausgabe nicht anzeigen\n"
 
 #: parameter.c:506
 #, c-format
 msgid "Duplicate input to all processes\n"
-msgstr ""
+msgstr "Eingabe zu allen Prozessen duplizieren\n"
 
 #: parameter.c:510
 #, c-format
 msgid "Buffer size used for dupliation\n"
-msgstr ""
+msgstr "Für Duplizierung verwendete Puffergröße\n"
 
 #: parameter.c:514
 #, c-format
 msgid "Buffer size needs to be greater than 1\n"
-msgstr ""
+msgstr "Puffergröße muss größer als 1 sein\n"
 
 #: parameter.c:519
 #, c-format
 msgid "Adding machine %s to list\n"
-msgstr ""
+msgstr "Maschine %s zur Liste hinzufügen\n"
 
 #: parameter.c:523
 #, c-format
 msgid "Topology number set to %s\n"
-msgstr ""
+msgstr "Netzstrukturnummer auf %s gesetzt\n"
 
 #: parameter.c:543
 #, c-format
 msgid "Wait for shell to finish executing\n"
-msgstr ""
+msgstr "Zum Beenden der Ausführung auf die Shell warten\n"
 
 #: parameter.c:547
 #, c-format
 msgid "Do not wait for shell to finish\n"
-msgstr ""
+msgstr "Zum Beenden nicht auf die Shell warten\n"
 
 #: parameter.c:554
 #, c-format
 msgid "Unkown option -%c.\n"
-msgstr ""
+msgstr "Unbekannte Option -%c.\n"
 
 #: parameter.c:556
 #, c-format
 msgid "Unkown option character 0x%x.\n"
-msgstr ""
+msgstr "Unbekanntes Optionszeichen 0x%x.\n"
 
 #: parameter.c:560
 #, c-format
 msgid "Unhandled option\n"
-msgstr ""
+msgstr "Nicht behandelte Option\n"
 
 #: parameter.c:567
 #, c-format
 msgid "%s: no machine specified\n"
-msgstr ""
+msgstr "%s: Keine Maschine angegeben\n"
 
 #: linkedlist.c:60
 #, c-format
 msgid "Out of memory in lladd\n"
-msgstr ""
+msgstr "Speicherplatz in »lladd« nicht ausreichend\n"

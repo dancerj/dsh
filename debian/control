@@ -2,14 +2,12 @@ Source: dsh
 Section: net
 Priority: optional
 Maintainer: Junichi Uekawa <dancer@debian.org>
-Build-Depends: debhelper (>> 3.0.0), libdshconfig1-dev (>= 0.20.11-1), po4a
+Build-Depends: debhelper (>= 9), libdshconfig1-dev (>= 0.20.11-1), po4a, autotools-dev
 Standards-Version: 3.7.2
-Vcs-Git: git://git.debian.org/git/users/dancer/dsh.git
-Vcs-Browser: http://git.debian.org/?p=users/dancer/dsh.git
 
 Package: dsh
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: update-cluster
 Description: dancer's shell, or distributed shell
  Executes specified command on a group of computers using remote shell

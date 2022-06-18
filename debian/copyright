@@ -12,3 +12,9 @@ Copyright (c) 2001, 2002, 2003, 2004, 2005 Junichi Uekawa
 
 Licensed under GPL version 2 or later.
 Please see /usr/share/common-licenses/GPL on Debian systems.
+
+po/de.po is (C) 2010 Chris Leick <c.leick@vollbio.de>
+
+debian/dsh.bash_completion is (C) 2011 Jordi Funollet <jordi.f@ati.es>
+Distributed under the terms and conditions of GPL version 2
+

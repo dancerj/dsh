@@ -17,7 +17,7 @@ AC_HEADER_SYS_WAIT
 AM_PROG_LIBTOOL
 AC_C_CONST
 
-ALL_LINGUAS=ja
+ALL_LINGUAS="de ja"
 AM_GNU_GETTEXT([external])
 AC_CHECK_FUNC(gettext,,AC_CHECK_LIB(intl,gettext,,AC_MSG_WARN([Gettext not found])))
 localedir='${datadir}/locale'

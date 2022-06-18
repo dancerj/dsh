@@ -25,12 +25,13 @@ endif
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
+	dh_autotools-dev_updateconfig
 	INSTALL_PROGRAM='${INSTALL_PROGRAM}' CFLAGS='${CFLAGS}' \
 	 ./configure --prefix=/usr --sysconfdir=/etc/dsh --mandir=/usr/share/man
 	touch configure-stamp
 
-build: build-stamp
-build-stamp: configure-stamp
+build: configure-stamp build-stamp
+build-stamp:
 	dh_testdir
 	$(MAKE)
 	$(MAKE) check
@@ -42,6 +43,7 @@ clean:
 	rm -f build-stamp configure-stamp
 	-$(MAKE) clean
 	-$(MAKE) distclean
+	dh_autotools-dev_restoreconfig
 	dh_clean
 
 install: build
@@ -54,9 +56,10 @@ install: build
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/dsh
 	cp $(CURDIR)/debian/machines.list $(CURDIR)/debian/dsh/etc/dsh/machines.list
 	cp $(CURDIR)/dsh.conf $(CURDIR)/debian/dsh/etc/dsh/dsh.conf
-	ln -s ../machines.list $(CURDIR)/debian/dsh/etc/dsh/group/all
 	install -d $(CURDIR)/debian/dsh/usr/lib/update-cluster
 	install -m 755 $(CURDIR)/debian/dsh.updatelist $(CURDIR)/debian/dsh/usr/lib/update-cluster/
+	install -d $(CURDIR)/debian/dsh/usr/share/bash-completion/completions/
+	install -m 644 $(CURDIR)/debian/dsh.bash_completion $(CURDIR)/debian/dsh/usr/share/bash-completion/completions/dsh
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -70,7 +73,7 @@ binary-arch: build install
 	dh_installexamples
 	dh_installmenu
 	dh_installman
-	dh_installchangelogs ChangeLog 
+	dh_installchangelogs ChangeLog
 	dh_link
 	dh_strip
 	dh_shlibdeps

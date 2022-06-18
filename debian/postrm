@@ -1,6 +1,11 @@
 #! /bin/sh
 
+set -e
+
 if [ "$1" = "purge" ]; then
+  rm -f /etc/dsh/group/all
+  # might be created in preinst on upgrade
+  rm -f /etc/dsh/group/all.dpkg-backup
   rmdir --ignore-fail-on-non-empty /etc/dsh/group
   rmdir --ignore-fail-on-non-empty /etc/dsh
 fi

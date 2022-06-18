@@ -16,4 +16,4 @@ Some wishlist:
 * ldap option, fork option for machine list
 * per-machine ssh/rsh specification.
 
-$Id$
+$Id: TODO,v 1.11 2005/03/16 00:14:55 dancer Exp $

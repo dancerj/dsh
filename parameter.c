@@ -1,6 +1,6 @@
 /*
  *  DSH / dancer's shell or the distributed shell
- *  Copyright (C) 2001-2008 Junichi Uekawa
+ *  Copyright (C) 2001, 2002, 2003, 2004, 2005, 2007 Junichi Uekawa
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -51,23 +51,23 @@
  *
  * @return allocated memory
  */
-void *
+void * 
 malloc_with_error(int size)
 {
   void * u = malloc (size);
   if (!u)
     {
       fprintf (stderr, _("%s: failed to allocate memory of %i bytes\n"), PACKAGE, size);
-      exit(1);
+      exit(1);      
     }
-  return u;
+  return u;  
 }
 
 /**
  * remove \n and other things from string
  * and return the new pointer.
  *
- * Will skip lines starting with a #
+ * Will skip lines starting with a # 
  */
 static const char *
 stripwhitespace(char * buf)
@@ -78,7 +78,7 @@ stripwhitespace(char * buf)
   while (*pointer && isspace(*pointer))
     pointer ++;
   if ((!*pointer) ||
-      (*pointer == '#'))
+      (*pointer == '#'))	
     /* if it is nothing, or is a comment return NULL */
     return NULL;
 
@@ -93,7 +93,7 @@ stripwhitespace(char * buf)
 
 
 /**
- * Add hostname to machinelist if and only if
+ * Add hostname to machinelist if and only if 
  * the host does not already exist in the machine list.
  *
  * @return linked list where machinename is added if it does not exist already
@@ -125,28 +125,28 @@ read_machinenetgroup(linkedlist * machinelist,
 #else
 #define WORKAROUND_SETNETGRENT
 #endif
-  if (setnetgrent(groupname) WORKAROUND_SETNETGRENT)
+  if (setnetgrent(groupname) WORKAROUND_SETNETGRENT) 
     {
       char *hostp=NULL, *userp=NULL, *domainp=NULL;
-
+      
       while (getnetgrent(&hostp, &userp, &domainp))
 	{
 	  if (NULL != hostp)
 	    machinelist = machinelist_lladd(machinelist, hostp);
-
+	  
 	}
       endnetgrent();
-    }
+    } 
   else
     {
-      fprintf(stderr,
+      fprintf(stderr, 
 	      _("%s: Unknown netgroup %s.\n"),
 	      PACKAGE, groupname);
       exit (1);			/* it should fail on error. */
     }
 
 #else  /* HAVE_SETNETGRENT */
-  fprintf(stderr, "%s: %s\n", PACKAGE,
+  fprintf(stderr, "%s: %s\n", PACKAGE, 
 	  _("This platform does not support NIS database routines"));
   #warning "disabled setnetgrent support"
 #endif
@@ -157,71 +157,37 @@ read_machinenetgroup(linkedlist * machinelist,
 /**
  * read the machine list file from file.
  */
-linkedlist*
-read_machinelist(linkedlist * machinelist, const char * listfile, const char * alternatelistfile)
+linkedlist* 
+read_machinelist(linkedlist * machinelist, const char * listfile, const char*alternatelistfile)
 {
   FILE * f;
-  size_t bufferlen = 1024;
+  size_t bufferlen = 1024;  
   char * buf = malloc_with_error(bufferlen);
-
-  if ((f = fopen (listfile, "r")) ||
-      ((NULL != alternatelistfile) && (f=fopen(alternatelistfile, "r"))))
+  
+  if ((f = fopen (listfile, "r")) || ((NULL != alternatelistfile) && (f=fopen(alternatelistfile, "r"))))
     {
       while (-1 != getline (&buf, &bufferlen, f))
 	{
 	  const char * strippedstring = stripwhitespace(buf);
 	  if (strippedstring)
-	    {
-	      if (*strippedstring == '@')
-		{ /* handle groups for host names starting with @.
-
-		     Note that @ is already used for netgroups
-		     elsewhere, but we're using this symbol to refer
-		     to another machinelist file.
-		   */
-		  char * buf1 = 0;
-		  char * buf2 = 0;
-		  char * filename = strippedstring + 1;
-
-		  if (asprintf(&buf1, DSHCONFDIR"/group/%s", filename) < 0)
-		    {
-		      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
-		      return machinelist;
-		    }
-		  if (asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), filename)<0)
-		    {
-		      fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
-		      return machinelist;
-		    }
-		  machinelist = read_machinelist(machinelist, buf2, buf1);
-		  free(buf1);free(buf2);
-		}
-	      else
-		{
-		  machinelist=machinelist_lladd(machinelist,strippedstring);
-		}
-	    }
+	    machinelist=machinelist_lladd(machinelist,strippedstring); 
 	}
       fclose(f);
     }
   else
     {
       if (alternatelistfile)
-	{
-	  fprintf (stderr,
-		   _("%s: File %s nor %s could not be opened for read\n"),
-		   PACKAGE, listfile, alternatelistfile);
-	}
+	fprintf (stderr, 
+		 _("%s: File %s nor %s could not be opened for read\n"),
+		 PACKAGE, listfile, alternatelistfile);
       else
-	{
-	  fprintf (stderr,
-		   _("%s: File %s could not be opened for read\n"),
-		   PACKAGE, listfile);
-	}
+	fprintf (stderr, 
+		 _("%s: File %s could not be opened for read\n"), 
+		 PACKAGE, listfile);
       exit (1);      		/* It should fail on error */
-    }
-  free (buf);
-  return machinelist;
+    }  
+  free (buf);  
+  return machinelist;  
 }
 
 /**
@@ -230,7 +196,7 @@ read_machinelist(linkedlist * machinelist, const char * listfile, const char * a
 int print_version(void)
 {
   printf(_("Distributed Shell / Dancer\'s shell version %s \n"
-	 "Copyright 2001-2008 Junichi Uekawa, \n"
+	 "Copyright 2001-2005 Junichi Uekawa, \n"
 	 "distributed under the terms and conditions of GPL version 2\n\n"),
 	 VERSION);
   return 0;
@@ -245,7 +211,7 @@ print_help (void)
   print_version();
   printf(_(
 	   "-v --verbose                   Verbose output\n"
-	   "-q --quiet                     Quiet\n"
+	   "-q --quiet                     Quiet\n"	
 	   "-M --show-machine-names        Prepend the host name on output\n"
 	   "-H --hide-machine-names        Do not prepend host name on output\n"
 	   "-i --duplicate-input           Duplicate input given to dsh\n"
@@ -275,10 +241,10 @@ load_configfile(const char * dsh_conf)
 {
   dshconfig * t;
   dshconfig_internal * line;
-  FILE*f = fopen (dsh_conf, "r");
+  FILE*f = fopen (dsh_conf, "r");  
   char * buf_a=NULL;
   char * buf_b=NULL;
-
+  
   if(verbose_flag) printf(_("Loading config file %s\n"), dsh_conf);
 
   if (f && (t = open_dshconfig(f, '=')))
@@ -293,22 +259,22 @@ load_configfile(const char * dsh_conf)
 	    {
 		  if (verbose_flag) printf(_("Using %s as the remote shell\n"), buf_b);
 		  remoteshell_command = strdup (buf_b);
-	    }
+	    }	      
 	  else if (!strcmp(buf_a, "remoteshellopt"))
 	    {
 	      if (verbose_flag) printf(_("Adding [%s] to shell options\n"), buf_b);
 	      remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, buf_b);
-	    }
+	    }	  
 	  else if (!strcmp(buf_a, "waitshell"))
 	    {
-	      wait_shell = atoi ( buf_b );
+	      wait_shell = atoi ( buf_b );		  
 	      if (verbose_flag) printf(_("Setting wait-shell to  [%i]\n"), wait_shell);
-	    }
+	    }	      
 	  else if (!strcmp(buf_a, "showmachinenames"))
 	    {
 	      pipe_option |= (atoi ( buf_b ) != 0 );
 	      if (verbose_flag) printf(_("Setting pipe option to  [%i]\n"), pipe_option);
-	    }
+	    }	      
 	  else if (!strcmp(buf_a, "forklimit"))
 	    {
 	      forklimit = atoi ( buf_b );
@@ -322,10 +288,10 @@ load_configfile(const char * dsh_conf)
 	    {
 	      verbose_flag = atoi ( buf_b );
 	      if (verbose_flag) printf(_("Setting verbose to  [%i]\n"), verbose_flag);
-	    }
+	    }	      
 	  else
 	    {
-	      fprintf (stderr,
+	      fprintf (stderr, 
 		       _("%s: unparsed configuration file line %s found in %s\n"),
 		       PACKAGE, buf_a, dsh_conf);
 	    }
@@ -333,29 +299,23 @@ load_configfile(const char * dsh_conf)
 
       free_dshconfig(t);
       fclose(f);
-    }
+    }  
   return 0;
 }
 
-/**
+/** 
  * open /dev/null as stdin
  */
-void
+void 
 open_devnull(void)
 {
   int in = open ("/dev/null", O_RDONLY);
-  if (-1==in)
-    {
-      perror("open-devnull");
-      return;
-    }
-  if (-1==dup2 (in, 0))
-    perror("dup2-open-devnull");
+  dup2 (in, 0);
 }
 
 
 /**
- * Split the option string with "," as delimiter, and
+ * Split the option string with "," as delimiter, and 
  * add the hostnames to the linked list.
  *
  * @return linked list with items added.
@@ -366,7 +326,7 @@ split_machines_list_and_add_machines(linkedlist* machinelist, const char * optar
   char * s = strdup (optarg);
   char * next ;
   char * current = s;
-
+  
   while ((next = strchr(current,',')))
     {
       *next = 0;
@@ -374,7 +334,7 @@ split_machines_list_and_add_machines(linkedlist* machinelist, const char * optar
       current = next + 1;
     }
   machinelist = machinelist_lladd(machinelist, current);
-
+  
   free(s);
   return machinelist;
 }
@@ -399,7 +359,7 @@ sanity_checking(void)
       fprintf (stderr, "%s: %s", PACKAGE, _("Cannot specify fork limit of less than 0\n"));
       return 1;
     }
-
+  
   if ((pipe_option & PIPE_OPTION_INPUT) && (forklimit  > 0 ))
     {
       fprintf (stderr, _("%s: Input duplication and concurrent shell without fork limit need to be specified together\n"), PACKAGE);
@@ -430,7 +390,7 @@ parse_options ( int ac, char ** av)
   linkedlist * rshcommandline_r = NULL; /* command line for rsh in reverse order*/
 
 #ifdef HAVE_GETOPT_LONG
-  int index_point;
+  int index_point;  
   static struct option long_options[]=
   {
     {"verbose", no_argument, 0, 'v'},
@@ -460,16 +420,16 @@ parse_options ( int ac, char ** av)
   };
 #else
 #define getopt_long(a,b,c,d,e) getopt(a,b,c)
-#endif
-
+#endif  
+  
 #ifdef GETOPT_WITH_GNU_REORDERING_EXTENTION
 #define EXTRAVALUE			  "+"	/* add this to get GNU getopt to work in POSIX manner */
 #else
 #define EXTRAVALUE
 #endif
 
-  while((c = getopt_long (ac, av,
-			  EXTRAVALUE "vqm:ar:f:g:hVcwo:MHn:ib:F:",
+  while((c = getopt_long (ac, av, 
+			  EXTRAVALUE "vqm:ar:f:g:hVcwo:MHn:ib:F:", 
 			  long_options, &index_point)) != -1)
     {
       switch (c)
@@ -483,11 +443,11 @@ parse_options ( int ac, char ** av)
 		fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
 		return 1;
 	      }
-
+	    
 	    machinelist = read_machinelist(machinelist, buf, DSHCONFDIR"/machines.list");
-	    free (buf);
-	  }
-	  break;
+	    free (buf);	    
+	  }	  
+	  break;	  
 	case 'g':
 	  {
             if ('@' == *optarg)
@@ -505,22 +465,22 @@ parse_options ( int ac, char ** av)
 		    fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
 		    return 1;
 		  }
-
+		
 		if (asprintf(&buf2, "%s/.dsh/group/%s", getenv("HOME"), optarg)<0)
 		  {
 		    fprintf (stderr, _("%s: asprintf failed\n"), PACKAGE);
 		    return 1;
 		  }
-
-		machinelist = read_machinelist (machinelist, buf2, buf1);
+		
+		machinelist = read_machinelist (machinelist, buf2, buf1); 
 		free(buf1);free(buf2);
 	      }
 	  }
-	  break;
+	  break;	  
 	case 'f':
 	  if (verbose_flag) printf (_("Adding file %s to the list\n"), optarg);
-	  machinelist = read_machinelist (machinelist, optarg, NULL);
-	  break;
+	  machinelist = read_machinelist (machinelist, optarg, NULL); 
+	  break;	  
 	case 'F':
 	  forklimit = atoi (optarg);
 	  wait_shell = 0;
@@ -528,57 +488,57 @@ parse_options ( int ac, char ** av)
 	  break;
 	case 'v':
 	  if (verbose_flag) printf (_("Verbose flag on\n"));
-	  verbose_flag=1;
+	  verbose_flag=1;	  
 	  break;
 	case 'q':
 	  if (verbose_flag) printf (_("Verbose flag off\n"));
-	  verbose_flag=0;
+	  verbose_flag=0; 
 	  break;
 	case 'M':
 	  if (verbose_flag) printf (_("Show machine names on output\n"));
 	  pipe_option |= PIPE_OPTION_OUTPUT;
-	  break;
+	  break;	  
 	case 'H':
 	  if (verbose_flag) printf (_("Dont show machine names on output\n"));
 	  pipe_option &=  ~(PIPE_OPTION_OUTPUT);
-	  break;
+	  break;	  
 	case 'i':
 	  if (verbose_flag) printf (_("Duplicate input to all processes\n"));
 	  pipe_option |= PIPE_OPTION_INPUT;
-	  break;
+	  break;	  
 	case 'b':
 	  if (verbose_flag) printf (_("Buffer size used for dupliation\n"));
-	  buffer_size = atoi(optarg);
+	  buffer_size = atoi(optarg);	  
 	  if (buffer_size < 1)
 	    {
 	      fprintf (stderr, _("Buffer size needs to be greater than 1\n"));
 	      return 1;
 	    }
-	  break;
+	  break;	  
 	case 'm':
 	  if (verbose_flag) printf (_("Adding machine %s to list\n"), optarg);
 	  machinelist = split_machines_list_and_add_machines (machinelist, optarg);
 	  break;
 	case 'n':
 	  if (verbose_flag) printf (_("Topology number set to %s\n"), optarg);
-	  num_topology = atoi (optarg);
-	  break;
+	  num_topology = atoi (optarg);	  
+	  break;	  
 	case 'h':
 	  print_help();
 	  exit(1);
-	  break;
+	  break;	  
 	case 'V':
 	  print_version();
 	  exit(1);
-	  break;
+	  break;	  
 	case 'r':		/* specify the shell command */
 	  if (verbose_flag) printf(_("Using %s as the remote shell\n"), optarg);
 	  remoteshell_command = strdup (optarg);
-	  break;
+	  break;	  
 	case 'o':		/* specify the shell command options */
 	  if (verbose_flag) printf(_("Adding [%s] to shell options\n"), optarg);
 	  remoteshell_command_opt_r = lladd (remoteshell_command_opt_r, optarg);
-	  break;
+	  break;	  
 	case 'w':		/* wait shell */
 	  if (verbose_flag) printf (_("Wait for shell to finish executing\n"));
 	  wait_shell=1;
@@ -594,11 +554,11 @@ parse_options ( int ac, char ** av)
 	    fprintf (stderr, _("Unkown option -%c.\n"), optopt);
 	  else
 	    fprintf (stderr, _("Unkown option character 0x%x.\n"), optopt);
-#endif
+#endif	  
 	  return 1;
 	default:
 	  if (verbose_flag) printf (_("Unhandled option\n"));
-	  break;
+	  break;	  
 	}
     }
 
@@ -615,7 +575,7 @@ parse_options ( int ac, char ** av)
 	rshcommandline_r = lladd(rshcommandline_r, av[i]);
       }
   }
-
+  
 
   /* do sanity checking, and exit if it fails. */
   if (sanity_checking())
@@ -627,7 +587,7 @@ parse_options ( int ac, char ** av)
 
   /* reverse the list, which is in reverse order, to make the right order */
   machinelist = llreverse (machinelist);
-
+  
 				/* actually execute the code. */
   return do_shell(machinelist, rshcommandline_r);
 }
