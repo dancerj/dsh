@@ -23,39 +23,17 @@
 
 #include <stdio.h>
 
+int process_incoming_text() {}
 
-int
-process_incoming_text()
-{
-}
+int process_outgoing_text() {}
 
-int
-process_outgoing_text()
-{
-}
-
-
-int
-fork_processes_for_action()
-{
-}
+int fork_processes_for_action() {}
 
 /**
- *  Accept an incoming connectiobn 
+ *  Accept an incoming connectiobn
  */
-int 
-accept_input(int fd/** File descriptor of the incoming connection */)
-{
-}
+int accept_input(int fd /** File descriptor of the incoming connection */) {}
 
-int
-parse_commandline()
-{
-  
-}
+int parse_commandline() {}
 
-int
-main()
-{
-  
-}
+int main() {}

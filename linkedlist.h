@@ -17,20 +17,18 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-typedef struct linkedlist_tag
-{
-  char * string;
-  struct linkedlist_tag * next;
+typedef struct linkedlist_tag {
+  char* string;
+  struct linkedlist_tag* next;
 } linkedlist;
 
 void llfree(linkedlist* a);
-linkedlist* lladd(linkedlist*next, const char * b);
-linkedlist* llcat(linkedlist*a, linkedlist*b);
-linkedlist* llreverse(linkedlist*a);
-linkedlist* lldup_r(const linkedlist*a);
-linkedlist* lldup(const linkedlist*a);
-int llcount (const linkedlist*a);
-int llexec (const char * command, const linkedlist*a);
-void lldump(const linkedlist*a);
-const linkedlist * llmatch(const linkedlist * a, const char * search);
-
+linkedlist* lladd(linkedlist* next, const char* b);
+linkedlist* llcat(linkedlist* a, linkedlist* b);
+linkedlist* llreverse(linkedlist* a);
+linkedlist* lldup_r(const linkedlist* a);
+linkedlist* lldup(const linkedlist* a);
+int llcount(const linkedlist* a);
+int llexec(const char* command, const linkedlist* a);
+void lldump(const linkedlist* a);
+const linkedlist* llmatch(const linkedlist* a, const char* search);

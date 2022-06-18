@@ -33,10 +33,9 @@
 
 #ifndef HAVE_GETLINE
 /* an imcomplete, and wrong implementation of getline */
-ssize_t getline (char **LINEPTR, size_t *N, FILE *STREAM);
+ssize_t getline(char **LINEPTR, size_t *N, FILE *STREAM);
 #endif
 
 #ifndef HAVE_ASPRINTF
 int asprintf(char **strp, const char *fmt, ...);
 #endif
-
